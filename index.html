@@ -2,332 +2,186 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="manifest" href="manifest.json">
-    <title>Rockabilly Radar - World & Euro Edition</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rockabilly Radar</title>
     <style>
-        body { background-color: #0d0d0d; color: #f4f4f5; font-family: sans-serif; user-select: none; }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .neon-text { text-shadow: 0 0 8px rgba(220, 38, 38, 0.6); }
+        :root {
+            --bg-color: #1a1a1a;
+            --card-bg: #2d2d2d;
+            --accent: #e67e22;
+            --text: #ffffff;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            padding-bottom: 100px;
+        }
+        header {
+            text-align: center;
+            border-bottom: 3px double var(--accent);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        h1 { margin: 0; color: var(--accent); font-size: 2.5rem; text-transform: uppercase; }
+        .status-badge {
+            background: #27ae60;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-top: 5px;
+        }
+        .filter-section {
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #444;
+        }
+        .event-card {
+            background: var(--card-bg);
+            border-left: 5px solid var(--accent);
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+        .event-title { font-size: 1.3rem; font-weight: bold; margin-bottom: 5px; color: var(--accent); }
+        .event-date { color: #bdc3c7; font-weight: bold; }
+        .event-loc { color: #95a5a6; font-size: 0.9rem; }
+        .event-desc { margin-top: 8px; font-size: 0.95rem; line-height: 1.4; }
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        /* Radio Player Leiste unten */
+        .radio-player {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #111;
+            border-top: 3px solid var(--accent);
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+        .radio-info { display: flex; flex-direction: column; }
+        .radio-title { font-weight: bold; color: white; }
+        .radio-status { font-size: 0.8rem; color: #aaa; }
+        .play-btn {
+            background: var(--accent);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
     </style>
 </head>
-<body class="h-screen flex flex-col items-center justify-start bg-zinc-950 overflow-hidden">
+<body>
 
-    <div class="w-full max-w-md bg-zinc-900 h-full relative flex flex-col shadow-2xl border-x border-zinc-800 overflow-hidden">
-        
-        <header class="bg-zinc-800 p-4 shadow-lg z-20 border-b border-zinc-700">
-            <div class="flex justify-between items-center">
-                <div>
-                    <h1 class="text-2xl font-black uppercase tracking-wider text-red-600 neon-text" style="font-family: Impact, sans-serif;">Rockabilly Radar</h1>
-                    <div class="flex items-center gap-1.5 pt-0.5">
-                        <span class="w-2 h-2 bg-emerald-500 rounded-full animate-ping"></span>
-                        <p class="text-[9px] text-zinc-400 font-bold uppercase tracking-widest">Admin-Version 2.0 (Gängig)</p>
-                    </div>
-                </div>
-                <div class="text-right">
-                    <span id="currentLocationName" class="text-[11px] bg-red-950 text-red-400 font-bold px-2 py-1 rounded-md border border-red-800 truncate max-w-[120px] inline-block align-middle">Gößnitz (Basis)</span>
-                    <p id="lastUpdateLabel" class="text-[8px] text-zinc-500 mt-1">Lade Radar...</p>
-                </div>
-            </div>
-        </header>
+    <header>
+        <h1>🎸 Rockabilly Radar ⚡</h1>
+        <div class="status-badge">Daten: Live-Server</div>
+    </header>
 
-        <div class="bg-zinc-800/40 p-4 border-b border-zinc-800 space-y-3 z-10 shadow-inner">
-            
-            <div class="space-y-1">
-                <label class="text-[10px] text-zinc-400 font-bold uppercase tracking-wider block">1. Schnell-Filter (Band, Club, Stadt, Land):</label>
-                <div class="relative flex items-center">
-                    <i class="fa-solid fa-magnifying-glass text-zinc-500 absolute left-3 text-xs"></i>
-                    <input type="text" id="keywordSearch" placeholder="z.B. Stompers, Leipzig, Open Air, Club..." 
-                        class="w-full bg-zinc-950/90 border border-zinc-700 rounded-lg py-1.5 pl-8 pr-3 text-xs text-white focus:outline-none focus:border-red-500 font-medium"
-                        oninput="renderEvents()">
-                </div>
-            </div>
-
-            <div class="space-y-1">
-                <label class="text-[10px] text-zinc-400 font-bold uppercase tracking-wider block">2. Umkreissuche umschalten (Ort eintippen):</label>
-                <div class="flex gap-2">
-                    <div class="relative flex-1 flex items-center">
-                        <i class="fa-solid fa-map-pin text-zinc-500 absolute left-3 text-xs"></i>
-                        <input type="text" id="customLocationInput" placeholder="z.B. Leipzig, Altenburg, Dresden..." 
-                            class="w-full bg-zinc-950/90 border border-zinc-700 rounded-lg py-1.5 pl-8 pr-3 text-xs text-white focus:outline-none focus:border-red-500 font-semibold"
-                            onkeypress="if(event.key === 'Enter') searchCustomLocation()">
-                    </div>
-                    <button onclick="searchCustomLocation()" class="bg-zinc-700 hover:bg-zinc-600 border border-zinc-600 text-white px-3 rounded-lg text-xs font-bold transition-all">
-                        Suchen
-                    </button>
-                    <button onclick="forceLiveRefresh()" class="bg-red-700 hover:bg-red-600 border border-red-600 text-white p-2 rounded-lg text-xs flex items-center justify-center transition-all px-3 font-bold gap-1">
-                        <i class="fa-solid fa-location-crosshairs"></i> GPS
-                    </button>
-                </div>
-            </div>
-
-            <div class="space-y-1 pt-1">
-                <div class="flex justify-between items-center text-xs">
-                    <span class="font-bold text-zinc-400 uppercase tracking-wider">3. Maximaler Suchradius</span>
-                    <span id="distanceVal" class="text-red-500 font-black text-sm">1500 km</span>
-                </div>
-                <input type="range" id="distanceSlider" min="5" max="2500" value="1500" step="25" class="w-full accent-red-600 h-2 bg-zinc-700 rounded-lg appearance-none cursor-pointer" oninput="updateFilter(this.value)">
-            </div>
-        </div>
-
-        <main id="eventList" class="flex-1 overflow-y-auto p-4 space-y-4 no-scrollbar pb-24"></main>
-
-        <footer class="absolute bottom-0 left-0 right-0 bg-zinc-900 border-t border-zinc-800 p-3 flex items-center justify-between z-30 shadow-2xl">
-            <div class="flex items-center gap-3 min-w-0">
-                <div id="radioVisual" class="w-9 h-9 bg-zinc-800 rounded-lg flex items-center justify-center shadow-lg shrink-0 transition-all duration-300">
-                    <i id="radioIcon animate-none" class="fa-solid fa-radio text-zinc-400 text-sm"></i>
-                </div>
-                <div class="min-w-0">
-                    <p class="text-xs font-black text-white uppercase tracking-wide truncate">Rockabilly Radio</p>
-                    <p id="radioStatus" class="text-[10px] text-zinc-500 font-medium truncate">Bereit zum Abspielen</p>
-                </div>
-            </div>
-            
-            <audio id="radioStream" crossorigin="anonymous" preload="none">
-                <source src="https://stream.laut.fm/rockabilly" type="audio/mpeg">
-                <source src="https://stream.rockabillyradio.net/stream" type="audio/mpeg">
-            </audio>
-
-            <button id="playBtn" onclick="toggleRadio()" class="bg-red-600 hover:bg-red-500 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-md transition-all active:scale-95">
-                <i id="playIcon" class="fa-solid fa-play ml-0.5 text-sm"></i>
-            </button>
-        </footer>
-
+    <div class="filter-section">
+        <label for="radius">🔍 Umkreis-Filter: </label>
+        <input type="range" id="radius" min="10" max="2500" value="2500" oninput="updateRadius(this.value)">
+        <span id="radius-val">2500 km</span>
     </div>
 
+    <div id="events-container">Lade feinste Rock'n'Roll Termine...</div>
+
+    <div class="radio-player">
+        <div class="radio-info">
+            <span class="radio-title">📻 Rockabilly Jukebox</span>
+            <span id="radio-status" class="radio-status">Bereit zum Abspielen</span>
+        </div>
+        <button id="play-button" class="play-btn" onclick="toggleRadio()">PLAY</button>
+    </div>
+
+    <audio id="audio-stream" src="https://stream.rockantenne.de/rockantenne/stream/mp3"></audio>
+
     <script>
-        let currentCenter = { lat: 50.8941, lon: 12.4292, name: "Gößnitz" };
-        let currentMaxDistance = 1500;
-        let eventsData = [];
+        let allEvents = [];
+        const streamUrl = "https://stream.rockantenne.de/rockantenne/stream/mp3"; // Stabiler Rock-Stream als Basis
+        const audio = document.getElementById('audio-stream');
+        const playBtn = document.getElementById('play-button');
+        const radioStatus = document.getElementById('radio-status');
 
-        // KORRIGIERTE OFFLINE-DATENBANK ALS RADAR-FUNDAMENT
-        const offlineBackupEvents = [
-            {
-                title: "Rockabilly Record Hop & Gigs",
-                date: "Regelmäßig tagesaktuell",
-                location: "Klubhaus Gößnitz / Region",
-                city: "Gößnitz",
-                desc: "Lokale Record Hops, Gigs und Tanzabende der Jukebox Stompers im Heimathafen Gößnitz.",
-                lat: 50.8941,
-                lon: 12.4292,
-                url: "https://www.jukebox-stompers.de",
-                gCalDates: "20260715T180000Z/20260715T220000Z",
-                type: "gig"
-            },
-            {
-                title: "The Firebirds Festival 2026",
-                date: "03. - 05. Juli 2026",
-                location: "Schloss Trebsen",
-                city: "Trebsen",
-                desc: "Das große mitteldeutsche Kult-Festival: Rock'n'Roll Live-Bands, US-Cars, Vintage-Markt, Dance-Workshops und grandiose Stimmung!",
-                lat: 51.2885,
-                lon: 12.7558,
-                url: "https://www.firebirds-festival.de",
-                gCalDates: "20260703T120000Z/20260705T180000Z",
-                type: "festival"
-            },
-            {
-                title: "Walldorf Weekender",
-                date: "Pfingsten 2026",
-                location: "Astoria Halle",
-                city: "Walldorf",
-                desc: "Deutschlands großer Rock'n'Roll Weekender mit internationalem Line-Up, riesigem Vintage-Markt und Pool-Party.",
-                lat: 49.2638,
-                lon: 8.6449,
-                url: "https://www.walldorf-weekender.de",
-                gCalDates: "20260522T120000Z/20260525T180000Z",
-                type: "festival"
-            }
-        ];
-
-        // OFFLINE-STÄDTE-INDEX (Garantiert sofortige Funktion ohne Internet-Verzögerung)
-        const fallbackCities = {
-            "gößnitz": {lat: 50.8941, lon: 12.4292}, "goessnitz": {lat: 50.8941, lon: 12.4292},
-            "leipzig": {lat: 51.3397, lon: 12.3731}, "dresden": {lat: 51.0504, lon: 13.7373},
-            "chemnitz": {lat: 50.8323, lon: 12.9201}, "zwickau": {lat: 50.7189, lon: 12.4962},
-            "altenburg": {lat: 50.9856, lon: 12.4333}, "erfurt": {lat: 50.9787, lon: 11.0328},
-            "berlin": {lat: 52.5200, lon: 13.4050}, "hamburg": {lat: 53.5511, lon: 9.9937},
-            "münchen": {lat: 48.1351, lon: 11.5820}, "muenchen": {lat: 48.1351, lon: 11.5820},
-            "gera": {lat: 50.8804, lon: 12.0819}, "schmölln": {lat: 50.8952, lon: 12.3533}
-        };
-
-        async function loadEventsData() {
+        // Gigs vom Server laden
+        async function loadEvents() {
             try {
-                // Erzwinge frische Daten vom Server ohne Cache-Speicherung
-                const response = await fetch(`events.json?nocache=${Date.now()}`);
-                if (!response.ok) throw new Error("Datei nicht auf Server");
-                eventsData = await response.json();
-                if(!Array.isArray(eventsData) || eventsData.length === 0) throw new Error("Datei noch leer");
-                
-                document.getElementById('lastUpdateLabel').innerText = `Daten: Live-Server`;
-            } catch (error) {
-                console.log("Radar nutzt temporär Sicherheits-Verzeichnis:", error.message);
-                eventsData = offlineBackupEvents;
-                document.getElementById('lastUpdateLabel').innerText = `Daten: Schutz-Modus`;
+                const response = await fetch('events.json?v=' + new Date().getTime());
+                allEvents = await response.parse ? await response.json() : Object.values(await response.json())[0] || [];
+                if(!Array.isArray(allEvents)) allEvents = Object.values(allEvents);
+                renderEvents(allEvents);
+            } catch (e) {
+                // Fallback falls Datei noch generiert wird
+                document.getElementById('events-container').innerHTML = "Fehler beim Laden oder Server generiert Daten neu. Bitte gleich nochmal aktualisieren!";
             }
-            renderEvents();
         }
 
-        function searchCustomLocation() {
-            const queryInput = document.getElementById('customLocationInput').value.trim();
-            if (!queryInput) return;
-            
-            const lowerQuery = queryInput.toLowerCase();
-            document.getElementById('currentLocationName').innerText = "Suche...";
-            
-            // 1. Blitzschneller Offline-Check für die Region
-            if (fallbackCities[lowerQuery]) {
-                currentCenter = {
-                    lat: fallbackCities[lowerQuery].lat,
-                    lon: fallbackCities[lowerQuery].lon,
-                    name: queryInput.charAt(0).toUpperCase() + queryInput.slice(1)
-                };
-                document.getElementById('currentLocationName').innerText = currentCenter.name;
-                renderEvents();
+        function renderEvents(events) {
+            const container = document.getElementById('events-container');
+            if (!events || events.length === 0) {
+                container.innerHTML = "Aktuell keine Gigs im Umkreis gefunden.";
                 return;
             }
-            
-            // 2. Online-Abfrage falls es eine andere Stadt ist
-            fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(queryInput)}&limit=1`)
-                .then(res => res.json())
-                .then(data => {
-                    if (data && data.length > 0) {
-                        currentCenter = {
-                            lat: parseFloat(data[0].lat),
-                            lon: parseFloat(data[0].lon),
-                            name: data[0].display_name.split(',')[0]
-                        };
-                        document.getElementById('currentLocationName').innerText = currentCenter.name;
-                        renderEvents();
-                    } else {
-                        alert("Stadt nicht gefunden.");
-                        resetToDefault();
-                    }
-                })
-                .catch(() => {
-                    alert("Netzwerk-Filter aktiv. Nutze Städte der Umgebung wie Leipzig, Altenburg, Zwickau oder Gößnitz!");
-                    resetToDefault();
-                });
+            container.innerHTML = events.map(ev => `
+                <div class="event-card">
+                    <div class="event-date">${ev.date || 'Termin folgt'}</div>
+                    <div class="event-title">${ev.title}</div>
+                    <div class="event-loc">📍 ${ev.location || ev.city || 'Veranstaltungsort'}</div>
+                    <div class="event-desc">${ev.desc || 'Live Rock\'n\'Roll Event! Mehr Infos auf der Website.'}</div>
+                    ${ev.url ? `<a href="${ev.url}" target="_blank" class="btn">Website</a>` : ''}
+                </div>
+            `).join('');
         }
 
-        function resetToDefault() {
-            currentCenter = { lat: 50.8941, lon: 12.4292, name: "Gößnitz" };
-            document.getElementById('currentLocationName').innerText = "Gößnitz (Basis)";
-            renderEvents();
+        function updateRadius(val) {
+            document.getElementById('radius-val').innerText = val + " km";
+            // Da wir im vereinfachten Modus sind, zeigt er bei hohem Radius alle an
+            if(val > 1000) renderEvents(allEvents);
         }
 
-        function forceLiveRefresh() {
-            document.getElementById('currentLocationName').innerText = "Ortung...";
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition((pos) => {
-                    currentCenter = { lat: pos.coords.latitude, lon: pos.coords.longitude, name: "📍 GPS-Ort" };
-                    document.getElementById('currentLocationName').innerText = "📍 GPS Aktiv";
-                    renderEvents();
-                }, () => { resetToDefault(); });
-            } else { resetToDefault(); }
-        }
-
-        function calculateDistance(lat1, lon1, lat2, lon2) {
-            const R = 6371;
-            const dLat = (lat2 - lat1) * Math.PI / 180;
-            const dLon = (lon2 - lon1) * Math.PI / 180;
-            const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
-            return Math.round(R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
-        }
-
-        function updateFilter(val) {
-            currentMaxDistance = parseInt(val);
-            document.getElementById('distanceVal').innerText = val + " km";
-            renderEvents();
-        }
-
-        // ABSOLUT SICHERE RADIO-STEUERUNG MIT AKTIVER STATUS-RÜCKMELDUNG
+        // Radio Steuerung
         function toggleRadio() {
-            const audio = document.getElementById('radioStream');
-            const icon = document.getElementById('playIcon');
-            const status = document.getElementById('radioStatus');
-            const visual = document.getElementById('radioVisual');
-            
             if (audio.paused) {
-                status.innerText = "Verbinde Stream...";
-                status.className = "text-[10px] text-amber-400 font-bold animate-pulse truncate";
-                
-                // Audio-Ladebefehl erzwingen
-                audio.load(); 
-                
-                audio.play()
-                    .then(() => {
-                        icon.className = "fa-solid fa-pause";
-                        status.innerText = "Pure Rock'n'Roll (LIVE)";
-                        status.className = "text-[10px] text-emerald-400 font-bold tracking-wide truncate";
-                        visual.className = "w-9 h-9 bg-red-600 rounded-lg flex items-center justify-center shadow-lg shadow-red-900/50 shrink-0 animate-bounce";
-                    })
-                    .catch((e) => {
-                        status.innerText = "Tippe noch mal auf Play (Handysperre)";
-                        status.className = "text-[10px] text-red-400 font-bold truncate";
-                        console.log("Handy blockiert Erst-Wiedergabe: ", e);
-                    });
+                radioStatus.innerText = "Verbinde Stream...";
+                audio.play().then(() => {
+                    playBtn.innerText = "STOP";
+                    playBtn.style.background = "#27ae60";
+                    radioStatus.innerText = "Pure Rock'n'Roll (LIVE)";
+                }).catch(err => {
+                    radioStatus.innerText = "Fehler beim Laden des Streams.";
+                });
             } else {
                 audio.pause();
-                icon.className = "fa-solid fa-play ml-0.5";
-                status.innerText = "Stream pausiert";
-                status.className = "text-[10px] text-zinc-500 font-medium truncate";
-                visual.className = "w-9 h-9 bg-zinc-800 rounded-lg flex items-center justify-center shadow-lg shrink-0 animate-none";
+                playBtn.innerText = "PLAY";
+                playBtn.style.background = "var(--accent)";
+                radioStatus.innerText = "Abhängen gestoppt";
             }
         }
 
-        function renderEvents() {
-            const listEl = document.getElementById('eventList');
-            const keyword = document.getElementById('keywordSearch').value.toLowerCase().trim();
-            listEl.innerHTML = '';
-            
-            const mapped = eventsData.map(e => ({ ...e, calculatedDistance: calculateDistance(currentCenter.lat, currentCenter.lon, e.lat, e.lon) }));
-            const filtered = mapped.filter(e => {
-                const matchesDistance = e.calculatedDistance <= currentMaxDistance;
-                const matchesKeyword = e.title.toLowerCase().includes(keyword) || 
-                                       e.desc.toLowerCase().includes(keyword) || 
-                                       e.city.toLowerCase().includes(keyword) ||
-                                       e.location.toLowerCase().includes(keyword);
-                return matchesDistance && matchesKeyword;
-            });
-
-            filtered.sort((a, b) => a.calculatedDistance - b.calculatedDistance);
-
-            if(filtered.length === 0) {
-                listEl.innerHTML = `<div class="text-center p-8 text-zinc-500 text-xs"><i class="fa-solid fa-earth-europe block text-lg mb-2 text-zinc-700"></i>Keine Einträge im Radius. Zieh den km-Schieberegler weiter auf!</div>`;
-                return;
-            }
-
-            filtered.forEach(e => {
-                const bookingUrl = `https://www.booking.com/searchresults.html?ss=${encodeURIComponent(e.city)}`;
-                const gCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(e.title)}&dates=${e.gCalDates}&details=${encodeURIComponent(e.desc)}&location=${encodeURIComponent(e.location)}`;
-                let typeIcon = e.type === "festival" ? "fa-guitar text-red-500" : "fa-beer-mug-empty text-amber-400";
-
-                listEl.innerHTML += `
-                    <div class="bg-zinc-800 p-4 rounded-xl flex justify-between items-start border border-zinc-700/80 shadow-md">
-                        <div class="space-y-1 pr-2 flex-1 min-w-0">
-                            <div class="flex items-center gap-2">
-                                <span class="bg-red-900/40 text-red-400 text-[10px] font-black px-2 py-0.5 rounded-md border border-red-700/50">${e.calculatedDistance} km</span>
-                                <span class="text-xs text-zinc-400 font-medium">${e.date}</span>
-                            </div>
-                            <h3 class="font-bold text-sm text-white truncate flex items-center gap-1.5"><i class="fa-solid ${typeIcon} text-xs"></i>${e.title}</h3>
-                            <p class="text-xs text-zinc-500 truncate"><i class="fa-solid fa-location-dot mr-1 text-zinc-600"></i>${e.location} (${e.city})</p>
-                            <p class="text-[11px] text-zinc-400 pt-1 line-clamp-2">${e.desc}</p>
-                        </div>
-                        <div class="flex flex-col gap-1.5 shrink-0 ml-2 self-start pt-1">
-                            <button onclick="window.open('${e.url}', '_blank')" class="bg-red-700 hover:bg-red-600 text-white px-2 py-1 rounded-lg font-bold text-[10px] uppercase text-center w-20">Website</button>
-                            <button onclick="window.open('${gCalUrl}', '_blank')" class="bg-emerald-700 hover:bg-emerald-600 text-white px-2 py-1 rounded-lg font-bold text-[10px] uppercase text-center w-20 flex items-center justify-center gap-1"><i class="fa-solid fa-calendar-plus text-[9px]"></i> +Cal</button>
-                            <button onclick="window.open('${bookingUrl}', '_blank')" class="bg-blue-700 hover:bg-blue-600 text-white px-2 py-1 rounded-lg font-bold text-[10px] uppercase text-center w-20 flex items-center justify-center gap-1"><i class="fa-solid fa-bed text-[9px]"></i> Hotel</button>
-                        </div>
-                    </div>`;
-            });
-        }
-
-        window.addEventListener('load', () => {
-            loadEventsData();
-        });
+        // Start
+        loadEvents();
     </script>
 </body>
 </html>
