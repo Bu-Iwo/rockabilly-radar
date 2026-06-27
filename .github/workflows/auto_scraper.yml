@@ -26,10 +26,18 @@ jobs:
 
     - name: Ergebnisse automatisch speichern
       run: |
-    
-git config --global user.name "Radar-Bot"
-git add events.json
-git commit -m "Autarkes Euro-Update von heute"
-git pull origin main --rebase
-git push origin main
+        - name: Commit und Push der Daten
+      run: |
+        git config --global user.name "Radar-Bot"
+        git config --global user.email "radar-bot@users.noreply.github.com"
+        git add events.json
+        
+        # Verhindert einen Absturz, falls der Bot mal keine neuen Gigs findet:
+        git diff-index --quiet HEAD || git commit -m "Autarkes Euro-Update von heute"
+        
+        # Holt frische Webseiten-Änderungen und drückt die Gigs rein
+        git pull origin main --rebase --strategy-option=theirs
+        git push origin main
+        
+  
 
