@@ -18,6 +18,7 @@ def get_coordinates(city_name):
             return float(data[0]['lat']), float(data[0]['lon'])
     except:
         pass
+    # Regionale Fallbacks, falls die API hakt
     if "zwönitz" in city_clean.lower(): return 50.6294, 12.8128
     if "zwickau" in city_clean.lower(): return 50.7189, 12.4961
     if "chemnitz" in city_clean.lower(): return 50.8333, 12.9167
@@ -155,4 +156,4 @@ def run_radar_scraper():
 
 if __name__ == "__main__":
     run_radar_scraper()
-    in
+    
