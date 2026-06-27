@@ -1,42 +1,47 @@
 import json
 import requests
 from bs4 import BeautifulSoup
-import urllib.parse
 
 def run_radar_scraper():
-    print("🤖 Rockabilly-Radar: Dresden & Stompers Update...")
+    print("🤖 Autopilot startet...")
     alle_events = []
     
-    # Deine Wunsch-Locations & Bands
+    # Die Seiten, die wir abfragen. 
+    # Wir nutzen hier echte Browser-Header, damit die Seiten uns nicht blockieren.
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+        'Accept-Language': 'de,en-US;q=0.7,en;q=0.3',
+        'Connection': 'keep-alive',
+    }
+
     targets = [
-        {"name": "Tonelli's Leipzig", "url": "http://www.tonellis.de/programm.html", "city": "Leipzig", "lat": 51.3396, "lon": 12.3731},
-        {"name": "Gaststätte zur Seilbahn", "url": "https://www.zur-seilbahn.de/", "city": "Leipzig", "lat": 51.3396, "lon": 12.3731},
-        {"name": "Tanzcafé Waldenburg", "url": "https://www.tanzcafe-waldenburg.de/", "city": "Waldenburg", "lat": 50.8787, "lon": 12.6033},
-        {"name": "Lady Yule (Dresden)", "url": "https://www.ladyyule.de/", "city": "Dresden", "lat": 51.0504, "lon": 13.7373},
-        {"name": "Jukebox Stompers (Events)", "url": "https://share.google/a892eE4QQbXLEXA4q", "city": "Leipzig", "lat": 51.3396, "lon": 12.3731},
-        {"name": "Elbonautics (Band)", "url": "https://www.facebook.com/elbonautics/", "city": "Leipzig", "lat": 51.3396, "lon": 12.3731},
-        {"name": "Shotgun Jones (Band)", "url": "https://www.facebook.com/ShotgunJonesBand/", "city": "Leipzig", "lat": 51.3396, "lon": 12.3731},
-        {"name": "Noels Ballroom", "url": "https://noels-ballroom.de/", "city": "Leipzig", "lat": 51.3396, "lon": 12.3731}
+        {"name": "Tonelli's Leipzig", "url": "http://www.tonellis.de/programm.html"},
+        {"name": "Noels Ballroom", "url": "https://noels-ballroom.de/"},
+        {"name": "Tanzcafé Waldenburg", "url": "https://www.tanzcafe-waldenburg.de/"}
     ]
 
     for target in targets:
-        alle_events.append({
-            "title": f"Radar: {target['name']}",
-            "date": "Check Kalender",
-            "location": target['name'],
-            "city": target['city'],
-            "lat": target['lat'],
-            "lon": target['lon'],
-            "desc": f"Direktlink zum Programm oder Social Media von {target['name']}.",
-            "url": target['url'],
-            "type": "venue"
-        })
+        try:
+            response = requests.get(target['url'], headers=headers, timeout=15)
+            if response.status_code == 200:
+                soup = BeautifulSoup(response.text, 'html.parser')
+                # Wir suchen nach allen Überschriften und Listenpunkten, 
+                # wo Termine stehen könnten
+                content = soup.get_text(separator=' ', strip=True)[:500] 
+                alle_events.append({
+                    "title": target['name'],
+                    "date": "Automatischer Scan",
+                    "location": target['name'],
+                    "desc": content,
+                    "url": target['url']
+                })
+        except Exception as e:
+            print(f"Fehler bei {target['name']}: {e}")
 
-    # Speichern
     with open('events.json', 'w', encoding='utf-8') as f:
         json.dump(alle_events, f, ensure_ascii=False, indent=4)
-    print("💾 Alle Favoriten (inkl. Jukebox Stompers) gesichert.")
+    print("💾 Automatisches Update beendet.")
 
 if __name__ == "__main__":
     run_radar_scraper()
-    
