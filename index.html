@@ -17,7 +17,7 @@
             color: var(--text);
             margin: 0;
             padding: 20px;
-            padding-bottom: 100px;
+            padding-bottom: 110px;
         }
         header {
             text-align: center;
@@ -25,7 +25,7 @@
             padding-bottom: 10px;
             margin-bottom: 20px;
         }
-        h1 { margin: 0; color: var(--accent); font-size: 2.5rem; text-transform: uppercase; }
+        h1 { margin: 0; color: var(--accent); font-size: 2.2rem; text-transform: uppercase; }
         .status-badge {
             background: #27ae60;
             color: white;
@@ -42,6 +42,36 @@
             margin-bottom: 20px;
             border: 1px solid #444;
         }
+        .input-group {
+            margin-bottom: 12px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #bdc3c7;
+        }
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            background: #111;
+            border: 1px solid var(--accent);
+            color: white;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+        .btn-search {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 8px;
+            width: 100%;
+            font-weight: bold;
+        }
         .event-card {
             background: var(--card-bg);
             border-left: 5px solid var(--accent);
@@ -49,20 +79,32 @@
             margin-bottom: 15px;
             border-radius: 4px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            position: relative;
         }
-        .event-title { font-size: 1.3rem; font-weight: bold; margin-bottom: 5px; color: var(--accent); }
+        .event-title { font-size: 1.25rem; font-weight: bold; margin-bottom: 5px; color: var(--accent); padding-right: 70px; }
         .event-date { color: #bdc3c7; font-weight: bold; }
-        .event-loc { color: #95a5a6; font-size: 0.9rem; }
-        .event-desc { margin-top: 8px; font-size: 0.95rem; line-height: 1.4; }
-        .btn {
+        .event-loc { color: #95a5a6; font-size: 0.9rem; margin-top: 3px; }
+        .event-desc { margin-top: 8px; font-size: 0.95rem; line-height: 1.4; color: #eee; }
+        .distance-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #34495e;
+            color: #fff;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        .btn-link {
             display: inline-block;
-            background: var(--accent);
+            background: #34495e;
             color: white;
             text-decoration: none;
             padding: 6px 12px;
             border-radius: 4px;
             margin-top: 10px;
             font-size: 0.9rem;
+            border: 1px solid var(--accent);
         }
         /* Radio Player Leiste unten */
         .radio-player {
@@ -86,7 +128,7 @@
             background: var(--accent);
             border: none;
             color: white;
-            padding: 10px 20px;
+            padding: 10px 22px;
             border-radius: 20px;
             font-weight: bold;
             cursor: pointer;
@@ -97,16 +139,23 @@
 
     <header>
         <h1>🎸 Rockabilly Radar ⚡</h1>
-        <div class="status-badge">Daten: Live-Server</div>
+        <div class="status-badge">Radar: Aktivisiert</div>
     </header>
 
     <div class="filter-section">
-        <label for="radius">🔍 Umkreis-Filter: </label>
-        <input type="range" id="radius" min="10" max="2500" value="2500" oninput="updateRadius(this.value)">
-        <span id="radius-val">2500 km</span>
+        <div class="input-group">
+            <label for="city-input">📍 Mein Standort (Stadt):</label>
+            <input type="text" id="city-input" class="input-field" value="Zwickau" placeholder="z.B. Zwickau oder Gößnitz">
+            <button class="btn-search" onclick="updateLocationCoords()">Entfernung berechnen</button>
+        </div>
+        
+        <div class="input-group" style="margin-top: 15px;">
+            <label for="radius">🔍 Maximaler Umkreis: <span id="radius-val">2500 km</span></label>
+            <input type="range" id="radius" min="10" max="2500" value="2500" style="width:100%;" oninput="filterAndRender()">
+        </div>
     </div>
 
-    <div id="events-container">Lade feinste Rock'n'Roll Termine...</div>
+    <div id="events-container">Lade Rock'n'Roll Termine aus der Datenbank...</div>
 
     <div class="radio-player">
         <div class="radio-info">
@@ -120,67 +169,133 @@
 
     <script>
         let allEvents = [];
-        const streamUrl = "https://stream.rockantenne.de/rockantenne/stream/mp3"; // Stabiler Rock-Stream als Basis
+        // Standard-Koordinaten (Zwickau) als Startpunkt
+        let userLat = 50.7189;
+        let userLon = 12.4961;
+
         const audio = document.getElementById('audio-stream');
         const playBtn = document.getElementById('play-button');
         const radioStatus = document.getElementById('radio-status');
 
-        // Gigs vom Server laden
+        // Spieldaten sauber abrufen
         async function loadEvents() {
             try {
                 const response = await fetch('events.json?v=' + new Date().getTime());
-                allEvents = await response.parse ? await response.json() : Object.values(await response.json())[0] || [];
-                if(!Array.isArray(allEvents)) allEvents = Object.values(allEvents);
-                renderEvents(allEvents);
+                const data = await response.json();
+                
+                // Präzise Prüfung auf das Datenformat, um "undefined" komplett zu verhindern
+                if (Array.isArray(data)) {
+                    allEvents = data;
+                } else if (typeof data === 'object' && data !== null) {
+                    allEvents = data.events || Object.values(data)[0] || [];
+                } else {
+                    allEvents = [];
+                }
+                
+                filterAndRender();
             } catch (e) {
-                // Fallback falls Datei noch generiert wird
-                document.getElementById('events-container').innerHTML = "Fehler beim Laden oder Server generiert Daten neu. Bitte gleich nochmal aktualisieren!";
+                document.getElementById('events-container').innerHTML = "Daten werden im Hintergrund generiert. Bitte lade die Seite in einer Minute neu! ⚡";
             }
         }
 
-        function renderEvents(events) {
+        // Standort-Koordinaten über freie API ermitteln
+        async function updateLocationCoords() {
+            const city = document.getElementById('city-input').value.trim();
+            if(!city) return;
+            
+            document.getElementById('events-container').innerHTML = "Berechne Entfernungen für " + city + "...";
+            
+            try {
+                const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(city)}&limit=1`);
+                const data = await response.json();
+                if(data && data.length > 0) {
+                    userLat = parseFloat(data[0].lat);
+                    userLon = parseFloat(data[0].lon);
+                }
+            } catch(e) {
+                console.log("Nutze regionalen Standard-Zentrierpunkt");
+            }
+            filterAndRender();
+        }
+
+        // Berechnet die exakte Entfernung in Luftlinie (Haversine Formel)
+        function calculateDistance(lat1, lon1, lat2, lon2) {
+            if (!lat1 || !lon1 || !lat2 || !lon2) return null;
+            const R = 6371; // Erdradius in km
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                      Math.sin(dLon/2) * Math.sin(dLon/2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            return Math.round(R * c);
+        }
+
+        function filterAndRender() {
+            const radiusVal = parseInt(document.getElementById('radius').value);
+            document.getElementById('radius-val').innerText = radiusVal + " km";
+
+            // Distanzen berechnen
+            let processed = allEvents.map(ev => {
+                const dist = calculateDistance(userLat, userLon, ev.lat, ev.lon);
+                return { ...ev, distance: dist };
+            });
+
+            // Filtern nach eingestelltem Schieberegler
+            let filtered = processed.filter(ev => {
+                if (ev.distance === null) return true; // Feste Festivals ohne Koordinaten immer listen
+                return ev.distance <= radiusVal;
+            });
+
+            // Sortieren: Nächste Gigs zuerst
+            filtered.sort((a, b) => {
+                if (a.distance === null) return 1;
+                if (b.distance === null) return -1;
+                return a.distance - b.distance;
+            });
+
+            renderContainer(filtered);
+        }
+
+        function renderContainer(events) {
             const container = document.getElementById('events-container');
             if (!events || events.length === 0) {
-                container.innerHTML = "Aktuell keine Gigs im Umkreis gefunden.";
+                container.innerHTML = "Aktuell keine Gigs im ausgewählten Umkreis gefunden.";
                 return;
             }
+
             container.innerHTML = events.map(ev => `
                 <div class="event-card">
+                    ${ev.distance !== null ? `<div class="distance-badge">📍 ${ev.distance} km</div>` : ''}
                     <div class="event-date">${ev.date || 'Termin folgt'}</div>
-                    <div class="event-title">${ev.title}</div>
-                    <div class="event-loc">📍 ${ev.location || ev.city || 'Veranstaltungsort'}</div>
-                    <div class="event-desc">${ev.desc || 'Live Rock\'n\'Roll Event! Mehr Infos auf der Website.'}</div>
-                    ${ev.url ? `<a href="${ev.url}" target="_blank" class="btn">Website</a>` : ''}
+                    <div class="event-title">${ev.title || 'Rock\'n\'Roll Event'}</div>
+                    <div class="event-loc">Ort: ${ev.location || ev.city || 'Veranstaltungsort'}</div>
+                    <div class="event-desc">${ev.desc || 'Live Musik, Tanz und coole Karren. Details auf der Website.'}</div>
+                    ${ev.url ? `<a href="${ev.url}" target="_blank" class="btn-link">Website öffnen</a>` : ''}
                 </div>
             `).join('');
         }
 
-        function updateRadius(val) {
-            document.getElementById('radius-val').innerText = val + " km";
-            // Da wir im vereinfachten Modus sind, zeigt er bei hohem Radius alle an
-            if(val > 1000) renderEvents(allEvents);
-        }
-
-        // Radio Steuerung
+        // Radio Player Logik
         function toggleRadio() {
             if (audio.paused) {
-                radioStatus.innerText = "Verbinde Stream...";
+                radioStatus.innerText = "Verbinde Jukebox...";
                 audio.play().then(() => {
                     playBtn.innerText = "STOP";
                     playBtn.style.background = "#27ae60";
                     radioStatus.innerText = "Pure Rock'n'Roll (LIVE)";
                 }).catch(err => {
-                    radioStatus.innerText = "Fehler beim Laden des Streams.";
+                    radioStatus.innerText = "Stream temporär überlastet.";
                 });
             } else {
                 audio.pause();
                 playBtn.innerText = "PLAY";
                 playBtn.style.background = "var(--accent)";
-                radioStatus.innerText = "Abhängen gestoppt";
+                radioStatus.innerText = "Jukebox pausiert";
             }
         }
 
-        // Start
+        // Automatischer Start beim Laden der Seite
         loadEvents();
     </script>
 </body>
