@@ -17,6 +17,7 @@
 
     <div class="w-full max-w-md bg-zinc-900 h-full relative flex flex-col shadow-2xl border-x border-zinc-800 overflow-hidden">
         
+        <!-- HEADER -->
         <header class="bg-zinc-800 p-4 shadow-lg z-20 border-b border-zinc-700">
             <div class="flex justify-between items-center">
                 <div>
@@ -33,8 +34,10 @@
             </div>
         </header>
 
+        <!-- STEUERUNGSPANEL -->
         <div class="bg-zinc-800/40 p-4 border-b border-zinc-800 space-y-3 z-10 shadow-inner">
             
+            <!-- Filter für Bands/Gigs -->
             <div class="space-y-1">
                 <label class="text-[10px] text-zinc-400 font-bold uppercase tracking-wider block">1. Filter (Band, Festival, Club, Land):</label>
                 <div class="relative flex items-center">
@@ -45,6 +48,7 @@
                 </div>
             </div>
 
+            <!-- DYNAMISCHE STANDORTEINGABE PER TEXT ODER GPS -->
             <div class="space-y-1">
                 <label class="text-[10px] text-zinc-400 font-bold uppercase tracking-wider block">2. Standort festlegen (Eingabe oder GPS):</label>
                 <div class="flex gap-2">
@@ -63,6 +67,7 @@
                 </div>
             </div>
 
+            <!-- MASSIVER EURO-RADIUS SCHIEBEREGLER -->
             <div class="space-y-1 pt-1">
                 <div class="flex justify-between items-center text-xs">
                     <span class="font-bold text-zinc-400 uppercase tracking-wider">3. Suchradius ab ausgewähltem Ort</span>
@@ -72,8 +77,10 @@
             </div>
         </div>
 
+        <!-- EVENTS-LISTE -->
         <main id="eventList" class="flex-1 overflow-y-auto p-4 space-y-4 no-scrollbar pb-24"></main>
 
+        <!-- STICKY FOOTER: NATIVES ROCKABILLY RADIO (JETZT IN SICHEREM HTTPS!) -->
         <footer class="absolute bottom-0 left-0 right-0 bg-zinc-900 border-t border-zinc-800 p-3 flex items-center justify-between z-30 shadow-2xl">
             <div class="flex items-center gap-3 min-w-0">
                 <div class="w-9 h-9 bg-red-600 rounded-lg flex items-center justify-center shadow-lg shadow-red-900/40 shrink-0">
@@ -84,7 +91,8 @@
                     <p class="text-[10px] text-zinc-400 font-medium truncate">Pure Rock'n'Roll Live Stream</p>
                 </div>
             </div>
-            <audio id="radioStream" src="http://stream.rockabillyradio.net:8000/stream" preload="none"></audio>
+            <!-- HTTPS Stream-Link fixiert gegen Browser-Sperren -->
+            <audio id="radioStream" src="https://stream.rockabillyradio.net/stream" preload="none"></audio>
             <button id="playBtn" onclick="toggleRadio()" class="bg-red-600 hover:bg-red-500 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-md transition-all">
                 <i id="playIcon" class="fa-solid fa-play ml-0.5 text-sm"></i>
             </button>
@@ -93,7 +101,6 @@
     </div>
 
     <script>
-        // Standard-Startpunkt (Heimatbasis Gößnitz)
         let currentCenter = { lat: 50.8941, lon: 12.4292, name: "Gößnitz" };
         let currentMaxDistance = 1500;
         let eventsData = [];
@@ -103,27 +110,32 @@
         async function loadEventsData() {
             try {
                 const response = await fetch(`${EVENT_SOURCE_URL}?t=${new Date().getTime()}`);
+                if (!response.ok) {
+                    throw new Error(`Datei nicht erreichbar (Status ${response.status}). GitHub baut die Seite vermutlich noch auf.`);
+                }
                 eventsData = await response.json();
                 const jetzt = new Date().toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
                 document.getElementById('lastUpdateLabel').innerText = `Sync: ${jetzt} Uhr`;
                 renderEvents();
             } catch (error) {
                 console.error("Fehler beim Abruf der Eventdaten:", error);
-                document.getElementById('eventList').innerHTML = `<div class="text-center p-4 text-red-500 text-xs">Verbindungsfehler zur Event-Datenbank.</div>`;
+                // Gibt dir sofort die genaue Fehlermeldung auf dem Handy aus!
+                document.getElementById('eventList').innerHTML = `
+                    <div class="text-center p-6 bg-red-950/40 border border-red-900 rounded-xl text-red-400 text-xs space-y-2">
+                        <i class="fa-solid fa-triangle-exclamation text-lg block"></i>
+                        <p class="font-bold">Synchronisations-Fehler</p>
+                        <p class="text-[11px] text-zinc-400 font-mono bg-black/40 p-2 rounded">${error.message}</p>
+                    </div>`;
             }
         }
 
-        // Freie Ortssuche über die kostenlose OpenStreetMap API
         async function searchCustomLocation() {
             const query = document.getElementById('customLocationInput').value.trim();
             if (!query) return;
-            
             document.getElementById('currentLocationName').innerText = "Suche...";
-            
             try {
                 const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=1`);
                 const data = await response.json();
-                
                 if (data && data.length > 0) {
                     currentCenter = {
                         lat: parseFloat(data[0].lat),
@@ -133,11 +145,11 @@
                     document.getElementById('currentLocationName').innerText = currentCenter.name;
                     renderEvents();
                 } else {
-                    alert("Ort leider nicht gefunden. Bitte korrigiere die Schreibweise.");
+                    alert("Ort leider nicht gefunden.");
                     document.getElementById('currentLocationName').innerText = "Gößnitz";
                 }
             } catch (error) {
-                console.error("Geocoding Fehler:", error);
+                console.error(error);
                 document.getElementById('currentLocationName').innerText = "Fehler";
             }
         }
@@ -149,7 +161,7 @@
         }
 
         function calculateDistance(lat1, lon1, lat2, lon2) {
-            const R = 6371; // Erdradius in km
+            const R = 6371;
             const dLat = (lat2 - lat1) * Math.PI / 180;
             const dLon = (lon2 - lon1) * Math.PI / 180;
             const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
@@ -159,11 +171,7 @@
         function trackGPSAndRefresh() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition((position) => {
-                    currentCenter = { 
-                        lat: position.coords.latitude, 
-                        lon: position.coords.longitude,
-                        name: "📍 GPS Ort"
-                    };
+                    currentCenter = { lat: position.coords.latitude, lon: position.coords.longitude, name: "📍 GPS Ort" };
                     document.getElementById('currentLocationName').innerText = "📍 GPS Aktiv";
                     loadEventsData();
                 }, () => {
@@ -185,7 +193,7 @@
             const audio = document.getElementById('radioStream');
             const icon = document.getElementById('playIcon');
             if (audio.paused) {
-                audio.play().catch(() => {});
+                audio.play().catch((e) => alert("Warte kurz, Stream lädt..."));
                 icon.className = "fa-solid fa-pause";
             } else {
                 audio.pause();
@@ -198,10 +206,12 @@
             const keyword = document.getElementById('keywordSearch').value.toLowerCase().trim();
             listEl.innerHTML = '';
             
-            if(eventsData.length === 0) return;
+            if(eventsData.length === 0) {
+                listEl.innerHTML = `<div class="text-center p-8 text-zinc-500 text-xs">Die Event-Datei ist leer. Starte den Scraper auf GitHub einmal manuell!</div>`;
+                return;
+            }
 
             const mapped = eventsData.map(e => ({ ...e, calculatedDistance: calculateDistance(currentCenter.lat, currentCenter.lon, e.lat, e.lon) }));
-            
             const filtered = mapped.filter(e => {
                 const matchesDistance = e.calculatedDistance <= currentMaxDistance;
                 const matchesKeyword = e.title.toLowerCase().includes(keyword) || 
@@ -211,11 +221,10 @@
                 return matchesDistance && matchesKeyword && e.status !== "cancelled";
             });
 
-            // Sortierung: Das Dichteste am gewählten Standort immer nach oben!
             filtered.sort((a, b) => a.calculatedDistance - b.calculatedDistance);
 
             if(filtered.length === 0) {
-                listEl.innerHTML = `<div class="text-center p-8 text-zinc-500 text-xs"><i class="fa-solid fa-earth-europe block text-lg mb-2 text-zinc-700"></i>Keine Einträge im gewählten Radius vorhanden. Erhöhe den Schieberegler oder passe die Suche an.</div>`;
+                listEl.innerHTML = `<div class="text-center p-8 text-zinc-500 text-xs"><i class="fa-solid fa-earth-europe block text-lg mb-2 text-zinc-700"></i>Keine Einträge im Radius vorhanden.</div>`;
                 return;
             }
 
