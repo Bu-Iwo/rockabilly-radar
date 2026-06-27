@@ -1,38 +1,79 @@
 [
     {
         "title": "Summer Jamboree #27",
-        "date": "August 2026",
-        "gCalDates": "20260801T100000Z/20260809T220000Z",
+        "date": "01.08. - 09.08.2026",
         "location": "Senigallia Promenade",
         "city": "Senigallia",
         "lat": 43.7147,
         "lon": 13.2183,
-        "desc": "Das größte Rockabilly-Festival Europas an der adriatischen Küste Italiens. 50s Musik, US-Cars und Tiki-Bars!",
+        "desc": "Das größte Rockabilly-Festival Europas an der Adria (Italien).",
         "url": "https://www.summerjamboree.com",
         "type": "festival"
     },
     {
         "title": "Rhythm Riot 2026",
-        "date": "November 2026",
-        "gCalDates": "20261115T120000Z/20261119T230000Z",
+        "date": "15.11. - 19.11.2026",
         "location": "Pontins Camber Sands",
         "city": "Rye",
         "lat": 50.9324,
         "lon": 0.7941,
-        "desc": "UKs legendäres Weekender-Event. Die absolute Weltspitze des Rhythm & Blues und Rock'n'Roll unter einem Dach.",
+        "desc": "UKs legendärer Weekender. Weltspitze des Rhythm & Blues.",
         "url": "https://www.rhythmriot.com",
         "type": "festival"
     },
     {
-        "title": "Rock'n'Roll Cruise 2027 (mit den Firebirds)",
-        "date": "Oktober 2027",
-        "gCalDates": "20271001T100000Z/20271008T220000Z",
-        "location": "Mittelmeer-Kreuzfahrt",
+        "title": "Rock'n'Roll Cruise 2027",
+        "date": "01.10. - 08.10.2027",
+        "location": "Mittelmeer-Kreuzfahrt mit den Firebirds",
         "city": "Genua",
         "lat": 44.4056,
         "lon": 8.9463,
-        "desc": "Die legendäre Rock'n'Roll Kreuzfahrt im Herbst 2027. Mit den Firebirds und hochkarätigen internationalen Szene-Bands live an Bord!",
+        "desc": "Die legendäre Kreuzfahrt mit hochkarätigen Live-Bands an Bord.",
         "url": "https://www.rocknroll-cruise.de",
         "type": "festival"
+    },
+    {
+        "title": "Firebirds Festival 2026",
+        "date": "03.07. - 05.07.2026",
+        "location": "Schloss Trebsen",
+        "city": "Trebsen",
+        "lat": 51.2892,
+        "lon": 12.7558,
+        "desc": "Das ultimative Rock'n'Roll-Wochenende in Sachsen! Live-Bands, Tanz-Workshops, US-Cars.",
+        "url": "https://www.firebirds-festival.de",
+        "type": "festival"
+    },
+    {
+        "title": "Walldorf Rock'n'Roll Weekender 2027",
+        "date": "Mai 2027 (Pfingsten)",
+        "location": "Waldintercamp Walldorf",
+        "city": "Walldorf/Meiningen",
+        "lat": 50.6122,
+        "lon": 10.3789,
+        "desc": "Kult-Weekender in Thüringen. Hot Rods, Tätowierer und bester 50s Sound.",
+        "url": "https://www.walldorf-weekender.net",
+        "type": "festival"
+    },
+    {
+        "title": "Rockabilly Convention 2026",
+        "date": "August 2026",
+        "location": "Event-Areal",
+        "city": "Moosburg",
+        "lat": 48.4669,
+        "lon": 11.9383,
+        "desc": "Großes Treffen der Szene mit Live-Musik, Markt und US-Cars.",
+        "url": "https://www.rockabilly-convention.de",
+        "type": "festival"
+    },
+    {
+        "title": "Boogie Woogie & Rock'n'Roll Tanzabend",
+        "date": "Regelmäßig Herbst 2026",
+        "location": "Tanzzentrum Sachsen",
+        "city": "Chemnitz",
+        "lat": 50.8333,
+        "lon": 12.9167,
+        "desc": "Regionaler Social Dance für Rock'n'Roll und Boogie-Woogie Fans.",
+        "url": "https://www.yellow-boogie-dancers.de",
+        "type": "party"
     }
 ]
