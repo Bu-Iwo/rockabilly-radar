@@ -22,5 +22,17 @@
         "desc": "UKs legendäres Weekender-Event. Die absolute Weltspitze des Rhythm & Blues und Rock'n'Roll unter einem Dach.",
         "url": "https://www.rhythmriot.com",
         "type": "festival"
+    },
+    {
+        "title": "Rock'n'Roll Cruise 2027 (mit den Firebirds)",
+        "date": "Oktober 2027",
+        "gCalDates": "20271001T100000Z/20271008T220000Z",
+        "location": "Mittelmeer-Kreuzfahrt",
+        "city": "Genua",
+        "lat": 44.4056,
+        "lon": 8.9463,
+        "desc": "Die legendäre Rock'n'Roll Kreuzfahrt im Herbst 2027. Mit den Firebirds und hochkarätigen internationalen Szene-Bands live an Bord!",
+        "url": "https://www.rocknroll-cruise.de",
+        "type": "festival"
     }
 ]
