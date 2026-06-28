@@ -1,9 +1,42 @@
 [
     {
-        "title": "Noels Ballroom",
-        "date": "Automatischer Scan",
+        "title": "Radar: Noels Ballroom",
+        "date": "Regelmäßig",
         "location": "Noels Ballroom",
-        "desc": "Home - Noels Ballroom Zum Inhalt springen Home Events Food Drinks Tanzen Über uns Kontakt & Jobs Instagram Facebook Suche nach: Menü schließen Home Events Food Drinks Tanzen Über uns Kontakt & Jobs Instagram Facebook Menü umschalten Suche nach: Dia duit! Die Biergarten Saison ist eröffnet! BINGO ABENDE Termine: 18.06. und  16.07. Einmal im Monat veranstalten wir unseren Bingo-Abend. Neben Bier, Shots und Softdrinks gibt es auch irisch/britische Leckereien und Sachpreise zu gewinnen! Plätze sind ",
+        "city": "Leipzig",
+        "desc": "Checke die Website für aktuelle Gigs.",
         "url": "https://noels-ballroom.de/"
+    },
+    {
+        "title": "Radar: Lady Yule",
+        "date": "Regelmäßig",
+        "location": "Lady Yule",
+        "city": "Dresden",
+        "desc": "Checke die Website für aktuelle Gigs.",
+        "url": "https://www.ladyyule.de/"
+    },
+    {
+        "title": "Band/Kalender: Jukebox Stompers (Events)",
+        "date": "Immer aktuell",
+        "location": "Jukebox Stompers (Events)",
+        "city": "Leipzig",
+        "desc": "Direktlink zur Seite.",
+        "url": "https://share.google/a892eE4QQbXLEXA4q"
+    },
+    {
+        "title": "Band/Kalender: Elbonautics (Band)",
+        "date": "Immer aktuell",
+        "location": "Elbonautics (Band)",
+        "city": "Leipzig",
+        "desc": "Direktlink zur Seite.",
+        "url": "https://www.facebook.com/elbonautics/"
+    },
+    {
+        "title": "Band/Kalender: Shotgun Jones (Band)",
+        "date": "Immer aktuell",
+        "location": "Shotgun Jones (Band)",
+        "city": "Leipzig",
+        "desc": "Direktlink zur Seite.",
+        "url": "https://www.facebook.com/ShotgunJonesBand/"
     }
 ]
