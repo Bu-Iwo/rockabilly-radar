@@ -12,11 +12,11 @@
     {
         "title": "Firebirds Festival 2026",
         "date": "03.07. - 05.07.2026",
-        "location": "Schloss Trebsen, Zum Schloss 1, 04687 Trebsen/Mulde",
-        "city": "Trebsen",
-        "lat": 51.2892,
-        "lon": 12.7558,
-        "desc": "Das ultimative Rock'n'Roll-Wochenende in Sachsen!",
+        "location": "Kloster Nimbschen, Nimbschener Landstraße 1, 04668 Grimma",
+        "city": "Grimma",
+        "lat": 51.2294,
+        "lon": 12.7561,
+        "desc": "Das ultimative Rock'n'Roll-Wochenende im Kloster Nimbschen!",
         "url": "https://www.firebirds-festival.de"
     },
     {
@@ -30,42 +30,10 @@
         "url": "https://www.rhythmriot.com"
     },
     {
-        "title": "Walldorf Rock'n'Roll Weekender 2027",
-        "date": "Mai 2027 (Pfingsten)",
-        "location": "Waldintercamp Walldorf, Melkerser Str. 1, 98617 Meiningen",
-        "city": "Walldorf",
-        "lat": 50.6122,
-        "lon": 10.3789,
-        "desc": "Kult-Weekender in Thüringen.",
-        "url": "https://www.walldorf-weekender.net"
-    },
-    {
-        "title": "Radar: Noels Ballroom",
-        "date": "Programm prüfen",
-        "location": "Noels Ballroom, Karl-Liebknecht-Straße 48, 04275 Leipzig",
-        "city": "Leipzig",
-        "lat": 51.3255,
-        "lon": 12.3739,
-        "desc": "Checke die Website direkt für kurzfristige Gigs.",
-        "url": "https://noels-ballroom.de/"
-    },
-    {
-        "title": "Radar: Lady Yule",
-        "date": "Programm prüfen",
-        "location": "Lady Yule, Münzgasse 2, 01067 Dresden",
-        "city": "Dresden",
-        "lat": 51.0514,
-        "lon": 13.7415,
-        "desc": "Checke die Website direkt für kurzfristige Gigs.",
-        "url": "https://www.ladyyule.de/"
-    },
-    {
         "title": "Jukebox Stompers (Home) Event",
         "date": "02.07.2026",
         "location": "Jukebox Stompers (Home), Veranstaltungsort siehe Beschreibung",
         "city": "Leipzig",
-        "lat": 51.3396,
-        "lon": 12.3731,
         "desc": "Ebenfalls kein Training am 02.07.2026 für die Gruppe \"Boogie Spezial\"",
         "url": "https://www.jukeboxstompers.de/"
     },
@@ -74,8 +42,6 @@
         "date": "20.07.2026",
         "location": "Jukebox Stompers (Home), Veranstaltungsort siehe Beschreibung",
         "city": "Leipzig",
-        "lat": 51.3396,
-        "lon": 12.3731,
         "desc": "Für die Gruppen \"Boogie Spezial\" und \"Mittelstufe 1\" haben wir eine Sommerpause vom 20.07.2026 bis zum 14.08.2027. In dieser Zeit findet kein Training dieser Gruppen statt.",
         "url": "https://www.jukeboxstompers.de/"
     }
