@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import re
 
 def run_free_smart_scraper():
-    print("🤖 Radar-Autopilot: Update läuft...")
+    print("🤖 Radar-Autopilot: Aggressiver Modus aktiviert...")
     alle_events = []
     
     vip_bands = [
@@ -15,7 +15,7 @@ def run_free_smart_scraper():
         "Restless", "Matchbox", "Darrel Higham"
     ]
     
-    # 1. FESTE GROSSE EVENTS (Firebirds korrigiert)
+    # Feste Events
     feste_events = [
         {
             "title": "Summer Jamboree #27", "date": "01.08. - 09.08.2026", 
@@ -41,7 +41,6 @@ def run_free_smart_scraper():
     ]
     alle_events.extend(feste_events)
 
-    # 2. TARGETS (Lady Yule entfernt)
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'}
     targets = [
         {"name": "Tonelli's Leipzig", "url": "http://www.tonellis.de/programm.html", "city": "Leipzig", "address": "Neumarkt 9, 04109 Leipzig", "lat": 51.3396, "lon": 12.3731},
@@ -52,11 +51,12 @@ def run_free_smart_scraper():
     ]
 
     date_pattern = re.compile(r'\b\d{1,2}\.\d{1,2}\.?(?:\d{2,4})?\b')
-    keywords = ['live', 'band', 'konzert', 'rockabilly', 'boogie', 'rock', 'party', 'auftritt', 'veranstaltung', 'gig']
-    wildcard_pattern = re.compile(r'(?:live|band)[\s:]+([A-Z][a-zA-Z0-9\'\s]{3,25})', re.IGNORECASE)
+    keywords = ['live', 'band', 'konzert', 'rockabilly', 'boogie', 'rock', 'party', 'auftritt', 'veranstaltung', 'gig', 'termin']
+    wildcard_pattern = re.compile(r'(?:live|band|termin)[\s:]+([A-Z][a-zA-Z0-9\'\s]{3,30})', re.IGNORECASE)
 
     for target in targets:
         try:
+            print(f"🔍 Scanne {target['name']}...")
             response = requests.get(target['url'], headers=headers, timeout=15)
             if response.status_code == 200:
                 soup = BeautifulSoup(response.text, 'html.parser')
@@ -65,8 +65,13 @@ def run_free_smart_scraper():
                 for el in elements:
                     text = el.get_text(separator=' ', strip=True)
                     text_lower = text.lower()
-                    if date_pattern.search(text) and any(kw in text_lower for kw in keywords):
-                        if 10 < len(text) < 300:
+                    
+                    # Logik: Datum ODER VIP-Band ODER Keyword muss vorhanden sein
+                    is_event = date_pattern.search(text) or any(band.lower() in text_lower for band in vip_bands)
+                    is_relevant = any(kw in text_lower for kw in keywords)
+                    
+                    if is_event and is_relevant:
+                        if len(text) > 5: # Sehr tolerant bei der Länge
                             found_dates = date_pattern.findall(text)
                             event_date = found_dates[0] if found_dates else "Demnächst"
                             match_band = next((b for b in vip_bands if b.lower() in text_lower), None)
@@ -79,13 +84,14 @@ def run_free_smart_scraper():
                                 "date": event_date,
                                 "location": f"{target['name']}, {target['address']}",
                                 "city": target['city'],
-                                "desc": text.replace('\n', ' ').strip(),
+                                "desc": text[:200] + "..." if len(text) > 200 else text, # Nicht zu lang machen
                                 "url": target['url']
                             })
                             gefunden += 1
-                            if gefunden >= 6: break
+                            if gefunden >= 15: break # Mehr Platz für kleine Gigs
+                print(f"✅ {target['name']}: {gefunden} Einträge gefunden.")
         except Exception as e:
-            print(f"Fehler bei {target['name']}: {e}")
+            print(f"⚠️ Fehler bei {target['name']}: {e}")
 
     with open('events.json', 'w', encoding='utf-8') as f:
         json.dump(alle_events, f, ensure_ascii=False, indent=4)
