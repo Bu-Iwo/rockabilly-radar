@@ -1,42 +1,162 @@
 [
     {
-        "title": "Radar: Noels Ballroom",
-        "date": "Regelmäßig",
+        "title": "Summer Jamboree #27",
+        "date": "01.08. - 09.08.2026",
+        "location": "Senigallia Promenade",
+        "city": "Senigallia",
+        "lat": 43.7147,
+        "lon": 13.2183,
+        "desc": "Das größte Rockabilly-Festival Europas an der Adria (Italien).",
+        "url": "https://www.summerjamboree.com"
+    },
+    {
+        "title": "Rhythm Riot 2026",
+        "date": "15.11. - 19.11.2026",
+        "location": "Pontins Camber Sands",
+        "city": "Rye",
+        "lat": 50.9324,
+        "lon": 0.7941,
+        "desc": "UKs legendärer Weekender. Weltspitze des Rhythm & Blues.",
+        "url": "https://www.rhythmriot.com"
+    },
+    {
+        "title": "Firebirds Festival 2026",
+        "date": "03.07. - 05.07.2026",
+        "location": "Schloss Trebsen",
+        "city": "Trebsen",
+        "lat": 51.2892,
+        "lon": 12.7558,
+        "desc": "Das ultimative Rock'n'Roll-Wochenende in Sachsen!",
+        "url": "https://www.firebirds-festival.de"
+    },
+    {
+        "title": "Walldorf Rock'n'Roll Weekender 2027",
+        "date": "Mai 2027 (Pfingsten)",
+        "location": "Waldintercamp Walldorf",
+        "city": "Walldorf/Meiningen",
+        "lat": 50.6122,
+        "lon": 10.3789,
+        "desc": "Kult-Weekender in Thüringen.",
+        "url": "https://www.walldorf-weekender.net"
+    },
+    {
+        "title": "Rock'n'Roll Cruise",
+        "date": "Check Website",
+        "location": "Schiff/Hafen",
+        "city": "Kiel",
+        "lat": 54.3233,
+        "lon": 10.1394,
+        "desc": "Die offizielle R'n'R Cruise auf hoher See.",
+        "url": "https://www.rocknrollcruise.de/de/index.html"
+    },
+    {
+        "title": "Noels Ballroom Event",
+        "date": "18.06",
         "location": "Noels Ballroom",
         "city": "Leipzig",
-        "desc": "Checke die Website für aktuelle Gigs.",
+        "lat": 51.3396,
+        "lon": 12.3731,
+        "desc": "Termine: 18.06. und  16.07.",
         "url": "https://noels-ballroom.de/"
     },
     {
         "title": "Radar: Lady Yule",
-        "date": "Regelmäßig",
+        "date": "Siehe Homepage",
         "location": "Lady Yule",
         "city": "Dresden",
-        "desc": "Checke die Website für aktuelle Gigs.",
+        "lat": 51.0504,
+        "lon": 13.7373,
+        "desc": "Hier aktuell nach Infos oder Terminen schauen.",
         "url": "https://www.ladyyule.de/"
     },
     {
-        "title": "Band/Kalender: Jukebox Stompers (Events)",
-        "date": "Immer aktuell",
-        "location": "Jukebox Stompers (Events)",
+        "title": "Jukebox Stompers Event",
+        "date": "02.07.2026",
+        "location": "Jukebox Stompers",
         "city": "Leipzig",
-        "desc": "Direktlink zur Seite.",
-        "url": "https://share.google/a892eE4QQbXLEXA4q"
+        "lat": 51.3396,
+        "lon": 12.3731,
+        "desc": "Ebenfalls kein Training am 02.07.2026 für die Gruppe \"Boogie Spezial\"",
+        "url": "https://www.jukeboxstompers.de/"
     },
     {
-        "title": "Band/Kalender: Elbonautics (Band)",
-        "date": "Immer aktuell",
+        "title": "Jukebox Stompers Event",
+        "date": "20.07.2026",
+        "location": "Jukebox Stompers",
+        "city": "Leipzig",
+        "lat": 51.3396,
+        "lon": 12.3731,
+        "desc": "Für die Gruppen \"Boogie Spezial\" und \"Mittelstufe 1\" haben wir eine Sommerpause vom 20.07.2026 bis zum 14.08.2027. In dieser Zeit findet kein Training dieser Gruppen statt.",
+        "url": "https://www.jukeboxstompers.de/"
+    },
+    {
+        "title": "Yellow Boogie Dancers Event",
+        "date": "16.06.2026",
+        "location": "Yellow Boogie Dancers",
+        "city": "Zwönitz",
+        "lat": 50.6294,
+        "lon": 12.8128,
+        "desc": "Ehrenurkunde vom LTVS (Landes-Tanzsportverband Sachsen) 16.06.2026 Vereinsleben",
+        "url": "https://www.yellow-boogie-zwoenitz.de/"
+    },
+    {
+        "title": "Yellow Boogie Dancers Event",
+        "date": "16.06.2026",
+        "location": "Yellow Boogie Dancers",
+        "city": "Zwönitz",
+        "lat": 50.6294,
+        "lon": 12.8128,
+        "desc": "Ehrenurkunde vom LTVS (Landes-Tanzsportverband Sachsen) 16.06.2026 Vereinsleben",
+        "url": "https://www.yellow-boogie-zwoenitz.de/"
+    },
+    {
+        "title": "Yellow Boogie Dancers Event",
+        "date": "16.06.2026",
+        "location": "Yellow Boogie Dancers",
+        "city": "Zwönitz",
+        "lat": 50.6294,
+        "lon": 12.8128,
+        "desc": "Ehrenurkunde vom LTVS (Landes-Tanzsportverband Sachsen) 16.06.2026 Vereinsleben",
+        "url": "https://www.yellow-boogie-zwoenitz.de/"
+    },
+    {
+        "title": "Yellow Boogie Dancers Event",
+        "date": "16.06.2026",
+        "location": "Yellow Boogie Dancers",
+        "city": "Zwönitz",
+        "lat": 50.6294,
+        "lon": 12.8128,
+        "desc": "Ehrenurkunde vom LTVS (Landes-Tanzsportverband Sachsen) 16.06.2026 Vereinsleben",
+        "url": "https://www.yellow-boogie-zwoenitz.de/"
+    },
+    {
+        "title": "Yellow Boogie Dancers Event",
+        "date": "16.06.2026",
+        "location": "Yellow Boogie Dancers",
+        "city": "Zwönitz",
+        "lat": 50.6294,
+        "lon": 12.8128,
+        "desc": "Ehrenurkunde vom LTVS (Landes-Tanzsportverband Sachsen) 16.06.2026 Vereinsleben",
+        "url": "https://www.yellow-boogie-zwoenitz.de/"
+    },
+    {
+        "title": "Band: Elbonautics (Band)",
+        "date": "Check Facebook",
         "location": "Elbonautics (Band)",
         "city": "Leipzig",
-        "desc": "Direktlink zur Seite.",
+        "lat": 51.3396,
+        "lon": 12.3731,
+        "desc": "Checke die Social Media Seite für die nächsten Gigs.",
         "url": "https://www.facebook.com/elbonautics/"
     },
     {
-        "title": "Band/Kalender: Shotgun Jones (Band)",
-        "date": "Immer aktuell",
+        "title": "Band: Shotgun Jones (Band)",
+        "date": "Check Facebook",
         "location": "Shotgun Jones (Band)",
         "city": "Leipzig",
-        "desc": "Direktlink zur Seite.",
+        "lat": 51.3396,
+        "lon": 12.3731,
+        "desc": "Checke die Social Media Seite für die nächsten Gigs.",
         "url": "https://www.facebook.com/ShotgunJonesBand/"
     }
 ]
