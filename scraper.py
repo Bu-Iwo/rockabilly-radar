@@ -3,6 +3,45 @@ import requests
 from bs4 import BeautifulSoup
 import re
 
+# Wörter, die typische Webseiten-Menüs oder irrelevante Inhalte kennzeichnen
+IGNORE_WORDS = [
+    "home",
+    "impressum",
+    "datenschutz",
+    "cookie",
+    "cookies",
+    "kontakt",
+    "facebook",
+    "instagram",
+    "menü",
+    "menu",
+    "zum inhalt springen",
+    "suche",
+    "jobs",
+    "vereinsleben",
+    "mitglied werden"
+]
+
+def is_valid_event_text(text):
+    """Prüft, ob ein Text überhaupt wie eine Veranstaltung aussieht."""
+
+    if not text:
+        return False
+
+    text = text.strip()
+
+    # zu kurz
+    if len(text) < 25:
+        return False
+
+    lower = text.lower()
+
+    # Navigation und Webseitenreste ignorieren
+    if any(word in lower for word in IGNORE_WORDS):
+        return False
+
+    return True
+
 def run_free_smart_scraper():
     print("🤖 Radar-Autopilot: Aggressiver Modus aktiviert...")
     alle_events = []
