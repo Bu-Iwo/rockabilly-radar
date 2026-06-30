@@ -95,6 +95,7 @@
             cursor: pointer;
             font-weight: bold;
             margin-right: 10px;
+            transition: background 0.2s;
         }
         button:hover {
             background: #ff5722;
@@ -123,17 +124,75 @@
             border-radius: 4px;
             font-size: 0.8rem;
         }
-        .btn-link {
-            display: inline-block;
-            margin-top: 10px;
-            color: var(--accent);
-            text-decoration: none;
-            font-size: 0.9rem;
-            border: 1px solid var(--accent);
-            padding: 5px 10px;
-            border-radius: 4px;
+        
+        /* Ausklappbare Details */
+        .event-details {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #333;
         }
-        .btn-link:hover { background: var(--accent); color: white; }
+        .event-details.active {
+            display: block;
+        }
+        .event-desc {
+            font-size: 0.9rem;
+            color: #bbb;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 8px 12px;
+            background: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            border: 1px solid #555;
+            transition: all 0.2s;
+        }
+        .btn-action:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+        .btn-calendar {
+            background: #4285f4;
+            border-color: #4285f4;
+        }
+        .btn-calendar:hover {
+            background: #3367d6;
+        }
+        .btn-booking {
+            background: #003580;
+            border-color: #003580;
+        }
+        .btn-booking:hover {
+            background: #00275e;
+        }
+        
+        .btn-toggle {
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 5px 10px;
+            font-size: 0.85rem;
+            margin-top: 10px;
+        }
+        .btn-toggle:hover {
+            background: var(--accent);
+            color: white;
+        }
 
         .radio-player {
             position: fixed;
@@ -200,8 +259,8 @@
             </div>
             
             <div class="control-row">
-                <label>📏 Entfernung: <span class="radius-display" id="radius-display">500 km</span></label>
-                <input type="range" id="radius-slider" min="10" max="500" value="500" step="10" oninput="updateRadius()">
+                <label>📏 Entfernung: <span class="radius-display" id="radius-display">2500 km</span></label>
+                <input type="range" id="radius-slider" min="10" max="2500" value="2500" step="10" oninput="updateRadius()">
             </div>
 
             <div id="status-msg" class="status-msg">
@@ -230,7 +289,7 @@
     let allEvents = [];
     let userLat = 50.7189;
     let userLon = 12.4961;
-    let maxRadius = 500;
+    let maxRadius = 2500;
     let map, markersLayer, userMarker;
 
     // PWA Installation
@@ -266,7 +325,6 @@
         }).addTo(map);
         markersLayer = L.layerGroup().addTo(map);
         
-        // User-Marker
         userMarker = L.marker([userLat, userLon], {
             icon: L.divIcon({
                 className: 'user-marker',
@@ -286,7 +344,6 @@
                     map.setView([userLat, userLon], 8);
                     userMarker.setLatLng([userLat, userLon]);
                     
-                    // Reverse Geocoding für Stadtname
                     fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${userLat}&lon=${userLon}`)
                         .then(res => res.json())
                         .then(data => {
@@ -349,6 +406,68 @@
         document.getElementById('status-msg').textContent = msg;
     }
 
+    // Google Calendar Link erstellen
+    function createGoogleCalendarLink(event) {
+        const title = encodeURIComponent(event.title);
+        const location = encodeURIComponent(event.location || event.city);
+        const details = encodeURIComponent(event.desc || '');
+        
+        // Datum parsen (Format: DD.MM.YYYY oder DD.MM. - DD.MM.YYYY)
+        let startDate = '';
+        let endDate = '';
+        
+        if (event.date) {
+            const dateMatch = event.date.match(/(\d{1,2})\.(\d{1,2})\.(\d{4})?/);
+            if (dateMatch) {
+                const day = dateMatch[1].padStart(2, '0');
+                const month = dateMatch[2].padStart(2, '0');
+                const year = dateMatch[3] || new Date().getFullYear();
+                startDate = `${year}${month}${day}`;
+                endDate = startDate;
+            }
+        }
+        
+        if (!startDate) return '#';
+        
+        return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startDate}/${endDate}&details=${details}&location=${location}`;
+    }
+
+    // Booking.com Link erstellen
+    function createBookingLink(event) {
+        const city = encodeURIComponent(event.city || 'Berlin');
+        
+        // Datum für Check-in/Check-out
+        let checkIn = '';
+        let checkOut = '';
+        
+        if (event.date) {
+            const dateMatch = event.date.match(/(\d{1,2})\.(\d{1,2})\.(\d{4})?/);
+            if (dateMatch) {
+                const day = dateMatch[1].padStart(2, '0');
+                const month = dateMatch[2].padStart(2, '0');
+                const year = dateMatch[3] || new Date().getFullYear();
+                checkIn = `${year}-${month}-${day}`;
+                
+                // Check-out = nächster Tag
+                const date = new Date(year, month - 1, day);
+                date.setDate(date.getDate() + 1);
+                checkOut = date.toISOString().split('T')[0];
+            }
+        }
+        
+        if (!checkIn) {
+            return `https://www.booking.com/searchresults.de.html?ss=${city}`;
+        }
+        
+        return `https://www.booking.com/searchresults.de.html?ss=${city}&checkin=${checkIn}&checkout=${checkOut}`;
+    }
+
+    // Details ein/ausblenden
+    function toggleDetails(eventId) {
+        const details = document.getElementById(`details-${eventId}`);
+        details.classList.toggle('active');
+    }
+
     async function loadEvents() {
         try {
             const response = await fetch('events.json?v=' + new Date().getTime());
@@ -371,13 +490,11 @@
             return { ...ev, distance: dist };
         });
 
-        // Nach Entfernung filtern
         let filtered = processed.filter(ev => {
-            if (ev.distance === null) return true; // Events ohne Koordinaten immer zeigen
+            if (ev.distance === null) return true;
             return ev.distance <= maxRadius;
         });
 
-        // Sortieren
         filtered.sort((a, b) => {
             if (a.distance === null) return 1;
             if (b.distance === null) return -1;
@@ -389,13 +506,15 @@
             return;
         }
 
-        container.innerHTML = filtered.map(ev => {
+        container.innerHTML = filtered.map((ev, index) => {
             if (ev.lat && ev.lon) {
                 const marker = L.marker([ev.lat, ev.lon]).bindPopup(`<b>${ev.title}</b><br>${ev.date}<br>${ev.location}`);
                 markersLayer.addLayer(marker);
             }
 
             const distText = ev.distance !== null ? `<span class="distance-badge">📍 ${ev.distance} km</span>` : '';
+            const calLink = createGoogleCalendarLink(ev);
+            const bookingLink = createBookingLink(ev);
             
             return `
             <div class="event-card">
@@ -403,7 +522,20 @@
                 <div class="event-title">${ev.title}</div>
                 <div class="event-date">📅 ${ev.date || 'Termin unbekannt'}</div>
                 <div class="event-loc">🏠 ${ev.location || ev.city}</div>
-                ${ev.url ? `<a href="${ev.url}" target="_blank" class="btn-link">Mehr Infos</a>` : ''}
+                
+                <button class="btn-toggle" onclick="toggleDetails(${index})">
+                    ℹ️ Mehr Infos anzeigen
+                </button>
+                
+                <div class="event-details" id="details-${index}">
+                    <div class="event-desc">${ev.desc || 'Keine Beschreibung verfügbar.'}</div>
+                    
+                    <div class="action-buttons">
+                        ${ev.url ? `<a href="${ev.url}" target="_blank" class="btn-action">🔗 Webseite</a>` : ''}
+                        <a href="${calLink}" target="_blank" class="btn-action btn-calendar">📅 Google Kalender</a>
+                        <a href="${bookingLink}" target="_blank" class="btn-action btn-booking">🏨 Unterkunft suchen</a>
+                    </div>
+                </div>
             </div>
             `;
         }).join('');
