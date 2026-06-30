@@ -28,5 +28,35 @@
     "lon": 1.685,
     "desc": "Kult-Festival in England.",
     "url": "https://www.hemsbyrockweekender.co.uk"
+  },
+  {
+    "title": "Event @ Noels Ballroom",
+    "date": "18.06. ",
+    "location": "Noels Ballroom, Leipzig",
+    "city": "Leipzig",
+    "lat": 51.3406321,
+    "lon": 12.3747329,
+    "desc": "Zum Inhalt springen Home Events Food Drinks Tanzen Über uns Kontakt & Jobs Instagram Facebook Suche nach: Menü schließen Home Events Food Drinks Tanzen Über uns Kontakt & Jobs Instagram Facebook Menü ...",
+    "url": "https://noels-ballroom.de/"
+  },
+  {
+    "title": "Event @ Noels Ballroom",
+    "date": "08.09.2026",
+    "location": "Noels Ballroom, Leipzig",
+    "city": "Leipzig",
+    "lat": 51.3406321,
+    "lon": 12.3747329,
+    "desc": "Dienstag/Tuesday Season starts on 08.09.2026 season-ranking Herunterladen English Pub Quiz Every Tuesday our english speaking Quiz Master Tom will challenge your knowledge of a wide variety of topics,...",
+    "url": "https://noels-ballroom.de/"
+  },
+  {
+    "title": "Event @ Noels Ballroom",
+    "date": "09.09.2026",
+    "location": "Noels Ballroom, Leipzig",
+    "city": "Leipzig",
+    "lat": 51.3406321,
+    "lon": 12.3747329,
+    "desc": "Mittwoch Saison startet am 09.09.2026 saison-wertung Herunterladen Deutsches Pub Quiz Mittwochs stellt euch Matti, unser deutschsprachiger Quiz Master, auf die Probe. Welche ist die längste U-Bahnlini...",
+    "url": "https://noels-ballroom.de/"
   }
 ]
