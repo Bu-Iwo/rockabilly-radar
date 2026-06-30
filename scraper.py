@@ -6,7 +6,6 @@ import time
 
 OUTPUT_FILE = 'events.json'
 
-# Erweiterte Liste bekannter Bands
 VIP_BANDS = [
     "Ray Collins Hot Club", "Ray Collins' Hot Club", "Ray Allen", "Class of 58", "The Firebirds",
     "Jumpin'Up", "Jumpin' Up", "The Nymonics", "The Trainyard Kings", "Shotgun Jones", 
@@ -19,7 +18,6 @@ VIP_BANDS = [
     "Boogie Banausen", "Toto & Raw Deals", "Si Cranstoun"
 ]
 
-# Feste Top-Events
 HARDCODED_EVENTS = [
     {
         "title": "Summer Jamboree 2026", 
@@ -33,14 +31,10 @@ HARDCODED_EVENTS = [
     }
 ]
 
-# Webseiten zum Scrapen
 TARGETS = [
-    # Große Venues
     {"name": "Noels Ballroom", "url": "https://noels-ballroom.de/", "city": "Leipzig"},
     {"name": "Tonelli's Leipzig", "url": "http://www.tonellis.de/programm.html", "city": "Leipzig"},
     {"name": "Tanzcafé Waldenburg", "url": "https://www.tanzcafe-waldenburg.de/", "city": "Waldenburg"},
-    
-    # Kleine Bars und Clubs
     {"name": "Rockabilly Radio Events", "url": "https://www.rockabillyradio.net/events/", "city": "Diverse"},
     {"name": "Go-Hamburg", "url": "https://www.go-hamburg.de/rockabilly-termine", "city": "Hamburg"},
     {"name": "Rock'n'Roll Calendar", "url": "https://www.rockabilly.nl/calendar.php", "city": "Diverse"},
@@ -53,20 +47,9 @@ TARGETS = [
     {"name": "Club Passage Erfurt", "url": "https://www.club-passage.de/programm/", "city": "Erfurt"}
 ]
 
-# Spezielle Quellen mit eigener Parser-Logik
-SPECIAL_SOURCES = [
-    {
-        "name": "Jukebox Stompers Kalender",
-        "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
-        "parser": "jukebox_stompers"
-    }
-]
-
 def get_coords(city_name):
-    """Holt GPS-Koordinaten für eine Stadt."""
     try:
-        # Entferne Ländernamen für bessere Suche
-        city_clean = city_name.replace("Deutschland", "").replace("Italien", "").replace("Schweiz", "").replace("England", "").strip()
+        city_clean = city_name.replace("Deutschland", "").replace("Italien", "").replace("Schweiz", "").replace("England", "").replace("Österreich", "").strip()
         if not city_clean or len(city_clean) < 3:
             return None, None
             
@@ -87,12 +70,13 @@ def parse_jukebox_stompers():
     
     try:
         headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
-        resp = requests.get(SPECIAL_SOURCES[0]['url'], headers=headers, timeout=10)
+        url = "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender"
+        resp = requests.get(url, headers=headers, timeout=10)
         
         if resp.status_code == 200:
             soup = BeautifulSoup(resp.text, 'html.parser')
             
-            # Finde alle Tabellen auf der Seite
+            # Suche nach der Tabelle mit Klasse "veranstaltungen" oder ähnlichem
             tables = soup.find_all('table')
             
             for table in tables:
@@ -101,29 +85,24 @@ def parse_jukebox_stompers():
                 for row in rows:
                     cols = row.find_all('td')
                     
-                    # Wir brauchen genau 3 Spalten: Datum, Ort, Beschreibung
                     if len(cols) >= 3:
                         date_text = cols[0].get_text(strip=True)
                         location_text = cols[1].get_text(separator=" ", strip=True)
                         desc_text = cols[2].get_text(separator=" ", strip=True)
                         
-                        # Prüfe ob Datum vorhanden ist
                         if not date_text or len(date_text) < 5:
                             continue
                         
-                        # Extrahiere Stadt aus Ort
+                        # Extrahiere Stadt
                         city = extract_city(location_text)
                         
-                        # Extrahiere Event-Titel (erste Zeile oder fettgedruckter Text)
+                        # Extrahiere Titel
                         title = extract_title(desc_text)
                         
                         if not title:
-                            continue
+                            title = "Jukebox Stompers Live"
                         
-                        # Bereinige Beschreibung
                         desc = clean_description(desc_text)
-                        
-                        # Hole Koordinaten
                         lat, lon = get_coords(city)
                         
                         event = {
@@ -134,10 +113,10 @@ def parse_jukebox_stompers():
                             "lat": lat,
                             "lon": lon,
                             "desc": desc,
-                            "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender"
+                            "url": url
                         }
                         events.append(event)
-                        print(f"   ✅ {title} - {date_text}")
+                        print(f"   ✅ {title} - {date_text} - {city}")
         
         time.sleep(2)
         
@@ -147,54 +126,40 @@ def parse_jukebox_stompers():
     return events
 
 def extract_city(location_text):
-    """Extrahiert den Stadtnamen aus dem Ort-Text."""
     lines = location_text.split('\n')
     
-    # Suche nach fettgedrucktem Text (Stadt ist oft fett)
     for line in lines:
         line = line.strip()
-        if line and len(line) > 2 and not line.lower() in ['deutschland', 'italien', 'schweiz', 'england', 'österreich']:
-            # Entferne ** falls vorhanden
-            city = line.replace('**', '').strip()
-            if len(city) > 2 and city[0].isupper():
-                return city
-    
-    # Fallback: Erste Zeile nach Land
-    for i, line in enumerate(lines):
-        line = line.strip()
-        if line and len(line) > 2 and not line.lower() in ['deutschland', 'italien', 'schweiz', 'england']:
-            return line
+        if line and len(line) > 2:
+            line = line.replace('**', '').strip()
+            if len(line) > 2 and line[0].isupper():
+                # Entferne Ländernamen
+                for country in ['Deutschland', 'Italien', 'Schweiz', 'England', 'Österreich', 'Niederlande']:
+                    line = line.replace(country, '').strip()
+                if len(line) > 2:
+                    return line
     
     return "Unbekannt"
 
 def extract_title(desc_text):
-    """Extrahiert den Event-Titel aus der Beschreibung."""
     lines = desc_text.split('\n')
     
-    # Erste nicht-leere Zeile ist oft der Titel
     for line in lines:
         line = line.strip()
         if line and len(line) > 5 and len(line) < 100:
-            # Entferne ** falls vorhanden
             title = line.replace('**', '').strip()
             return title
     
     return None
 
 def clean_description(text):
-    """Bereinigt die Beschreibung für die Anzeige."""
-    # Entferne überflüssige Leerzeichen und Zeilenumbrüche
     text = re.sub(r'\s+', ' ', text)
     text = text.strip()
-    
-    # Kürze wenn zu lang
     if len(text) > 300:
         text = text[:300] + "..."
-    
     return text
 
 def is_relevant_event(text):
-    """Prüft ob Text ein relevantes Event ist."""
     if not text or len(text) < 15:
         return False
     
@@ -203,8 +168,8 @@ def is_relevant_event(text):
                       'livemusik', 'kneipe', 'bar', 'club', 'gaststätte', 'pub', 'lounge']
     
     rock_keywords = ['rockabilly', 'rock\'n\'roll', 'rock and roll', 'rock n roll', 
-                     '50er', '60er', 'vintage', 'pinup', 'teddy', 'greaser', 'rock\'n\'roll',
-                     'boogie', 'swing', 'lindy hop', 'rockabilly']
+                     '50er', '60er', 'vintage', 'pinup', 'teddy', 'greaser',
+                     'boogie', 'swing', 'lindy hop']
     
     text_lower = text.lower()
     
@@ -242,14 +207,14 @@ def run_scraper():
                 return True
         return False
 
-    # 1. Parse Jukebox Stompers (Spezial-Parser)
+    # 1. Jukebox Stompers
     jukebox_events = parse_jukebox_stompers()
     for event in jukebox_events:
         if not is_duplicate(event['title'], event['date']):
             new_events_list.append(event)
             print(f"   ✅ Hinzugefügt: {event['title']}")
 
-    # 2. Normale Webseiten durchsuchen
+    # 2. Normale Webseiten
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
     
     for target in TARGETS:
@@ -292,7 +257,7 @@ def run_scraper():
                         print(f"   ✅ Neu: {title}")
                 
                 if found_count == 0:
-                    print(f"   ⚠️ Keine neuen Events gefunden")
+                    print(f"   ️ Keine neuen Events gefunden")
             
             time.sleep(2)
 
