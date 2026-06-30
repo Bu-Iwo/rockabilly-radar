@@ -125,7 +125,6 @@
             font-size: 0.8rem;
         }
         
-        /* Ausklappbare Details */
         .event-details {
             display: none;
             margin-top: 15px;
@@ -142,7 +141,6 @@
             line-height: 1.5;
         }
         
-        /* Action Buttons */
         .action-buttons {
             display: flex;
             flex-wrap: wrap;
@@ -234,6 +232,26 @@
             font-weight: bold;
             margin-left: 10px;
         }
+
+        .sort-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .sort-btn {
+            flex: 1;
+            padding: 8px;
+            background: #333;
+            border: 1px solid #555;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+        .sort-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
     </style>
 </head>
 <body>
@@ -263,6 +281,14 @@
                 <input type="range" id="radius-slider" min="10" max="2500" value="2500" step="10" oninput="updateRadius()">
             </div>
 
+            <div class="control-row">
+                <label>📊 Sortierung:</label>
+                <div class="sort-controls">
+                    <button class="sort-btn active" onclick="setSortMode('date')">📅 Datum</button>
+                    <button class="sort-btn" onclick="setSortMode('distance')">📍 Entfernung</button>
+                </div>
+            </div>
+
             <div id="status-msg" class="status-msg">
                 Lade Daten...
             </div>
@@ -276,12 +302,12 @@
 
 <div class="radio-player">
     <div>
-        <strong>📻 Rockabilly Jukebox</strong>
+        <strong>📻 Radio Preston Air</strong>
         <span id="radio-status" style="font-size:0.8rem; color:#aaa; margin-left:10px;">Bereit</span>
     </div>
     <button onclick="toggleRadio()" id="play-btn">PLAY</button>
 </div>
-<audio id="audio-stream" src="https://stream.rockantenne.de/rockantenne/stream/mp3"></audio>
+<audio id="audio-stream" src="https://stream.radio-preston-air.com/live"></audio>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
@@ -290,6 +316,7 @@
     let userLat = 50.7189;
     let userLon = 12.4961;
     let maxRadius = 2500;
+    let sortMode = 'date'; // 'date' oder 'distance'
     let map, markersLayer, userMarker;
 
     // PWA Installation
@@ -391,6 +418,13 @@
         updateDisplay();
     }
 
+    function setSortMode(mode) {
+        sortMode = mode;
+        document.querySelectorAll('.sort-btn').forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+        updateDisplay();
+    }
+
     function calculateDistance(lat1, lon1, lat2, lon2) {
         if (!lat1 || !lat2) return null;
         const R = 6371; 
@@ -402,17 +436,30 @@
         return Math.round(R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)));
     }
 
+    // Datum parsen für Sortierung
+    function parseDate(dateStr) {
+        if (!dateStr) return null;
+        
+        // Format: "01.08.2026" oder "01.08. - 09.08.2026"
+        const match = dateStr.match(/(\d{1,2})\.(\d{1,2})\.(\d{4})?/);
+        if (match) {
+            const day = parseInt(match[1]);
+            const month = parseInt(match[2]) - 1;
+            const year = parseInt(match[3]) || new Date().getFullYear();
+            return new Date(year, month, day);
+        }
+        return null;
+    }
+
     function showStatus(msg) {
         document.getElementById('status-msg').textContent = msg;
     }
 
-    // Google Calendar Link erstellen
     function createGoogleCalendarLink(event) {
         const title = encodeURIComponent(event.title);
         const location = encodeURIComponent(event.location || event.city);
         const details = encodeURIComponent(event.desc || '');
         
-        // Datum parsen (Format: DD.MM.YYYY oder DD.MM. - DD.MM.YYYY)
         let startDate = '';
         let endDate = '';
         
@@ -432,11 +479,9 @@
         return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startDate}/${endDate}&details=${details}&location=${location}`;
     }
 
-    // Booking.com Link erstellen
     function createBookingLink(event) {
         const city = encodeURIComponent(event.city || 'Berlin');
         
-        // Datum für Check-in/Check-out
         let checkIn = '';
         let checkOut = '';
         
@@ -448,7 +493,6 @@
                 const year = dateMatch[3] || new Date().getFullYear();
                 checkIn = `${year}-${month}-${day}`;
                 
-                // Check-out = nächster Tag
                 const date = new Date(year, month - 1, day);
                 date.setDate(date.getDate() + 1);
                 checkOut = date.toISOString().split('T')[0];
@@ -462,7 +506,6 @@
         return `https://www.booking.com/searchresults.de.html?ss=${city}&checkin=${checkIn}&checkout=${checkOut}`;
     }
 
-    // Details ein/ausblenden
     function toggleDetails(eventId) {
         const details = document.getElementById(`details-${eventId}`);
         details.classList.toggle('active');
@@ -487,19 +530,31 @@
         
         let processed = allEvents.map(ev => {
             const dist = calculateDistance(userLat, userLon, ev.lat, ev.lon);
-            return { ...ev, distance: dist };
+            const dateObj = parseDate(ev.date);
+            return { ...ev, distance: dist, dateObj: dateObj };
         });
 
+        // Nach Radius filtern
         let filtered = processed.filter(ev => {
             if (ev.distance === null) return true;
             return ev.distance <= maxRadius;
         });
 
-        filtered.sort((a, b) => {
-            if (a.distance === null) return 1;
-            if (b.distance === null) return -1;
-            return a.distance - b.distance;
-        });
+        // Sortierung
+        if (sortMode === 'date') {
+            filtered.sort((a, b) => {
+                if (!a.dateObj && !b.dateObj) return 0;
+                if (!a.dateObj) return 1;
+                if (!b.dateObj) return -1;
+                return a.dateObj - b.dateObj;
+            });
+        } else {
+            filtered.sort((a, b) => {
+                if (a.distance === null) return 1;
+                if (b.distance === null) return -1;
+                return a.distance - b.distance;
+            });
+        }
 
         if (filtered.length === 0) {
             container.innerHTML = '<p>Keine Events im gewählten Radius gefunden.</p>';
@@ -520,7 +575,7 @@
             <div class="event-card">
                 ${distText}
                 <div class="event-title">${ev.title}</div>
-                <div class="event-date">📅 ${ev.date || 'Termin unbekannt'}</div>
+                <div class="event-date"> ${ev.date || 'Termin unbekannt'}</div>
                 <div class="event-loc">🏠 ${ev.location || ev.city}</div>
                 
                 <button class="btn-toggle" onclick="toggleDetails(${index})">
@@ -533,35 +588,4 @@
                     <div class="action-buttons">
                         ${ev.url ? `<a href="${ev.url}" target="_blank" class="btn-action">🔗 Webseite</a>` : ''}
                         <a href="${calLink}" target="_blank" class="btn-action btn-calendar">📅 Google Kalender</a>
-                        <a href="${bookingLink}" target="_blank" class="btn-action btn-booking">🏨 Unterkunft suchen</a>
-                    </div>
-                </div>
-            </div>
-            `;
-        }).join('');
-
-        showStatus(`✅ ${filtered.length} Events im Radius von ${maxRadius} km`);
-    }
-
-    function toggleRadio() {
-        const audio = document.getElementById('audio-stream');
-        const btn = document.getElementById('play-btn');
-        const status = document.getElementById('radio-status');
-        
-        if (audio.paused) {
-            audio.play();
-            btn.innerText = "STOP";
-            status.innerText = "Läuft...";
-        } else {
-            audio.pause();
-            btn.innerText = "PLAY";
-            status.innerText = "Pausiert";
-        }
-    }
-
-    initMap();
-    loadEvents();
-</script>
-
-</body>
-</html>
+                        <a hr
