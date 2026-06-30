@@ -3,6 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 import re
 import time
+from datetime import datetime, timedelta
 
 OUTPUT_FILE = 'events.json'
 
@@ -47,20 +48,132 @@ TARGETS = [
     {"name": "Club Passage Erfurt", "url": "https://www.club-passage.de/programm/", "city": "Erfurt"}
 ]
 
+# Deutsche Monatsnamen für besseres Parsing
+MONTHS_DE = {
+    'januar': 1, 'jan': 1,
+    'februar': 2, 'feb': 2,
+    'märz': 3, 'maerz': 3, 'mar': 3,
+    'april': 4, 'apr': 4,
+    'mai': 5,
+    'juni': 6, 'jun': 6,
+    'juli': 7, 'jul': 7,
+    'august': 8, 'aug': 8,
+    'september': 9, 'sep': 9, 'sept': 9,
+    'oktober': 10, 'okt': 10,
+    'november': 11, 'nov': 11,
+    'dezember': 12, 'dez': 12
+}
+
+def parse_german_date(date_str):
+    """
+    Parst verschiedene deutsche Datumsformate und gibt ein datetime-Objekt zurück.
+    Unterstützt:
+    - 12.05.2024
+    - 12.05.24
+    - 12.05.
+    - 12. Mai 2024
+    - Samstag, 12.05.2024
+    - Fr. 12.05.
+    - 12.5.2024
+    """
+    if not date_str:
+        return None
+    
+    date_str = date_str.strip().lower()
+    
+    # Entferne Wochentage am Anfang
+    weekdays = ['montag', 'dienstag', 'mittwoch', 'donnerstag', 'freitag', 'samstag', 'sonntag', 
+                'mo.', 'di.', 'mi.', 'do.', 'fr.', 'sa.', 'so.', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
+    for day in weekdays:
+        if date_str.startswith(day):
+            date_str = date_str[len(day):].strip()
+            # Entferne eventuelles Komma
+            if date_str.startswith(','):
+                date_str = date_str[1:].strip()
+            break
+    
+    # Versuche verschiedene Muster
+    
+    # Muster 1: 12.05.2024 oder 12.05.24 oder 12.05.
+    match = re.search(r'(\d{1,2})\.(\d{1,2})\.(\d{2,4})?', date_str)
+    if match:
+        day = int(match.group(1))
+        month = int(match.group(2))
+        year = match.group(3)
+        
+        if year:
+            year = int(year)
+            if year < 100:  # 2-stelliges Jahr
+                year = 2000 + year if year < 50 else 1900 + year
+        else:
+            year = datetime.now().year
+        
+        try:
+            return datetime(year, month, day)
+        except ValueError:
+            return None
+    
+    # Muster 2: 12. Mai 2024 oder 12 Mai 2024
+    match = re.search(r'(\d{1,2})[\.\s]+([a-zA-ZäöüÄÖÜß]+)\s*(\d{4})?', date_str)
+    if match:
+        day = int(match.group(1))
+        month_str = match.group(2).lower()
+        year = int(match.group(3)) if match.group(3) else datetime.now().year
+        
+        month = MONTHS_DE.get(month_str)
+        if month:
+            try:
+                return datetime(year, month, day)
+            except ValueError:
+                return None
+    
+    return None
+
+def is_past_event(date_str, days_buffer=1):
+    """
+    Prüft ob ein Event in der Vergangenheit liegt.
+    days_buffer: Wie viele Tage nach dem Event es noch angezeigt werden soll (z.B. für mehrtägige Events)
+    """
+    event_date = parse_german_date(date_str)
+    if not event_date:
+        return False  # Wenn Datum nicht parsbar, behalten wir es lieber
+    
+    # Event ist vergangen wenn es mehr als X Tage her ist
+    cutoff_date = datetime.now() - timedelta(days=days_buffer)
+    return event_date < cutoff_date
+
 def get_coords(city_name):
+    """Holt GPS-Koordinaten für eine Stadt - jetzt mit Länderzusatz für bessere Genauigkeit."""
     try:
-        city_clean = city_name.replace("Deutschland", "").replace("Italien", "").replace("Schweiz", "").replace("England", "").replace("Österreich", "").strip()
+        # Bereinige Stadtnamen
+        city_clean = city_name.replace("Deutschland", "").replace("Italien", "").replace("Schweiz", "").replace("England", "").replace("Österreich", "").replace("Niederlande", "").strip()
+        
         if not city_clean or len(city_clean) < 3:
             return None, None
-            
-        url = f"https://nominatim.openstreetmap.org/search?format=json&q={city_clean}&limit=1"
+        
+        # Bestimme wahrscheinlichstes Land basierend auf Städtenamen oder füge Deutschland als Default hinzu
+        countries_to_try = [city_clean]
+        
+        # Wenn Stadt nicht eindeutig, versuche mit Länderzusatz
+        if len(city_clean) < 10 or city_clean.lower() in ['neustadt', 'freiburg', 'dresden', 'leipzig']:
+            countries_to_try.append(f"{city_clean}, Germany")
+            countries_to_try.append(f"{city_clean}, Deutschland")
+        
         headers = {'User-Agent': 'RockabillyRadarBot/1.0'}
-        resp = requests.get(url, headers=headers, timeout=5)
-        data = resp.json()
-        if data:
-            return float(data[0]['lat']), float(data[0]['lon'])
-    except:
-        pass
+        
+        for query in countries_to_try:
+            try:
+                url = f"https://nominatim.openstreetmap.org/search?format=json&q={query}&limit=1"
+                resp = requests.get(url, headers=headers, timeout=5)
+                data = resp.json()
+                if data and len(data) > 0:
+                    return float(data[0]['lat']), float(data[0]['lon'])
+            except:
+                continue
+        
+    except Exception as e:
+        print(f"      ⚠️ GPS-Fehler für {city_name}: {e}")
+    
     return None, None
 
 def parse_jukebox_stompers():
@@ -75,8 +188,6 @@ def parse_jukebox_stompers():
         
         if resp.status_code == 200:
             soup = BeautifulSoup(resp.text, 'html.parser')
-            
-            # Suche nach der Tabelle mit Klasse "veranstaltungen" oder ähnlichem
             tables = soup.find_all('table')
             
             for table in tables:
@@ -93,10 +204,7 @@ def parse_jukebox_stompers():
                         if not date_text or len(date_text) < 5:
                             continue
                         
-                        # Extrahiere Stadt
                         city = extract_city(location_text)
-                        
-                        # Extrahiere Titel
                         title = extract_title(desc_text)
                         
                         if not title:
@@ -133,7 +241,6 @@ def extract_city(location_text):
         if line and len(line) > 2:
             line = line.replace('**', '').strip()
             if len(line) > 2 and line[0].isupper():
-                # Entferne Ländernamen
                 for country in ['Deutschland', 'Italien', 'Schweiz', 'England', 'Österreich', 'Niederlande']:
                     line = line.replace(country, '').strip()
                 if len(line) > 2:
@@ -188,6 +295,7 @@ def is_relevant_event(text):
 
 def run_scraper():
     print("🚀 Rockabilly Radar Scraper startet...")
+    print(f"📅 Heute ist: {datetime.now().strftime('%d.%m.%Y')}")
     
     existing_events = []
     try:
@@ -257,17 +365,44 @@ def run_scraper():
                         print(f"   ✅ Neu: {title}")
                 
                 if found_count == 0:
-                    print(f"   ️ Keine neuen Events gefunden")
+                    print(f"   ⚠️ Keine neuen Events gefunden")
             
             time.sleep(2)
 
         except Exception as e:
             print(f"   ❌ Fehler bei {target['name']}: {e}")
 
-    with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
-        json.dump(new_events_list, f, ensure_ascii=False, indent=2)
+    # 3. ALTE EVENTS ENTFERNEN (Die Aufräum-Funktion!)
+    print("\n🧹 Entferne vergangene Events...")
+    events_before = len(new_events_list)
     
-    print(f"💾 Fertig! {len(new_events_list)} Events gespeichert.")
+    cleaned_events = []
+    removed_count = 0
+    
+    for event in new_events_list:
+        date_str = event.get('date', '')
+        
+        # Wenn kein Datum oder "Termin folgt", behalten wir es
+        if not date_str or date_str == "Termin folgt":
+            cleaned_events.append(event)
+            continue
+        
+        # Prüfe ob Event vergangen ist
+        if not is_past_event(date_str, days_buffer=1):
+            cleaned_events.append(event)
+        else:
+            removed_count += 1
+            print(f"   🗑️ Entfernt: {event['title']} ({date_str})")
+    
+    events_after = len(cleaned_events)
+    print(f"   ✅ {removed_count} alte Events entfernt ({events_before} → {events_after})")
+
+    # 4. Speichern
+    with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
+        json.dump(cleaned_events, f, ensure_ascii=False, indent=2)
+    
+    print(f"\n💾 Fertig! {len(cleaned_events)} Events gespeichert.")
+    print(f"📊 Statistik: {events_after} zukünftige Events, {removed_count} vergangene gelöscht")
 
 if __name__ == "__main__":
     run_scraper()
