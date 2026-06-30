@@ -4,13 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rockabilly Radar ⚡</title>
+    
+    <!-- PWA META TAGS -->
+    <meta name="theme-color" content="#ff4500">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="RockRadar">
+    <link rel="manifest" href="manifest.json">
+    
     <!-- Leaflet CSS für die Karte -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
     <style>
         :root {
             --bg-color: #121212;
             --card-bg: #1e1e1e;
-            --accent: #ff4500; /* Rockabilly Rot/Orange */
+            --accent: #ff4500;
             --text: #e0e0e0;
         }
         body {
@@ -19,6 +28,7 @@
             color: var(--text);
             margin: 0;
             padding: 0;
+            padding-bottom: 60px; /* Platz für Radio Player */
         }
         header {
             background: var(--card-bg);
@@ -44,7 +54,6 @@
             .container { grid-template-columns: 1fr; }
         }
 
-        /* Karte */
         #map {
             height: 500px;
             width: 100%;
@@ -53,7 +62,6 @@
             z-index: 1;
         }
 
-        /* Filter & Controls */
         .controls {
             background: var(--card-bg);
             padding: 15px;
@@ -78,7 +86,6 @@
             font-weight: bold;
         }
 
-        /* Event Liste */
         .event-list {
             max-height: 800px;
             overflow-y: auto;
@@ -114,7 +121,6 @@
         }
         .btn-link:hover { background: var(--accent); color: white; }
 
-        /* Radio Player */
         .radio-player {
             position: fixed;
             bottom: 0;
@@ -128,9 +134,25 @@
             align-items: center;
             z-index: 2000;
         }
+
+        /* Install Banner */
+        .install-banner {
+            display: none;
+            background: var(--accent);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
+
+<!-- Install Banner (erscheint nur wenn installierbar) -->
+<div class="install-banner" id="installBanner">
+    📱 App installieren? Hier tippen!
+</div>
 
 <header>
     <h1>🎸 Rockabilly Radar ⚡</h1>
@@ -138,7 +160,6 @@
 </header>
 
 <div class="container">
-    <!-- Linke Spalte: Karte -->
     <div>
         <div id="map"></div>
         <div class="controls">
@@ -148,13 +169,11 @@
         </div>
     </div>
 
-    <!-- Rechte Spalte: Liste -->
     <div class="event-list" id="events-container">
         <p>Lade Termine...</p>
     </div>
 </div>
 
-<!-- Radio Player -->
 <div class="radio-player">
     <div>
         <strong>📻 Rockabilly Jukebox</strong>
@@ -164,16 +183,41 @@
 </div>
 <audio id="audio-stream" src="https://stream.rockantenne.de/rockantenne/stream/mp3"></audio>
 
-<!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script>
     let allEvents = [];
-    let userLat = 50.7189; // Standard Zwickau
+    let userLat = 50.7189;
     let userLon = 12.4961;
     let map, markersLayer;
 
-    // Karte initialisieren
+    // PWA Installation
+    let deferredPrompt;
+    const installBanner = document.getElementById('installBanner');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        installBanner.style.display = 'block';
+    });
+
+    installBanner.addEventListener('click', () => {
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choiceResult) => {
+                deferredPrompt = null;
+                installBanner.style.display = 'none';
+            });
+        }
+    });
+
+    // Service Worker registrieren
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js')
+            .then(reg => console.log('Service Worker registriert'))
+            .catch(err => console.log('Service Worker Fehler', err));
+    }
+
     function initMap() {
         map = L.map('map').setView([userLat, userLon], 6);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -225,22 +269,18 @@
         const container = document.getElementById('events-container');
         markersLayer.clearLayers();
         
-        // Events mit Entfernung berechnen und sortieren
         let processed = allEvents.map(ev => {
             const dist = calculateDistance(userLat, userLon, ev.lat, ev.lon);
             return { ...ev, distance: dist };
         });
 
-        // Sortiere nach Entfernung (null = ganz hinten)
         processed.sort((a, b) => {
             if (a.distance === null) return 1;
             if (b.distance === null) return -1;
             return a.distance - b.distance;
         });
 
-        // HTML generieren
         container.innerHTML = processed.map(ev => {
-            // Marker auf Karte hinzufügen wenn Koordinaten da sind
             if (ev.lat && ev.lon) {
                 const marker = L.marker([ev.lat, ev.lon]).bindPopup(`<b>${ev.title}</b><br>${ev.date}`);
                 markersLayer.addLayer(marker);
@@ -276,10 +316,9 @@
         }
     }
 
-    // Start
     initMap();
     loadEvents();
 </script>
 
 </body>
-        </html>
+</html>
