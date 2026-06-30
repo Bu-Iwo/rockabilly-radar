@@ -26,7 +26,7 @@
             color: var(--text);
             margin: 0;
             padding: 0;
-            padding-bottom: 120px; /* Platz für Radio Player + Footer */
+            padding-bottom: 120px;
         }
         header {
             background: var(--card-bg);
@@ -253,7 +253,6 @@
             border-color: var(--accent);
         }
 
-        /* NEUER FOOTER STIL */
         footer {
             background: var(--card-bg);
             padding: 30px 20px;
@@ -361,7 +360,6 @@
     </div>
 </div>
 
-<!-- NEUER FOOTER -->
 <footer>
     <div class="footer-content">
         <div class="footer-tagline">
@@ -382,12 +380,12 @@
 
 <div class="radio-player">
     <div>
-        <strong>📻 Radio Preston Air</strong>
+        <strong>📻 Laut.fm Rockandroll-Radio</strong>
         <span id="radio-status" style="font-size:0.8rem; color:#aaa; margin-left:10px;">Bereit</span>
     </div>
     <button onclick="toggleRadio()" id="play-btn">PLAY</button>
 </div>
-<audio id="audio-stream" src="https://stream.radio-preston-air.com/live"></audio>
+<audio id="audio-stream" src="https://stream.laut.fm/rockandrollradio"></audio>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
@@ -619,4 +617,79 @@
         if (sortMode === 'date') {
             filtered.sort((a, b) => {
                 if (!a.dateObj && !b.dateObj) return 0;
-                if (
+                if (!a.dateObj) return 1;
+                if (!b.dateObj) return -1;
+                return a.dateObj - b.dateObj;
+            });
+        } else {
+            filtered.sort((a, b) => {
+                if (a.distance === null) return 1;
+                if (b.distance === null) return -1;
+                return a.distance - b.distance;
+            });
+        }
+
+        if (filtered.length === 0) {
+            container.innerHTML = '<p>Keine Events im gewählten Radius gefunden.</p>';
+            return;
+        }
+
+        container.innerHTML = filtered.map((ev, index) => {
+            if (ev.lat && ev.lon) {
+                const marker = L.marker([ev.lat, ev.lon]).bindPopup(`<b>${ev.title}</b><br>${ev.date}<br>${ev.location}`);
+                markersLayer.addLayer(marker);
+            }
+
+            const distText = ev.distance !== null ? `<span class="distance-badge">📍 ${ev.distance} km</span>` : '';
+            const calLink = createGoogleCalendarLink(ev);
+            const bookingLink = createBookingLink(ev);
+            
+            return `
+            <div class="event-card">
+                ${distText}
+                <div class="event-title">${ev.title}</div>
+                <div class="event-date">📅 ${ev.date || 'Termin unbekannt'}</div>
+                <div class="event-loc">🏠 ${ev.location || ev.city}</div>
+                
+                <button class="btn-toggle" onclick="toggleDetails(${index})">
+                    ℹ️ Mehr Infos anzeigen
+                </button>
+                
+                <div class="event-details" id="details-${index}">
+                    <div class="event-desc">${ev.desc || 'Keine Beschreibung verfügbar.'}</div>
+                    
+                    <div class="action-buttons">
+                        ${ev.url ? `<a href="${ev.url}" target="_blank" class="btn-action">🔗 Webseite</a>` : ''}
+                        <a href="${calLink}" target="_blank" class="btn-action btn-calendar">📅 Google Kalender</a>
+                        <a href="${bookingLink}" target="_blank" class="btn-action btn-booking">🏨 Unterkunft suchen</a>
+                    </div>
+                </div>
+            </div>
+            `;
+        }).join('');
+
+        showStatus(`✅ ${filtered.length} Events im Radius von ${maxRadius} km`);
+    }
+
+    function toggleRadio() {
+        const audio = document.getElementById('audio-stream');
+        const btn = document.getElementById('play-btn');
+        const status = document.getElementById('radio-status');
+        
+        if (audio.paused) {
+            audio.play();
+            btn.innerText = "STOP";
+            status.innerText = "Läuft...";
+        } else {
+            audio.pause();
+            btn.innerText = "PLAY";
+            status.innerText = "Pausiert";
+        }
+    }
+
+    initMap();
+    loadEvents();
+</script>
+
+</body>
+</html>
