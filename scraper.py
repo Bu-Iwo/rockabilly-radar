@@ -2,139 +2,163 @@ import json
 import requests
 from bs4 import BeautifulSoup
 import re
+import time
 
-# Wörter, die typische Webseiten-Menüs oder irrelevante Inhalte kennzeichnen
-IGNORE_WORDS = [
-    "home",
-    "impressum",
-    "datenschutz",
-    "cookie",
-    "cookies",
-    "kontakt",
-    "facebook",
-    "instagram",
-    "menü",
-    "menu",
-    "zum inhalt springen",
-    "suche",
-    "jobs",
-    "vereinsleben",
-    "mitglied werden"
+# --- KONFIGURATION ---
+OUTPUT_FILE = 'events.json'
+
+# Bekannte VIP-Bands und Festivals (Manuelle Pflege ist bei Scraping oft nötig)
+VIP_BANDS = [
+    "Ray Collins Hot Club", "Ray Allen", "Class of 58", "The Firebirds",
+    "Jumpin'Up", "The Nymonics", "The Trainyard Kings", "Shotgun Jones", 
+    "Jukebox Stompers", "Boppin'B", "Cherry Casino", "The Baseballs",
+    "Restless", "Matchbox", "Darrel Higham", "Mad Sin"
 ]
 
-def is_valid_event_text(text):
-    """Prüft, ob ein Text überhaupt wie eine Veranstaltung aussieht."""
+# Feste Top-Events (Diese werden immer hinzugefügt)
+HARDCODED_EVENTS = [
+    {
+        "title": "Summer Jamboree 2026", 
+        "date": "01.08. - 09.08.2026",
+        "location": "Senigallia, Italien",
+        "city": "Senigallia", 
+        "lat": 43.7147, 
+        "lon": 13.2183,
+        "desc": "Das größte Rockabilly-Festival Europas.",
+        "url": "https://www.summerjamboree.com"
+    },
+    {
+        "title": "Firebirds Festival 2026", 
+        "date": "03.07. - 05.07.2026",
+        "location": "Kloster Nimbschen, Grimma",
+        "city": "Grimma", 
+        "lat": 51.2294, 
+        "lon": 12.7561,
+        "desc": "Rock'n'Roll im Kloster.",
+        "url": "https://www.firebirds-festival.de"
+    }
+]
 
-    if not text:
-        return False
+# Ziel-Webseiten zum Scannen
+TARGETS = [
+    {"name": "Noels Ballroom", "url": "https://noels-ballroom.de/", "city": "Leipzig"},
+    {"name": "Tonelli's Leipzig", "url": "http://www.tonellis.de/programm.html", "city": "Leipzig"},
+    {"name": "Tanzcafé Waldenburg", "url": "https://www.tanzcafe-waldenburg.de/", "city": "Waldenburg"}
+]
 
-    text = text.strip()
+def get_coords(city_name):
+    """Holt GPS-Koordinaten für eine Stadt über OpenStreetMap."""
+    try:
+        url = f"https://nominatim.openstreetmap.org/search?format=json&q={city_name}&limit=1"
+        headers = {'User-Agent': 'RockabillyRadarBot/1.0'}
+        resp = requests.get(url, headers=headers, timeout=5)
+        data = resp.json()
+        if data:
+            return float(data[0]['lat']), float(data[0]['lon'])
+    except:
+        pass
+    return None, None
 
-    # zu kurz
-    if len(text) < 25:
-        return False
+def clean_text(text):
+    """Bereinigt Text von HTML-Resten und Menü-Einträgen."""
+    if not text: return ""
+    # Entferne sehr kurze Wörter und typischen Webseiten-Müll
+    junk_words = ["home", "impressum", "datenschutz", "kontakt", "menu", "suche", "zum inhalt"]
+    lower_text = text.lower()
+    for word in junk_words:
+        if word in lower_text and len(text) < 100: # Nur bei kurzen Texten streng sein
+            return None
+    return text.strip()
 
-    lower = text.lower()
-
-    # Navigation und Webseitenreste ignorieren
-    if any(word in lower for word in IGNORE_WORDS):
-        return False
-
-    return True
-
-def run_free_smart_scraper():
-    print("🤖 Radar-Autopilot: Aggressiver Modus aktiviert...")
-    alle_events = []
+def run_scraper():
+    print("🚀 Rockabilly Radar Scraper startet...")
     
-    vip_bands = [
-        "Ray Collins Hot Club", "Ray Allen", "Class of 58", "The Firebirds", 
-        "Jumpin'Up", "Suffy Sand Rocats", "Suffy Sand Combo", "The Nymonics", 
-        "The Trainyard Kings", "Elbonautics", "Shotgun Jones", "Jukebox Stompers", 
-        "Yellow Boogie Dancers", "Boppin'B", "Cherry Casino", "The Baseballs", 
-        "Restless", "Matchbox", "Darrel Higham"
-    ]
+    # Lade bestehende Events, um Duplikate zu vermeiden
+    existing_events = []
+    try:
+        with open(OUTPUT_FILE, 'r', encoding='utf-8') as f:
+            existing_events = json.load(f)
+    except:
+        existing_events = []
+
+    # Starte mit den Hardcoded Events
+    new_events_list = list(HARDCODED_EVENTS)
+
+    # Helper für Duplikat-Check
+    def is_duplicate(title, date, url):
+        for ev in existing_events:
+            if ev.get('title') == title and ev.get('date') == date:
+                return True
+        for ev in new_events_list:
+            if ev.get('title') == title and ev.get('date') == date:
+                return True
+        return False
+
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'}
     
-    # Feste Events
-    feste_events = [
-        {
-            "title": "Summer Jamboree #27", "date": "01.08. - 09.08.2026", 
-            "location": "Foro Annonario & Promenade, 60019 Senigallia (AN), Italien", 
-            "city": "Senigallia", "lat": 43.7147, "lon": 13.2183, 
-            "desc": "Das größte Rockabilly-Festival Europas an der Adria.", 
-            "url": "https://www.summerjamboree.com"
-        },
-        {
-            "title": "Firebirds Festival 2026", "date": "03.07. - 05.07.2026", 
-            "location": "Kloster Nimbschen, Nimbschener Landstraße 1, 04668 Grimma", 
-            "city": "Grimma", "lat": 51.2294, "lon": 12.7561, 
-            "desc": "Das ultimative Rock'n'Roll-Wochenende im Kloster Nimbschen!", 
-            "url": "https://www.firebirds-festival.de"
-        },
-        {
-            "title": "Rhythm Riot 2026", "date": "15.11. - 19.11.2026", 
-            "location": "Pontins Camber Sands Holiday Park, New Lydd Rd, Camber, Rye TN31 7RL, UK", 
-            "city": "Rye", "lat": 50.9324, "lon": 0.7941, 
-            "desc": "UKs legendärer Weekender. Weltspitze des Rhythm & Blues.", 
-            "url": "https://www.rhythmriot.com"
-        }
-    ]
-    alle_events.extend(feste_events)
-
-    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'}
-    targets = [
-        {"name": "Tonelli's Leipzig", "url": "http://www.tonellis.de/programm.html", "city": "Leipzig", "address": "Neumarkt 9, 04109 Leipzig", "lat": 51.3396, "lon": 12.3731},
-        {"name": "Gaststätte zur Seilbahn", "url": "https://www.zur-seilbahn.de/", "city": "Leipzig", "address": "Max-Liebermann-Straße 103, 04157 Leipzig", "lat": 51.3731, "lon": 12.3711},
-        {"name": "Noels Ballroom", "url": "https://noels-ballroom.de/", "city": "Leipzig", "address": "Karl-Liebknecht-Straße 48, 04275 Leipzig", "lat": 51.3255, "lon": 12.3739},
-        {"name": "Tanzcafé Waldenburg", "url": "https://www.tanzcafe-waldenburg.de/", "city": "Waldenburg", "address": "Altenburger Str. 44, 09399 Waldenburg", "lat": 50.8787, "lon": 12.6033},
-        {"name": "Jukebox Stompers (Home)", "url": "https://www.jukeboxstompers.de/", "city": "Leipzig", "address": "Veranstaltungsort siehe Beschreibung", "lat": 51.3396, "lon": 12.3731}
-    ]
-
-    date_pattern = re.compile(r'\b\d{1,2}\.\d{1,2}\.?(?:\d{2,4})?\b')
-    keywords = ['live', 'band', 'konzert', 'rockabilly', 'boogie', 'rock', 'party', 'auftritt', 'veranstaltung', 'gig', 'termin']
-    wildcard_pattern = re.compile(r'(?:live|band|termin)[\s:]+([A-Z][a-zA-Z0-9\'\s]{3,30})', re.IGNORECASE)
-
-    for target in targets:
+    for target in TARGETS:
+        print(f"🔍 Prüfe: {target['name']}")
         try:
-            print(f"🔍 Scanne {target['name']}...")
-            response = requests.get(target['url'], headers=headers, timeout=15)
-            if response.status_code == 200:
-                soup = BeautifulSoup(response.text, 'html.parser')
-                elements = soup.find_all(['p', 'li', 'div', 'td', 'tr', 'h3', 'h4'])
-                gefunden = 0
-                for el in elements:
-                    text = el.get_text(separator=' ', strip=True)
-                    text_lower = text.lower()
-                    
-                    # Logik: Datum ODER VIP-Band ODER Keyword muss vorhanden sein
-                    is_event = date_pattern.search(text) or any(band.lower() in text_lower for band in vip_bands)
-                    is_relevant = any(kw in text_lower for kw in keywords)
-                    
-                    if is_event and is_relevant:
-                        if len(text) > 5: # Sehr tolerant bei der Länge
-                            found_dates = date_pattern.findall(text)
-                            event_date = found_dates[0] if found_dates else "Demnächst"
-                            match_band = next((b for b in vip_bands if b.lower() in text_lower), None)
-                            if not match_band:
-                                wc = wildcard_pattern.search(text)
-                                if wc: match_band = wc.group(1).strip()
-                            
-                            alle_events.append({
-                                "title": f"🎸 {match_band} @ {target['name']}" if match_band else f"{target['name']} Event",
-                                "date": event_date,
-                                "location": f"{target['name']}, {target['address']}",
-                                "city": target['city'],
-                                "desc": text[:200] + "..." if len(text) > 200 else text, # Nicht zu lang machen
-                                "url": target['url']
-                            })
-                            gefunden += 1
-                            if gefunden >= 15: break # Mehr Platz für kleine Gigs
-                print(f"✅ {target['name']}: {gefunden} Einträge gefunden.")
-        except Exception as e:
-            print(f"⚠️ Fehler bei {target['name']}: {e}")
+            resp = requests.get(target['url'], headers=headers, timeout=10)
+            if resp.status_code == 200:
+                soup = BeautifulSoup(resp.text, 'html.parser')
+                # Suche nach Datumsmustern (z.B. 12.05. oder 12. Mai)
+                date_pattern = re.compile(r'\d{1,2}\.\d{1,2}\.?\s*(\d{2,4})?')
+                
+                # Wir suchen nach Absätzen oder Listenelementen
+                elements = soup.find_all(['p', 'li', 'div'], class_=re.compile(r'event|termin|date|program'))
+                if not elements:
+                    elements = soup.find_all(['p', 'li']) # Fallback: Alle Absätze
 
-    with open('events.json', 'w', encoding='utf-8') as f:
-        json.dump(alle_events, f, ensure_ascii=False, indent=4)
+                for el in elements:
+                    text = el.get_text(separator=" ", strip=True)
+                    clean_desc = clean_text(text)
+                    
+                    if not clean_desc or len(clean_desc) < 20:
+                        continue
+                    
+                    # Prüfe ob Datum vorhanden
+                    dates_found = date_pattern.findall(text)
+                    if not dates_found:
+                        # Wenn kein Datum, prüfe ob VIP-Band genannt wird
+                        band_found = next((b for b in VIP_BANDS if b.lower() in text.lower()), None)
+                        if not band_found:
+                            continue
+                        date_str = "Termin folgt"
+                    else:
+                        date_str = text[date_pattern.search(text).start():date_pattern.search(text).end()]
+
+                    # Titel generieren
+                    band_found = next((b for b in VIP_BANDS if b.lower() in text.lower()), None)
+                    title = f"{band_found} @ {target['name']}" if band_found else f"Event @ {target['name']}"
+                    
+                    # Duplikat-Check
+                    if not is_duplicate(title, date_str, target['url']):
+                        lat, lon = get_coords(target['city'])
+                        
+                        new_event = {
+                            "title": title,
+                            "date": date_str,
+                            "location": f"{target['name']}, {target['city']}",
+                            "city": target['city'],
+                            "lat": lat,
+                            "lon": lon,
+                            "desc": clean_desc[:150] + "...",
+                            "url": target['url']
+                        }
+                        new_events_list.append(new_event)
+                        print(f"   ✅ Neu gefunden: {title}")
+            
+            time.sleep(2) # Pause, um nicht geblockt zu werden
+
+        except Exception as e:
+            print(f"   ❌ Fehler bei {target['name']}: {e}")
+
+    # Speichern
+    with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
+        json.dump(new_events_list, f, ensure_ascii=False, indent=2)
+    
+    print(f"💾 Fertig! {len(new_events_list)} Events gespeichert.")
 
 if __name__ == "__main__":
-    run_free_smart_scraper()
-    
+    run_scraper()
