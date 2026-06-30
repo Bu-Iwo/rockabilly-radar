@@ -8,11 +8,15 @@ OUTPUT_FILE = 'events.json'
 
 # Erweiterte Liste bekannter Bands
 VIP_BANDS = [
-    "Ray Collins Hot Club", "Ray Allen", "Class of 58", "The Firebirds",
-    "Jumpin'Up", "The Nymonics", "The Trainyard Kings", "Shotgun Jones", 
+    "Ray Collins Hot Club", "Ray Collins' Hot Club", "Ray Allen", "Class of 58", "The Firebirds",
+    "Jumpin'Up", "Jumpin' Up", "The Nymonics", "The Trainyard Kings", "Shotgun Jones", 
     "Jukebox Stompers", "Boppin'B", "Cherry Casino", "The Baseballs",
     "Restless", "Matchbox", "Darrel Higham", "Mad Sin", "The Rattles",
-    "Big Town Playboys", "Shakin' Stevens", "Stray Cats", "Rocky Sharpe"
+    "Big Town Playboys", "Shakin' Stevens", "Stray Cats", "Rocky Sharpe",
+    "The Jets", "The Cats", "Dave Phillips", "Kim Lenz", "The Hot Rods",
+    "George And His New Heartaches", "Marty's Henpecked Club", "Chris Aron",
+    "Cat Lee King", "Foggy Mountain Rockers", "Howlin'Ric", "Cody Lee",
+    "Boogie Banausen", "Toto & Raw Deals", "Si Cranstoun"
 ]
 
 # Feste Top-Events
@@ -24,44 +28,49 @@ HARDCODED_EVENTS = [
         "city": "Senigallia", 
         "lat": 43.7147, 
         "lon": 13.2183,
-        "desc": "Das größte Rockabilly-Festival Europas.",
+        "desc": "Das größte Rockabilly-Festival Europas. 10 Tage Rock'n'Roll, Live-Musik, Tanzen und Vintage-Flair.",
         "url": "https://www.summerjamboree.com"
-    },
-    {
-        "title": "Firebirds Festival 2026", 
-        "date": "03.07. - 05.07.2026",
-        "location": "Kloster Nimbschen, Grimma",
-        "city": "Grimma", 
-        "lat": 51.2294, 
-        "lon": 12.7561,
-        "desc": "Rock'n'Roll im Kloster.",
-        "url": "https://www.firebirds-festival.de"
-    },
-    {
-        "title": "Hemsby Rock'n'Roll Weekender", 
-        "date": "15.05. - 18.05.2026",
-        "location": "Hemsby, England",
-        "city": "Hemsby", 
-        "lat": 52.6750, 
-        "lon": 1.6850,
-        "desc": "Kult-Festival in England.",
-        "url": "https://www.hemsbyrockweekender.co.uk"
     }
 ]
 
-# Erweiterte Liste von Webseiten
+# Webseiten zum Scrapen
 TARGETS = [
+    # Große Venues
     {"name": "Noels Ballroom", "url": "https://noels-ballroom.de/", "city": "Leipzig"},
     {"name": "Tonelli's Leipzig", "url": "http://www.tonellis.de/programm.html", "city": "Leipzig"},
     {"name": "Tanzcafé Waldenburg", "url": "https://www.tanzcafe-waldenburg.de/", "city": "Waldenburg"},
+    
+    # Kleine Bars und Clubs
     {"name": "Rockabilly Radio Events", "url": "https://www.rockabillyradio.net/events/", "city": "Diverse"},
     {"name": "Go-Hamburg", "url": "https://www.go-hamburg.de/rockabilly-termine", "city": "Hamburg"},
-    {"name": "Rock'n'Roll Calendar", "url": "https://www.rockabilly.nl/calendar.php", "city": "Diverse"}
+    {"name": "Rock'n'Roll Calendar", "url": "https://www.rockabilly.nl/calendar.php", "city": "Diverse"},
+    {"name": "Kulturfabrik Leipzig", "url": "https://www.kufa.info/programm/", "city": "Leipzig"},
+    {"name": "Conne Island", "url": "https://www.conne-island.de/programm", "city": "Leipzig"},
+    {"name": "Naumanns", "url": "https://www.naumanns-leipzig.de/programm", "city": "Leipzig"},
+    {"name": "Tante Ella", "url": "https://www.tante-ella.de/programm/", "city": "Leipzig"},
+    {"name": "Musikclub Zwickau", "url": "https://www.musikclub-zwickau.de/programm/", "city": "Zwickau"},
+    {"name": "Alter Schlachthof Dresden", "url": "https://www.alter-schlachthof-dresden.de/programm/", "city": "Dresden"},
+    {"name": "Club Passage Erfurt", "url": "https://www.club-passage.de/programm/", "city": "Erfurt"}
+]
+
+# Spezielle Quellen mit eigener Parser-Logik
+SPECIAL_SOURCES = [
+    {
+        "name": "Jukebox Stompers Kalender",
+        "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
+        "parser": "jukebox_stompers"
+    }
 ]
 
 def get_coords(city_name):
+    """Holt GPS-Koordinaten für eine Stadt."""
     try:
-        url = f"https://nominatim.openstreetmap.org/search?format=json&q={city_name}&limit=1"
+        # Entferne Ländernamen für bessere Suche
+        city_clean = city_name.replace("Deutschland", "").replace("Italien", "").replace("Schweiz", "").replace("England", "").strip()
+        if not city_clean or len(city_clean) < 3:
+            return None, None
+            
+        url = f"https://nominatim.openstreetmap.org/search?format=json&q={city_clean}&limit=1"
         headers = {'User-Agent': 'RockabillyRadarBot/1.0'}
         resp = requests.get(url, headers=headers, timeout=5)
         data = resp.json()
@@ -71,27 +80,138 @@ def get_coords(city_name):
         pass
     return None, None
 
+def parse_jukebox_stompers():
+    """Spezial-Parser für Jukebox Stompers Veranstaltungskalender."""
+    print("🔍 Parse Jukebox Stompers Kalender...")
+    events = []
+    
+    try:
+        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
+        resp = requests.get(SPECIAL_SOURCES[0]['url'], headers=headers, timeout=10)
+        
+        if resp.status_code == 200:
+            soup = BeautifulSoup(resp.text, 'html.parser')
+            
+            # Finde alle Tabellen auf der Seite
+            tables = soup.find_all('table')
+            
+            for table in tables:
+                rows = table.find_all('tr')
+                
+                for row in rows:
+                    cols = row.find_all('td')
+                    
+                    # Wir brauchen genau 3 Spalten: Datum, Ort, Beschreibung
+                    if len(cols) >= 3:
+                        date_text = cols[0].get_text(strip=True)
+                        location_text = cols[1].get_text(separator=" ", strip=True)
+                        desc_text = cols[2].get_text(separator=" ", strip=True)
+                        
+                        # Prüfe ob Datum vorhanden ist
+                        if not date_text or len(date_text) < 5:
+                            continue
+                        
+                        # Extrahiere Stadt aus Ort
+                        city = extract_city(location_text)
+                        
+                        # Extrahiere Event-Titel (erste Zeile oder fettgedruckter Text)
+                        title = extract_title(desc_text)
+                        
+                        if not title:
+                            continue
+                        
+                        # Bereinige Beschreibung
+                        desc = clean_description(desc_text)
+                        
+                        # Hole Koordinaten
+                        lat, lon = get_coords(city)
+                        
+                        event = {
+                            "title": title,
+                            "date": date_text,
+                            "location": location_text.replace("\n", ", "),
+                            "city": city,
+                            "lat": lat,
+                            "lon": lon,
+                            "desc": desc,
+                            "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender"
+                        }
+                        events.append(event)
+                        print(f"   ✅ {title} - {date_text}")
+        
+        time.sleep(2)
+        
+    except Exception as e:
+        print(f"   ❌ Fehler bei Jukebox Stompers: {e}")
+    
+    return events
+
+def extract_city(location_text):
+    """Extrahiert den Stadtnamen aus dem Ort-Text."""
+    lines = location_text.split('\n')
+    
+    # Suche nach fettgedrucktem Text (Stadt ist oft fett)
+    for line in lines:
+        line = line.strip()
+        if line and len(line) > 2 and not line.lower() in ['deutschland', 'italien', 'schweiz', 'england', 'österreich']:
+            # Entferne ** falls vorhanden
+            city = line.replace('**', '').strip()
+            if len(city) > 2 and city[0].isupper():
+                return city
+    
+    # Fallback: Erste Zeile nach Land
+    for i, line in enumerate(lines):
+        line = line.strip()
+        if line and len(line) > 2 and not line.lower() in ['deutschland', 'italien', 'schweiz', 'england']:
+            return line
+    
+    return "Unbekannt"
+
+def extract_title(desc_text):
+    """Extrahiert den Event-Titel aus der Beschreibung."""
+    lines = desc_text.split('\n')
+    
+    # Erste nicht-leere Zeile ist oft der Titel
+    for line in lines:
+        line = line.strip()
+        if line and len(line) > 5 and len(line) < 100:
+            # Entferne ** falls vorhanden
+            title = line.replace('**', '').strip()
+            return title
+    
+    return None
+
+def clean_description(text):
+    """Bereinigt die Beschreibung für die Anzeige."""
+    # Entferne überflüssige Leerzeichen und Zeilenumbrüche
+    text = re.sub(r'\s+', ' ', text)
+    text = text.strip()
+    
+    # Kürze wenn zu lang
+    if len(text) > 300:
+        text = text[:300] + "..."
+    
+    return text
+
 def is_relevant_event(text):
     """Prüft ob Text ein relevantes Event ist."""
     if not text or len(text) < 15:
         return False
     
-    # Typische Event-Begriffe
     event_keywords = ['konzert', 'gig', 'show', 'festival', 'live', 'bühne', 'concert', 
-                      'event', 'party', 'dance', 'ball', 'abend', 'night']
+                      'event', 'party', 'dance', 'ball', 'abend', 'night', 'live-musik',
+                      'livemusik', 'kneipe', 'bar', 'club', 'gaststätte', 'pub', 'lounge']
     
-    # Rockabilly-Begriffe
     rock_keywords = ['rockabilly', 'rock\'n\'roll', 'rock and roll', 'rock n roll', 
-                     '50er', '60er', 'vintage', 'pinup', 'teddy', 'greaser']
+                     '50er', '60er', 'vintage', 'pinup', 'teddy', 'greaser', 'rock\'n\'roll',
+                     'boogie', 'swing', 'lindy hop', 'rockabilly']
     
     text_lower = text.lower()
     
-    # Prüfe ob Band genannt wird
     band_found = any(band.lower() in text_lower for band in VIP_BANDS)
     if band_found:
         return True
     
-    # Prüfe ob Datum + Event-Begriff
     has_date = re.search(r'\d{1,2}\.\d{1,2}\.?\s*(\d{2,4})?', text)
     has_event = any(keyword in text_lower for keyword in event_keywords)
     has_rock = any(keyword in text_lower for keyword in rock_keywords)
@@ -122,6 +242,14 @@ def run_scraper():
                 return True
         return False
 
+    # 1. Parse Jukebox Stompers (Spezial-Parser)
+    jukebox_events = parse_jukebox_stompers()
+    for event in jukebox_events:
+        if not is_duplicate(event['title'], event['date']):
+            new_events_list.append(event)
+            print(f"   ✅ Hinzugefügt: {event['title']}")
+
+    # 2. Normale Webseiten durchsuchen
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
     
     for target in TARGETS:
@@ -131,7 +259,6 @@ def run_scraper():
             if resp.status_code == 200:
                 soup = BeautifulSoup(resp.text, 'html.parser')
                 
-                # Suche nach verschiedenen Elementen
                 elements = soup.find_all(['p', 'li', 'div', 'article', 'h3', 'h4'])
                 
                 found_count = 0
@@ -141,13 +268,11 @@ def run_scraper():
                     if not is_relevant_event(text):
                         continue
                     
-                    # Datum extrahieren
                     date_match = re.search(r'(\d{1,2}\.\d{1,2}\.?\s*(\d{2,4})?)', text)
                     date_str = date_match.group(1) if date_match else "Termin folgt"
                     
-                    # Band finden
                     band_found = next((b for b in VIP_BANDS if b.lower() in text.lower()), None)
-                    title = f"{band_found} @ {target['name']}" if band_found else f"Event @ {target['name']}"
+                    title = f"{band_found} @ {target['name']}" if band_found else f"Live-Musik @ {target['name']}"
                     
                     if not is_duplicate(title, date_str):
                         lat, lon = get_coords(target['city'])
@@ -159,7 +284,7 @@ def run_scraper():
                             "city": target['city'],
                             "lat": lat,
                             "lon": lon,
-                            "desc": text[:200] + "..." if len(text) > 200 else text,
+                            "desc": text[:250] + "..." if len(text) > 250 else text,
                             "url": target['url']
                         }
                         new_events_list.append(new_event)
