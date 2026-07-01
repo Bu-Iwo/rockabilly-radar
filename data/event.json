@@ -1,1 +1,60 @@
-
+[
+  {
+    "title": "Summer Jamboree 2026",
+    "date": "01.08. - 09.08.2026",
+    "location": "Senigallia, Italien",
+    "city": "Senigallia",
+    "lat": 43.7147,
+    "lon": 13.2183,
+    "desc": "Größtes Rockabilly-Festival Europas. 10 Tage Live-Musik, Lindy Hop, Vintage-Flair am Strand.",
+    "url": "https://www.summerjamboree.com",
+    "genres": [
+      "Rockabilly",
+      "Rock'n'Roll",
+      "Lindy Hop"
+    ]
+  },
+  {
+    "title": "Firebirds Festival 2026",
+    "date": "03.07. - 05.07.2026",
+    "location": "Kloster Nimbschen, Grimma",
+    "city": "Grimma",
+    "lat": 51.2294,
+    "lon": 12.7561,
+    "desc": "Rock'n'Roll im historischen Kloster. The Firebirds & Friends, Markt, Custom Cars.",
+    "url": "https://www.firebirds-festival.de",
+    "genres": [
+      "Rock'n'Roll",
+      "Rockabilly"
+    ]
+  },
+  {
+    "title": "Rhythm Riot 2026",
+    "date": "13.11. - 15.11.2026",
+    "location": "Camber Sands, Rye, England",
+    "city": "Rye",
+    "lat": 50.9324,
+    "lon": 0.7941,
+    "desc": "UKs legendärer Rhythm & Blues und Rock'n'Roll Weekender.",
+    "url": "https://www.rhythmriot.com",
+    "genres": [
+      "Rock'n'Roll",
+      "Rhythm & Blues",
+      "Lindy Hop"
+    ]
+  },
+  {
+    "title": "Psychobilly Meeting 2026",
+    "date": "23.10. - 25.10.2026",
+    "location": "Pineda de Mar, Spanien",
+    "city": "Pineda de Mar",
+    "lat": 41.62,
+    "lon": 2.6847,
+    "desc": "Größtes Psychobilly-Festival der Welt am Mittelmeer.",
+    "url": "https://www.psychobillymeeting.com",
+    "genres": [
+      "Psychobilly",
+      "Rockabilly"
+    ]
+  }
+]
