@@ -13,7 +13,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lobster&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <!-- KORREKTER PFAD ZUM CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -26,7 +25,9 @@
 <main>
     <!-- KARTE TAB -->
     <div id="tab-map" class="tab-content active">
-        <div id="map-container"><div id="map"></div></div>
+        <div id="map-container">
+            <div id="map"></div>
+        </div>
     </div>
 
     <!-- EVENTS TAB -->
@@ -52,15 +53,10 @@
 
             <div id="status-msg" class="status-msg">Lade Daten...</div>
         </div>
-        <div class="event-list" id="events-container"><p>Lade Termine...</p></div>
-    </div>
 
-    <!-- FAVORITEN TAB -->
-    <div id="tab-favorites" class="tab-content">
-        <div class="filter-section">
-            <div class="filter-title">⭐ Deine Favoriten</div>
+        <div class="event-list" id="events-container">
+            <p>Lade Termine...</p>
         </div>
-        <div id="favorites-container" class="event-list"></div>
     </div>
 
     <!-- SUCHE TAB -->
@@ -75,23 +71,16 @@
     <!-- RADIO TAB -->
     <div id="tab-radio" class="tab-content">
         <div class="radio-container">
-            <h2 class="radio-title">📻 Laut.fm</h2>
-            <p class="radio-subtitle">ROCKANDROLL RADIO</p>
+            <h2 class="radio-title">📻 Rockabilly Radio</h2>
+            <p class="radio-subtitle">24/7 ROCK'N'ROLL</p>
             <button class="play-button" onclick="toggleRadio()" id="play-btn">▶</button>
             <div class="radio-status" id="radio-status">Bereit zum Abspielen</div>
-            <audio id="audio-stream" src="https://stream.laut.fm/rockandrollradio.m3u" preload="none"></audio>
+            <audio id="audio-stream" src="https://rockabillyradio.ice.infomaniak.ch/rockabillyradio-128.mp3" preload="none"></audio>
         </div>
     </div>
 </main>
 
-<nav class="bottom-nav">
-    <button class="nav-btn active" onclick="switchTab('map')" id="nav-map"><span class="nav-icon">🗺️</span><span class="nav-label">Karte</span></button>
-    <button class="nav-btn" onclick="switchTab('events')" id="nav-events"><span class="nav-icon">📅</span><span class="nav-label">Events</span></button>
-    <button class="nav-btn" onclick="switchTab('favorites')" id="nav-favorites"><span class="nav-icon">⭐</span><span class="nav-label">Favoriten</span></button>
-    <button class="nav-btn" onclick="switchTab('search')" id="nav-search"><span class="nav-icon">🔍</span><span class="nav-label">Suche</span></button>
-    <button class="nav-btn" onclick="switchTab('radio')" id="nav-radio"><span class="nav-icon">📻</span><span class="nav-label">Radio</span></button>
-</nav>
-
+<!-- FOOTER (jetzt VOR der Bottom-Nav damit er sichtbar ist) -->
 <footer>
     <div class="footer-links">
         <a href="impressum.html" class="footer-link">Impressum</a>
@@ -101,10 +90,28 @@
     <div class="footer-copyright">© 2026 Rockabilly Radar | Made with 🎸 and ⚡</div>
 </footer>
 
-<!-- EXTERNE SCRIPTS -->
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<!-- BOTTOM NAVIGATION (nur noch 4 Tabs statt 5) -->
+<nav class="bottom-nav">
+    <button class="nav-btn active" onclick="switchTab('map')" id="nav-map">
+        <span class="nav-icon">🗺️</span>
+        <span class="nav-label">Karte</span>
+    </button>
+    <button class="nav-btn" onclick="switchTab('events')" id="nav-events">
+        <span class="nav-icon">📅</span>
+        <span class="nav-label">Events</span>
+    </button>
+    <button class="nav-btn" onclick="switchTab('search')" id="nav-search">
+        <span class="nav-icon">🔍</span>
+        <span class="nav-label">Suche</span>
+    </button>
+    <button class="nav-btn" onclick="switchTab('radio')" id="nav-radio">
+        <span class="nav-icon">📻</span>
+        <span class="nav-label">Radio</span>
+    </button>
+</nav>
 
-<!-- KORREKTE PFADE ZU DEN EIGENEN JS-MODULEN -->
+<!-- SCRIPTS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="js/utils.js"></script>
 <script src="js/radio.js"></script>
 <script src="js/map.js"></script>
