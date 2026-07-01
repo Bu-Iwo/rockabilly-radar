@@ -22,84 +22,36 @@
     "desc": "Rock'n'Roll im Kloster.",
     "url": "https://www.firebirds-festival.de",
     "genres": [
-      "Rock'n'Roll"
-    ]
-  },
-  {
-    "title": "Live @ Jukebox Stompers",
-    "date": "03.07. bis 05.07.2026",
-    "location": "GrimmaKloster NimbschenNimbschener Landstraße 1, 04668 Grimma",
-    "city": "GrimmaKloster NimbschenNimbschener Landstraße 1, 04668 Grimma",
-    "lat": null,
-    "lon": null,
-    "desc": "Firebirds Festival #14 Das nächste und vierzehnte Firebirds Festival im \" Kloster Nimbschen \" bei Grimma, unweit von Leipzig. Der Termin steht und das Festival ist in Planung. Seit 2024 in einer neuer",
-    "url": "https://www.jukeboxstompers.de",
-    "genres": [
+      "Rock'n'Roll",
       "Rockabilly"
     ]
   },
   {
-    "title": "Live @ Jukebox Stompers",
-    "date": "08.10. bis 12.10.2026",
-    "location": "EnglandVAUXHALL HOLIDAY PARKACLE NEW ROAD, GREAT YARMOUTH NR30 1TB",
-    "city": "EnglandVAUXHALL HOLIDAY PARKACLE NEW ROAD, GREAT YARMOUTH NR30 1TB",
-    "lat": null,
-    "lon": null,
-    "desc": "Rhythm Riot 2026 4 Tage für Fans von Rock'n'Roll und Rhythm & Blues der 50er. Viele Bands und ein großes Programm drum herum. Bands & DJs: Ray Collins Hot Club (GER) GIZZELLE and His Band (USA) Sean '",
-    "url": "https://www.jukeboxstompers.de",
+    "title": "Rhythm Riot 2026",
+    "date": "13.11. - 15.11.2026",
+    "location": "Camber Sands, Rye, England",
+    "city": "Rye",
+    "lat": 50.9324,
+    "lon": 0.7941,
+    "desc": "UKs legendärer Rhythm & Blues und Rock'n'Roll Weekender.",
+    "url": "https://www.rhythmriot.com",
     "genres": [
-      "Rockabilly"
+      "Rock'n'Roll",
+      "Rhythm & Blues",
+      "Lindy Hop"
     ]
   },
   {
-    "title": "Live @ Jukebox Stompers",
-    "date": "14.11.2026",
-    "location": "LeipzigTanzsaal Frische PrießePrießnitzstraße 1, 04179 Leipzig",
-    "city": "LeipzigTanzsaal Frische PrießePrießnitzstraße 1, 04179 Leipzig",
-    "lat": null,
-    "lon": null,
-    "desc": "50s Boogie & Swing Jukebox Eine wilde Party mit Swing, Boogie und Jive auf einer Tanzfläche. Die Jukebox Stompers veranstalten 2026 wieder Parties mit Musik Nonstop vom DJ und Band. Die dritte Veranst",
-    "url": "https://www.jukeboxstompers.de",
+    "title": "Psychobilly Meeting 2026",
+    "date": "23.10. - 25.10.2026",
+    "location": "Pineda de Mar, Spanien",
+    "city": "Pineda de Mar",
+    "lat": 41.62,
+    "lon": 2.6847,
+    "desc": "Größtes Psychobilly-Festival der Welt am Mittelmeer.",
+    "url": "https://www.psychobillymeeting.com",
     "genres": [
-      "Rockabilly"
-    ]
-  },
-  {
-    "title": "Live @ Jukebox Stompers",
-    "date": "05.12.2026",
-    "location": "LeipzigFrische PrießePrießnitzstraße 1, 04179 Leipzig",
-    "city": "LeipzigFrische PrießePrießnitzstraße 1, 04179 Leipzig",
-    "lat": null,
-    "lon": null,
-    "desc": "Weihnachtsfeier der Jukebox Stompers Eine wilde Weihnachts-Party für Fans des Boogie Woogie, Rock'n'Roll und Rockabilly Jive. Ein Abendbuffet, kleines Programm und Social Dance mit Musik vom DJ. Dies ",
-    "url": "https://www.jukeboxstompers.de",
-    "genres": [
-      "Rockabilly"
-    ]
-  },
-  {
-    "title": "Live @ Jukebox Stompers",
-    "date": "06.08. bis 08.08.2026",
-    "location": "DeutschlandZwönitzMarktplatz/Stadtmitte",
-    "city": "DeutschlandZwönitzMarktplatz/Stadtmitte",
-    "lat": null,
-    "lon": null,
-    "desc": "Sommer Oldies 2027 Originaltext vom Veranstalter Yellow Boogie Dancers : Aller zwei Jahre im August - das nächste Mal vom 06. bis 08.08.2027 -  heißt es \"Herzlich willkommen\" in Zwönitz zu einem tolle",
-    "url": "https://www.jukeboxstompers.de",
-    "genres": [
-      "Rockabilly"
-    ]
-  },
-  {
-    "title": "Live @ Jukebox Stompers",
-    "date": "09.10. bis 16.10.2027",
-    "location": "ItalienMittelmeerkreuzfahrtStart in TriestAnkunft in Triest",
-    "city": "ItalienMittelmeerkreuzfahrtStart in TriestAnkunft in Triest",
-    "lat": null,
-    "lon": null,
-    "desc": "Rock'n'Roll Cruise The Firebirds Rock'n'Roll Cruise#4 7 Tage auf dem Kreuzfahrtschiff durchs Mittelmeer, mit Bands und DJs mit Rock'n'Roll, Boogie, Swing Workshops mit Top-Trainern Parties & Social Da",
-    "url": "https://www.jukeboxstompers.de",
-    "genres": [
+      "Psychobilly",
       "Rockabilly"
     ]
   }
