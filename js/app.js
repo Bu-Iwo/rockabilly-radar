@@ -1,90 +1,67 @@
-// ============ HAUPT-APPLICATION ============
-
 let allEvents = [];
-let userLat = 50.7189;  // Default: Zwickau
+let userLat = 50.7189;
 let userLon = 12.4961;
 let maxRadius = 2500;
-let favorites = JSON.parse(localStorage.getItem('rockabilly-favorites') || '[]');
+let activeGenre = 'all';
 
-/**
- * Wechselt zwischen den Tabs
- */
+// Genre Filter Initialisierung
+document.addEventListener('DOMContentLoaded', () => {
+    const pills = document.querySelectorAll('.pill');
+    pills.forEach(pill => {
+        pill.addEventListener('click', (e) => {
+            pills.forEach(p => p.classList.remove('active'));
+            e.target.classList.add('active');
+            activeGenre = e.target.dataset.genre;
+            updateDisplay();
+        });
+    });
+});
+
 function switchTab(tabName) {
-    // Alle Tabs ausblenden
-    document.querySelectorAll('.tab-content').forEach(tab => {
-        tab.classList.remove('active');
-    });
-    
-    // Alle Nav-Buttons deaktivieren
-    document.querySelectorAll('.nav-btn').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    
-    // Aktiven Tab anzeigen
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
     document.getElementById(`tab-${tabName}`).classList.add('active');
     document.getElementById(`nav-${tabName}`).classList.add('active');
-    
-    // Wenn Favoriten-Tab, aktualisiere die Liste
-    if (tabName === 'favorites') {
-        loadFavorites();
-    }
 }
 
-/**
- * Holt den GPS-Standort
- */
 function getGPSLocation() {
     if (!navigator.geolocation) {
         showStatus('❌ GPS nicht unterstützt');
         return;
     }
-    
     showStatus('📡 Suche GPS-Standort...');
-    
     navigator.geolocation.getCurrentPosition(
-        (position) => {
-            userLat = position.coords.latitude;
-            userLon = position.coords.longitude;
-            
+        pos => {
+            userLat = pos.coords.latitude;
+            userLon = pos.coords.longitude;
             updateMapView(userLat, userLon, 8);
-            
-            // Reverse Geocoding für Stadtnamen
             fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${userLat}&lon=${userLon}`)
-                .then(res => res.json())
-                .then(data => {
-                    const city = data.address.city || data.address.town || data.address.village || 'Unbekannt';
+                .then(r => r.json())
+                .then(d => {
+                    const city = d.address.city || d.address.town || 'Unbekannt';
                     document.getElementById('city-input').value = city;
                     showStatus(`✅ Standort: ${city}`);
                     updateDisplay();
                 })
                 .catch(() => {
-                    showStatus('✅ GPS gefunden (Stadt unbekannt)');
+                    showStatus('✅ GPS gefunden');
                     updateDisplay();
                 });
         },
-        (error) => {
-            showStatus('❌ GPS nicht verfügbar');
-        }
+        () => showStatus('❌ GPS nicht verfügbar')
     );
 }
 
-/**
- * Aktualisiert den Standort basierend auf der Eingabe
- */
 async function updateLocation() {
     const city = document.getElementById('city-input').value.trim();
     if (!city) return;
-    
     showStatus('🔍 Suche Koordinaten...');
-    
     try {
         const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(city)}&limit=1`);
         const data = await res.json();
-        
         if (data && data.length > 0) {
             userLat = parseFloat(data[0].lat);
             userLon = parseFloat(data[0].lon);
-            
             updateMapView(userLat, userLon, 8);
             showStatus(`✅ Standort: ${city}`);
             updateDisplay();
@@ -96,172 +73,114 @@ async function updateLocation() {
     }
 }
 
-/**
- * Aktualisiert den Suchradius
- */
 function updateRadius() {
     maxRadius = document.getElementById('radius-slider').value;
     document.getElementById('radius-display').textContent = maxRadius + ' km';
     updateDisplay();
 }
 
-/**
- * Toggle Favorit
- */
-function toggleFavorite(eventTitle) {
-    if (favorites.includes(eventTitle)) {
-        favorites = favorites.filter(f => f !== eventTitle);
-    } else {
-        favorites.push(eventTitle);
-    }
-    localStorage.setItem('rockabilly-favorites', JSON.stringify(favorites));
-    updateDisplay();
-    loadFavorites();
-}
-
-/**
- * Lädt die Favoriten-Anzeige
- */
-function loadFavorites() {
-    const container = document.getElementById('favorites-container');
-    if (!container) return;
-    
-    if (favorites.length === 0) {
-        container.innerHTML = `
-            <div class="favorites-empty">
-                <div class="favorites-empty-icon">⭐</div>
-                <p>Noch keine Favoriten gespeichert</p>
-                <p style="font-size: 0.9rem; margin-top: 10px;">Tippe auf das Stern-Symbol bei einem Event</p>
-            </div>
-        `;
-        return;
-    }
-    
-    const favoriteEvents = allEvents.filter(ev => favorites.includes(ev.title));
-    
-    if (favoriteEvents.length === 0) {
-        container.innerHTML = '<p style="text-align: center; color: #999;">Keine Favoriten mehr verfügbar</p>';
-        return;
-    }
-    
-    container.innerHTML = favoriteEvents.map((ev, index) => createEventCard(ev, index)).join('');
-}
-
-/**
- * Suchfunktion
- */
 function searchEvents() {
-    const query = document.getElementById('search-input').value.toLowerCase().trim();
-    const resultsContainer = document.getElementById('search-results');
-    
-    if (!query) {
-        resultsContainer.innerHTML = '';
+    const q = document.getElementById('search-input').value.toLowerCase().trim();
+    const r = document.getElementById('search-results');
+    if (!q) {
+        r.innerHTML = '';
         return;
     }
-    
-    const results = allEvents.filter(ev => {
-        const searchText = `${ev.title} ${ev.city} ${ev.location} ${ev.desc}`.toLowerCase();
-        return searchText.includes(query);
-    });
-    
-    if (results.length === 0) {
-        resultsContainer.innerHTML = '<p style="text-align: center; color: #999;">Keine Ergebnisse gefunden</p>';
-        return;
-    }
-    
-    resultsContainer.innerHTML = results.map((ev, index) => createEventCard(ev, index)).join('');
+    const results = allEvents.filter(ev =>
+        `${ev.title} ${ev.city} ${ev.location} ${ev.desc}`.toLowerCase().includes(q)
+    );
+    r.innerHTML = results.length
+        ? results.map((ev, i) => createEventCard(ev, i)).join('')
+        : '<p style="text-align:center;color:#999">Keine Ergebnisse</p>';
 }
 
-/**
- * Erstellt eine Event-Karte (HTML)
- */
 function createEventCard(ev, index) {
     const dist = calculateDistance(userLat, userLon, ev.lat, ev.lon);
     const distText = dist !== null ? `<span class="distance-badge">📍 ${dist} km</span>` : '';
-    const calLink = createGoogleCalendarLink(ev);
-    const bookingLink = createBookingLink(ev);
-    const isFavorite = favorites.includes(ev.title);
-    const favoriteIcon = isFavorite ? '⭐' : '☆';
-    
-    return `
-    <div class="event-card">
-        <div style="display: flex; justify-content: space-between; align-items: start;">
-            <div style="flex: 1;">
-                <div class="event-title">${ev.title}</div>
-                <div class="event-date">📅 ${ev.date || 'Termin unbekannt'}</div>
-                <div class="event-loc">🏠 ${ev.location || ev.city}</div>
-                ${distText}
-            </div>
-            <button onclick="toggleFavorite('${ev.title.replace(/'/g, "\\'")}')" 
-                    style="background: none; border: none; font-size: 2rem; cursor: pointer; color: ${isFavorite ? 'var(--neon-orange)' : 'var(--chrome-silver)'};">
-                ${favoriteIcon}
-            </button>
+    const genreTags = (ev.genres || []).map(g =>
+        `<span style="font-size:0.7rem;background:#eee;padding:2px 6px;border-radius:4px;margin-right:4px">${g}</span>`
+    ).join('');
+
+    return `<div class="event-card">
+        <div style="flex:1">
+            <div class="event-title">${ev.title}</div>
+            <div style="margin-bottom:5px">${genreTags}</div>
+            <div class="event-date">📅 ${ev.date || 'Termin unbekannt'}</div>
+            <div class="event-loc">🏠 ${ev.location || ev.city}</div>
+            ${distText}
         </div>
-        
-        <button class="btn-toggle" onclick="toggleDetails(${index})">
-            ℹ️ Mehr Infos
-        </button>
-        
+        <button class="btn-toggle" onclick="toggleDetails(${index})">ℹ️ Mehr Infos</button>
         <div class="event-details" id="details-${index}">
-            <div class="event-desc">${ev.desc || 'Keine Beschreibung verfügbar.'}</div>
-            
+            <div class="event-desc">${ev.desc || 'Keine Beschreibung.'}</div>
             <div class="action-buttons">
                 ${ev.url ? `<a href="${ev.url}" target="_blank" class="btn-action">🔗 Webseite</a>` : ''}
-                <a href="${calLink}" target="_blank" class="btn-action">📅 Kalender</a>
-                <a href="${bookingLink}" target="_blank" class="btn-action">🏨 Hotel</a>
+                <a href="${createGoogleCalendarLink(ev)}" target="_blank" class="btn-action">📅 Kalender</a>
+                <a href="${createBookingLink(ev)}" target="_blank" class="btn-action">🏨 Hotel</a>
             </div>
         </div>
-    </div>
-    `;
+    </div>`;
 }
 
-/**
- * Toggle Details einer Event-Karte
- */
-function toggleDetails(eventId) {
-    const details = document.getElementById(`details-${eventId}`);
-    if (details) {
-        details.classList.toggle('active');
-    }
+function toggleDetails(id) {
+    document.getElementById(`details-${id}`)?.classList.toggle('active');
 }
 
-/**
- * Lädt Events aus der JSON-Datei
- */
 async function loadEvents() {
     try {
-        const response = await fetch('events.json?v=' + new Date().getTime());
-        const data = await response.json();
-        allEvents = Array.isArray(data) ? data : [];
+        const res = await fetch('events.json?v=' + new Date().getTime());
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        allEvents = await res.json();
+        if (!Array.isArray(allEvents)) allEvents = [];
         showStatus(`✅ ${allEvents.length} Events geladen`);
         updateDisplay();
     } catch (e) {
-        document.getElementById('events-container').innerHTML = "❌ Fehler beim Laden";
-        showStatus('❌ Fehler');
+        console.error('Fehler beim Laden:', e);
+        // Fallback: Hardcoded Events verwenden
+        allEvents = [
+            {
+                title: "Summer Jamboree 2026",
+                date: "01.08. - 09.08.2026",
+                location: "Senigallia, Italien",
+                city: "Senigallia",
+                lat: 43.7147,
+                lon: 13.2183,
+                desc: "Europas größtes Rockabilly-Festival.",
+                url: "https://www.summerjamboree.com",
+                genres: ["Rockabilly", "Rock'n'Roll"]
+            },
+            {
+                title: "Firebirds Festival 2026",
+                date: "03.07. - 05.07.2026",
+                location: "Grimma, Deutschland",
+                city: "Grimma",
+                lat: 51.2294,
+                lon: 12.7561,
+                desc: "Rock'n'Roll im Kloster.",
+                url: "https://www.firebirds-festival.de",
+                genres: ["Rock'n'Roll"]
+            }
+        ];
+        showStatus(`⚠️ Fallback: ${allEvents.length} Events (keine Internet-Verbindung)`);
+        updateDisplay();
     }
 }
 
-/**
- * Aktualisiert die Anzeige (Events + Karte)
- */
 function updateDisplay() {
     const container = document.getElementById('events-container');
     clearMarkers();
-    
-    // Events verarbeiten
-    let processed = allEvents.map(ev => {
-        const dist = calculateDistance(userLat, userLon, ev.lat, ev.lon);
-        const dateObj = parseDate(ev.date);
-        return { ...ev, distance: dist, dateObj: dateObj };
-    });
 
-    // Nach Radius filtern
+    let processed = allEvents.map(ev => ({
+        ...ev,
+        distance: calculateDistance(userLat, userLon, ev.lat, ev.lon),
+        dateObj: parseDate(ev.date)
+    }));
+
     let filtered = processed.filter(ev => {
-        if (ev.distance === null) return true;
-        return ev.distance <= maxRadius;
+        const inRadius = ev.distance === null || ev.distance <= maxRadius;
+        const matchesGenre = activeGenre === 'all' || (ev.genres && ev.genres.includes(activeGenre));
+        return inRadius && matchesGenre;
     });
 
-    // Nach Datum sortieren
     filtered.sort((a, b) => {
         if (!a.dateObj && !b.dateObj) return 0;
         if (!a.dateObj) return 1;
@@ -270,31 +189,23 @@ function updateDisplay() {
     });
 
     if (filtered.length === 0) {
-        container.innerHTML = '<p style="text-align: center; color: #999;">Keine Events gefunden</p>';
+        container.innerHTML = '<p style="text-align:center;color:#999">Keine Events gefunden</p>';
         return;
     }
 
-    // Events anzeigen und Marker setzen
-    container.innerHTML = filtered.map((ev, index) => {
-        if (ev.lat && ev.lon) {
-            addEventMarker(ev.lat, ev.lon, ev.title, ev.date);
-        }
-        return createEventCard(ev, index);
+    container.innerHTML = filtered.map((ev, i) => {
+        if (ev.lat && ev.lon) addEventMarker(ev.lat, ev.lon, ev.title, ev.date);
+        return createEventCard(ev, i);
     }).join('');
-
     showStatus(`✅ ${filtered.length} Events im Radius`);
 }
 
-/**
- * Initialisiert die komplette App beim Laden
- */
 function initApp() {
     initMap(userLat, userLon);
     initRadio();
     loadEvents();
 }
 
-// App starten wenn DOM geladen ist
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initApp);
 } else {
