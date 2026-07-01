@@ -25,17 +25,14 @@
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
-        /* BOTTOM NAV */
         .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(135deg, var(--red), #8B0000); border-top: 3px solid var(--silver); display: flex; justify-content: space-around; padding: 8px 0; z-index: 2000; }
         .nav-btn { flex: 1; background: none; border: none; color: var(--cream); cursor: pointer; font-family: 'Bebas Neue'; font-size: 0.75rem; display: flex; flex-direction: column; align-items: center; gap: 2px; opacity: 0.7; }
         .nav-btn.active { opacity: 1; transform: translateY(-2px); }
         .nav-icon { font-size: 1.4rem; }
 
-        /* MAP */
         #map-container { height: calc(100vh - 180px); min-height: 300px; border-radius: 15px; border: 3px solid var(--silver); overflow: hidden; }
         #map { height: 100%; width: 100%; }
 
-        /* CONTROLS & CARDS */
         .filter-section { background: white; border-radius: 15px; padding: 15px; margin-bottom: 20px; border: 2px solid var(--silver); }
         .filter-title { font-family: 'Bebas Neue'; font-size: 1.2rem; color: var(--red); margin-bottom: 8px; border-bottom: 1px solid var(--silver); padding-bottom: 5px; }
         input[type="text"] { width: 100%; padding: 10px; background: var(--cream); border: 2px solid var(--silver); border-radius: 8px; font-family: 'Oswald'; margin-bottom: 10px; }
@@ -55,11 +52,11 @@
         .event-details.active { display: block; }
         .btn-link { display: inline-block; padding: 6px 12px; background: var(--red); color: white; text-decoration: none; border-radius: 6px; font-size: 0.8rem; margin: 4px 4px 0 0; font-family: 'Bebas Neue'; letter-spacing: 1px; }
 
-        /* RADIO */
         .radio-container { background: white; border-radius: 15px; padding: 30px; border: 3px solid var(--silver); text-align: center; margin-top: 20px; }
-        .play-button { width: 80px; height: 80px; border-radius: 50%; background: var(--red); border: 4px solid var(--silver); color: white; font-size: 2rem; cursor: pointer; margin: 15px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .play-button { width: 80px; height: 80px; border-radius: 50%; background: var(--red); border: 4px solid var(--silver); color: white; font-size: 2rem; cursor: pointer; margin: 15px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: all 0.3s; }
+        .play-button:hover { transform: scale(1.1); }
+        .play-button:active { transform: scale(0.95); }
         
-        /* FOOTER */
         footer { text-align: center; padding: 20px; margin-top: 30px; border-top: 3px solid var(--silver); background: var(--brown); color: var(--cream); margin-bottom: 60px; }
         footer a { color: var(--cream); margin: 0 10px; text-decoration: none; font-family: 'Bebas Neue'; letter-spacing: 1px; }
         footer a:hover { color: var(--red); }
@@ -73,12 +70,10 @@
 </header>
 
 <main>
-    <!-- KARTE -->
     <div id="tab-map" class="tab-content active">
         <div id="map-container"><div id="map"></div></div>
     </div>
 
-    <!-- EVENTS -->
     <div id="tab-events" class="tab-content">
         <div class="filter-section">
             <div class="filter-title">📍 Standort</div>
@@ -102,7 +97,6 @@
         <div id="events-list"></div>
     </div>
 
-    <!-- SUCHE -->
     <div id="tab-search" class="tab-content">
         <div class="filter-section">
             <div class="filter-title">🔍 Suche</div>
@@ -111,14 +105,17 @@
         </div>
     </div>
 
-    <!-- RADIO -->
     <div id="tab-radio" class="tab-content">
         <div class="radio-container">
             <h2 style="font-family:'Lobster'; color:var(--red); font-size:2rem;">📻 Rockabilly Radio</h2>
-            <p style="font-family:'Bebas Neue'; letter-spacing:2px; color:#666;">24/7 ROCK'N'ROLL STREAM</p>
+            <p style="font-family:'Bebas Neue'; letter-spacing:2px; color:#666; margin-bottom:20px;">24/7 ROCK'N'ROLL STREAM</p>
             <button class="play-button" onclick="toggleRadio()" id="play-btn">▶</button>
-            <div id="radio-status" style="font-family:'Bebas Neue'; color:var(--green); letter-spacing:2px;">BEREIT</div>
-            <audio id="audio" src="https://rockabillyradio.ice.infomaniak.ch/rockabillyradio-128.mp3" preload="none"></audio>
+            <div id="radio-status" style="font-family:'Bebas Neue'; color:var(--green); letter-spacing:2px; margin-top:15px;">BEREIT</div>
+            <audio id="audio" preload="none">
+                <source src="https://rockabillyradio.ice.infomaniak.ch/rockabillyradio-128.mp3" type="audio/mpeg">
+                <source src="https://stream.rockabillyradio.de/rockabillyradio" type="audio/mpeg">
+                Dein Browser unterstützt kein Audio.
+            </audio>
         </div>
     </div>
 </main>
@@ -139,11 +136,9 @@
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-// === STATE ===
 let events = [], userLat = 50.7189, userLon = 12.4961, radius = 2500, genre = 'all';
 let map, markers, userMarker;
 
-// === INIT ===
 window.onload = () => {
     initMap();
     loadEvents();
@@ -156,7 +151,6 @@ function switchTab(id, btn) {
     btn.classList.add('active');
 }
 
-// === MAP ===
 function initMap() {
     map = L.map('map').setView([userLat, userLon], 6);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
@@ -164,7 +158,6 @@ function initMap() {
     userMarker = L.circleMarker([userLat, userLon], {color:'#7FB069', fillColor:'#7FB069', fillOpacity:1, radius:8}).addTo(map).bindPopup('📍 Du bist hier');
 }
 
-// === LOCATION ===
 function getGPS() {
     if (!navigator.geolocation) return setStatus('❌ GPS nicht unterstützt');
     setStatus('📡 Suche...');
@@ -195,7 +188,6 @@ async function updateLocation() {
     } catch(e) { setStatus('❌ Fehler'); }
 }
 
-// === EVENTS ===
 async function loadEvents() {
     try {
         const r = await fetch('events.json?t=' + Date.now());
@@ -203,7 +195,6 @@ async function loadEvents() {
         events = await r.json();
         if (!Array.isArray(events)) events = [];
     } catch(e) {
-        // FALLBACK wenn events.json fehlt
         events = [
             {title:"Summer Jamboree 2026", date:"01.08.2026", city:"Senigallia", lat:43.7147, lon:13.2183, desc:"Europas größtes Rockabilly-Festival", url:"https://www.summerjamboree.com", genres:["Rockabilly"]},
             {title:"Firebirds Festival 2026", date:"03.07.2026", city:"Grimma", lat:51.2294, lon:12.7561, desc:"Rock'n'Roll im Kloster", url:"https://www.firebirds-festival.de", genres:["Rock'n'Roll"]},
@@ -271,16 +262,51 @@ function doSearch() {
         : '<p style="color:#999;padding:10px">Nichts gefunden</p>';
 }
 
-// === RADIO ===
+// VERBESSERTES RADIO MIT FEHLERBEHANDLUNG
 function toggleRadio() {
-    const a = document.getElementById('audio');
+    const audio = document.getElementById('audio');
     const btn = document.getElementById('play-btn');
-    const st = document.getElementById('radio-status');
-    if (a.paused) { a.play().then(()=>{btn.textContent='⏸';st.textContent='🎵 LÄUFT'}).catch(()=>st.textContent='❌ Stream offline'); }
-    else { a.pause(); btn.textContent='▶'; st.textContent='PAUSIERT'; }
+    const status = document.getElementById('radio-status');
+    
+    if (audio.paused) {
+        status.textContent = '⏳ Lade...';
+        btn.disabled = true;
+        
+        const playPromise = audio.play();
+        
+        if (playPromise !== undefined) {
+            playPromise.then(() => {
+                btn.textContent = '⏸';
+                status.textContent = '🎵 LÄUFT';
+                btn.disabled = false;
+            }).catch(error => {
+                console.error('Audio Fehler:', error);
+                status.textContent = '❌ Stream nicht verfügbar';
+                btn.textContent = '▶';
+                btn.disabled = false;
+                
+                // Fallback: Versuche alternative URL
+                if (audio.src.includes('infomaniak')) {
+                    audio.src = 'https://stream.rockabillyradio.de/rockabillyradio';
+                    status.textContent = '⚠️ Wechsle Stream...';
+                    setTimeout(() => {
+                        audio.play().then(() => {
+                            btn.textContent = '⏸';
+                            status.textContent = '🎵 LÄUFT';
+                        }).catch(() => {
+                            status.textContent = '❌ Kein Stream verfügbar';
+                        });
+                    }, 1000);
+                }
+            });
+        }
+    } else {
+        audio.pause();
+        btn.textContent = '▶';
+        status.textContent = 'PAUSIERT';
+    }
 }
 
-// === UTILS ===
 function getDist(lat1,lon1,lat2,lon2) {
     if (!lat1||!lat2) return null;
     const R=6371, dLat=(lat2-lat1)*Math.PI/180, dLon=(lon2-lon1)*Math.PI/180;
