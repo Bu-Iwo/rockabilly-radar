@@ -2,694 +2,137 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Rockabilly Radar ⚡</title>
     
-    <meta name="theme-color" content="#ff4500">
+    <meta name="theme-color" content="#C41E3A">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="RockRadar">
     <link rel="manifest" href="manifest.json">
     
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lobster&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     
-    <style>
-        :root {
-            --bg-color: #121212;
-            --card-bg: #1e1e1e;
-            --accent: #ff4500;
-            --text: #e0e0e0;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text);
-            margin: 0;
-            padding: 0;
-            padding-bottom: 120px;
-        }
-        header {
-            background: var(--card-bg);
-            padding: 20px;
-            text-align: center;
-            border-bottom: 3px solid var(--accent);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        h1 { margin: 0; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        
-        @media (max-width: 768px) {
-            .container { grid-template-columns: 1fr; }
-        }
-
-        #map {
-            height: 500px;
-            width: 100%;
-            border-radius: 10px;
-            border: 2px solid var(--accent);
-            z-index: 1;
-        }
-
-        .controls {
-            background: var(--card-bg);
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-        .control-row {
-            margin-bottom: 15px;
-        }
-        .control-row label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        input[type="text"] {
-            width: 70%;
-            padding: 10px;
-            background: #333;
-            border: 1px solid var(--accent);
-            color: white;
-            border-radius: 4px;
-        }
-        input[type="range"] {
-            width: 100%;
-            margin: 10px 0;
-        }
-        button {
-            padding: 10px 15px;
-            background: var(--accent);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-right: 10px;
-            transition: background 0.2s;
-        }
-        button:hover {
-            background: #ff5722;
-        }
-
-        .event-list {
-            max-height: 800px;
-            overflow-y: auto;
-        }
-        .event-card {
-            background: var(--card-bg);
-            border-left: 4px solid var(--accent);
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 4px;
-            transition: transform 0.2s;
-        }
-        .event-card:hover { transform: translateX(5px); }
-        .event-title { font-size: 1.2rem; font-weight: bold; color: var(--accent); }
-        .event-date { color: #aaa; font-size: 0.9rem; margin-bottom: 5px; }
-        .event-loc { font-size: 0.9rem; color: #ccc; }
-        .distance-badge {
-            float: right;
-            background: #333;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-        }
-        
-        .event-details {
-            display: none;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid #333;
-        }
-        .event-details.active {
-            display: block;
-        }
-        .event-desc {
-            font-size: 0.9rem;
-            color: #bbb;
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-        
-        .action-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        .btn-action {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            padding: 8px 12px;
-            background: #333;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            border: 1px solid #555;
-            transition: all 0.2s;
-        }
-        .btn-action:hover {
-            background: var(--accent);
-            border-color: var(--accent);
-        }
-        .btn-calendar {
-            background: #4285f4;
-            border-color: #4285f4;
-        }
-        .btn-calendar:hover {
-            background: #3367d6;
-        }
-        .btn-booking {
-            background: #003580;
-            border-color: #003580;
-        }
-        .btn-booking:hover {
-            background: #00275e;
-        }
-        
-        .btn-toggle {
-            background: transparent;
-            border: 1px solid var(--accent);
-            color: var(--accent);
-            padding: 5px 10px;
-            font-size: 0.85rem;
-            margin-top: 10px;
-        }
-        .btn-toggle:hover {
-            background: var(--accent);
-            color: white;
-        }
-
-        .radio-player {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: #000;
-            border-top: 2px solid var(--accent);
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 2000;
-        }
-
-        .install-banner {
-            display: none;
-            background: var(--accent);
-            color: white;
-            padding: 10px;
-            text-align: center;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .status-msg {
-            background: #333;
-            padding: 10px;
-            border-radius: 4px;
-            margin: 10px 0;
-            font-size: 0.9rem;
-        }
-
-        .radius-display {
-            display: inline-block;
-            background: var(--accent);
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-weight: bold;
-            margin-left: 10px;
-        }
-
-        .sort-controls {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-        .sort-btn {
-            flex: 1;
-            padding: 8px;
-            background: #333;
-            border: 1px solid #555;
-            color: white;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.85rem;
-        }
-        .sort-btn.active {
-            background: var(--accent);
-            border-color: var(--accent);
-        }
-
-        footer {
-            background: var(--card-bg);
-            padding: 30px 20px;
-            margin-top: 60px;
-            border-top: 3px solid var(--accent);
-            text-align: center;
-        }
-        
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-        }
-        
-        .footer-link {
-            color: var(--accent);
-            text-decoration: none;
-            padding: 10px 15px;
-            border: 1px solid var(--accent);
-            border-radius: 4px;
-            transition: all 0.3s;
-            font-weight: bold;
-        }
-        
-        .footer-link:hover {
-            background: var(--accent);
-            color: white;
-            transform: translateY(-2px);
-        }
-        
-        .footer-copyright {
-            color: #888;
-            font-size: 0.85rem;
-            margin-top: 15px;
-        }
-        
-        .footer-tagline {
-            color: #aaa;
-            font-size: 0.9rem;
-            margin: 15px 0;
-            font-style: italic;
-        }
-        
-        @media (max-width: 768px) {
-            .footer-links {
-                flex-direction: column;
-                gap: 10px;
-            }
-            .footer-link {
-                width: 100%;
-            }
-        }
-    </style>
+    <!-- Eigene Styles -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<div class="install-banner" id="installBanner">
-    📱 App installieren? Hier tippen!
-</div>
-
+<!-- HEADER -->
 <header>
-    <h1>🎸 Rockabilly Radar ⚡</h1>
-    <p style="margin:5px 0 0 0; font-size:0.9rem; color:#aaa;">Finde die heißesten Gigs in Europa</p>
+    <h1 class="logo">🎸 Rockabilly Radar ⚡</h1>
+    <p class="tagline">Find Your Next Gig!</p>
 </header>
 
-<div class="container">
-    <div>
-        <div id="map"></div>
-        <div class="controls">
-            <div class="control-row">
-                <label>📍 Dein Standort:</label>
-                <input type="text" id="city-input" placeholder="Stadt eingeben oder GPS nutzen">
-                <button onclick="updateLocation()">Suchen</button>
-                <button onclick="getGPSLocation()">📡 GPS</button>
-            </div>
+<!-- MAIN CONTENT -->
+<main>
+    <!-- KARTE TAB -->
+    <div id="tab-map" class="tab-content active">
+        <div id="map-container">
+            <div id="map"></div>
+        </div>
+    </div>
+    
+    <!-- EVENTS TAB -->
+    <div id="tab-events" class="tab-content">
+        <div class="filter-section">
+            <div class="filter-title">📍 Dein Standort</div>
+            <input type="text" id="city-input" class="location-input" placeholder="Stadt eingeben...">
+            <button class="search-btn" onclick="updateLocation()">🔍 Suchen</button>
+            <button class="gps-btn" onclick="getGPSLocation()">📡 GPS</button>
             
-            <div class="control-row">
-                <label>📏 Entfernung: <span class="radius-display" id="radius-display">2500 km</span></label>
-                <input type="range" id="radius-slider" min="10" max="2500" value="2500" step="10" oninput="updateRadius()">
-            </div>
-
-            <div class="control-row">
-                <label>📊 Sortierung:</label>
-                <div class="sort-controls">
-                    <button class="sort-btn active" onclick="setSortMode('date')">📅 Datum</button>
-                    <button class="sort-btn" onclick="setSortMode('distance')">📍 Entfernung</button>
-                </div>
-            </div>
-
+            <div class="filter-title" style="margin-top: 20px;">📏 Entfernung</div>
+            <input type="range" id="radius-slider" class="radius-slider" min="10" max="2500" value="2500" step="10" oninput="updateRadius()">
+            <div class="radius-display" id="radius-display">2500 km</div>
+            
             <div id="status-msg" class="status-msg">
                 Lade Daten...
             </div>
         </div>
+        
+        <div class="event-list" id="events-container">
+            <p>Lade Termine...</p>
+        </div>
     </div>
-
-    <div class="event-list" id="events-container">
-        <p>Lade Termine...</p>
+    
+    <!-- FAVORITEN TAB -->
+    <div id="tab-favorites" class="tab-content">
+        <div class="filter-section">
+            <div class="filter-title">⭐ Deine Favoriten</div>
+            <p style="color: #666; margin-top: 10px;">Events die du dir gemerkt hast</p>
+        </div>
+        <div id="favorites-container" class="event-list"></div>
     </div>
-</div>
+    
+    <!-- SUCHE TAB -->
+    <div id="tab-search" class="tab-content">
+        <div class="search-box">
+            <div class="filter-title">🔍 Suche</div>
+            <input type="text" id="search-input" class="search-input" placeholder="Band, Ort oder Event..." oninput="searchEvents()">
+            <div id="search-results"></div>
+        </div>
+    </div>
+    
+    <!-- RADIO TAB -->
+    <div id="tab-radio" class="tab-content">
+        <div class="radio-container">
+            <h2 class="radio-title">📻 Laut.fm</h2>
+            <p class="radio-subtitle">ROCKANDROLL RADIO</p>
+            <button class="play-button" onclick="toggleRadio()" id="play-btn">▶</button>
+            <div class="radio-status" id="radio-status">Bereit zum Abspielen</div>
+            <audio id="audio-stream" src="https://stream.laut.fm/rockandrollradio"></audio>
+        </div>
+    </div>
+</main>
 
+<!-- BOTTOM NAVIGATION -->
+<nav class="bottom-nav">
+    <button class="nav-btn active" onclick="switchTab('map')" id="nav-map">
+        <span class="nav-icon">🗺️</span>
+        <span class="nav-label">Karte</span>
+    </button>
+    <button class="nav-btn" onclick="switchTab('events')" id="nav-events">
+        <span class="nav-icon">📅</span>
+        <span class="nav-label">Events</span>
+    </button>
+    <button class="nav-btn" onclick="switchTab('favorites')" id="nav-favorites">
+        <span class="nav-icon">⭐</span>
+        <span class="nav-label">Favoriten</span>
+    </button>
+    <button class="nav-btn" onclick="switchTab('search')" id="nav-search">
+        <span class="nav-icon">🔍</span>
+        <span class="nav-label">Suche</span>
+    </button>
+    <button class="nav-btn" onclick="switchTab('radio')" id="nav-radio">
+        <span class="nav-icon">📻</span>
+        <span class="nav-label">Radio</span>
+    </button>
+</nav>
+
+<!-- FOOTER -->
 <footer>
-    <div class="footer-content">
-        <div class="footer-tagline">
-            🎸 Keep on Rockin' - Finde deinen nächsten Gig! ⚡
-        </div>
-        
-        <div class="footer-links">
-            <a href="impressum.html" class="footer-link">📋 Impressum</a>
-            <a href="datenschutz.html" class="footer-link">🔒 Datenschutz</a>
-            <a href="https://github.com/Bu-Iwo/rockabilly-radar" target="_blank" class="footer-link">💻 GitHub</a>
-        </div>
-        
-        <div class="footer-copyright">
-            © 2026 Rockabilly Radar | Made with 🎸 and ⚡ in Deutschland
-        </div>
+    <div class="footer-links">
+        <a href="impressum.html" class="footer-link">Impressum</a>
+        <a href="datenschutz.html" class="footer-link">Datenschutz</a>
+        <a href="https://github.com/Bu-Iwo/rockabilly-radar" target="_blank" class="footer-link">GitHub</a>
+    </div>
+    <div class="footer-copyright">
+        © 2026 Rockabilly Radar | Made with 🎸 and ⚡
     </div>
 </footer>
 
-<div class="radio-player">
-    <div>
-        <strong>📻 Laut.fm Rockandroll-Radio</strong>
-        <span id="radio-status" style="font-size:0.8rem; color:#aaa; margin-left:10px;">Bereit</span>
-    </div>
-    <button onclick="toggleRadio()" id="play-btn">PLAY</button>
-</div>
-<audio id="audio-stream" src="https://stream.laut.fm/rockandrollradio"></audio>
-
+<!-- SCRIPTS (Reihenfolge wichtig!) -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-<script>
-    let allEvents = [];
-    let userLat = 50.7189;
-    let userLon = 12.4961;
-    let maxRadius = 2500;
-    let sortMode = 'date';
-    let map, markersLayer, userMarker;
-
-    let deferredPrompt;
-    const installBanner = document.getElementById('installBanner');
-
-    window.addEventListener('beforeinstallprompt', (e) => {
-        e.preventDefault();
-        deferredPrompt = e;
-        installBanner.style.display = 'block';
-    });
-
-    installBanner.addEventListener('click', () => {
-        if (deferredPrompt) {
-            deferredPrompt.prompt();
-            deferredPrompt.userChoice.then((choiceResult) => {
-                deferredPrompt = null;
-                installBanner.style.display = 'none';
-            });
-        }
-    });
-
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js')
-            .then(reg => console.log('Service Worker registriert'))
-            .catch(err => console.log('Service Worker Fehler', err));
-    }
-
-    function initMap() {
-        map = L.map('map').setView([userLat, userLon], 6);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap contributors'
-        }).addTo(map);
-        markersLayer = L.layerGroup().addTo(map);
-        
-        userMarker = L.marker([userLat, userLon], {
-            icon: L.divIcon({
-                className: 'user-marker',
-                html: '<div style="background: #00ff00; width: 20px; height: 20px; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 10px rgba(0,255,0,0.5);"></div>',
-                iconSize: [20, 20]
-            })
-        }).addTo(map).bindPopup('📍 Dein Standort');
-    }
-
-    function getGPSLocation() {
-        if (navigator.geolocation) {
-            showStatus('📡 Suche GPS-Standort...');
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    userLat = position.coords.latitude;
-                    userLon = position.coords.longitude;
-                    map.setView([userLat, userLon], 8);
-                    userMarker.setLatLng([userLat, userLon]);
-                    
-                    fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${userLat}&lon=${userLon}`)
-                        .then(res => res.json())
-                        .then(data => {
-                            const city = data.address.city || data.address.town || data.address.village || 'Unbekannt';
-                            document.getElementById('city-input').value = city;
-                            showStatus(`✅ Standort erkannt: ${city}`);
-                            updateDisplay();
-                        });
-                },
-                (error) => {
-                    showStatus('❌ GPS nicht verfügbar. Bitte Stadt manuell eingeben.');
-                }
-            );
-        } else {
-            showStatus('❌ GPS wird von deinem Browser nicht unterstützt.');
-        }
-    }
-
-    async function updateLocation() {
-        const city = document.getElementById('city-input').value.trim();
-        if (!city) return;
-        
-        showStatus('🔍 Suche Koordinaten...');
-        try {
-            const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(city)}&limit=1`);
-            const data = await res.json();
-            if (data && data.length > 0) {
-                userLat = parseFloat(data[0].lat);
-                userLon = parseFloat(data[0].lon);
-                map.setView([userLat, userLon], 8);
-                userMarker.setLatLng([userLat, userLon]);
-                showStatus(`✅ Standort: ${city}`);
-                updateDisplay();
-            } else {
-                showStatus('❌ Stadt nicht gefunden.');
-            }
-        } catch (e) {
-            showStatus('❌ Fehler bei der Suche.');
-        }
-    }
-
-    function updateRadius() {
-        maxRadius = document.getElementById('radius-slider').value;
-        document.getElementById('radius-display').textContent = maxRadius + ' km';
-        updateDisplay();
-    }
-
-    function setSortMode(mode) {
-        sortMode = mode;
-        document.querySelectorAll('.sort-btn').forEach(btn => btn.classList.remove('active'));
-        event.target.classList.add('active');
-        updateDisplay();
-    }
-
-    function calculateDistance(lat1, lon1, lat2, lon2) {
-        if (!lat1 || !lat2) return null;
-        const R = 6371; 
-        const dLat = (lat2 - lat1) * Math.PI / 180;
-        const dLon = (lon2 - lon1) * Math.PI / 180;
-        const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-                  Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-                  Math.sin(dLon/2) * Math.sin(dLon/2);
-        return Math.round(R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)));
-    }
-
-    function parseDate(dateStr) {
-        if (!dateStr) return null;
-        
-        const match = dateStr.match(/(\d{1,2})\.(\d{1,2})\.(\d{4})?/);
-        if (match) {
-            const day = parseInt(match[1]);
-            const month = parseInt(match[2]) - 1;
-            const year = parseInt(match[3]) || new Date().getFullYear();
-            return new Date(year, month, day);
-        }
-        return null;
-    }
-
-    function showStatus(msg) {
-        document.getElementById('status-msg').textContent = msg;
-    }
-
-    function createGoogleCalendarLink(event) {
-        const title = encodeURIComponent(event.title);
-        const location = encodeURIComponent(event.location || event.city);
-        const details = encodeURIComponent(event.desc || '');
-        
-        let startDate = '';
-        let endDate = '';
-        
-        if (event.date) {
-            const dateMatch = event.date.match(/(\d{1,2})\.(\d{1,2})\.(\d{4})?/);
-            if (dateMatch) {
-                const day = dateMatch[1].padStart(2, '0');
-                const month = dateMatch[2].padStart(2, '0');
-                const year = dateMatch[3] || new Date().getFullYear();
-                startDate = `${year}${month}${day}`;
-                endDate = startDate;
-            }
-        }
-        
-        if (!startDate) return '#';
-        
-        return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startDate}/${endDate}&details=${details}&location=${location}`;
-    }
-
-    function createBookingLink(event) {
-        const city = encodeURIComponent(event.city || 'Berlin');
-        
-        let checkIn = '';
-        let checkOut = '';
-        
-        if (event.date) {
-            const dateMatch = event.date.match(/(\d{1,2})\.(\d{1,2})\.(\d{4})?/);
-            if (dateMatch) {
-                const day = dateMatch[1].padStart(2, '0');
-                const month = dateMatch[2].padStart(2, '0');
-                const year = dateMatch[3] || new Date().getFullYear();
-                checkIn = `${year}-${month}-${day}`;
-                
-                const date = new Date(year, month - 1, day);
-                date.setDate(date.getDate() + 1);
-                checkOut = date.toISOString().split('T')[0];
-            }
-        }
-        
-        if (!checkIn) {
-            return `https://www.booking.com/searchresults.de.html?ss=${city}`;
-        }
-        
-        return `https://www.booking.com/searchresults.de.html?ss=${city}&checkin=${checkIn}&checkout=${checkOut}`;
-    }
-
-    function toggleDetails(eventId) {
-        const details = document.getElementById(`details-${eventId}`);
-        details.classList.toggle('active');
-    }
-
-    async function loadEvents() {
-        try {
-            const response = await fetch('events.json?v=' + new Date().getTime());
-            const data = await response.json();
-            allEvents = Array.isArray(data) ? data : [];
-            showStatus(`✅ ${allEvents.length} Events geladen`);
-            updateDisplay();
-        } catch (e) {
-            document.getElementById('events-container').innerHTML = "❌ Fehler beim Laden der Daten.";
-            showStatus('❌ Fehler beim Laden');
-        }
-    }
-
-    function updateDisplay() {
-        const container = document.getElementById('events-container');
-        markersLayer.clearLayers();
-        
-        let processed = allEvents.map(ev => {
-            const dist = calculateDistance(userLat, userLon, ev.lat, ev.lon);
-            const dateObj = parseDate(ev.date);
-            return { ...ev, distance: dist, dateObj: dateObj };
-        });
-
-        let filtered = processed.filter(ev => {
-            if (ev.distance === null) return true;
-            return ev.distance <= maxRadius;
-        });
-
-        if (sortMode === 'date') {
-            filtered.sort((a, b) => {
-                if (!a.dateObj && !b.dateObj) return 0;
-                if (!a.dateObj) return 1;
-                if (!b.dateObj) return -1;
-                return a.dateObj - b.dateObj;
-            });
-        } else {
-            filtered.sort((a, b) => {
-                if (a.distance === null) return 1;
-                if (b.distance === null) return -1;
-                return a.distance - b.distance;
-            });
-        }
-
-        if (filtered.length === 0) {
-            container.innerHTML = '<p>Keine Events im gewählten Radius gefunden.</p>';
-            return;
-        }
-
-        container.innerHTML = filtered.map((ev, index) => {
-            if (ev.lat && ev.lon) {
-                const marker = L.marker([ev.lat, ev.lon]).bindPopup(`<b>${ev.title}</b><br>${ev.date}<br>${ev.location}`);
-                markersLayer.addLayer(marker);
-            }
-
-            const distText = ev.distance !== null ? `<span class="distance-badge">📍 ${ev.distance} km</span>` : '';
-            const calLink = createGoogleCalendarLink(ev);
-            const bookingLink = createBookingLink(ev);
-            
-            return `
-            <div class="event-card">
-                ${distText}
-                <div class="event-title">${ev.title}</div>
-                <div class="event-date">📅 ${ev.date || 'Termin unbekannt'}</div>
-                <div class="event-loc">🏠 ${ev.location || ev.city}</div>
-                
-                <button class="btn-toggle" onclick="toggleDetails(${index})">
-                    ℹ️ Mehr Infos anzeigen
-                </button>
-                
-                <div class="event-details" id="details-${index}">
-                    <div class="event-desc">${ev.desc || 'Keine Beschreibung verfügbar.'}</div>
-                    
-                    <div class="action-buttons">
-                        ${ev.url ? `<a href="${ev.url}" target="_blank" class="btn-action">🔗 Webseite</a>` : ''}
-                        <a href="${calLink}" target="_blank" class="btn-action btn-calendar">📅 Google Kalender</a>
-                        <a href="${bookingLink}" target="_blank" class="btn-action btn-booking">🏨 Unterkunft suchen</a>
-                    </div>
-                </div>
-            </div>
-            `;
-        }).join('');
-
-        showStatus(`✅ ${filtered.length} Events im Radius von ${maxRadius} km`);
-    }
-
-    function toggleRadio() {
-        const audio = document.getElementById('audio-stream');
-        const btn = document.getElementById('play-btn');
-        const status = document.getElementById('radio-status');
-        
-        if (audio.paused) {
-            audio.play();
-            btn.innerText = "STOP";
-            status.innerText = "Läuft...";
-        } else {
-            audio.pause();
-            btn.innerText = "PLAY";
-            status.innerText = "Pausiert";
-        }
-    }
-
-    initMap();
-    loadEvents();
-</script>
+<script src="js/utils.js"></script>
+<script src="js/radio.js"></script>
+<script src="js/map.js"></script>
+<script src="js/app.js"></script>
 
 </body>
 </html>
