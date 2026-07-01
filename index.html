@@ -111,9 +111,8 @@
             <p style="font-family:'Bebas Neue'; letter-spacing:2px; color:#666; margin-bottom:20px;">24/7 ROCK'N'ROLL STREAM</p>
             <button class="play-button" onclick="toggleRadio()" id="play-btn">▶</button>
             <div id="radio-status" style="font-family:'Bebas Neue'; color:var(--green); letter-spacing:2px; margin-top:15px;">BEREIT</div>
-            <audio id="audio" preload="none">
-                <source src="https://rockabillyradio.ice.infomaniak.ch/rockabillyradio-128.mp3" type="audio/mpeg">
-                <source src="https://stream.rockabillyradio.de/rockabillyradio" type="audio/mpeg">
+            <!-- NEUER, FUNKTIONIERTENDER STREAM -->
+            <audio id="audio" preload="none" src="https://stream.rockantenne.de/rockabilly/stream/mp3">
                 Dein Browser unterstützt kein Audio.
             </audio>
         </div>
@@ -196,7 +195,7 @@ async function loadEvents() {
         if (!Array.isArray(events)) events = [];
     } catch(e) {
         events = [
-            {title:"Summer Jamboree 2026", date:"01.08.2026", city:"Senigallia", lat:43.7147, lon:13.2183, desc:"Europas größtes Rockabilly-Festival", url:"https://www.summerjamboree.com", genres:["Rockabilly"]},
+            {title:"Summer Jamboree 2026", date:"01.08. - 09.08.2026", city:"Senigallia", lat:43.7147, lon:13.2183, desc:"Europas größtes Rockabilly-Festival", url:"https://www.summerjamboree.com", genres:["Rockabilly"]},
             {title:"Firebirds Festival 2026", date:"03.07.2026", city:"Grimma", lat:51.2294, lon:12.7561, desc:"Rock'n'Roll im Kloster", url:"https://www.firebirds-festival.de", genres:["Rock'n'Roll"]},
             {title:"High Rockabilly 2026", date:"15.05.2026", city:"Irun", lat:43.3396, lon:-1.7894, desc:"Top Rockabilly Festival Spanien", url:"https://www.highrockabilly.com", genres:["Rockabilly"]},
             {title:"Viva Las Vegas 2026", date:"16.04.2026", city:"Las Vegas", lat:36.1699, lon:-115.1398, desc:"Weltgrößtes Rockabilly Festival", url:"https://www.vivalasvegas.net", genres:["Rockabilly","50er"]}
@@ -212,6 +211,63 @@ function setGenre(g, el) {
     document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
     el.classList.add('active');
     updateDisplay();
+}
+
+// NEUE FUNKTION: Generiert Google Calendar Link aus dem Datum
+function getGoogleCalendarUrl(ev) {
+    if (!ev.date) return null;
+    
+    let startDate = null, endDate = null;
+    let regex = /(\d{2})\.(\d{2})\.(\d{4})/g;
+    let dateMatches = [];
+    let match;
+    
+    // Finde alle vollständigen Daten (DD.MM.YYYY)
+    while ((match = regex.exec(ev.date)) !== null) {
+        dateMatches.push(match.slice(1));
+    }
+    
+    if (dateMatches.length >= 2) {
+        // Zeitraum mit zwei vollständigen Daten
+        let [d1, m1, y1] = dateMatches[0];
+        let [d2, m2, y2] = dateMatches[1];
+        startDate = new Date(Date.UTC(parseInt(y1), parseInt(m1) - 1, parseInt(d1)));
+        endDate = new Date(Date.UTC(parseInt(y2), parseInt(m2) - 1, parseInt(d2)));
+        endDate.setUTCDate(endDate.getUTCDate() + 1); // Google Calendar Enddatum ist exklusiv
+    } else {
+        // Prüfe auf Format DD.MM. - DD.MM.YYYY
+        let matchPartial = ev.date.match(/(\d{2})\.(\d{2})\.\s*-\s*(\d{2})\.(\d{2})\.(\d{4})/);
+        if (matchPartial) {
+            let [_, d1, m1, d2, m2, y] = matchPartial;
+            let y1 = parseInt(y);
+            // Wenn Startmonat > Endmonat, dann Jahreswechsel (z.B. 29.12. - 05.01.)
+            if (parseInt(m1) > parseInt(m2)) {
+                y1--;
+            }
+            startDate = new Date(Date.UTC(y1, parseInt(m1) - 1, parseInt(d1)));
+            endDate = new Date(Date.UTC(parseInt(y), parseInt(m2) - 1, parseInt(d2)));
+            endDate.setUTCDate(endDate.getUTCDate() + 1);
+        } else if (dateMatches.length === 1) {
+            // Einzelnes Datum
+            let [d, m, y] = dateMatches[0];
+            startDate = new Date(Date.UTC(parseInt(y), parseInt(m) - 1, parseInt(d)));
+            endDate = new Date(startDate);
+            endDate.setUTCDate(endDate.getUTCDate() + 1);
+        }
+    }
+    
+    if (!startDate || !endDate) return null;
+    
+    function formatDate(date) {
+        return date.toISOString().slice(0, 10).replace(/-/g, '');
+    }
+    
+    let datesParam = `${formatDate(startDate)}/${formatDate(endDate)}`;
+    let title = encodeURIComponent(ev.title || 'Event');
+    let details = encodeURIComponent(ev.desc || '');
+    let location = encodeURIComponent(ev.location || ev.city || '');
+    
+    return `https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${datesParam}&details=${details}&location=${location}&sf=true&output=xml`;
 }
 
 function updateDisplay() {
@@ -234,6 +290,11 @@ function updateDisplay() {
         if (ev.lat && ev.lon) L.marker([ev.lat, ev.lon]).addTo(markers).bindPopup(`<b>${ev.title}</b><br>${ev.date||''}`);
         const distTxt = ev.dist !== null ? `<span class="distance-badge">📍 ${ev.dist} km</span>` : '';
         const tags = (ev.genres||[]).map(g => `<span style="font-size:0.7rem;background:#eee;padding:1px 6px;border-radius:4px">${g}</span>`).join(' ');
+        
+        // Kalender-Button hinzufügen
+        const calUrl = getGoogleCalendarUrl(ev);
+        const calBtn = calUrl ? `<a href="${calUrl}" target="_blank" class="btn-link">📅 Kalender</a>` : '';
+        
         return `<div class="event-card">
             <div class="event-title">${ev.title}</div>
             <div style="margin:4px 0">${tags}</div>
@@ -244,6 +305,7 @@ function updateDisplay() {
             <div class="event-details">
                 <p style="font-size:0.9rem;color:#555;margin-bottom:8px">${ev.desc||''}</p>
                 ${ev.url ? `<a href="${ev.url}" target="_blank" class="btn-link">🔗 Webseite</a>` : ''}
+                ${calBtn}
                 <a href="https://www.booking.com/searchresults.de.html?ss=${encodeURIComponent(ev.city||'')}" target="_blank" class="btn-link">🏨 Hotel</a>
             </div>
         </div>`;
@@ -262,7 +324,7 @@ function doSearch() {
         : '<p style="color:#999;padding:10px">Nichts gefunden</p>';
 }
 
-// VERBESSERTES RADIO MIT FEHLERBEHANDLUNG
+// VERBESSERTES RADIO MIT NEUEM STREAM
 function toggleRadio() {
     const audio = document.getElementById('audio');
     const btn = document.getElementById('play-btn');
@@ -285,9 +347,9 @@ function toggleRadio() {
                 btn.textContent = '▶';
                 btn.disabled = false;
                 
-                // Fallback: Versuche alternative URL
-                if (audio.src.includes('infomaniak')) {
-                    audio.src = 'https://stream.rockabillyradio.de/rockabillyradio';
+                // Fallback: Versuche alten Stream, falls der neue ausfällt
+                if (audio.src.includes('rockantenne')) {
+                    audio.src = 'https://rockabillyradio.ice.infomaniak.ch/rockabillyradio-128.mp3';
                     status.textContent = '⚠️ Wechsle Stream...';
                     setTimeout(() => {
                         audio.play().then(() => {
