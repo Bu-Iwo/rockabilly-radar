@@ -11,81 +11,66 @@
     <meta name="apple-mobile-web-app-title" content="RockRadar">
     <link rel="manifest" href="manifest.json">
     
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Fonts & Leaflet -->
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lobster&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
-    
-    <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     
-    <!-- Eigene Styles -->
+    <!-- Modularisiertes CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<!-- HEADER -->
 <header>
     <h1 class="logo">🎸 Rockabilly Radar ⚡</h1>
-    <p class="tagline">Find Your Next Gig!</p>
+    <p class="tagline">FINDE DEINEN NÄCHSTEN GIG!</p>
 </header>
 
-<!-- MAIN CONTENT -->
 <main>
-    <!-- KARTE TAB -->
+    <!-- TAB: KARTE -->
     <div id="tab-map" class="tab-content active">
-        <div id="map-container">
-            <div id="map"></div>
-        </div>
+        <div id="map-container"><div id="map"></div></div>
     </div>
     
-    <!-- EVENTS TAB -->
+    <!-- TAB: EVENTS -->
     <div id="tab-events" class="tab-content">
         <div class="filter-section">
-            <div class="filter-title">📍 Dein Standort</div>
+            <div class="filter-title">📍 DEIN STANDORT</div>
             <input type="text" id="city-input" class="location-input" placeholder="Stadt eingeben...">
-            <button class="search-btn" onclick="updateLocation()">🔍 Suchen</button>
+            <button class="search-btn" onclick="updateLocation()">SUCHEN</button>
             <button class="gps-btn" onclick="getGPSLocation()">📡 GPS</button>
             
-            <div class="filter-title" style="margin-top: 20px;">📏 Entfernung</div>
+            <div class="filter-title" style="margin-top:15px;">📏 RADIUS</div>
             <input type="range" id="radius-slider" class="radius-slider" min="10" max="2500" value="2500" step="10" oninput="updateRadius()">
             <div class="radius-display" id="radius-display">2500 km</div>
-            
-            <div id="status-msg" class="status-msg">
-                Lade Daten...
-            </div>
+            <div id="status-msg" class="status-msg">Lade Daten...</div>
         </div>
-        
-        <div class="event-list" id="events-container">
-            <p>Lade Termine...</p>
-        </div>
+        <div class="event-list" id="events-container"></div>
     </div>
     
-    <!-- FAVORITEN TAB -->
+    <!-- TAB: FAVORITEN -->
     <div id="tab-favorites" class="tab-content">
         <div class="filter-section">
-            <div class="filter-title">⭐ Deine Favoriten</div>
-            <p style="color: #666; margin-top: 10px;">Events die du dir gemerkt hast</p>
+            <div class="filter-title">⭐ DEINE FAVORITEN</div>
         </div>
         <div id="favorites-container" class="event-list"></div>
     </div>
     
-    <!-- SUCHE TAB -->
+    <!-- TAB: SUCHE -->
     <div id="tab-search" class="tab-content">
         <div class="search-box">
-            <div class="filter-title">🔍 Suche</div>
-            <input type="text" id="search-input" class="search-input" placeholder="Band, Ort oder Event..." oninput="searchEvents()">
+            <div class="filter-title">🔍 SUCHE</div>
+            <input type="text" id="search-input" class="search-input" placeholder="Band, Ort, Genre..." oninput="searchEvents()">
             <div id="search-results"></div>
         </div>
     </div>
     
-    <!-- RADIO TAB -->
+    <!-- TAB: RADIO -->
     <div id="tab-radio" class="tab-content">
         <div class="radio-container">
-            <h2 class="radio-title">📻 Laut.fm</h2>
+            <h2 class="radio-title">📻 LAUT.FM</h2>
             <p class="radio-subtitle">ROCKANDROLL RADIO</p>
             <button class="play-button" onclick="toggleRadio()" id="play-btn">▶</button>
-            <div class="radio-status" id="radio-status">Bereit zum Abspielen</div>
+            <div class="radio-status" id="radio-status">BEREIT</div>
             <audio id="audio-stream" src="https://stream.laut.fm/rockandrollradio"></audio>
         </div>
     </div>
@@ -93,41 +78,23 @@
 
 <!-- BOTTOM NAVIGATION -->
 <nav class="bottom-nav">
-    <button class="nav-btn active" onclick="switchTab('map')" id="nav-map">
-        <span class="nav-icon">🗺️</span>
-        <span class="nav-label">Karte</span>
-    </button>
-    <button class="nav-btn" onclick="switchTab('events')" id="nav-events">
-        <span class="nav-icon">📅</span>
-        <span class="nav-label">Events</span>
-    </button>
-    <button class="nav-btn" onclick="switchTab('favorites')" id="nav-favorites">
-        <span class="nav-icon">⭐</span>
-        <span class="nav-label">Favoriten</span>
-    </button>
-    <button class="nav-btn" onclick="switchTab('search')" id="nav-search">
-        <span class="nav-icon">🔍</span>
-        <span class="nav-label">Suche</span>
-    </button>
-    <button class="nav-btn" onclick="switchTab('radio')" id="nav-radio">
-        <span class="nav-icon">📻</span>
-        <span class="nav-label">Radio</span>
-    </button>
+    <button class="nav-btn active" onclick="switchTab('map')" id="nav-map"><span class="nav-icon">🗺️</span><span class="nav-label">Karte</span></button>
+    <button class="nav-btn" onclick="switchTab('events')" id="nav-events"><span class="nav-icon">📅</span><span class="nav-label">Events</span></button>
+    <button class="nav-btn" onclick="switchTab('favorites')" id="nav-favorites"><span class="nav-icon">⭐</span><span class="nav-label">Favs</span></button>
+    <button class="nav-btn" onclick="switchTab('search')" id="nav-search"><span class="nav-icon">🔍</span><span class="nav-label">Suche</span></button>
+    <button class="nav-btn" onclick="switchTab('radio')" id="nav-radio"><span class="nav-icon">📻</span><span class="nav-label">Radio</span></button>
 </nav>
 
-<!-- FOOTER -->
 <footer>
     <div class="footer-links">
-        <a href="impressum.html" class="footer-link">Impressum</a>
-        <a href="datenschutz.html" class="footer-link">Datenschutz</a>
-        <a href="https://github.com/Bu-Iwo/rockabilly-radar" target="_blank" class="footer-link">GitHub</a>
+        <a href="impressum.html" class="footer-link">IMPRESSUM</a>
+        <a href="datenschutz.html" class="footer-link">DATENSCHUTZ</a>
+        <a href="https://github.com/Bu-Iwo/rockabilly-radar" target="_blank" class="footer-link">GITHUB</a>
     </div>
-    <div class="footer-copyright">
-        © 2026 Rockabilly Radar | Made with 🎸 and ⚡
-    </div>
+    <div class="footer-copyright">© 2026 ROCKABILLY RADAR | MADE WITH 🎸 & ⚡</div>
 </footer>
 
-<!-- SCRIPTS (Reihenfolge wichtig!) -->
+<!-- SCRIPTS IN KORREKTER REIHENFOLGE -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="js/utils.js"></script>
 <script src="js/radio.js"></script>
@@ -136,4 +103,3 @@
 
 </body>
 </html>
-
