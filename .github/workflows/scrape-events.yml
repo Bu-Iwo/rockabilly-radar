@@ -2,8 +2,8 @@ name: Scrape Events Daily
 
 on:
   schedule:
-    - cron: '0 3 * * *'
-  workflow_dispatch:
+    - cron: '0 3 * * *'  # Daily at 03:00 UTC
+  workflow_dispatch:      # Manual trigger
 
 permissions:
   contents: write
@@ -11,6 +11,8 @@ permissions:
 jobs:
   scrape:
     runs-on: ubuntu-latest
+    timeout-minutes: 30   # More time for pagination
+    
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -23,17 +25,20 @@ jobs:
       - name: Install Dependencies
         run: pip install requests beautifulsoup4 lxml
 
-      - name: Run Scraper
+      - name: Run Scraper (with pagination)
         run: python scraper.py
+        env:
+          PYTHONUNBUFFERED: 1
 
-      - name: Commit and Push Changes
+      - name: Commit and Push if Changed
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add events.json
           if ! git diff --cached --quiet; then
-            git commit -m "Auto-update events $(date +%Y-%m-%d)"
+            git commit -m "🤖 Auto-update: $(date +%Y-%m-%d) - $(git log -1 --format=%s | head -c 50)..."
             git push
+            echo "✅ events.json updated and pushed"
           else
-            echo "No changes to commit"
+            echo "ℹ️ No changes to events.json"
           fi
