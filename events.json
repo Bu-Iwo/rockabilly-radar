@@ -1,49 +1,199 @@
 [
-  {"title":"Summer Jamboree 2026","date":"01.08. - 09.08.2026","city":"Senigallia","lat":43.7147,"lon":13.2183,"desc":"Europas größtes Rockabilly-Festival","url":"https://www.summerjamboree.com","genres":["Rockabilly"]},
-  {"title":"Firebirds Festival #14","date":"03.07. - 05.07.2026","city":"Grimma","lat":51.2294,"lon":12.7561,"desc":"Rock'n'Roll im Kloster Nimbschen - Bands: Ray Collins' Hot Club, Si Cranstoun, Cat Lee King, Howlin'Ric & The Rocketeers, Foggy Mountain Rockers, The Firebirds u.v.m.","url":"https://www.jukeboxstompers.de/","genres":["Rock'n'Roll","Boogie Woogie","Lindy Hop"]},
-  {"title":"High Rockabilly 2026","date":"15.05.2026","city":"Irun","lat":43.3396,"lon":-1.7894,"desc":"Top Rockabilly Festival Spanien","url":"https://www.highrockabilly.com","genres":["Rockabilly"]},
-  {"title":"Viva Las Vegas 2026","date":"16.04.2026","city":"Las Vegas","lat":36.1699,"lon":-115.1398,"desc":"Weltgrößtes Rockabilly Festival","url":"https://www.vivalasvegas.net","genres":["Rockabilly","50er"]},
-  {"title":"Swing Dance Night","date":"04.07.2026","city":"Leipzig","lat":51.3397,"lon":12.3731,"desc":"Swing Dance mit Balboa & Lindy Hop - Swing Dance Leipzig, Holbeinstraße 29, Beginn 21:00 Uhr","url":"https://www.jukeboxstompers.de/","genres":["Lindy Hop","Balboa","Swing"]},
-  {"title":"Boogie Feets Festival 2026","date":"23.07. - 27.07.2026","city":"Oslo","lat":59.9139,"lon":10.7522,"desc":"Internationales Boogie Woogie Workshop Weekend & Parties - Bands: The Whayttcristmas Five, Lizzy Bourbon & The Cobbler Shakers","url":"https://www.jukeboxstompers.de/","genres":["Boogie Woogie"]},
-  {"title":"Summer Shelter","date":"07.08. - 09.08.2026","city":"Magdeburg","lat":52.1205,"lon":11.6276,"desc":"RocknRoll Open Air Festival im Bunker Heyrothsberge - Bands: The Explosion Rockets, The Wyatt Christmas Five, Loui Cifer & The Brimstones","url":"https://www.jukeboxstompers.de/","genres":["Rock'n'Roll","Rockabilly"]},
-  {"title":"Tanz Spezial - Sommernachtsswing","date":"22.08.2026","city":"Burgstädt","lat":50.8833,"lon":12.8167,"desc":"Social Dance im Hotel Goldener Löwe - Lindy Hop, Boogie Woogie, Balboa - DJ Jule, Beginn 20:00 Uhr","url":"https://www.jukeboxstompers.de/","genres":["Swing","Lindy Hop","Boogie Woogie"]},
-  {"title":"Rock'n'Roll Festival Ganderkesee","date":"21.08. - 23.08.2026","city":"Ganderkesee","lat":53.0167,"lon":8.5500,"desc":"Festival am Flugplatz Ganderkesee - Live Bands, DJs, historische Flugzeuge, Oldtimer, Tanzkurse","url":"https://www.jukeboxstompers.de/","genres":["Rock'n'Roll","Rockabilly"]},
-  {"title":"Swing Dance Night","date":"29.08.2026","city":"Leipzig","lat":51.3397,"lon":12.3731,"desc":"Swing Dance mit Balboa & Lindy Hop - Swing Dance Leipzig, Holbeinstraße 29, Beginn 21:00 Uhr","url":"https://www.jukeboxstompers.de/","genres":["Lindy Hop","Balboa","Swing"]},
-  {"title":"5,6,7 Swing Dance Camp","date":"28.08. - 30.08.2026","city":"Königsleitn","lat":47.3833,"lon":13.5833,"desc":"Dance Camp für Boogie Woogie im Theater- und Feriendorf Königsleitn, Österreich","url":"https://www.jukeboxstompers.de/","genres":["Boogie Woogie"]},
-  {"title":"25. Boogie Attack","date":"05.09. - 06.09.2026","city":"Markkleeberg","lat":51.2833,"lon":12.3667,"desc":"Zweitägiges Seminar mit Workshops für Boogie Woogie und Rockabilly Jive - Band: Bun Jon & The Big Jives","url":"https://www.jukeboxstompers.de/","genres":["Boogie Woogie","Rockabilly"]},
-  {"title":"Swing Dance Night","date":"19.09.2026","city":"Leipzig","lat":51.3397,"lon":12.3731,"desc":"Swing Dance mit Balboa & Lindy Hop - Swing Dance Leipzig, Holbeinstraße 29, Beginn 21:00 Uhr","url":"https://www.jukeboxstompers.de/","genres":["Lindy Hop","Balboa","Swing"]},
-  {"title":"Swiss Boogie Weekend","date":"18.09. - 20.09.2026","city":"Zürich","lat":47.3769,"lon":8.5417,"desc":"3 Tage Workshops in Boogie Woogie im Club Silbando - Band: Super Swing Brothers","url":"https://www.jukeboxstompers.de/","genres":["Boogie Woogie"]},
-  {"title":"Rhythm Riot 2026","date":"08.10. - 12.10.2026","city":"Great Yarmouth","lat":52.6081,"lon":1.7250,"desc":"4 Tage Rock'n'Roll und Rhythm & Blues der 50er in England - Bands: Ray Collins Hot Club, GIZZELLE and His Band","url":"https://www.jukeboxstompers.de/","genres":["Rock'n'Roll","Rockabilly"]},
-  {"title":"Rockabilly Night #35","date":"17.10.2026","city":"Wolfenbüttel","lat":52.1667,"lon":10.5333,"desc":"Rockabilly Night in der Kubahalle - Bands: Cherry Casino and The Gamblers, The Roundup Boys - DJ Blip Blop","url":"https://www.jukeboxstompers.de/","genres":["Rockabilly","Rock'n'Roll"]},
-  {"title":"19. Moosquitos Tanztage","date":"17.10. - 18.10.2026","city":"Haimhausen","lat":48.3833,"lon":11.4833,"desc":"Workshop-Wochenende zu Boogie Woogie, West Coast Swing und Discofox","url":"https://www.jukeboxstompers.de/","genres":["Boogie Woogie","West Coast Swing"]},
-  {"title":"Swingin Wellness Weekend","date":"06.11. - 08.11.2026","city":"Bad Blumau","lat":47.0833,"lon":16.0833,"desc":"10-jähriges Jubiläum im Rogner Bad Blumau, Österreich - Boogie Woogie, Lindy Hop, West Coast Swing","url":"https://www.jukeboxstompers.de/","genres":["Boogie Woogie","Lindy Hop","West Coast Swing"]},
-  {"title":"50s Boogie & Swing Jukebox","date":"14.11.2026","city":"Leipzig","lat":51.3397,"lon":12.3731,"desc":"Party mit Swing, Boogie und Jive im Tanzsaal Frische Prieße - Band: Ray Allen & Band","url":"https://www.jukeboxstompers.de/","genres":["Swing","Boogie Woogie","Rock'n'Roll"]},
-  {"title":"Deutsche Meisterschaft Boogie Woogie","date":"21.11.2026","city":"Rain","lat":48.7833,"lon":10.8167,"desc":"Deutsche Meisterschaft Boogie Woogie in der Mehrzweckhalle","url":"https://www.jukeboxstompers.de/","genres":["Boogie Woogie"]},
-  {"title":"Ballroom Boheme Silvester Party","date":"31.12.2026","city":"Leipzig","lat":51.3397,"lon":12.3731,"desc":"Silvesterparty im historischen Ballsaal des Felsenkellers - Band: Bun-Jon & The Big Jive","url":"https://www.jukeboxstompers.de/","genres":["Swing","Boogie Woogie"]},
-  {"title":"Winter Rockin' Jive","date":"22.01. - 24.01.2027","city":"Hohenkirchen","lat":53.6833,"lon":8.0833,"desc":"Kleines Festival im Wangerland Resort - Bands: Cat Lee King & His Cocks, The Firebirds, Jackson Sloan","url":"https://www.jukeboxstompers.de/","genres":["Rock'n'Roll","Rockabilly"]},
-  {"title":"Triple Step Madness","date":"22.01. - 24.01.2027","city":"De Rijp","lat":52.5500,"lon":4.8833,"desc":"Swing Dance Weekend in den Niederlanden - Lindy Hop und Boogie Woogie Workshops","url":"https://www.jukeboxstompers.de/","genres":["Lindy Hop","Boogie Woogie"]},
-  {"title":"Rock That Swing #20","date":"04.02. - 08.02.2027","city":"München","lat":48.1351,"lon":11.5820,"desc":"20. Rock That Swing Festival - Lindy Hop, Shag, Balboa, Boogie Woogie - 4 Tage Workshops & Parties","url":"https://www.jukeboxstompers.de/","genres":["Lindy Hop","Boogie Woogie","Balboa","Shag"]},
-  {"title":"BB Dance Camp #40","date":"14.05. - 17.05.2027","city":"Landsberg am Lech","lat":48.0500,"lon":10.8833,"desc":"40. BB-DanceCamp über Pfingsten - 3 Tage Workshops in Boogie Woogie und Lindy Hop","url":"https://www.jukeboxstompers.de/","genres":["Boogie Woogie","Lindy Hop"]},
-  {"title":"Oldietown Festival","date":"09.07. - 11.07.2027","city":"Wolframs-Eschenbach","lat":49.1167,"lon":10.4500,"desc":"Rock'n'Roll Festival in der Altstadt - 7 Bühnen, über 30 Bands","url":"https://www.jukeboxstompers.de/","genres":["Rock'n'Roll","Rockabilly"]},
-  {"title":"Sommer Oldies 2027","date":"06.08. - 08.08.2027","city":"Zwönitz","lat":50.6500,"lon":12.8833,"desc":"Rock'n'Roll Wochenende mit Oldtimern, Petticoats, Lederjacken","url":"https://www.jukeboxstompers.de/","genres":["Rock'n'Roll","Rockabilly"]},
-  {"title":"Rock'n'Roll Cruise","date":"09.10. - 16.10.2027","city":"Triest","lat":45.6486,"lon":13.7794,"desc":"7 Tage Mittelmeerkreuzfahrt mit Rock'n'Roll - Bands: The Firebirds, Boogie Banausen, Si Cranstoun","url":"https://www.jukeboxstompers.de/","genres":["Rock'n'Roll","Boogie Woogie","Swing"]},
-  {"title":"NNTS MINI-CORSO BALBOA","date":"29.06.2026","city":"Trient","lat":46.0679,"lon":11.1211,"desc":"Balboa Workshop in Trient, Italien","url":"https://swingcalendar.com/de","genres":["Balboa","Swing"]},
-  {"title":"Lindy Farm 9 – Swing & Nature Retreat","date":"02.07.2026","city":"Fenestrelle","lat":44.9700,"lon":6.9600,"desc":"Swing & Nature Retreat in den italienischen Alpen","url":"https://swingcalendar.com/de","genres":["Lindy Hop","Swing"]},
-  {"title":"Midnight Sun Swing Festival","date":"03.07.2026","city":"Helsinki","lat":60.1699,"lon":24.9384,"desc":"Mitternachtssonne Swing Festival in Finnland","url":"https://swingcalendar.com/de","genres":["Lindy Hop","Swing"]},
-  {"title":"Herräng Dance Camp - Week 1","date":"04.07.2026","city":"Herräng","lat":59.8500,"lon":16.9000,"desc":"Legendäres Swing Dance Camp in Schweden - Woche 1","url":"https://swingcalendar.com/de","genres":["Lindy Hop","Swing","Balboa"]},
-  {"title":"L1. 20s CHARLESTON Paartanz für Einsteiger","date":"29.06.2026","city":"Dresden","lat":51.0504,"lon":13.7373,"desc":"Savoy Club - School of Lindy Hop","url":"https://swingindd.com/","genres":["Charleston","Lindy Hop"]},
-  {"title":"Draußen Tanzen - AmThor","date":"29.06.2026","city":"Dresden","lat":51.0504,"lon":13.7373,"desc":"Outdoor Swing Tanzen am AmThor Dresden, Hauptstraße 35","url":"https://swingindd.com/","genres":["Lindy Hop","Swing"]},
-  {"title":"Palais.Tanz Swing Sommernacht","date":"02.07.2026","city":"Dresden","lat":51.0504,"lon":13.7373,"desc":"The New Town Swing Orchestra am Neumarkt","url":"https://swingindd.com/","genres":["Lindy Hop","Swing"]},
-  {"title":"Swingin' Twenties | 20s Charleston Weekend","date":"25.07. - 26.07.2026","city":"Dresden","lat":51.0504,"lon":13.7373,"desc":"20s Charleston Weekend in Dresden","url":"https://swingindd.com/","genres":["Charleston","Swing"]},
-  {"title":"Vintage Rock'n'Roll im Rattlesnake Saloon","date":"02.07.2026","city":"München","lat":48.1351,"lon":11.5820,"desc":"John Lewis (UK) - Country-Boogie & Honky Tonk","url":"https://www.we-love-country.de/1_term.php","genres":["Rock'n'Roll","Country"]},
-  {"title":"Yellow Stone 4.0 im Westernstable Georgi","date":"03.07. - 04.07.2026","city":"Kirchberg","lat":50.6467,"lon":12.5367,"desc":"Warm Up Night mit Yard Blues Band & Hardly Blue","url":"https://www.we-love-country.de/1_term.php","genres":["Country"]},
-  {"title":"Country Music Festival in Pullman City","date":"16.07. - 19.07.2026","city":"Eging am See","lat":48.6833,"lon":13.4333,"desc":"Zack Dust, Becky Jay, Lucy & Hangover, Mike & The Dudes","url":"https://www.we-love-country.de/1_term.php","genres":["Country"]},
-  {"title":"Wild Wild Wurst - Das Bratwurstcountryfest","date":"17.07. - 19.07.2026","city":"Mühlhausen/Th.","lat":51.2100,"lon":10.4500,"desc":"Rudi Tuesday Band, B-Country-Boy, The Forgotten Sons Of Ben Cartwright","url":"https://www.we-love-country.de/1_term.php","genres":["Country"]},
-  {"title":"Truck Stop - 'Mit Euch unterwegs' Tour","date":"18.09.2026","city":"Mannheim","lat":49.4875,"lon":8.4660,"desc":"Live im Capitol","url":"https://www.we-love-country.de/1_term.php","genres":["Country"]},
-  {"title":"Warren Zeiders - World Tour 2026","date":"27.10.2026","city":"Frankfurt","lat":50.1109,"lon":8.6821,"desc":"Semmel Concerts in der Batschkapp","url":"https://www.we-love-country.de/1_term.php","genres":["Country"]},
-  {"title":"Warren Zeiders - World Tour 2026","date":"28.10.2026","city":"Berlin","lat":52.5200,"lon":13.4050,"desc":"Semmel Concerts im Huxleys Neue Welt","url":"https://www.we-love-country.de/1_term.php","genres":["Country"]},
-  {"title":"Warren Zeiders - World Tour 2026","date":"29.10.2026","city":"Hamburg","lat":53.5753,"lon":10.0153,"desc":"Semmel Concerts in der Georg Elser Halle","url":"https://www.we-love-country.de/1_term.php","genres":["Country"]},
-  {"title":"Countryfest der Mountain Lion's","date":"07.08. - 16.08.2026","city":"Eging am See","lat":48.6833,"lon":13.4333,"desc":"Heiko Herrmann Band u.v.m.","url":"https://www.we-love-country.de/1_term.php","genres":["Country"]},
-  {"title":"Halloween Special in Pullman City","date":"23.10. - 25.10.2026","city":"Eging am See","lat":48.6833,"lon":13.4333,"desc":"Daniel T. Coates Band, Riffmen'n'Groove, Rock'n Rodeo","url":"https://www.we-love-country.de/1_term.php","genres":["Country","Rockabilly"]},
-  {"title":"Special Christmas Week - Rockabilly Night","date":"27.12.2026","city":"Eging am See","lat":48.6833,"lon":13.4333,"desc":"Pullman City - DJ Rockin' Daddy, The Ridin' Dudes","url":"https://www.we-love-country.de/1_term.php","genres":["Rockabilly","Country"]}
+  {
+    "title": "94535 Eging am See,",
+    "date": "10.10.2026",
+    "city": "",
+    "desc": "94535 Eging am See,Irish & Scottish Weekend(9.-10.10.)inPullman City",
+    "url": "https://www.pullmancity.de",
+    "genres": [
+      "Country",
+      "Irish"
+    ]
+  },
+  {
+    "title": "94535 Eging am See, Irish & Scottish Weekend",
+    "date": "10.10.2026",
+    "city": "",
+    "desc": "94535 Eging am See, Irish & Scottish Weekend(9.-10.10.)inPullman City",
+    "url": "https://www.pullmancity.de",
+    "genres": [
+      "Country",
+      "Irish"
+    ]
+  },
+  {
+    "title": "94535 Eging am See,",
+    "date": "17.10.2026",
+    "city": "",
+    "desc": "94535 Eging am See,Country Weekend(16.-17.10.)inPullman City",
+    "url": "https://www.pullmancity.de",
+    "genres": [
+      "Country"
+    ]
+  },
+  {
+    "title": "Country Bell",
+    "date": "23.10.2026",
+    "city": "",
+    "desc": "Werner-von-Siemens-Str. 4-6Interpretin:Country BellEinlass: 18:00 Uhr, Beginn: 19:00 Uhr, Eintritt:VVK bis 23.10. 10.00 €, dann 12.00 € -Bitte vorab anmelden!Infos: Res.06122-9278048,event@black-rose-music.de",
+    "url": "https://www.countrybell.de",
+    "genres": [
+      "Country"
+    ]
+  },
+  {
+    "title": "94234 Viechtach,The Saloonpräsentiert: Country & Line Dance Weekend",
+    "date": "24.10.2026",
+    "city": "",
+    "desc": "94234 Viechtach,The Saloonpräsentiert: Country & Line Dance Weekend(23.-24.10.)in der Stadthalle",
+    "url": "https://www.facebook.com/p/The-Saloon-61576376604320",
+    "genres": [
+      "Country",
+      "Line Dance"
+    ]
+  },
+  {
+    "title": "94535 Eging am See,",
+    "date": "25.10.2026",
+    "city": "",
+    "desc": "94535 Eging am See,Halloween Special(23.-25.10.)inPullman City",
+    "url": "https://www.pullmancity.de",
+    "genres": [
+      "Country"
+    ]
+  },
+  {
+    "title": "94535 Eging am See, Halloween Special",
+    "date": "25.10.2026",
+    "city": "",
+    "desc": "94535 Eging am See, Halloween Special(23.-25.10.)inPullman City",
+    "url": "https://www.pullmancity.de",
+    "genres": [
+      "Country"
+    ]
+  },
+  {
+    "title": "86167 Augsburg, Country & Line Dance Party auf derLechhauser Kirchweih",
+    "date": "25.10.2026",
+    "city": "",
+    "desc": "86167 Augsburg, Country & Line Dance Party auf derLechhauser Kirchweih(17.-25.10.)",
+    "url": "https://www.lechhauser-kirchweih.de",
+    "genres": [
+      "Country",
+      "Line Dance"
+    ]
+  },
+  {
+    "title": "Country Bell",
+    "date": "25.10.2026",
+    "city": "",
+    "desc": "Hindenburgstr. 28Interpretin:Country BellBeginn: 14:00 Uhr, Eintritt:Early-Bird bis 25.10. 10.00 €, ab 26.10. VVK 13.00 €, TK 15.00 €Infos: Res.06122-9278048,event@black-rose-music.de",
+    "url": "https://www.countrybell.de",
+    "genres": [
+      "Country"
+    ]
+  },
+  {
+    "title": "94535 Eging am See, Halloween Special",
+    "date": "31.10.2026",
+    "city": "",
+    "desc": "94535 Eging am See, Halloween Special(30.-31.10.)inPullman City",
+    "url": "https://www.pullmancity.de",
+    "genres": [
+      "Country"
+    ]
+  },
+  {
+    "title": "94535 Eging am See, Deutsch-Amerikanischer Weihnachtsmarkt",
+    "date": "13.11.2026",
+    "city": "",
+    "desc": "94535 Eging am See, Deutsch-Amerikanischer Weihnachtsmarkt(13.11.-20.12.)inPullman City",
+    "url": "https://www.pullmancity.de",
+    "genres": [
+      "Country"
+    ]
+  },
+  {
+    "title": "94535 Eging am See,",
+    "date": "13.11.2026",
+    "city": "",
+    "desc": "94535 Eging am See,Deutsch-Amerikanischer Weihnachtsmarkt(13.11.-20.12.)inPullman City",
+    "url": "https://www.pullmancity.de",
+    "genres": [
+      "Country"
+    ]
+  },
+  {
+    "title": "Country Bell",
+    "date": "13.11.2026",
+    "city": "",
+    "desc": "Werner-von-Siemens-Str. 4-6Interpretin:Country BellEinlass: 18:00 Uhr, Beginn: 19:00 Uhr, Eintritt:VVK bis 13.11. 10.00 €, dann 12.00 € -Bitte vorab anmelden!Infos: Res.06122-9278048,event@black-rose-music.de",
+    "url": "https://www.countrybell.de",
+    "genres": [
+      "Country"
+    ]
+  },
+  {
+    "title": "Country Bell",
+    "date": "20.11.2026",
+    "city": "",
+    "desc": "Am Wingert 6Interpretin:Country BellEinlass: 18:00 Uhr, Beginn: 19:00 Uhr Eintritt:Early Bird bis 20.11. 10.00 €, ab 21.11. VVK 13.00 €, AK 15.00 €Infos: Res.06122-9278048,event@black-rose-music.de",
+    "url": "https://www.countrybell.de",
+    "genres": [
+      "Country"
+    ]
+  },
+  {
+    "title": "83043 Bad Aibling,Int.  Gitarrenfestival Saitensprünge",
+    "date": "22.11.2026",
+    "city": "Gelling",
+    "desc": "83043 Bad Aibling,Int.  Gitarrenfestival Saitensprünge(4.-22.11.)in Gelling's The Bogtrotter Irish Pub",
+    "url": "http://www.saitenspruenge.com",
+    "genres": [
+      "Country",
+      "Irish"
+    ],
+    "lat": 49.1301568,
+    "lon": 7.4288115
+  },
+  {
+    "title": "Country Bell",
+    "date": "22.11.2026",
+    "city": "",
+    "desc": "Oberriedstr. 3Interpretin:Country BellEinlass: 13:00 Uhr, Beginn: 14:00 Uhr, Eintritt:Early Bird bis 22.11. 10.00 €, ab 23.11. VVK 13.00 €, TK 15.00 €Infos: Res.06122-9278048,event@black-rose-music.de",
+    "url": "https://www.countrybell.de",
+    "genres": [
+      "Country"
+    ]
+  },
+  {
+    "title": "Sixpack Corner",
+    "date": "28.11.2026",
+    "city": "",
+    "desc": "Odertal 6Interpreten:Sixpack CornerEinlass: 19:00 Uhr, Beginn: 20:00 Uhr, VVK ab 28.11.(Abendveranstaltung) ab 30.11. bekannte VVK-Stellen -keine Abendkasse!Infos:0170-8364023,info@hm-ranch.net",
+    "url": "https://www.facebook.com/countrybandimharz",
+    "genres": [
+      "Country"
+    ]
+  },
+  {
+    "title": "94535 Eging am See,",
+    "date": "26.12.2026",
+    "city": "",
+    "desc": "94535 Eging am See,Special Christmas Week, Raunachtsbrauch(26.12.-1.1.)inPullman City",
+    "url": "https://www.pullmancity.de",
+    "genres": [
+      "Country"
+    ]
+  },
+  {
+    "title": "94535 Eging am See, Special Christmas Week",
+    "date": "26.12.2026",
+    "city": "",
+    "desc": "94535 Eging am See, Special Christmas Week(26.12.-1.1.), Classic Country NightinPullman City",
+    "url": "https://www.pullmancity.de",
+    "genres": [
+      "Country"
+    ]
+  }
 ]
