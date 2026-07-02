@@ -1,12 +1,12 @@
 {
   "name": "Rockabilly Radar",
   "short_name": "RockRadar",
-  "description": "Finde die heißesten Rockabilly & Rock'n'Roll Events in Europa",
-  "start_url": "/rockabilly-radar/",
+  "description": "Find Rockabilly & Rock'n'Roll events worldwide",
+  "start_url": "/",
   "display": "standalone",
-  "background_color": "#121212",
-  "theme_color": "#ff4500",
-  "orientation": "portrait-primary",
+  "background_color": "#F5E6D3",
+  "theme_color": "#C41E3A",
+  "orientation": "portrait",
   "icons": [
     {
       "src": "icon-192.png",
@@ -20,6 +20,8 @@
       "type": "image/png",
       "purpose": "any maskable"
     }
-  ]
+  ],
+  "categories": ["music", "entertainment"],
+  "lang": "de-DE",
+  "dir": "ltr"
 }
-
