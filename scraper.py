@@ -1,457 +1,240 @@
 #!/usr/bin/env python3
-"""
-Rockabilly Radar Event Scraper
-Scrapt Events von:
-- we-love-country.de
-- swingcalendar.com
-- swingindd.com
-"""
-
 import requests
 from bs4 import BeautifulSoup
 import json
 import time
-import logging
-from datetime import datetime
 import re
+from datetime import datetime
 from urllib.parse import urljoin
-import os
 
-# Logging konfigurieren
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler('scraper.log'),
-        logging.StreamHandler()
-    ]
-)
-logger = logging.getLogger(__name__)
+GEOCODE_CACHE = {}
 
-# Cache für Geocoding
-geocode_cache = {}
-
-def geocode_city(city_name):
-    """Konvertiert Stadtnamen zu Koordinaten via Nominatim"""
-    if city_name in geocode_cache:
-        return geocode_cache[city_name]
-    
+def geocode(city):
+    if not city or city in GEOCODE_CACHE:
+        return GEOCODE_CACHE.get(city)
     try:
-        url = f"https://nominatim.openstreetmap.org/search"
-        params = {
-            'q': city_name,
-            'format': 'json',
-            'limit': 1,
-            'countrycodes': 'de,at,ch,fr,it,es,uk,us,nl,dk,se,no,fi,be,lu,pl,cz'
-        }
-        headers = {'User-Agent': 'RockabillyRadar/1.0 (Event Scraper)'}
-        
-        response = requests.get(url, params=params, headers=headers, timeout=10)
-        data = response.json()
-        
+        r = requests.get(
+            "https://nominatim.openstreetmap.org/search",
+            params={"q": city, "format": "json", "limit": 1},
+            headers={"User-Agent": "RockabillyRadar/1.0"},
+            timeout=10
+        )
+        data = r.json()
         if data:
-            lat = float(data[0]['lat'])
-            lon = float(data[0]['lon'])
-            geocode_cache[city_name] = (lat, lon)
-            time.sleep(1)  # Rate limiting für Nominatim
-            return (lat, lon)
+            coords = (float(data[0]["lat"]), float(data[0]["lon"]))
+            GEOCODE_CACHE[city] = coords
+            time.sleep(1.1)
+            return coords
     except Exception as e:
-        logger.error(f"Geocoding Fehler für {city_name}: {e}")
-    
+        print(f"Geocode error for {city}: {e}")
     return None
 
-def extract_date_from_text(text):
-    """Extrahiert Datum aus Text"""
-    # Verschiedene Datumsformate
+def parse_date(text):
     patterns = [
-        r'(\d{2})\.(\d{2})\.(\d{4})',  # DD.MM.YYYY
-        r'(\d{2})\.(\d{2})\.',          # DD.MM. (Jahr wird ergänzt)
-        r'(\d{1,2})\.(\d{1,2})\.(\d{4})',  # D.M.YYYY
+        r'(\d{2})\.(\d{2})\.(\d{4})',
+        r'(\d{1,2})\.(\d{1,2})\.(\d{4})',
     ]
-    
-    for pattern in patterns:
-        match = re.search(pattern, text)
-        if match:
-            if len(match.groups()) == 3:
-                day, month, year = match.groups()
-                return f"{day.zfill(2)}.{month.zfill(2)}.{year}"
-            elif len(match.groups()) == 2:
-                day, month = match.groups()
-                year = datetime.now().year
-                return f"{day.zfill(2)}.{month.zfill(2)}.{year}"
-    
+    for p in patterns:
+        m = re.search(p, text)
+        if m:
+            d, mo, y = m.groups()
+            return f"{int(d):02d}.{int(mo):02d}.{y}"
+    # Partial date DD.MM.
+    m = re.search(r'(\d{1,2})\.(\d{1,2})\.', text)
+    if m:
+        d, mo = m.groups()
+        return f"{int(d):02d}.{int(mo):02d}.{datetime.now().year}"
     return None
+
+def scrape_jukeboxstompers():
+    events = []
+    url = "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender"
+    try:
+        r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=30)
+        soup = BeautifulSoup(r.content, "lxml")
+        items = soup.select("div.event, article.event, li.event, tr[class*='event'], div[class*='calendar'] div")
+        if not items:
+            items = soup.find_all(["div", "article", "li"])
+        for item in items:
+            title_el = item.find(["h2", "h3", "h4", "strong", "b"])
+            if not title_el:
+                continue
+            title = title_el.get_text(strip=True)
+            if len(title) < 3:
+                continue
+            text = item.get_text(" ", strip=True)
+            date = parse_date(text)
+            if not date:
+                continue
+            city_match = re.search(r'(?:in|@)\s+([A-ZÄÖÜ][a-zäöüß\-]+(?:\s[a-zäöüß\-]+)?)', text)
+            city = city_match.group(1) if city_match else ""
+            link = item.find("a", href=True)
+            ev_url = urljoin(url, link["href"]) if link else url
+            genres = ["Rock'n'Roll"]
+            tl = (title + " " + text).lower()
+            if "boogie" in tl: genres.append("Boogie Woogie")
+            if "swing" in tl or "lindy" in tl: genres.append("Swing")
+            if "rockabilly" in tl: genres.append("Rockabilly")
+            ev = {"title": title, "date": date, "city": city, "desc": text[:300], "url": ev_url, "genres": list(set(genres))}
+            if city:
+                coords = geocode(city)
+                if coords:
+                    ev["lat"], ev["lon"] = coords
+            events.append(ev)
+    except Exception as e:
+        print(f"JukeboxStompers error: {e}")
+    print(f"JukeboxStompers: {len(events)} events")
+    return events
 
 def scrape_we_love_country():
-    """Scrapt alle Events von we-love-country.de"""
-    logger.info("Starte Scraping: we-love-country.de")
     events = []
-    
-    base_url = "https://www.we-love-country.de"
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-    }
-    
+    url = "https://www.we-love-country.de/1_term.php"
     try:
-        # Hauptseite laden
-        response = requests.get(f"{base_url}/1_term.php", headers=headers, timeout=30)
-        soup = BeautifulSoup(response.content, 'html.parser')
-        
-        # Alle Event-Container finden
-        event_containers = soup.find_all('div', class_='event')
-        
-        if not event_containers:
-            # Alternative Struktur versuchen
-            event_containers = soup.find_all('tr')
-        
-        logger.info(f"Gefunden: {len(event_containers)} Event-Container")
-        
-        for container in event_containers:
-            try:
-                # Titel extrahieren
-                title_elem = container.find(['h2', 'h3', 'strong', 'b'])
-                if not title_elem:
-                    continue
-                
-                title = title_elem.get_text(strip=True)
-                if not title or len(title) < 3:
-                    continue
-                
-                # Datum extrahieren
-                date_text = container.get_text()
-                date = extract_date_from_text(date_text)
-                
-                if not date:
-                    continue
-                
-                # Stadt extrahieren
-                city = ""
-                city_elem = container.find(string=re.compile(r'in\s+([A-ZÄÖÜ][a-zäöü]+)'))
-                if city_elem:
-                    match = re.search(r'in\s+([A-ZÄÖÜ][a-zäöü]+)', city_elem)
-                    if match:
-                        city = match.group(1)
-                
-                # Beschreibung extrahieren
-                desc = container.get_text(strip=True)
-                if len(desc) > 300:
-                    desc = desc[:300] + "..."
-                
-                # URL extrahieren
-                url = base_url + "/1_term.php"
-                link_elem = container.find('a', href=True)
-                if link_elem:
-                    url = urljoin(base_url, link_elem['href'])
-                
-                # Genres bestimmen
-                genres = ["Country"]
-                title_lower = title.lower()
-                desc_lower = desc.lower()
-                
-                if "line dance" in title_lower or "line dance" in desc_lower:
-                    genres.append("Line Dance")
-                if "rockabilly" in title_lower or "rockabilly" in desc_lower:
-                    genres.append("Rockabilly")
-                if "rock'n'roll" in title_lower or "rock 'n' roll" in desc_lower:
-                    genres.append("Rock'n'Roll")
-                if "irish" in title_lower or "irish" in desc_lower:
-                    genres.append("Irish")
-                
-                event = {
-                    "title": title,
-                    "date": date,
-                    "city": city,
-                    "desc": desc,
-                    "url": url,
-                    "genres": genres
-                }
-                
-                # Geocoding
-                if city:
-                    coords = geocode_city(city)
-                    if coords:
-                        event["lat"] = coords[0]
-                        event["lon"] = coords[1]
-                
-                events.append(event)
-                
-            except Exception as e:
-                logger.error(f"Fehler beim Verarbeiten eines Events: {e}")
+        r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=30)
+        r.encoding = "utf-8"
+        soup = BeautifulSoup(r.content, "lxml")
+        rows = soup.find_all("tr")
+        for row in rows:
+            cells = row.find_all(["td", "th"])
+            if len(cells) < 2:
                 continue
-        
-        logger.info(f"we-love-country.de: {len(events)} Events extrahiert")
-        
-    except Exception as e:
-        logger.error(f"Fehler beim Scraping von we-love-country.de: {e}")
-    
-    return events
-
-def scrape_swing_calendar():
-    """Scrapt Events von swingcalendar.com"""
-    logger.info("Starte Scraping: swingcalendar.com")
-    events = []
-    
-    base_url = "https://swingcalendar.com"
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-    }
-    
-    try:
-        # Deutsche Version
-        response = requests.get(f"{base_url}/de", headers=headers, timeout=30)
-        soup = BeautifulSoup(response.content, 'html.parser')
-        
-        # Event-Container finden
-        event_containers = soup.find_all(['article', 'div'], class_=re.compile(r'event|calendar'))
-        
-        if not event_containers:
-            event_containers = soup.find_all('div', class_='item')
-        
-        logger.info(f"Gefunden: {len(event_containers)} Event-Container")
-        
-        for container in event_containers:
-            try:
-                # Titel
-                title_elem = container.find(['h2', 'h3', 'h4'])
-                if not title_elem:
-                    continue
-                
-                title = title_elem.get_text(strip=True)
-                if not title or len(title) < 3:
-                    continue
-                
-                # Datum
-                date_text = container.get_text()
-                date = extract_date_from_text(date_text)
-                
-                if not date:
-                    continue
-                
-                # Stadt
-                city = ""
-                location_elem = container.find(string=re.compile(r'(Berlin|Dresden|Leipzig|München|Hamburg|Köln|Frankfurt|Wien|Zürich|London|Paris|Rom|Madrid|Prag|Amsterdam|Brüssel|Stockholm|Oslo|Helsinki|Kopenhagen)'))
-                if location_elem:
-                    for city_name in ['Berlin', 'Dresden', 'Leipzig', 'München', 'Hamburg', 'Köln', 'Frankfurt', 'Wien', 'Zürich', 'London', 'Paris', 'Rom', 'Madrid', 'Prag', 'Amsterdam', 'Brüssel', 'Stockholm', 'Oslo', 'Helsinki', 'Kopenhagen']:
-                        if city_name in location_elem:
-                            city = city_name
-                            break
-                
-                # Beschreibung
-                desc = container.get_text(strip=True)
-                if len(desc) > 300:
-                    desc = desc[:300] + "..."
-                
-                # URL
-                url = base_url + "/de"
-                link_elem = container.find('a', href=True)
-                if link_elem:
-                    url = urljoin(base_url, link_elem['href'])
-                
-                # Genres
-                genres = ["Swing"]
-                title_lower = title.lower()
-                desc_lower = desc.lower()
-                
-                if "lindy hop" in title_lower or "lindy hop" in desc_lower:
-                    genres.append("Lindy Hop")
-                if "balboa" in title_lower or "balboa" in desc_lower:
-                    genres.append("Balboa")
-                if "charleston" in title_lower or "charleston" in desc_lower:
-                    genres.append("Charleston")
-                if "blues" in title_lower or "blues" in desc_lower:
-                    genres.append("Blues")
-                if "shag" in title_lower or "shag" in desc_lower:
-                    genres.append("Shag")
-                
-                event = {
-                    "title": title,
-                    "date": date,
-                    "city": city,
-                    "desc": desc,
-                    "url": url,
-                    "genres": list(set(genres))
-                }
-                
-                # Geocoding
-                if city:
-                    coords = geocode_city(city)
-                    if coords:
-                        event["lat"] = coords[0]
-                        event["lon"] = coords[1]
-                
-                events.append(event)
-                
-            except Exception as e:
-                logger.error(f"Fehler beim Verarbeiten eines Events: {e}")
+            text = row.get_text(" ", strip=True)
+            date = parse_date(text)
+            if not date:
                 continue
-        
-        logger.info(f"swingcalendar.com: {len(events)} Events extrahiert")
-        
-    except Exception as e:
-        logger.error(f"Fehler beim Scraping von swingcalendar.com: {e}")
-    
-    return events
-
-def scrape_swing_in_dresden():
-    """Scrapt Events von swingindd.com"""
-    logger.info("Starte Scraping: swingindd.com")
-    events = []
-    
-    base_url = "https://swingindd.com"
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-    }
-    
-    try:
-        # Regionale Swing Kalender
-        response = requests.get(f"{base_url}/home/regionale-swing-kalender/", headers=headers, timeout=30)
-        soup = BeautifulSoup(response.content, 'html.parser')
-        
-        # Event-Container
-        event_containers = soup.find_all(['article', 'div', 'li'], class_=re.compile(r'event|post|item'))
-        
-        if not event_containers:
-            event_containers = soup.find_all('div', class_='entry-content')
-        
-        logger.info(f"Gefunden: {len(event_containers)} Event-Container")
-        
-        for container in event_containers:
-            try:
-                # Titel
-                title_elem = container.find(['h2', 'h3', 'h4'])
-                if not title_elem:
-                    continue
-                
-                title = title_elem.get_text(strip=True)
-                if not title or len(title) < 3:
-                    continue
-                
-                # Datum
-                date_text = container.get_text()
-                date = extract_date_from_text(date_text)
-                
-                if not date:
-                    continue
-                
-                # Stadt (meist Dresden)
-                city = "Dresden"
-                
-                # Beschreibung
-                desc = container.get_text(strip=True)
-                if len(desc) > 300:
-                    desc = desc[:300] + "..."
-                
-                # URL
-                url = base_url + "/home/regionale-swing-kalender/"
-                link_elem = container.find('a', href=True)
-                if link_elem:
-                    url = urljoin(base_url, link_elem['href'])
-                
-                # Genres
-                genres = ["Swing"]
-                title_lower = title.lower()
-                desc_lower = desc.lower()
-                
-                if "lindy hop" in title_lower or "lindy hop" in desc_lower:
-                    genres.append("Lindy Hop")
-                if "balboa" in title_lower or "balboa" in desc_lower:
-                    genres.append("Balboa")
-                if "charleston" in title_lower or "charleston" in desc_lower:
-                    genres.append("Charleston")
-                if "shag" in title_lower or "shag" in desc_lower:
-                    genres.append("Shag")
-                
-                event = {
-                    "title": title,
-                    "date": date,
-                    "city": city,
-                    "desc": desc,
-                    "url": url,
-                    "genres": list(set(genres))
-                }
-                
-                # Geocoding
-                coords = geocode_city(city)
+            title_el = row.find(["strong", "b", "a"])
+            title = title_el.get_text(strip=True) if title_el else text[:80]
+            if len(title) < 3:
+                continue
+            city_match = re.search(r'(?:in|@)\s+([A-ZÄÖÜ][a-zäöüß\-]+(?:\s[a-zäöüß\-]+)?)', text)
+            city = city_match.group(1) if city_match else ""
+            link = row.find("a", href=True)
+            ev_url = urljoin(url, link["href"]) if link else url
+            genres = ["Country"]
+            tl = text.lower()
+            if "line dance" in tl: genres.append("Line Dance")
+            if "rockabilly" in tl: genres.append("Rockabilly")
+            if "irish" in tl: genres.append("Irish")
+            ev = {"title": title, "date": date, "city": city, "desc": text[:300], "url": ev_url, "genres": list(set(genres))}
+            if city:
+                coords = geocode(city)
                 if coords:
-                    event["lat"] = coords[0]
-                    event["lon"] = coords[1]
-                
-                events.append(event)
-                
-            except Exception as e:
-                logger.error(f"Fehler beim Verarbeiten eines Events: {e}")
-                continue
-        
-        logger.info(f"swingindd.com: {len(events)} Events extrahiert")
-        
+                    ev["lat"], ev["lon"] = coords
+            events.append(ev)
     except Exception as e:
-        logger.error(f"Fehler beim Scraping von swingindd.com: {e}")
-    
+        print(f"WeLoveCountry error: {e}")
+    print(f"WeLoveCountry: {len(events)} events")
     return events
 
-def remove_duplicates(events):
-    """Entfernt Duplikate basierend auf Titel und Datum"""
+def scrape_swingcalendar():
+    events = []
+    url = "https://swingcalendar.com/de"
+    try:
+        r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=30)
+        soup = BeautifulSoup(r.content, "lxml")
+        items = soup.select("article, div.event, div.item, li.event")
+        if not items:
+            items = soup.find_all(["div", "article"])
+        for item in items:
+            title_el = item.find(["h2", "h3", "h4"])
+            if not title_el:
+                continue
+            title = title_el.get_text(strip=True)
+            if len(title) < 3:
+                continue
+            text = item.get_text(" ", strip=True)
+            date = parse_date(text)
+            if not date:
+                continue
+            cities = ["Berlin","Dresden","Leipzig","München","Hamburg","Köln","Frankfurt","Wien","Zürich","London","Paris","Rom","Madrid","Prag","Amsterdam","Stockholm","Oslo","Helsinki","Kopenhagen","Trient","Fenestrelle","Perugia"]
+            city = next((c for c in cities if c in text), "")
+            link = item.find("a", href=True)
+            ev_url = urljoin(url, link["href"]) if link else url
+            genres = ["Swing"]
+            tl = (title + " " + text).lower()
+            if "lindy" in tl: genres.append("Lindy Hop")
+            if "balboa" in tl: genres.append("Balboa")
+            if "charleston" in tl: genres.append("Charleston")
+            if "blues" in tl: genres.append("Blues")
+            ev = {"title": title, "date": date, "city": city, "desc": text[:300], "url": ev_url, "genres": list(set(genres))}
+            if city:
+                coords = geocode(city)
+                if coords:
+                    ev["lat"], ev["lon"] = coords
+            events.append(ev)
+    except Exception as e:
+        print(f"SwingCalendar error: {e}")
+    print(f"SwingCalendar: {len(events)} events")
+    return events
+
+def scrape_swingindd():
+    events = []
+    url = "https://swingindd.com/home/regionale-swing-kalender/"
+    try:
+        r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=30)
+        soup = BeautifulSoup(r.content, "lxml")
+        items = soup.select("article, div.event, li.event, div.entry-content")
+        if not items:
+            items = soup.find_all(["div", "article", "li"])
+        for item in items:
+            title_el = item.find(["h2", "h3", "h4"])
+            if not title_el:
+                continue
+            title = title_el.get_text(strip=True)
+            if len(title) < 3:
+                continue
+            text = item.get_text(" ", strip=True)
+            date = parse_date(text)
+            if not date:
+                continue
+            city = "Dresden" if "dresden" in text.lower() else ""
+            link = item.find("a", href=True)
+            ev_url = urljoin(url, link["href"]) if link else url
+            genres = ["Swing"]
+            tl = (title + " " + text).lower()
+            if "lindy" in tl: genres.append("Lindy Hop")
+            if "balboa" in tl: genres.append("Balboa")
+            if "charleston" in tl: genres.append("Charleston")
+            if "shag" in tl: genres.append("Shag")
+            ev = {"title": title, "date": date, "city": city, "desc": text[:300], "url": ev_url, "genres": list(set(genres))}
+            if city:
+                coords = geocode(city)
+                if coords:
+                    ev["lat"], ev["lon"] = coords
+            events.append(ev)
+    except Exception as e:
+        print(f"SwingInDD error: {e}")
+    print(f"SwingInDD: {len(events)} events")
+    return events
+
+def deduplicate(events):
     seen = set()
-    unique_events = []
-    
-    for event in events:
-        key = f"{event['title']}_{event['date']}_{event.get('city', '')}"
+    unique = []
+    for ev in events:
+        key = f"{ev['title']}_{ev['date']}_{ev.get('city','')}"
         if key not in seen:
             seen.add(key)
-            unique_events.append(event)
-    
-    return unique_events
-
-def sort_events_by_date(events):
-    """Sortiert Events nach Datum"""
-    def parse_date(date_str):
-        try:
-            # Versuche verschiedene Formate
-            for fmt in ['%d.%m.%Y', '%d.%m.%y']:
-                try:
-                    return datetime.strptime(date_str, fmt)
-                except:
-                    continue
-            return datetime.max
-        except:
-            return datetime.max
-    
-    return sorted(events, key=lambda e: parse_date(e['date']))
+            unique.append(ev)
+    return unique
 
 def main():
-    """Hauptfunktion"""
-    logger.info("=" * 60)
-    logger.info("Starte Rockabilly Radar Event Scraper")
-    logger.info("=" * 60)
-    
+    print("=" * 60)
+    print("Rockabilly Radar Event Scraper")
+    print("=" * 60)
     all_events = []
-    
-    # Alle Quellen scrapen
-    all_events.extend(scrape_we_love_country())
-    time.sleep(2)  # Pause zwischen Requests
-    
-    all_events.extend(scrape_swing_calendar())
+    all_events.extend(scrape_jukeboxstompers())
     time.sleep(2)
-    
-    all_events.extend(scrape_swing_in_dresden())
-    
-    # Duplikate entfernen
-    logger.info(f"Total Events vor Deduplikation: {len(all_events)}")
-    all_events = remove_duplicates(all_events)
-    logger.info(f"Total Events nach Deduplikation: {len(all_events)}")
-    
-    # Nach Datum sortieren
-    all_events = sort_events_by_date(all_events)
-    
-    # Als JSON speichern
-    output_file = 'events.json'
-    with open(output_file, 'w', encoding='utf-8') as f:
+    all_events.extend(scrape_we_love_country())
+    time.sleep(2)
+    all_events.extend(scrape_swingcalendar())
+    time.sleep(2)
+    all_events.extend(scrape_swingindd())
+    all_events = deduplicate(all_events)
+    print(f"\nTotal unique events: {len(all_events)}")
+    with open("events.json", "w", encoding="utf-8") as f:
         json.dump(all_events, f, ensure_ascii=False, indent=2)
-    
-    logger.info(f"Events gespeichert in: {output_file}")
-    logger.info("=" * 60)
-    logger.info("Scraping abgeschlossen!")
-    logger.info("=" * 60)
+    print("Saved to events.json")
+    print("=" * 60)
 
 if __name__ == "__main__":
     main()
