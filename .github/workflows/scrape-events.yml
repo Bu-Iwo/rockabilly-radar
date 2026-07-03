@@ -31,8 +31,9 @@ jobs:
         run: |
           python scraper.py
           echo "✅ Scraper finished"
+          echo "📊 events.json: $(wc -l < events.json) lines"
 
-      - name: Commit and Push with Rebase
+      - name: Commit and Push (with conflict resolution)
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
@@ -45,13 +46,15 @@ jobs:
           
           git commit -m "Auto-update events $(date +%Y-%m-%d)"
           
-          # Hole neueste Änderungen und rebase unseren Commit darauf
-          git pull --rebase origin main || {
-            echo "⚠️ Rebase conflict - using our version"
-            git checkout --theirs events.json
-            git add events.json
-            git rebase --continue
+          # Versuche zu pushen - bei Konflikt automatisch lösen
+          git push origin main 2>&1 || {
+            echo "⚠️ Push failed, resolving conflicts..."
+            
+            # Hole neueste Änderungen, löse Konflikte automatisch 
+            # zugunsten unserer neuen events.json (theirs bei rebase)
+            GIT_EDITOR=true git pull --rebase origin main -X theirs
+            
+            git push origin main
           }
           
-          git push
           echo "✅ Successfully pushed"
