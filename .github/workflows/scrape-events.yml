@@ -16,6 +16,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
+          fetch-depth: 0
           persist-credentials: true
 
       - name: Set up Python
@@ -24,34 +25,33 @@ jobs:
           python-version: '3.11'
 
       - name: Install Dependencies
-        run: |
-          pip install requests beautifulsoup4 lxml
-          echo "✅ Dependencies installed"
+        run: pip install requests beautifulsoup4 lxml
 
       - name: Run Scraper
         run: |
           python scraper.py
           echo "✅ Scraper finished"
-          echo "📊 events.json size: $(wc -c < events.json) bytes"
-          echo "📊 events.json lines: $(wc -l < events.json)"
 
-      - name: Check for Changes
-        id: check
-        run: |
-          git add events.json
-          if git diff --cached --quiet; then
-            echo "changed=false" >> $GITHUB_OUTPUT
-            echo "⚠️ No changes detected in events.json"
-          else
-            echo "changed=true" >> $GITHUB_OUTPUT
-            echo "✅ Changes detected in events.json"
-          fi
-
-      - name: Commit and Push
-        if: steps.check.outputs.changed == 'true'
+      - name: Commit and Push with Rebase
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
+          git add events.json
+          
+          if git diff --cached --quiet; then
+            echo "⚠️ No changes to commit"
+            exit 0
+          fi
+          
           git commit -m "Auto-update events $(date +%Y-%m-%d)"
+          
+          # Hole neueste Änderungen und rebase unseren Commit darauf
+          git pull --rebase origin main || {
+            echo "⚠️ Rebase conflict - using our version"
+            git checkout --theirs events.json
+            git add events.json
+            git rebase --continue
+          }
+          
           git push
-          echo "✅ Committed and pushed successfully"
+          echo "✅ Successfully pushed"
