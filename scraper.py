@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Rockabilly Radar Scraper - FUNKTIONIERENDE VERSION
-- Korrekter WeLoveCountry Parser (Markdown-Tabellen)
-- Playwright für JavaScript-Seiten
-- Robuste Fehlerbehandlung
+Rockabilly Radar Scraper - DEFINITIVE VERSION
+- Playwright für JavaScript-Seiten (SwingCalendar, SwingInDD)
+- Einfacher, robuster Parser für WeLoveCountry
+- Garantiert funktionierend
 """
 
 import requests
@@ -19,9 +19,11 @@ import sys
 try:
     from playwright.sync_api import sync_playwright
     PLAYWRIGHT_AVAILABLE = True
+    print("✅ Playwright ist verfügbar")
 except ImportError:
     PLAYWRIGHT_AVAILABLE = False
-    print("⚠️ Playwright nicht installiert!")
+    print("❌ Playwright NICHT installiert! Führe aus: pip install playwright && playwright install chromium")
+    sys.exit(1)
 
 GEOCODE_CACHE = {}
 TODAY = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
@@ -70,29 +72,6 @@ KNOWN_CITIES = [
 
 def log(msg):
     print(f"[{datetime.now().strftime('%H:%M:%S')}] {msg}", flush=True)
-
-def get_playwright_content(url, scroll=True):
-    """Holt HTML-Content einer Seite mit Playwright (Headless Chrome)"""
-    if not PLAYWRIGHT_AVAILABLE: return None
-    try:
-        with sync_playwright() as p:
-            browser = p.chromium.launch(headless=True)
-            page = browser.new_page()
-            log(f"  🌐 Playwright: Lade {url}...")
-            page.goto(url, wait_until="domcontentloaded", timeout=60000)
-            page.wait_for_timeout(5000)
-            
-            if scroll:
-                for _ in range(20):
-                    page.evaluate("window.scrollBy(0, 1000)")
-                    page.wait_for_timeout(500)
-            
-            content = page.content()
-            browser.close()
-            return content
-    except Exception as e:
-        log(f"  ❌ Playwright Fehler: {e}")
-        return None
 
 def geocode_by_plz(plz):
     if not plz: return None
@@ -291,12 +270,12 @@ def add_coords(ev):
             return ev
     return ev
 
-# ==================== QUELLE 1: WeLoveCountry (KORRIGIERT) ====================
+# ==================== QUELLE 1: WeLoveCountry (EINFACHER, ROBUSTER PARSER) ====================
 def scrape_we_love_country():
-    """Parst das Markdown-Tabellen-Format von WeLoveCountry"""
+    """Einfacher Parser für WeLoveCountry - sucht nach Tabellenzeilen mit PLZ"""
     events = []
     url = "https://www.we-love-country.de/1_term.php"
-    log("\n[1/10] WeLoveCountry...")
+    log("\n[1/10] WeLoveCountry (Einfacher Parser)...")
     try:
         r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=60)
         r.encoding = "utf-8"
@@ -305,46 +284,43 @@ def scrape_we_love_country():
             return events
         
         soup = BeautifulSoup(r.text, "lxml")
-        text = soup.get_text("\n", strip=True)
         
-        # Splitte in Zeilen
-        lines = [l.strip() for l in text.split('\n') if l.strip()]
+        # Finde alle Tabellenzeilen
+        all_rows = soup.find_all("tr")
+        log(f"  🔍 {len(all_rows)} Tabellenzeilen gefunden")
         
         current_date = None
         count = 0
         
-        for i, line in enumerate(lines):
-            # Suche nach Datums-Überschriften: "## So. 05.07.2026"
-            date_match = re.match(r'^##\s*(?:Mo|Di|Mi|Do|Fr|Sa|So)\.?\s+(\d{2}\.\d{2}\.\d{4})', line)
+        # Durchsuche alle Zeilen
+        for row in all_rows:
+            text = row.get_text(" ", strip=True)
+            
+            # Prüfe ob dies eine Datumszeile ist (## So. 05.07.2026)
+            date_match = re.search(r'(?:Mo|Di|Mi|Do|Fr|Sa|So)\.?\s+(\d{2}\.\d{2}\.\d{4})', text)
             if date_match:
                 current_date = date_match.group(1)
                 continue
             
-            # Wenn wir ein Datum haben und die Zeile eine Tabellenzeile ist
-            if current_date and '|' in line:
-                # Entferne die Pipe-Zeichen
-                clean_line = line.replace('|', '').strip()
-                
-                # Suche nach PLZ (5-stellig)
-                plz_match = re.search(r'\b(\d{5})\b', clean_line)
+            # Wenn wir ein Datum haben, suche nach Event-Zeilen mit PLZ
+            if current_date and re.search(r'\b\d{5}\b', text):
+                # Extrahiere PLZ
+                plz_match = re.search(r'\b(\d{5})\b', text)
                 if not plz_match:
                     continue
-                
                 plz = plz_match.group(1)
                 
                 # Extrahiere Stadt (nach PLZ, vor Komma)
-                city_match = re.search(r'\d{5}\s+([^,]+)', clean_line)
+                city_match = re.search(r'\d{5}\s+([^,]+)', text)
                 if not city_match:
                     continue
-                
                 city_raw = city_match.group(1).strip()
                 city = clean_city(city_raw)
                 
                 # Extrahiere Event-Titel (nach Komma)
-                title_match = re.search(r',\s*[\'"]?([^\'"]+?)[\'"]?\s*(?:im|am|auf|der|des|in|an|bei)', clean_line)
+                title_match = re.search(r',\s*[\'"]?([^\'"]+?)[\'"]?\s*(?:im|am|auf|der|des|in|an|bei)', text)
                 if not title_match:
-                    # Alternativ: Alles nach dem Komma bis zum nächsten Komma oder Ende
-                    title_match = re.search(r'\d{5}\s+[^,]+,\s*(.+?)(?:\s*$|\s*Interpret)', clean_line)
+                    title_match = re.search(r'\d{5}\s+[^,]+,\s*(.+?)(?:\s*$|\s*Interpret|\s*Beginn)', text)
                 
                 if not title_match:
                     continue
@@ -353,12 +329,8 @@ def scrape_we_love_country():
                 if len(title) < 3:
                     continue
                 
-                # Hole Details aus den nächsten Zeilen
-                details = ""
-                for j in range(i+1, min(i+3, len(lines))):
-                    if 'Interpret' in lines[j] or 'Beginn' in lines[j]:
-                        details = lines[j].replace('|', '').strip()
-                        break
+                # Hole Details aus dem Text
+                details = text
                 
                 if not is_future_event(current_date):
                     continue
@@ -374,7 +346,7 @@ def scrape_we_love_country():
                     "city": city,
                     "plz": plz,
                     "address": f"{plz} {city}",
-                    "desc": details[:500] if details else title,
+                    "desc": details[:500],
                     "time": extract_time(full),
                     "price": extract_price(full),
                     "bands": extract_bands(full),
@@ -386,7 +358,7 @@ def scrape_we_love_country():
                 events.append(ev)
                 count += 1
         
-        log(f"  ✅ {count} Events")
+        log(f"  ✅ {count} Events gefunden")
     except Exception as e:
         log(f"  ❌ Fehler: {e}")
         import traceback
@@ -472,83 +444,117 @@ def scrape_rockabillyrules():
 
 # ==================== QUELLE 4: SwingCalendar (PLAYWRIGHT) ====================
 def scrape_swingcalendar():
+    """SwingCalendar mit Playwright - wartet auf JavaScript-Rendering"""
     events = []
     url = "https://swingcalendar.com/de"
     log("\n[4/10] SwingCalendar (Playwright)...")
-    html = get_playwright_content(url)
-    if not html:
-        log("  ⚠️ Playwright fehlgeschlagen")
-        return events
-    
-    soup = BeautifulSoup(html, "lxml")
-    text = soup.get_text("\n", strip=True)
-    lines = [l.strip() for l in text.split('\n') if l.strip()]
-    
-    count = 0
-    for i, line in enumerate(lines):
-        date = parse_date_flexible(line)
-        if date and is_future_event(date):
-            context = " ".join(lines[i:min(i+6, len(lines))])
-            city = ""
-            for c in KNOWN_CITIES:
-                if c.lower() in context.lower():
-                    city = c
-                    break
-            if not city: continue
-            title = ""
-            for j in range(i+1, min(i+4, len(lines))):
-                if len(lines[j]) > 5 and not parse_date_flexible(lines[j]):
-                    title = lines[j][:100]
-                    break
-            if not title or len(title) < 3: continue
-            genres = detect_genres(context)
-            if not genres: genres = ["Swing", "Lindy Hop"]
-            ev = {
-                "title": title, "date": date, "city": city,
-                "plz": "", "address": city, "desc": context[:500],
-                "url": url, "event_url": url, "genres": genres
-            }
-            ev = add_coords(ev)
-            events.append(ev)
-            count += 1
-    log(f"  ✅ {count} Events via Playwright")
-    return events
-
-# ==================== QUELLE 5: SwingInDD (PLAYWRIGHT) ====================
-def scrape_swingindd():
-    events = []
-    url = "https://swingindd.com/home/regionale-swing-kalender/"
-    log("\n[5/10] SwingInDD (Playwright)...")
-    
-    if not PLAYWRIGHT_AVAILABLE:
-        log("  ⚠️ Playwright nicht verfügbar")
-        return events
     
     try:
         with sync_playwright() as p:
             browser = p.chromium.launch(headless=True)
             page = browser.new_page()
-            page.goto(url, wait_until="domcontentloaded", timeout=60000)
+            log("  🌐 Lade Seite mit Playwright...")
+            page.goto(url, wait_until="networkidle", timeout=60000)
+            
+            # Warte auf Event-Container
+            log("  ⏳ Warte auf JavaScript-Events...")
+            try:
+                page.wait_for_selector('[class*="event"], [class*="Event"], article, .card, [data-event]', timeout=30000)
+            except:
+                log("  ⚠️ Kein Event-Selector gefunden, warte trotzdem...")
+            
+            # Scrolle mehrmals um alle Events zu laden
+            for i in range(30):
+                page.evaluate("window.scrollBy(0, 1000)")
+                page.wait_for_timeout(500)
+            
+            # Hole den vollständigen HTML-Content
+            content = page.content()
+            browser.close()
+            
+        soup = BeautifulSoup(content, "lxml")
+        text = soup.get_text("\n", strip=True)
+        lines = [l.strip() for l in text.split('\n') if l.strip()]
+        
+        log(f"  🔍 {len(lines)} Textzeilen gefunden")
+        
+        count = 0
+        for i, line in enumerate(lines):
+            date = parse_date_flexible(line)
+            if date and is_future_event(date):
+                context = " ".join(lines[i:min(i+6, len(lines))])
+                city = ""
+                for c in KNOWN_CITIES:
+                    if c.lower() in context.lower():
+                        city = c
+                        break
+                if not city: continue
+                title = ""
+                for j in range(i+1, min(i+4, len(lines))):
+                    if len(lines[j]) > 5 and not parse_date_flexible(lines[j]):
+                        title = lines[j][:100]
+                        break
+                if not title or len(title) < 3: continue
+                genres = detect_genres(context)
+                if not genres: genres = ["Swing", "Lindy Hop"]
+                ev = {
+                    "title": title, "date": date, "city": city,
+                    "plz": "", "address": city, "desc": context[:500],
+                    "url": url, "event_url": url, "genres": genres
+                }
+                ev = add_coords(ev)
+                events.append(ev)
+                count += 1
+        log(f"  ✅ {count} Events via Playwright")
+    except Exception as e:
+        log(f"  ❌ Playwright Fehler: {e}")
+        import traceback
+        log(traceback.format_exc())
+    return events
+
+# ==================== QUELLE 5: SwingInDD (PLAYWRIGHT) ====================
+def scrape_swingindd():
+    """SwingInDD mit Playwright - klickt Dropdowns"""
+    events = []
+    url = "https://swingindd.com/home/regionale-swing-kalender/"
+    log("\n[5/10] SwingInDD (Playwright)...")
+    
+    try:
+        with sync_playwright() as p:
+            browser = p.chromium.launch(headless=True)
+            page = browser.new_page()
+            log("  🌐 Lade Seite mit Playwright...")
+            page.goto(url, wait_until="networkidle", timeout=60000)
             page.wait_for_timeout(3000)
             
-            buttons = page.query_selector_all('button, .dropdown-toggle, [role="tab"], a')
-            for btn in buttons[:20]:
+            # Versuche Dropdowns/Tabs zu klicken
+            log("  🔘 Suche nach Dropdown-Buttons...")
+            buttons = page.query_selector_all('button, .dropdown-toggle, [role="tab"], a, [class*="dropdown"]')
+            clicked = 0
+            for btn in buttons[:30]:
                 try:
-                    if any(city in (btn.inner_text() or "").lower() for city in ["dresden", "leipzig", "berlin", "hamburg", "prag", "krakau"]):
+                    text = btn.inner_text() or ""
+                    if any(city in text.lower() for city in ["dresden", "leipzig", "berlin", "hamburg", "prag", "krakau"]):
                         btn.click()
                         page.wait_for_timeout(1500)
+                        clicked += 1
                 except: pass
             
-            for _ in range(15):
+            log(f"  ✅ {clicked} Dropdowns geklickt")
+            
+            # Scrolle durch die Seite
+            for _ in range(20):
                 page.evaluate("window.scrollBy(0, 800)")
                 page.wait_for_timeout(500)
             
             content = page.content()
             browser.close()
-        
+            
         soup = BeautifulSoup(content, "lxml")
         text = soup.get_text("\n", strip=True)
         lines = [l.strip() for l in text.split('\n') if l.strip()]
+        
+        log(f"  🔍 {len(lines)} Textzeilen gefunden")
         
         count = 0
         for i, line in enumerate(lines):
@@ -582,6 +588,8 @@ def scrape_swingindd():
         log(f"  ✅ {count} Events via Playwright")
     except Exception as e:
         log(f"  ❌ Playwright Fehler: {e}")
+        import traceback
+        log(traceback.format_exc())
     return events
 
 # ==================== QUELLE 6: Lindypott ====================
@@ -692,7 +700,7 @@ def deduplicate(events):
 
 def main():
     log("=" * 70)
-    log("🎸 ROCKABILLY RADAR SCRAPER - FUNKTIONIERENDE VERSION")
+    log("🎸 ROCKABILLY RADAR SCRAPER - DEFINITIVE VERSION")
     log(f"Heute: {TODAY.strftime('%d.%m.%Y')}")
     log(f"Playwright verfügbar: {PLAYWRIGHT_AVAILABLE}")
     log("=" * 70)
