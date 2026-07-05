@@ -115,13 +115,9 @@
                 <span class="pill active" data-value="all" onclick="setGenre('all', this)" data-i18n="genreAll">Alle</span>
                 <span class="pill" data-value="Rockabilly" onclick="setGenre('Rockabilly', this)">Rockabilly</span>
                 <span class="pill" data-value="Rock'n'Roll" onclick="setGenre('Rock\'n\'Roll', this)">Rock'n'Roll</span>
-                <span class="pill" data-value="Lindy Hop" onclick="setGenre('Lindy Hop', this)">Lindy Hop</span>
                 <span class="pill" data-value="Swing" onclick="setGenre('Swing', this)">Swing</span>
-                <span class="pill" data-value="Balboa" onclick="setGenre('Balboa', this)">Balboa</span>
                 <span class="pill" data-value="Boogie Woogie" onclick="setGenre('Boogie Woogie', this)">Boogie Woogie</span>
-                <span class="pill" data-value="Country" onclick="setGenre('Country', this)">Country</span>
-                <span class="pill" data-value="Line Dance" onclick="setGenre('Line Dance', this)">Line Dance</span>
-                <span class="pill" data-value="Psychobilly" onclick="setGenre('Psychobilly', this)">Psychobilly</span>
+                <span class="pill" data-value="Country" onclick="setGenre('Country', this)">Country & Line Dance</span>
             </div>
             <div id="status" style="margin-top:10px; font-size:0.9rem; color:#666;" data-i18n="loading">Lade...</div>
         </div>
@@ -305,13 +301,11 @@ function showInstallInstructions() {
 if (window.matchMedia('(display-mode: standalone)').matches) installContainer.style.display = 'none';
 
 // ========== APP LOGIC ==========
-// WICHTIG: Kein fester Default-Standort mehr!
 let events = [], userLat = null, userLon = null, radius = 100, genre = 'all';
 let map, markers, userMarker;
 let displayedCount = 0;
 const CHUNK_SIZE = 50;
 
-// Standort aus dem Speicher laden
 function loadSavedLocation() {
     const savedLat = localStorage.getItem('rockabilly-lat');
     const savedLon = localStorage.getItem('rockabilly-lon');
@@ -325,7 +319,6 @@ function loadSavedLocation() {
     return false;
 }
 
-// Standort im Speicher ablegen
 function saveLocation(lat, lon, city) {
     localStorage.setItem('rockabilly-lat', lat);
     localStorage.setItem('rockabilly-lon', lon);
@@ -336,9 +329,8 @@ window.onload = () => {
     detectLanguage();
     applyTranslations();
     initMap();
-    loadEvents(); // Events immer laden
+    loadEvents(); 
     
-    // Wenn kein Standort gespeichert ist, automatisch nach GPS fragen
     if (!loadSavedLocation()) {
         setStatus("📍 Bitte Standort erlauben...");
         getGPS(); 
@@ -354,25 +346,16 @@ function switchTab(id, btn) {
 }
 
 function initMap() {
-    // Fallback-Startpunkt, falls alles fehlschlägt (Mitte von Deutschland)
     const startLat = userLat || 51.1657; 
     const startLon = userLon || 10.4515;
     
     map = L.map('map').setView([startLat, startLon], userLat ? 8 : 5);
     
-    // ALTERNATIVE KARTENDIENSTE:
-    // 1. CARTO Voyager (Modern, extrem schnell & zuverlässig, kostenlos) - STANDARD
     L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
         subdomains: 'abcd',
         maxZoom: 19
     }).addTo(map);
-
-    // 2. Esri World Topo (Gut für Gelände/Wälder, sehr zuverlässig)
-    // L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
-    //     attribution: 'Tiles &copy; Esri',
-    //     maxZoom: 19
-    // }).addTo(map);
 
     markers = L.layerGroup().addTo(map);
     
@@ -397,7 +380,7 @@ function getGPS() {
             .then(r=>r.json()).then(d => {
                 const city = d.address.city || d.address.town || d.address.village || '';
                 document.getElementById('city-input').value = city;
-                saveLocation(userLat, userLon, city); // SPEICHERN!
+                saveLocation(userLat, userLon, city); 
                 setStatus(t('gpsFound')); updateDisplay();
             }).catch(() => { 
                 saveLocation(userLat, userLon, ''); 
@@ -419,7 +402,7 @@ async function updateLocation() {
             if(userMarker) userMarker.setLatLng([userLat, userLon]);
             else userMarker = L.circleMarker([userLat, userLon], {color:'#7FB069', fillColor:'#7FB069', fillOpacity:1, radius:8}).addTo(map).bindPopup(t('hereYouAre'));
             
-            saveLocation(userLat, userLon, city); // SPEICHERN!
+            saveLocation(userLat, userLon, city); 
             setStatus(`✅ ${city}`); updateDisplay();
         } else setStatus(t('notFound'));
     } catch(e) { setStatus(t('error')); }
@@ -438,7 +421,6 @@ async function loadEvents() {
         events = getFallbackEvents();
         setStatus(t('loadError') + ' (' + events.length + ')');
     }
-    // Wenn Standort schon da ist, direkt anzeigen
     if(userLat && userLon) updateDisplay();
 }
 
@@ -465,6 +447,25 @@ function clearDateFilter() {
     document.getElementById('date-from').value = '';
     document.getElementById('date-to').value = '';
     updateDisplay();
+}
+
+// NEUE GENRE-LOGIK: Fasst Unterkategorien zusammen
+function checkGenreMatch(filterGenre, eventGenres) {
+    if (!eventGenres || !Array.isArray(eventGenres)) return false;
+    
+    // Swing Oberkategorie
+    if (filterGenre === 'Swing') {
+        const swingSubGenres = ['Swing', 'Lindy Hop', 'Balboa', 'Charleston', 'West Coast Swing', 'Shag'];
+        return swingSubGenres.some(g => eventGenres.includes(g));
+    }
+    
+    // Country & Line Dance
+    if (filterGenre === 'Country') {
+        return eventGenres.includes('Country') || eventGenres.includes('Line Dance');
+    }
+    
+    // Standard
+    return eventGenres.includes(filterGenre);
 }
 
 function getGoogleCalendarUrl(ev) {
@@ -563,15 +564,15 @@ function updateDisplay() {
         if (dateFrom && evEnd < dateFrom) return false;
         if (dateTo && evStart > dateTo) return false;
 
-        const matchGenre = genre === 'all' || (ev.genres && ev.genres.includes(genre));
+        // NEUE GENRE-PRÜFUNG
+        const matchGenre = genre === 'all' || checkGenreMatch(genre, ev.genres);
         if (!matchGenre) return false;
 
-        // KORRIGIERTE RADIUS-LOGIK:
         if (userLat && userLon) {
             const inRadius = ev.dist !== null && ev.dist <= radius;
             if (!showAll) {
-                if (ev.dist === null) return false; // Keine Koordinaten = ausblenden
-                if (!inRadius) return false; // Außerhalb = ausblenden
+                if (ev.dist === null) return false; 
+                if (!inRadius) return false; 
             }
         }
         
@@ -585,9 +586,10 @@ function updateDisplay() {
     });
     
     const futureEvents = processed.filter(e => !e.endDate || e.endDate >= today);
-    const nearCount = futureEvents.filter(e => e.dist !== null && e.dist <= radius && (genre==='all'||(e.genres&&e.genres.includes(genre)))).length;
-    const farCount = futureEvents.filter(e => e.dist !== null && e.dist > radius && (genre==='all'||(e.genres&&e.genres.includes(genre)))).length;
-    const noCoordCount = futureEvents.filter(e => e.dist === null && (genre==='all'||(e.genres&&e.genres.includes(genre)))).length;
+    // NEUE GENRE-PRÜFUNG FÜR STATISTIK
+    const nearCount = futureEvents.filter(e => e.dist !== null && e.dist <= radius && (genre==='all'||checkGenreMatch(genre, e.genres))).length;
+    const farCount = futureEvents.filter(e => e.dist !== null && e.dist > radius && (genre==='all'||checkGenreMatch(genre, e.genres))).length;
+    const noCoordCount = futureEvents.filter(e => e.dist === null && (genre==='all'||checkGenreMatch(genre, e.genres))).length;
     
     document.getElementById('stat-total').textContent = futureEvents.length;
     document.getElementById('stat-near').textContent = nearCount;
@@ -631,7 +633,6 @@ function loadMoreEvents() {
                 .addTo(markers).bindPopup(`<b>${ev.title}</b><br>${ev.date||''}<br>📍 ${ev.city||''}`);
         }
         
-        // KORRIGIERTE ENTFERNUNGS-ANZEIGE
         let distTxt = '';
         if (!userLat || !userLon) {
             distTxt = `<span class="distance-badge far">📍 Standort wählen</span>`;
