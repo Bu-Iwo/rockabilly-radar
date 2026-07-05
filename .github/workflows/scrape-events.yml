@@ -2,59 +2,52 @@ name: Scrape Events Daily
 
 on:
   schedule:
-    - cron: '0 3 * * *'
-  workflow_dispatch:
-
-permissions:
-  contents: write
+    - cron: '0 6 * * *'  # Jeden Tag um 6:00 Uhr UTC
+  workflow_dispatch:  # Manueller Start möglich
 
 jobs:
   scrape:
     runs-on: ubuntu-latest
     
+    permissions:
+      contents: write
+    
     steps:
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
-          persist-credentials: true
-
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
-      - name: Install Dependencies
-        run: pip install requests beautifulsoup4 lxml
-
-      - name: Run Scraper
+      
+      - name: Install dependencies
         run: |
-          python scraper.py
-          echo "✅ Scraper finished"
-          echo "📊 events.json: $(wc -l < events.json) lines"
-
-      - name: Commit and Push (with conflict resolution)
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4 lxml playwright
+          playwright install chromium
+          playwright install-deps chromium
+      
+      - name: Run scraper
+        run: python scraper.py
+        timeout-minutes: 10
+      
+      - name: Check if events.json changed
+        id: check_changes
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add events.json
-          
-          if git diff --cached --quiet; then
-            echo "⚠️ No changes to commit"
-            exit 0
+          if git diff --quiet events.json; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
           fi
-          
-          git commit -m "Auto-update events $(date +%Y-%m-%d)"
-          
-          # Versuche zu pushen - bei Konflikt automatisch lösen
-          git push origin main 2>&1 || {
-            echo "⚠️ Push failed, resolving conflicts..."
-            
-            # Hole neueste Änderungen, löse Konflikte automatisch 
-            # zugunsten unserer neuen events.json (theirs bei rebase)
-            GIT_EDITOR=true git pull --rebase origin main -X theirs
-            
-            git push origin main
-          }
-          
-          echo "✅ Successfully pushed"
+      
+      - name: Commit and push events.json
+        if: steps.check_changes.outputs.changed == 'true'
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          git add events.json
+          git commit -m "🎸 Update events.json - $(date +'%Y-%m-%d %H:%M')"
+          git push
