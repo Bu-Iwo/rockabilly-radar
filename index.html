@@ -4,57 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Rockabilly Radar ⚡</title>
-    
     <meta name="theme-color" content="#C41E3A">
     <meta name="description" content="Find Rockabilly, Swing & Rock'n'Roll events worldwide">
-    
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="RockRadar">
     <link rel="apple-touch-icon" href="icon-192.png">
-    
     <link rel="manifest" href="manifest.json">
-    
     <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
-    
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lobster&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    
     <style>
         :root { --cream: #FFF8DC; --red: #C41E3A; --silver: #C0C0C0; --brown: #3E2723; --bg: #F5E6D3; --green: #7FB069; --orange: #FF8C00; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Oswald', sans-serif; background: var(--bg); color: var(--brown); padding-bottom: 140px; }
-        
         header { background: linear-gradient(135deg, var(--red), #8B0000); padding: 15px; text-align: center; border-bottom: 4px solid var(--silver); position: sticky; top: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; gap: 15px; }
         .logo { font-family: 'Lobster', cursive; font-size: 2rem; color: var(--cream); text-shadow: 2px 2px 0 var(--brown); }
         .lang-toggle { background: rgba(255,255,255,0.15); border: 2px solid var(--silver); color: var(--cream); padding: 6px 10px; border-radius: 20px; cursor: pointer; font-family: 'Bebas Neue'; font-size: 0.9rem; letter-spacing: 1px; transition: all 0.2s; }
         .lang-toggle:hover { background: rgba(255,255,255,0.3); }
-
         main { padding: 20px; max-width: 800px; margin: 0 auto; }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
-
         .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(135deg, var(--red), #8B0000); border-top: 3px solid var(--silver); display: flex; justify-content: space-around; padding: 8px 0; z-index: 2000; }
         .nav-btn { flex: 1; background: none; border: none; color: var(--cream); cursor: pointer; font-family: 'Bebas Neue'; font-size: 0.75rem; display: flex; flex-direction: column; align-items: center; gap: 2px; opacity: 0.7; }
         .nav-btn.active { opacity: 1; transform: translateY(-2px); }
         .nav-icon { font-size: 1.4rem; }
-
         #map-container { height: calc(100vh - 180px); min-height: 300px; border-radius: 15px; border: 3px solid var(--silver); overflow: hidden; }
         #map { height: 100%; width: 100%; }
-
         .filter-section { background: white; border-radius: 15px; padding: 15px; margin-bottom: 20px; border: 2px solid var(--silver); }
         .filter-title { font-family: 'Bebas Neue'; font-size: 1.2rem; color: var(--red); margin-bottom: 8px; border-bottom: 1px solid var(--silver); padding-bottom: 5px; }
         input[type="text"] { width: 100%; padding: 10px; background: var(--cream); border: 2px solid var(--silver); border-radius: 8px; font-family: 'Oswald'; margin-bottom: 10px; }
         button.action-btn { padding: 8px 15px; background: var(--red); color: white; border: 2px solid var(--brown); border-radius: 8px; font-family: 'Bebas Neue'; cursor: pointer; margin-right: 5px; }
-        
         .filter-checkboxes { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
         .filter-checkboxes label { font-size: 0.9rem; display: flex; align-items: center; gap: 6px; cursor: pointer; }
-        
         .genre-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
         .pill { padding: 5px 12px; background: var(--cream); border: 2px solid var(--silver); border-radius: 20px; font-family: 'Bebas Neue'; cursor: pointer; font-size: 0.85rem; }
         .pill.active { background: var(--red); color: white; border-color: var(--red); }
-
         .event-card { background: white; border-radius: 12px; padding: 15px; margin-bottom: 12px; border: 2px solid var(--silver); position: relative; }
         .event-card.far-away { opacity: 0.7; border-style: dashed; }
         .event-title { font-family: 'Bebas Neue'; font-size: 1.4rem; color: var(--red); }
@@ -62,75 +48,59 @@
         .event-loc { font-size: 0.9rem; color: #666; }
         .distance-badge { display: inline-block; background: var(--green); color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: bold; margin-top: 5px; }
         .distance-badge.far { background: var(--orange); }
-        
         .event-details { display: none; margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--silver); }
         .event-details.active { display: block; }
         .event-detail-row { margin: 6px 0; font-size: 0.9rem; color: #555; }
         .event-detail-row strong { color: var(--brown); }
         .bands-list { background: #f9f4e8; padding: 8px; border-radius: 6px; margin-top: 6px; font-size: 0.85rem; color: var(--brown); }
-        
         .btn-link { display: inline-block; padding: 6px 12px; background: var(--red); color: white; text-decoration: none; border-radius: 6px; font-size: 0.8rem; margin: 4px 4px 0 0; font-family: 'Bebas Neue'; letter-spacing: 1px; }
-
         .radio-container { background: white; border-radius: 15px; padding: 30px; border: 3px solid var(--silver); text-align: center; margin-top: 20px; }
         .play-button { width: 80px; height: 80px; border-radius: 50%; background: var(--red); border: 4px solid var(--silver); color: white; font-size: 2rem; cursor: pointer; margin: 15px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: all 0.3s; }
         .play-button:hover { transform: scale(1.1); }
-        
         footer { text-align: center; padding: 20px; margin-top: 30px; border-top: 3px solid var(--silver); background: var(--brown); color: var(--cream); margin-bottom: 60px; }
         footer a { color: var(--cream); margin: 0 10px; text-decoration: none; font-family: 'Bebas Neue'; letter-spacing: 1px; }
         footer a:hover { color: var(--red); }
-        
         #install-container { display: none; position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); z-index: 3000; }
         #install-btn { padding: 12px 24px; background: var(--green); color: white; border: 3px solid white; border-radius: 30px; font-family: 'Bebas Neue'; font-size: 1.2rem; letter-spacing: 2px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3); animation: pulse 2s infinite; }
         @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-        
         #install-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 4000; align-items: center; justify-content: center; padding: 20px; }
         .modal-content { background: white; padding: 30px; border-radius: 15px; max-width: 400px; width: 100%; text-align: center; max-height: 80vh; overflow-y: auto; }
         .modal-content h2 { font-family: 'Lobster'; color: var(--red); margin-bottom: 15px; font-size: 1.8rem; }
         .modal-content ol { padding-left: 20px; line-height: 1.8; text-align: left; margin-bottom: 20px; }
         .modal-close { padding: 10px 20px; background: var(--red); color: white; border: none; border-radius: 8px; font-family: 'Bebas Neue'; cursor: pointer; font-size: 1rem; letter-spacing: 1px; }
-
         .stats-bar { background: white; border-radius: 15px; padding: 10px 15px; margin-bottom: 15px; border: 2px solid var(--silver); display: flex; justify-content: space-around; text-align: center; font-family: 'Bebas Neue'; }
         .stat-number { font-size: 1.5rem; color: var(--red); }
         .stat-label { font-size: 0.8rem; color: #666; }
-        
         .sort-notice { background: #fff4e6; border-left: 4px solid var(--orange); padding: 10px 15px; margin-bottom: 15px; border-radius: 6px; font-size: 0.9rem; }
+        .load-more-btn { display: block; width: 100%; padding: 12px; background: var(--silver); color: var(--brown); border: none; border-radius: 8px; font-family: 'Bebas Neue'; font-size: 1rem; cursor: pointer; margin-top: 10px; }
+        .load-more-btn:hover { background: #b0b0b0; }
     </style>
 </head>
 <body>
-
 <header>
     <h1 class="logo">🎸 Rockabilly Radar ⚡</h1>
     <button class="lang-toggle" onclick="toggleLanguage()" id="lang-btn">🌐 EN</button>
 </header>
-
 <main>
-    <div id="tab-map" class="tab-content active">
-        <div id="map-container"><div id="map"></div></div>
-    </div>
-
+    <div id="tab-map" class="tab-content active"><div id="map-container"><div id="map"></div></div></div>
     <div id="tab-events" class="tab-content">
         <div class="stats-bar">
             <div><div class="stat-number" id="stat-total">0</div><div class="stat-label" data-i18n="statTotal">Total</div></div>
             <div><div class="stat-number" id="stat-near">0</div><div class="stat-label" data-i18n="statNear">In der Nähe</div></div>
             <div><div class="stat-number" id="stat-far">0</div><div class="stat-label" data-i18n="statFar">Weltweit</div></div>
         </div>
-
         <div class="sort-notice" data-i18n="sortNotice">📅 Events werden chronologisch nach Datum sortiert (früheste zuerst)</div>
-
         <div class="filter-section">
             <div class="filter-title" data-i18n="location">📍 Standort</div>
             <input type="text" id="city-input" data-i18n-placeholder="cityPlaceholder">
             <button class="action-btn" onclick="updateLocation()" data-i18n="searchBtn">Suchen</button>
             <button class="action-btn" onclick="getGPS()">📡 GPS</button>
-            
             <div class="filter-title" style="margin-top:15px"><span data-i18n="radius">📏 Radius</span>: <span id="radius-val">2500 km</span></div>
             <input type="range" id="radius-slider" min="10" max="5000" value="2500" step="10" style="width:100%" oninput="document.getElementById('radius-val').innerText=this.value+' km'; updateDisplay()">
-            
             <div class="filter-checkboxes">
                 <label><input type="checkbox" id="show-all-events" checked onchange="updateDisplay()"> <span data-i18n="showAll">Alle Events anzeigen (auch außerhalb des Radius)</span></label>
                 <label><input type="checkbox" id="hide-past-events" checked onchange="updateDisplay()"> <span data-i18n="hidePast">🚫 Vergangene Events ausblenden</span></label>
             </div>
-            
             <div class="filter-title" style="margin-top:15px" data-i18n="genre">🎶 Genre</div>
             <div class="genre-pills" id="genre-filter">
                 <span class="pill active" data-value="all" onclick="setGenre('all', this)" data-i18n="genreAll">Alle</span>
@@ -147,8 +117,8 @@
             <div id="status" style="margin-top:10px; font-size:0.9rem; color:#666;" data-i18n="loading">Lade...</div>
         </div>
         <div id="events-list"></div>
+        <button id="load-more-btn" class="load-more-btn" style="display:none" onclick="loadMoreEvents()">📥 Mehr Events laden</button>
     </div>
-
     <div id="tab-search" class="tab-content">
         <div class="filter-section">
             <div class="filter-title" data-i18n="search">🔍 Suche</div>
@@ -156,7 +126,6 @@
             <div id="search-results"></div>
         </div>
     </div>
-
     <div id="tab-radio" class="tab-content">
         <div class="radio-container">
             <h2 style="font-family:'Lobster'; color:var(--red); font-size:2rem;">📻 Rockabilly Radio</h2>
@@ -167,18 +136,13 @@
         </div>
     </div>
 </main>
-
 <footer>
     <a href="impressum.html" data-i18n="imprint">IMPRESSUM</a>
     <a href="datenschutz.html" data-i18n="privacy">DATENSCHUTZ</a>
     <a href="https://github.com/Bu-Iwo/rockabilly-radar" target="_blank">GITHUB</a>
     <p style="margin-top:10px; font-size:0.8rem; opacity:0.7;">© 2026 Rockabilly Radar</p>
 </footer>
-
-<div id="install-container">
-    <button id="install-btn" data-i18n="installBtn">📲 APP INSTALLIEREN</button>
-</div>
-
+<div id="install-container"><button id="install-btn" data-i18n="installBtn">📲 APP INSTALLIEREN</button></div>
 <div id="install-modal">
     <div class="modal-content">
         <h2 data-i18n="installTitle">App installieren</h2>
@@ -186,14 +150,12 @@
         <button class="modal-close" onclick="document.getElementById('install-modal').style.display='none'" data-i18n="close">Schließen</button>
     </div>
 </div>
-
 <nav class="bottom-nav">
     <button class="nav-btn active" onclick="switchTab('map', this)"><span class="nav-icon">🗺️</span><span data-i18n="navMap">Karte</span></button>
     <button class="nav-btn" onclick="switchTab('events', this)"><span class="nav-icon">📅</span><span data-i18n="navEvents">Events</span></button>
     <button class="nav-btn" onclick="switchTab('search', this)"><span class="nav-icon">🔍</span><span data-i18n="navSearch">Suche</span></button>
     <button class="nav-btn" onclick="switchTab('radio', this)"><span class="nav-icon">📻</span><span data-i18n="navRadio">Radio</span></button>
 </nav>
-
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 // ========== I18N ==========
@@ -225,11 +187,8 @@ const translations = {
         outsideRadius: "außerhalb",
         loadError: "⚠️ Lade-Fehler - Fallback Events",
         sortNotice: "📅 Events werden chronologisch nach Datum sortiert (früheste zuerst)",
-        timeLabel: "🕐 Uhrzeit",
-        priceLabel: "💰 Preis",
-        addressLabel: "📍 Adresse",
-        bandsLabel: "🎸 Bands",
-        toEvent: "🎯 Zum Event"
+        timeLabel: "🕐 Uhrzeit", priceLabel: "💰 Preis", addressLabel: "📍 Adresse",
+        bandsLabel: "🎸 Bands", toEvent: "🎯 Zum Event", loadMore: "📥 Mehr Events laden"
     },
     en: {
         location: "📍 Location", cityPlaceholder: "Enter city...", searchBtn: "Search",
@@ -258,76 +217,54 @@ const translations = {
         outsideRadius: "far away",
         loadError: "⚠️ Load error - fallback events",
         sortNotice: "📅 Events are sorted chronologically by date (earliest first)",
-        timeLabel: "🕐 Time",
-        priceLabel: "💰 Price",
-        addressLabel: "📍 Address",
-        bandsLabel: "🎸 Bands",
-        toEvent: "🎯 To Event"
+        timeLabel: "🕐 Time", priceLabel: "💰 Price", addressLabel: "📍 Address",
+        bandsLabel: "🎸 Bands", toEvent: "🎯 To Event", loadMore: "📥 Load more events"
     }
 };
-
 let currentLang = 'de';
-
 function t(key, params = {}) {
     let text = translations[currentLang][key] || translations['de'][key] || key;
     Object.keys(params).forEach(k => { text = text.replace(`{${k}}`, params[k]); });
     return text;
 }
-
 function applyTranslations() {
     document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t(el.getAttribute('data-i18n')); });
     document.querySelectorAll('[data-i18n-placeholder]').forEach(el => { el.placeholder = t(el.getAttribute('data-i18n-placeholder')); });
     document.documentElement.lang = currentLang;
     document.getElementById('lang-btn').textContent = t('langBtn');
 }
-
 function toggleLanguage() {
     currentLang = currentLang === 'de' ? 'en' : 'de';
     localStorage.setItem('rockabilly-lang', currentLang);
     applyTranslations();
     updateDisplay();
 }
-
 function detectLanguage() {
     const saved = localStorage.getItem('rockabilly-lang');
     if (saved && (saved === 'de' || saved === 'en')) { currentLang = saved; return; }
     const browserLang = (navigator.language || 'de').toLowerCase();
     currentLang = browserLang.startsWith('en') ? 'en' : 'de';
 }
-
 // ========== PWA ==========
 let deferredPrompt;
 const installContainer = document.getElementById('install-container');
 const installBtn = document.getElementById('install-btn');
-
 if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW failed', err));
-    });
+    window.addEventListener('load', () => { navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW failed', err)); });
 }
-
-window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault(); deferredPrompt = e; installContainer.style.display = 'block';
-});
-
+window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredPrompt = e; installContainer.style.display = 'block'; });
 installBtn.addEventListener('click', async () => {
     installContainer.style.display = 'none';
-    if (deferredPrompt) {
-        deferredPrompt.prompt();
-        await deferredPrompt.userChoice;
-        deferredPrompt = null;
-    } else showInstallInstructions();
+    if (deferredPrompt) { deferredPrompt.prompt(); await deferredPrompt.userChoice; deferredPrompt = null; }
+    else showInstallInstructions();
 });
-
 window.addEventListener('appinstalled', () => { installContainer.style.display = 'none'; deferredPrompt = null; });
-
 function showInstallInstructions() {
     const modal = document.getElementById('install-modal');
     const instructions = document.getElementById('install-instructions');
     const ua = navigator.userAgent.toLowerCase();
     const isEn = currentLang === 'en';
     let html = '';
-    
     if (/iphone|ipad|ipod/.test(ua)) {
         html = isEn ? `<p><strong>iOS (Safari):</strong></p><ol><li>Tap Share ⬆️</li><li>Select "Add to Home Screen"</li><li>Tap "Add"</li></ol>`
                     : `<p><strong>iOS (Safari):</strong></p><ol><li>Tippe Teilen ⬆️</li><li>"Zum Home-Bildschirm"</li><li>"Hinzufügen"</li></ol>`;
@@ -338,12 +275,12 @@ function showInstallInstructions() {
     instructions.innerHTML = html;
     modal.style.display = 'flex';
 }
-
 if (window.matchMedia('(display-mode: standalone)').matches) installContainer.style.display = 'none';
-
 // ========== APP LOGIC ==========
 let events = [], userLat = 50.7189, userLon = 12.4961, radius = 2500, genre = 'all';
 let map, markers, userMarker;
+let displayedCount = 0;
+const CHUNK_SIZE = 50;
 
 window.onload = () => {
     detectLanguage();
@@ -351,7 +288,6 @@ window.onload = () => {
     initMap();
     loadEvents();
 };
-
 function switchTab(id, btn) {
     document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
@@ -359,14 +295,12 @@ function switchTab(id, btn) {
     btn.classList.add('active');
     if (id === 'map' && map) setTimeout(() => map.invalidateSize(), 100);
 }
-
 function initMap() {
     map = L.map('map').setView([userLat, userLon], 6);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap' }).addTo(map);
     markers = L.layerGroup().addTo(map);
     userMarker = L.circleMarker([userLat, userLon], {color:'#7FB069', fillColor:'#7FB069', fillOpacity:1, radius:8}).addTo(map).bindPopup(t('hereYouAre'));
 }
-
 function getGPS() {
     if (!navigator.geolocation) return setStatus(t('gpsNotSupported'));
     setStatus(t('gpsSearching'));
@@ -382,7 +316,6 @@ function getGPS() {
             }).catch(() => { setStatus(t('gpsFound')); updateDisplay(); });
     }, () => setStatus(t('gpsError')));
 }
-
 async function updateLocation() {
     const city = document.getElementById('city-input').value.trim();
     if (!city) return;
@@ -397,7 +330,6 @@ async function updateLocation() {
         } else setStatus(t('notFound'));
     } catch(e) { setStatus(t('error')); }
 }
-
 async function loadEvents() {
     try {
         const r = await fetch('events.json?t=' + Date.now());
@@ -413,33 +345,29 @@ async function loadEvents() {
     }
     updateDisplay();
 }
-
 function getFallbackEvents() {
     return [
-        {title:"Summer Jamboree 2026", date:"01.08. - 09.08.2026", city:"Senigallia", lat:43.7147, lon:13.2183, desc:"Europas größtes Rockabilly-Festival", url:"https://www.summerjamboree.com", genres:["Rockabilly"]},
-        {title:"Firebirds Festival #14", date:"03.07. - 05.07.2026", city:"Grimma", lat:51.2294, lon:12.7561, desc:"Rock'n'Roll im Kloster Nimbschen", url:"https://www.jukeboxstompers.de/", genres:["Rock'n'Roll","Boogie Woogie","Lindy Hop"]},
-        {title:"High Rockabilly 2026", date:"15.05. - 17.05.2026", city:"Irun", lat:43.3396, lon:-1.7894, desc:"Top Rockabilly Festival Spanien", url:"https://www.highrockabilly.com", genres:["Rockabilly"]},
-        {title:"Viva Las Vegas 2026", date:"16.04. - 19.04.2026", city:"Las Vegas", lat:36.1699, lon:-115.1398, desc:"Weltgrößtes Rockabilly Festival", url:"https://www.vivalasvegas.net", genres:["Rockabilly","50er"]},
-        {title:"Rock That Swing #20", date:"04.02. - 08.02.2027", city:"München", lat:48.1351, lon:11.5820, desc:"20. Rock That Swing Festival", url:"https://www.jukeboxstompers.de/", genres:["Lindy Hop","Boogie Woogie","Balboa","Shag"]},
-        {title:"Boogie Feets Festival 2026", date:"23.07. - 27.07.2026", city:"Oslo", lat:59.9139, lon:10.7522, desc:"Internationales Boogie Woogie Weekend", url:"https://www.jukeboxstompers.de/", genres:["Boogie Woogie"]},
-        {title:"Herräng Dance Camp", date:"04.07. - 11.07.2026", city:"Herräng", lat:59.8500, lon:16.9000, desc:"Legendäres Swing Dance Camp Schweden", url:"https://swingcalendar.com/de", genres:["Lindy Hop","Swing","Balboa"]}
+        {title:"Summer Jamboree 2026", date:"01.08.2026", city:"Senigallia", lat:43.7147, lon:13.2183, desc:"Europas größtes Rockabilly-Festival", url:"https://www.summerjamboree.com", genres:["Rockabilly"]},
+        {title:"Firebirds Festival #14", date:"03.07.2026", city:"Grimma", lat:51.2294, lon:12.7561, desc:"Rock'n'Roll im Kloster Nimbschen", url:"https://www.firebirds-festival.de/", genres:["Rock'n'Roll","Boogie Woogie","Lindy Hop"]},
+        {title:"High Rockabilly 2026", date:"15.05.2026", city:"Irun", lat:43.3396, lon:-1.7894, desc:"Top Rockabilly Festival Spanien", url:"https://www.highrockabilly.com", genres:["Rockabilly"]},
+        {title:"Viva Las Vegas 2026", date:"16.04.2026", city:"Las Vegas", lat:36.1699, lon:-115.1398, desc:"Weltgrößtes Rockabilly Festival", url:"https://www.vivalasvegas.net", genres:["Rockabilly","50er"]},
+        {title:"Rock That Swing #20", date:"04.02.2027", city:"München", lat:48.1351, lon:11.5820, desc:"20. Rock That Swing Festival", url:"https://www.jukeboxstompers.de/", genres:["Lindy Hop","Boogie Woogie","Balboa","Shag"]},
+        {title:"Boogie Feets Festival 2026", date:"23.07.2026", city:"Oslo", lat:59.9139, lon:10.7522, desc:"Internationales Boogie Woogie Weekend", url:"https://www.jukeboxstompers.de/", genres:["Boogie Woogie"]},
+        {title:"Herräng Dance Camp", date:"04.07.2026", city:"Herräng", lat:59.8500, lon:16.9000, desc:"Legendäres Swing Dance Camp Schweden", url:"https://swingcalendar.com/de", genres:["Lindy Hop","Swing","Balboa"]}
     ];
 }
-
 function setGenre(g, el) {
     genre = g;
     document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
     el.classList.add('active');
     updateDisplay();
 }
-
 function getGoogleCalendarUrl(ev) {
     if (!ev.date) return null;
     let startDate = null, endDate = null;
     let regex = /(\d{2})\.(\d{2})\.(\d{4})/g;
     let dateMatches = []; let match;
     while ((match = regex.exec(ev.date)) !== null) dateMatches.push(match.slice(1));
-    
     if (dateMatches.length >= 2) {
         let [d1, m1, y1] = dateMatches[0]; let [d2, m2, y2] = dateMatches[1];
         startDate = new Date(Date.UTC(parseInt(y1), parseInt(m1) - 1, parseInt(d1)));
@@ -463,47 +391,32 @@ function getGoogleCalendarUrl(ev) {
     const fmt = d => d.toISOString().slice(0, 10).replace(/-/g, '');
     return `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(ev.title||'Event')}&dates=${fmt(startDate)}/${fmt(endDate)}&details=${encodeURIComponent(ev.desc||'')}&location=${encodeURIComponent(ev.address||ev.city||'')}&sf=true&output=xml`;
 }
-
-// ✅ NEU: Parst das ENDDATUM eines Events (für "Vergangen"-Check)
 function parseEventEndDate(dateStr) {
     if (!dateStr) return null;
-    
-    // Versuche alle DD.MM.YYYY zu finden
     const matches = [...dateStr.matchAll(/(\d{2})\.(\d{2})\.(\d{4})/g)];
-    
     if (matches.length >= 2) {
-        // Zeitraum: letztes Datum ist das Enddatum
         const lastMatch = matches[matches.length - 1];
         const [_, d, m, y] = lastMatch;
         return new Date(parseInt(y), parseInt(m) - 1, parseInt(d));
     }
-    
     if (matches.length === 1) {
         const [_, d, m, y] = matches[0];
         return new Date(parseInt(y), parseInt(m) - 1, parseInt(d));
     }
-    
-    // Partial Format DD.MM. - DD.MM.YYYY
     const matchPartial = dateStr.match(/(\d{2})\.(\d{2})\.\s*-\s*(\d{2})\.(\d{2})\.(\d{4})/);
     if (matchPartial) {
         const [_, d1, m1, d2, m2, y] = matchPartial;
         return new Date(parseInt(y), parseInt(m2) - 1, parseInt(d2));
     }
-    
     return null;
 }
-
-// ✅ NEU: Parst das STARTDATUM für Sortierung
 function parseEventStartDate(dateStr) {
     if (!dateStr) return new Date('9999-12-31');
-    
     const matches = [...dateStr.matchAll(/(\d{2})\.(\d{2})\.(\d{4})/g)];
-    
     if (matches.length >= 1) {
         const [_, d, m, y] = matches[0];
         return new Date(parseInt(y), parseInt(m) - 1, parseInt(d));
     }
-    
     const matchPartial = dateStr.match(/(\d{2})\.(\d{2})\.\s*-\s*(\d{2})\.(\d{2})\.(\d{4})/);
     if (matchPartial) {
         const [_, d1, m1, d2, m2, y] = matchPartial;
@@ -511,21 +424,16 @@ function parseEventStartDate(dateStr) {
         if (parseInt(m1) > parseInt(m2)) y1--;
         return new Date(y1, parseInt(m1) - 1, parseInt(d1));
     }
-    
     return new Date('9999-12-31');
 }
-
-// ✅ AKTUALISIERTE updateDisplay mit Zukunftsfilter + chronologischer Sortierung
+let currentFilteredEvents = [];
 function updateDisplay() {
     radius = parseInt(document.getElementById('radius-slider').value);
     const showAll = document.getElementById('show-all-events').checked;
     const hidePast = document.getElementById('hide-past-events').checked;
     const list = document.getElementById('events-list');
     markers.clearLayers();
-    
-    // Heute Mitternacht als Referenz
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
+    const today = new Date(); today.setHours(0, 0, 0, 0);
     
     let processed = events.map(ev => {
         const dist = getDist(userLat, userLon, ev.lat, ev.lon);
@@ -533,26 +441,20 @@ function updateDisplay() {
         return {...ev, dist, endDate};
     });
     
-    let filtered = processed.filter(ev => {
-        // ✅ Vergangene Events filtern
-        if (hidePast && ev.endDate && ev.endDate < today) {
-            return false;
-        }
-        
+    currentFilteredEvents = processed.filter(ev => {
+        if (hidePast && ev.endDate && ev.endDate < today) return false;
         const inRadius = ev.dist === null || ev.dist <= radius;
         const matchGenre = genre === 'all' || (ev.genres && ev.genres.includes(genre));
         if (!matchGenre) return false;
         return showAll || inRadius;
     });
     
-    // ✅ Chronologisch nach STARTDATUM sortieren (früheste zuerst)
-    filtered.sort((a, b) => {
+    currentFilteredEvents.sort((a, b) => {
         const dateA = parseEventStartDate(a.date);
         const dateB = parseEventStartDate(b.date);
         return dateA - dateB;
     });
     
-    // Statistik
     const futureEvents = processed.filter(e => !e.endDate || e.endDate >= today);
     const nearCount = futureEvents.filter(e => e.dist !== null && e.dist <= radius && (genre==='all'||(e.genres&&e.genres.includes(genre)))).length;
     const farCount = futureEvents.filter(e => e.dist !== null && e.dist > radius && (genre==='all'||(e.genres&&e.genres.includes(genre)))).length;
@@ -562,13 +464,36 @@ function updateDisplay() {
     document.getElementById('stat-near').textContent = nearCount;
     document.getElementById('stat-far').textContent = farCount + noCoordCount;
     
-    if (!filtered.length) { 
+    if (!currentFilteredEvents.length) { 
         list.innerHTML = `<p style="text-align:center;color:#999;padding:20px">${t('noEvents')}</p>`; 
         setStatus(t('noEvents'));
+        document.getElementById('load-more-btn').style.display = 'none';
         return; 
     }
 
-    list.innerHTML = filtered.map(ev => {
+    list.innerHTML = '';
+    displayedCount = 0;
+    loadMoreEvents();
+    
+    if (currentFilteredEvents.length > 0 && markers.getLayers().length > 0) {
+        try {
+            const group = L.featureGroup(markers.getLayers());
+            if (map) map.fitBounds(group.getBounds().pad(0.1));
+        } catch(e) {}
+    }
+}
+function loadMoreEvents() {
+    const list = document.getElementById('events-list');
+    const btn = document.getElementById('load-more-btn');
+    const chunk = currentFilteredEvents.slice(displayedCount, displayedCount + CHUNK_SIZE);
+    
+    if (chunk.length === 0) {
+        btn.style.display = 'none';
+        return;
+    }
+    
+    const fragment = document.createDocumentFragment();
+    chunk.forEach(ev => {
         const inRadius = ev.dist === null || ev.dist <= radius;
         if (ev.lat && ev.lon) {
             const markerColor = inRadius ? '#C41E3A' : '#FF8C00';
@@ -578,11 +503,7 @@ function updateDisplay() {
         
         let distTxt = '';
         if (ev.dist !== null) {
-            if (inRadius) {
-                distTxt = `<span class="distance-badge">📍 ${ev.dist} km</span>`;
-            } else {
-                distTxt = `<span class="distance-badge far">📍 ${ev.dist} km (${t('outsideRadius')})</span>`;
-            }
+            distTxt = inRadius ? `<span class="distance-badge">📍 ${ev.dist} km</span>` : `<span class="distance-badge far">📍 ${ev.dist} km (${t('outsideRadius')})</span>`;
         }
         
         const tags = (ev.genres||[]).map(g => `<span style="font-size:0.7rem;background:#eee;padding:1px 6px;border-radius:4px">${g}</span>`).join(' ');
@@ -590,14 +511,16 @@ function updateDisplay() {
         const calBtn = calUrl ? `<a href="${calUrl}" target="_blank" class="btn-link">${t('calendar')}</a>` : '';
         
         const websiteUrl = ev.event_url || ev.url;
-        const websiteBtn = websiteUrl ? `<a href="${websiteUrl}" target="_blank" class="btn-link">${t('toEvent')}</a>` : '';
+        const websiteBtn = websiteUrl ? `<a href="${websiteUrl}" target="_blank" class="btn-link" rel="noopener noreferrer">${t('toEvent')}</a>` : '';
         
         const timeInfo = ev.time ? `<div class="event-detail-row"><strong>${t('timeLabel')}:</strong> ${ev.time}</div>` : '';
         const priceInfo = ev.price ? `<div class="event-detail-row"><strong>${t('priceLabel')}:</strong> ${ev.price}</div>` : '';
         const addressInfo = ev.address ? `<div class="event-detail-row"><strong>${t('addressLabel')}:</strong> ${ev.address}</div>` : '';
         const bandsInfo = ev.bands && ev.bands.length > 0 ? `<div class="event-detail-row"><strong>${t('bandsLabel')}:</strong><div class="bands-list">${ev.bands.join(' • ')}</div></div>` : '';
         
-        return `<div class="event-card ${inRadius?'':'far-away'}">
+        const card = document.createElement('div');
+        card.className = `event-card ${inRadius?'':'far-away'}`;
+        card.innerHTML = `
             <div class="event-title">${ev.title}</div>
             <div style="margin:4px 0">${tags}</div>
             <div class="event-date">📅 ${ev.date||'TBA'}</div>
@@ -606,29 +529,26 @@ function updateDisplay() {
             <button class="action-btn" style="margin-top:8px;font-size:0.8rem" onclick="this.nextElementSibling.classList.toggle('active')">${t('info')}</button>
             <div class="event-details">
                 <p style="font-size:0.9rem;color:#555;margin-bottom:8px">${ev.desc||''}</p>
-                ${addressInfo}
-                ${timeInfo}
-                ${priceInfo}
-                ${bandsInfo}
+                ${addressInfo}${timeInfo}${priceInfo}${bandsInfo}
                 <div style="margin-top:12px">
-                    ${websiteBtn}
-                    ${calBtn}
-                    <a href="https://www.booking.com/searchresults.de.html?ss=${encodeURIComponent(ev.city||'')}" target="_blank" class="btn-link">${t('hotel')}</a>
+                    ${websiteBtn}${calBtn}
+                    <a href="https://www.booking.com/searchresults.de.html?ss=${encodeURIComponent(ev.city||'')}" target="_blank" class="btn-link" rel="noopener noreferrer">${t('hotel')}</a>
                 </div>
-            </div>
-        </div>`;
-    }).join('');
+            </div>`;
+        fragment.appendChild(card);
+    });
     
-    setStatus(t('eventsShown', {n: filtered.length}));
+    list.appendChild(fragment);
+    displayedCount += chunk.length;
+    setStatus(t('eventsShown', {n: displayedCount}));
     
-    if (filtered.length > 0 && markers.getLayers().length > 0) {
-        try {
-            const group = L.featureGroup(markers.getLayers());
-            if (map) map.fitBounds(group.getBounds().pad(0.1));
-        } catch(e) {}
+    if (displayedCount < currentFilteredEvents.length) {
+        btn.style.display = 'block';
+        btn.textContent = `${t('loadMore')} (${currentFilteredEvents.length - displayedCount})`;
+    } else {
+        btn.style.display = 'none';
     }
 }
-
 function doSearch() {
     const q = document.getElementById('search-input').value.toLowerCase();
     const res = document.getElementById('search-results');
@@ -638,39 +558,30 @@ function doSearch() {
         ? found.map(e => `<div class="event-card" style="padding:10px"><div class="event-title" style="font-size:1.1rem">${e.title}</div><div class="event-date">${e.date||''} • ${e.city||''}</div></div>`).join('')
         : `<p style="color:#999;padding:10px">${t('nothingFound')}</p>`;
 }
-
 function toggleRadio() {
     const audio = document.getElementById('audio');
     const btn = document.getElementById('play-btn');
     const status = document.getElementById('radio-status');
     if (audio.paused) {
         status.textContent = t('radioLoading'); btn.disabled = true;
-        audio.play().then(() => {
-            btn.textContent = '⏸'; status.textContent = t('radioPlaying'); btn.disabled = false;
-        }).catch(err => {
+        audio.play().then(() => { btn.textContent = '⏸'; status.textContent = t('radioPlaying'); btn.disabled = false; })
+        .catch(err => {
             console.error('Audio error:', err);
             status.textContent = t('radioError'); btn.textContent = '▶'; btn.disabled = false;
             if (audio.src.includes('rockantenne')) {
                 audio.src = 'https://rockabillyradio.ice.infomaniak.ch/rockabillyradio-128.mp3';
                 status.textContent = t('radioFallback');
-                setTimeout(() => {
-                    audio.play().then(() => { btn.textContent = '⏸'; status.textContent = t('radioPlaying'); })
-                        .catch(() => { status.textContent = t('radioNoStream'); });
-                }, 1000);
+                setTimeout(() => { audio.play().then(() => { btn.textContent = '⏸'; status.textContent = t('radioPlaying'); }).catch(() => { status.textContent = t('radioNoStream'); }); }, 1000);
             }
         });
-    } else {
-        audio.pause(); btn.textContent = '▶'; status.textContent = t('radioPaused');
-    }
+    } else { audio.pause(); btn.textContent = '▶'; status.textContent = t('radioPaused'); }
 }
-
 function getDist(lat1,lon1,lat2,lon2) {
     if (!lat1||!lat2) return null;
     const R=6371, dLat=(lat2-lat1)*Math.PI/180, dLon=(lon2-lon1)*Math.PI/180;
     const a=Math.sin(dLat/2)**2+Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLon/2)**2;
     return Math.round(R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a)));
 }
-
 function setStatus(msg) { document.getElementById('status').textContent = msg; }
 </script>
 </body>
