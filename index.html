@@ -104,10 +104,10 @@
                 <button class="action-btn" onclick="clearDateFilter()" style="margin-right:0; font-size:0.8rem; padding: 8px 10px;">✖</button>
             </div>
 
-            <div class="filter-title" style="margin-top:15px"><span data-i18n="radius">📏 Radius</span>: <span id="radius-val">2500 km</span></div>
-            <input type="range" id="radius-slider" min="10" max="5000" value="2500" step="10" style="width:100%" oninput="document.getElementById('radius-val').innerText=this.value+' km'; updateDisplay()">
+            <div class="filter-title" style="margin-top:15px"><span data-i18n="radius">📏 Radius</span>: <span id="radius-val">100 km</span></div>
+            <input type="range" id="radius-slider" min="10" max="5000" value="100" step="10" style="width:100%" oninput="document.getElementById('radius-val').innerText=this.value+' km'; updateDisplay()">
             <div class="filter-checkboxes">
-                <label><input type="checkbox" id="show-all-events" checked onchange="updateDisplay()"> <span data-i18n="showAll">Alle Events anzeigen (auch außerhalb des Radius)</span></label>
+                <label><input type="checkbox" id="show-all-events" onchange="updateDisplay()"> <span data-i18n="showAll">Alle Events anzeigen (auch außerhalb des Radius)</span></label>
                 <label><input type="checkbox" id="hide-past-events" checked onchange="updateDisplay()"> <span data-i18n="hidePast">🚫 Vergangene Events ausblenden</span></label>
             </div>
             <div class="filter-title" style="margin-top:15px" data-i18n="genre">🎶 Genre</div>
@@ -303,18 +303,48 @@ function showInstallInstructions() {
     modal.style.display = 'flex';
 }
 if (window.matchMedia('(display-mode: standalone)').matches) installContainer.style.display = 'none';
+
 // ========== APP LOGIC ==========
-let events = [], userLat = 50.7189, userLon = 12.4961, radius = 2500, genre = 'all';
+// WICHTIG: Kein fester Default-Standort mehr!
+let events = [], userLat = null, userLon = null, radius = 100, genre = 'all';
 let map, markers, userMarker;
 let displayedCount = 0;
 const CHUNK_SIZE = 50;
+
+// Standort aus dem Speicher laden
+function loadSavedLocation() {
+    const savedLat = localStorage.getItem('rockabilly-lat');
+    const savedLon = localStorage.getItem('rockabilly-lon');
+    const savedCity = localStorage.getItem('rockabilly-city');
+    if (savedLat && savedLon) {
+        userLat = parseFloat(savedLat);
+        userLon = parseFloat(savedLon);
+        if(savedCity) document.getElementById('city-input').value = savedCity;
+        return true;
+    }
+    return false;
+}
+
+// Standort im Speicher ablegen
+function saveLocation(lat, lon, city) {
+    localStorage.setItem('rockabilly-lat', lat);
+    localStorage.setItem('rockabilly-lon', lon);
+    if(city) localStorage.setItem('rockabilly-city', city);
+}
 
 window.onload = () => {
     detectLanguage();
     applyTranslations();
     initMap();
-    loadEvents();
+    loadEvents(); // Events immer laden
+    
+    // Wenn kein Standort gespeichert ist, automatisch nach GPS fragen
+    if (!loadSavedLocation()) {
+        setStatus("📍 Bitte Standort erlauben...");
+        getGPS(); 
+    }
 };
+
 function switchTab(id, btn) {
     document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
@@ -322,27 +352,60 @@ function switchTab(id, btn) {
     btn.classList.add('active');
     if (id === 'map' && map) setTimeout(() => map.invalidateSize(), 100);
 }
+
 function initMap() {
-    map = L.map('map').setView([userLat, userLon], 6);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap' }).addTo(map);
+    // Fallback-Startpunkt, falls alles fehlschlägt (Mitte von Deutschland)
+    const startLat = userLat || 51.1657; 
+    const startLon = userLon || 10.4515;
+    
+    map = L.map('map').setView([startLat, startLon], userLat ? 8 : 5);
+    
+    // ALTERNATIVE KARTENDIENSTE:
+    // 1. CARTO Voyager (Modern, extrem schnell & zuverlässig, kostenlos) - STANDARD
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 19
+    }).addTo(map);
+
+    // 2. Esri World Topo (Gut für Gelände/Wälder, sehr zuverlässig)
+    // L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+    //     attribution: 'Tiles &copy; Esri',
+    //     maxZoom: 19
+    // }).addTo(map);
+
     markers = L.layerGroup().addTo(map);
-    userMarker = L.circleMarker([userLat, userLon], {color:'#7FB069', fillColor:'#7FB069', fillOpacity:1, radius:8}).addTo(map).bindPopup(t('hereYouAre'));
+    
+    if(userLat && userLon) {
+        userMarker = L.circleMarker([userLat, userLon], {color:'#7FB069', fillColor:'#7FB069', fillOpacity:1, radius:8}).addTo(map).bindPopup(t('hereYouAre'));
+    }
 }
+
 function getGPS() {
     if (!navigator.geolocation) return setStatus(t('gpsNotSupported'));
     setStatus(t('gpsSearching'));
     navigator.geolocation.getCurrentPosition(p => {
         userLat = p.coords.latitude; userLon = p.coords.longitude;
         map.setView([userLat, userLon], 8);
-        userMarker.setLatLng([userLat, userLon]);
-        userMarker.setPopupContent(t('hereYouAre'));
+        
+        if(userMarker) userMarker.setLatLng([userLat, userLon]);
+        else {
+            userMarker = L.circleMarker([userLat, userLon], {color:'#7FB069', fillColor:'#7FB069', fillOpacity:1, radius:8}).addTo(map).bindPopup(t('hereYouAre'));
+        }
+        
         fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${userLat}&lon=${userLon}`)
             .then(r=>r.json()).then(d => {
-                document.getElementById('city-input').value = d.address.city || d.address.town || d.address.village || '';
+                const city = d.address.city || d.address.town || d.address.village || '';
+                document.getElementById('city-input').value = city;
+                saveLocation(userLat, userLon, city); // SPEICHERN!
                 setStatus(t('gpsFound')); updateDisplay();
-            }).catch(() => { setStatus(t('gpsFound')); updateDisplay(); });
+            }).catch(() => { 
+                saveLocation(userLat, userLon, ''); 
+                setStatus(t('gpsFound')); updateDisplay(); 
+            });
     }, () => setStatus(t('gpsError')));
 }
+
 async function updateLocation() {
     const city = document.getElementById('city-input').value.trim();
     if (!city) return;
@@ -352,11 +415,16 @@ async function updateLocation() {
         const d = await r.json();
         if (d.length) {
             userLat = parseFloat(d[0].lat); userLon = parseFloat(d[0].lon);
-            map.setView([userLat, userLon], 8); userMarker.setLatLng([userLat, userLon]);
+            map.setView([userLat, userLon], 8); 
+            if(userMarker) userMarker.setLatLng([userLat, userLon]);
+            else userMarker = L.circleMarker([userLat, userLon], {color:'#7FB069', fillColor:'#7FB069', fillOpacity:1, radius:8}).addTo(map).bindPopup(t('hereYouAre'));
+            
+            saveLocation(userLat, userLon, city); // SPEICHERN!
             setStatus(`✅ ${city}`); updateDisplay();
         } else setStatus(t('notFound'));
     } catch(e) { setStatus(t('error')); }
 }
+
 async function loadEvents() {
     try {
         const r = await fetch('events.json?t=' + Date.now());
@@ -370,8 +438,10 @@ async function loadEvents() {
         events = getFallbackEvents();
         setStatus(t('loadError') + ' (' + events.length + ')');
     }
-    updateDisplay();
+    // Wenn Standort schon da ist, direkt anzeigen
+    if(userLat && userLon) updateDisplay();
 }
+
 function getFallbackEvents() {
     return [
         {title:"Summer Jamboree 2026", date:"01.08.2026", city:"Senigallia", lat:43.7147, lon:13.2183, address:"Ponte Rosso, 61122 Senigallia, Italien", desc:"Europas größtes Rockabilly-Festival", url:"https://www.summerjamboree.com", genres:["Rockabilly"]},
@@ -383,17 +453,20 @@ function getFallbackEvents() {
         {title:"Herräng Dance Camp", date:"04.07.2026", city:"Herräng", lat:59.8500, lon:16.9000, desc:"Legendäres Swing Dance Camp Schweden", url:"https://swingcalendar.com/de", genres:["Lindy Hop","Swing","Balboa"]}
     ];
 }
+
 function setGenre(g, el) {
     genre = g;
     document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
     el.classList.add('active');
     updateDisplay();
 }
+
 function clearDateFilter() {
     document.getElementById('date-from').value = '';
     document.getElementById('date-to').value = '';
     updateDisplay();
 }
+
 function getGoogleCalendarUrl(ev) {
     if (!ev.date) return null;
     let startDate = null, endDate = null;
@@ -423,6 +496,7 @@ function getGoogleCalendarUrl(ev) {
     const fmt = d => d.toISOString().slice(0, 10).replace(/-/g, '');
     return `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(ev.title||'Event')}&dates=${fmt(startDate)}/${fmt(endDate)}&details=${encodeURIComponent(ev.desc||'')}&location=${encodeURIComponent(ev.address||ev.city||'')}&sf=true&output=xml`;
 }
+
 function parseEventEndDate(dateStr) {
     if (!dateStr) return null;
     const matches = [...dateStr.matchAll(/(\d{2})\.(\d{2})\.(\d{4})/g)];
@@ -442,6 +516,7 @@ function parseEventEndDate(dateStr) {
     }
     return null;
 }
+
 function parseEventStartDate(dateStr) {
     if (!dateStr) return new Date('9999-12-31');
     const matches = [...dateStr.matchAll(/(\d{2})\.(\d{2})\.(\d{4})/g)];
@@ -458,6 +533,7 @@ function parseEventStartDate(dateStr) {
     }
     return new Date('9999-12-31');
 }
+
 let currentFilteredEvents = [];
 function updateDisplay() {
     radius = parseInt(document.getElementById('radius-slider').value);
@@ -467,7 +543,6 @@ function updateDisplay() {
     markers.clearLayers();
     const today = new Date(); today.setHours(0, 0, 0, 0);
     
-    // Zeitraum-Filter auslesen
     const dateFromVal = document.getElementById('date-from').value;
     const dateToVal = document.getElementById('date-to').value;
     const dateFrom = dateFromVal ? new Date(dateFromVal) : null;
@@ -475,7 +550,7 @@ function updateDisplay() {
     if(dateTo) dateTo.setHours(23, 59, 59, 999);
     
     let processed = events.map(ev => {
-        const dist = getDist(userLat, userLon, ev.lat, ev.lon);
+        const dist = (userLat && userLon && ev.lat && ev.lon) ? getDist(userLat, userLon, ev.lat, ev.lon) : null;
         const endDate = parseEventEndDate(ev.date);
         return {...ev, dist, endDate};
     });
@@ -483,16 +558,24 @@ function updateDisplay() {
     currentFilteredEvents = processed.filter(ev => {
         if (hidePast && ev.endDate && ev.endDate < today) return false;
         
-        // Zeitraum prüfen
         const evStart = parseEventStartDate(ev.date);
         const evEnd = ev.endDate || evStart;
         if (dateFrom && evEnd < dateFrom) return false;
         if (dateTo && evStart > dateTo) return false;
 
-        const inRadius = ev.dist === null || ev.dist <= radius;
         const matchGenre = genre === 'all' || (ev.genres && ev.genres.includes(genre));
         if (!matchGenre) return false;
-        return showAll || inRadius;
+
+        // KORRIGIERTE RADIUS-LOGIK:
+        if (userLat && userLon) {
+            const inRadius = ev.dist !== null && ev.dist <= radius;
+            if (!showAll) {
+                if (ev.dist === null) return false; // Keine Koordinaten = ausblenden
+                if (!inRadius) return false; // Außerhalb = ausblenden
+            }
+        }
+        
+        return true;
     });
     
     currentFilteredEvents.sort((a, b) => {
@@ -528,6 +611,7 @@ function updateDisplay() {
         } catch(e) {}
     }
 }
+
 function loadMoreEvents() {
     const list = document.getElementById('events-list');
     const btn = document.getElementById('load-more-btn');
@@ -540,15 +624,20 @@ function loadMoreEvents() {
     
     const fragment = document.createDocumentFragment();
     chunk.forEach(ev => {
-        const inRadius = ev.dist === null || ev.dist <= radius;
+        const inRadius = userLat && userLon && ev.dist !== null && ev.dist <= radius;
         if (ev.lat && ev.lon) {
             const markerColor = inRadius ? '#C41E3A' : '#FF8C00';
             L.circleMarker([ev.lat, ev.lon], {color: markerColor, fillColor: markerColor, fillOpacity:0.8, radius:6})
                 .addTo(markers).bindPopup(`<b>${ev.title}</b><br>${ev.date||''}<br>📍 ${ev.city||''}`);
         }
         
+        // KORRIGIERTE ENTFERNUNGS-ANZEIGE
         let distTxt = '';
-        if (ev.dist !== null) {
+        if (!userLat || !userLon) {
+            distTxt = `<span class="distance-badge far">📍 Standort wählen</span>`;
+        } else if (ev.dist === null) {
+            distTxt = `<span class="distance-badge far">📍 Entfernung unbekannt</span>`;
+        } else {
             distTxt = inRadius ? `<span class="distance-badge">📍 ${ev.dist} km</span>` : `<span class="distance-badge far">📍 ${ev.dist} km (${t('outsideRadius')})</span>`;
         }
         
@@ -561,10 +650,7 @@ function loadMoreEvents() {
         
         const timeInfo = ev.time ? `<div class="event-detail-row"><strong>${t('timeLabel')}:</strong> ${ev.time}</div>` : '';
         const priceInfo = ev.price ? `<div class="event-detail-row"><strong>${t('priceLabel')}:</strong> ${ev.price}</div>` : '';
-        
-        // Adresse ist nun direkt zur offiziellen Website verlinkt
         const addressInfo = ev.address ? `<div class="event-detail-row"><strong>${t('addressLabel')}:</strong> <a href="${websiteUrl}" target="_blank" rel="noopener noreferrer" style="color:var(--red); text-decoration:underline;">${ev.address}</a></div>` : '';
-        
         const bandsInfo = ev.bands && ev.bands.length > 0 ? `<div class="event-detail-row"><strong>${t('bandsLabel')}:</strong><div class="bands-list">${ev.bands.join(' • ')}</div></div>` : '';
         
         const card = document.createElement('div');
@@ -598,6 +684,7 @@ function loadMoreEvents() {
         btn.style.display = 'none';
     }
 }
+
 function doSearch() {
     const q = document.getElementById('search-input').value.toLowerCase();
     const loc = document.getElementById('search-location').value.toLowerCase();
@@ -638,6 +725,7 @@ function doSearch() {
         }).join('')
         : `<p style="color:#999;padding:10px">${t('nothingFound')}</p>`;
 }
+
 function toggleRadio() {
     const audio = document.getElementById('audio');
     const btn = document.getElementById('play-btn');
@@ -656,12 +744,14 @@ function toggleRadio() {
         });
     } else { audio.pause(); btn.textContent = '▶'; status.textContent = t('radioPaused'); }
 }
+
 function getDist(lat1,lon1,lat2,lon2) {
     if (!lat1||!lat2) return null;
     const R=6371, dLat=(lat2-lat1)*Math.PI/180, dLon=(lon2-lon1)*Math.PI/180;
     const a=Math.sin(dLat/2)**2+Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLon/2)**2;
     return Math.round(R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a)));
 }
+
 function setStatus(msg) { document.getElementById('status').textContent = msg; }
 </script>
 </body>
