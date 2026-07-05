@@ -1,1 +1,3278 @@
-[]
+[
+  {
+    "title": "Rübezahl",
+    "date": "05.07.2026",
+    "city": "Berlin",
+    "plz": "12559",
+    "address": "12559 Berlin",
+    "desc": "goes Country' im Müggelsee-Biergarten",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 52.5173885,
+    "lon": 13.3951309
+  },
+  {
+    "title": "Kloster Nimbschen",
+    "date": "05.07.2026",
+    "city": "Grimma",
+    "plz": "",
+    "address": "Grimma Kloster Nimbschen Nimbschener Landstraße 1, 04668 Grimma",
+    "desc": "Firebirds Festival #14 Das nächste und vierzehnte Firebirds Festival im \" Kloster Nimbschen \" bei Grimma, unweit von Leipzig. Der Termin steht und das Festival ist in Planung. Seit 2024 in einer neuern Location! Freut euch wieder auf zahlreiche Bands, DJs, Workshops und Tanzen, Tanzen, Tanzen... Der Veranstaltungsort ist Kloster Nimbschen , eine passende Kulisse für Musik, Vintagemarkt, Oldtimer und Dance Camp. Auf dem großem Gelände findet man die verschiedenen Anlagen, dazu der Geländeplan . B",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
+    "event_url": "https://kloster-nimbschen.de/de/",
+    "genres": [
+      "Boogie Woogie"
+    ],
+    "lat": 51.2366433,
+    "lon": 12.7288965
+  },
+  {
+    "title": "Rattlesnake Saloon",
+    "date": "07.07.2026",
+    "city": "München",
+    "plz": "80995",
+    "address": "80995 München",
+    "desc": "Schneeglöckchenstr. 89b",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 48.1371079,
+    "lon": 11.5753822
+  },
+  {
+    "title": "Deichstadtfest",
+    "date": "09.07.2026",
+    "city": "Neuwied",
+    "plz": "56564",
+    "address": "56564 Neuwied",
+    "desc": "(9.-12.7.)",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 50.4302393,
+    "lon": 7.466302
+  },
+  {
+    "title": "American Western Saloon",
+    "date": "10.07.2026",
+    "city": "Berlin",
+    "plz": "13439",
+    "address": "13439 Berlin",
+    "desc": "Königshorster Str. 6",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 52.5173885,
+    "lon": 13.3951309
+  },
+  {
+    "title": "Copper",
+    "date": "11.07.2026",
+    "city": "Stollberg",
+    "plz": "52224",
+    "address": "09366 Stollberg",
+    "desc": "Festival",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 50.7087734,
+    "lon": 12.7762607
+  },
+  {
+    "title": "Landesgartenschau",
+    "date": "12.07.2026",
+    "city": "Leinefelde",
+    "plz": "37327",
+    "address": "37327 Leinefelde",
+    "desc": "(23.4.-11.10)",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 51.3878458,
+    "lon": 10.3212678
+  },
+  {
+    "title": "Kantine",
+    "date": "16.07.2026",
+    "city": "Köln",
+    "plz": "50735",
+    "address": "50735 Köln",
+    "desc": "Neusser Landstr. 2",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 50.938361,
+    "lon": 6.959974
+  },
+  {
+    "title": "American Western Saloon",
+    "date": "17.07.2026",
+    "city": "Berlin",
+    "plz": "13439",
+    "address": "13439 Berlin",
+    "desc": "Königshorster Str. 6",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 52.5173885,
+    "lon": 13.3951309
+  },
+  {
+    "title": "HM-Ranch",
+    "date": "18.07.2026",
+    "city": "Bad Lauterberg",
+    "plz": "37431",
+    "address": "37431 Bad Lauterberg",
+    "desc": "Odertal 6",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 51.6313633,
+    "lon": 10.4706667
+  },
+  {
+    "title": "Huxleys",
+    "date": "19.07.2026",
+    "city": "Berlin",
+    "plz": "10967",
+    "address": "10967 Berlin",
+    "desc": "Hasenheide 107-113",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 52.5173885,
+    "lon": 13.3951309
+  },
+  {
+    "title": "(19.-23.7.)",
+    "date": "20.07.2026",
+    "city": "Schleusingen",
+    "plz": "98553",
+    "address": "98553 Schleusingen",
+    "desc": "am",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 50.5416758,
+    "lon": 10.7669624
+  },
+  {
+    "title": "Congress Center Ramstein",
+    "date": "21.07.2026",
+    "city": "Ramstein",
+    "plz": "66877",
+    "address": "66877 Ramstein",
+    "desc": "Am Neuen Markt 4",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 49.4475167,
+    "lon": 7.5554676
+  },
+  {
+    "title": "Open Air Counry & Line Dance Night auf dem Rathausmarkt",
+    "date": "22.07.2026",
+    "city": "Bebra",
+    "plz": "36179",
+    "address": "36179 Bebra",
+    "desc": "Rathausmarkt 1",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Line Dance"
+    ],
+    "lat": 50.9835038,
+    "lon": 9.8388054
+  },
+  {
+    "title": "(19.-23.7.)",
+    "date": "23.07.2026",
+    "city": "Schleusingen",
+    "plz": "98553",
+    "address": "98553 Schleusingen",
+    "desc": "am",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 50.5416758,
+    "lon": 10.7669624
+  },
+  {
+    "title": "Ferienhof Junkern-Beel",
+    "date": "24.07.2026",
+    "city": "Lathen-Hilter",
+    "plz": "49722",
+    "address": "49722 Lathen-Hilter",
+    "desc": "Junkern Beel 1",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ]
+  },
+  {
+    "title": "Fabrik",
+    "date": "25.07.2026",
+    "city": "Hamburg",
+    "plz": "22765",
+    "address": "22765 Hamburg",
+    "desc": "Barnerstr. 36",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 53.5501721,
+    "lon": 10.0013165
+  },
+  {
+    "title": "La Main",
+    "date": "26.07.2026",
+    "city": "Maintal",
+    "plz": "63477",
+    "address": "63477 Maintal",
+    "desc": "Karl-Leis-Str./Ecke Uferstr.",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 50.1438711,
+    "lon": 8.8371266
+  },
+  {
+    "title": "Boogie Feets Tanya und Sondre veranstalten Ende Juli 2026 ein Workshop Wochenend",
+    "date": "27.07.2026",
+    "city": "Oslo",
+    "plz": "",
+    "address": "Norwegen Oslo Boogie Feet Festival, Rosenkrantz' gate 7, 0159 Oslo, Norway",
+    "desc": "Boogie Feets Tanya und Sondre veranstalten Ende Juli 2026 ein Workshop Wochenende und dazu einige Parties. Im Jahr 2026 wieder in Oslo. Die Veranstaltung ist in Planung, der Termin steht schon. Die Anmeldung ist geöffnet. Mehr zum Festival und seiner Geschichte hier: Boogie Feets History Workshops in Boogie Woogie Mehrere Parties Bands & DJs: The Whayttcristmas Five (GER) Lizzy Bourbon & The Cobbler Shakers (FRA) Folgt noch... Trainerteam: Tanya & Sondre (NOR) Wilma & Viktor (SWE) Grzegorz & Agn",
+    "time": null,
+    "price": null,
+    "bands": [
+      "DJs: The Whayttcristmas Five (GER) Lizzy Bourbon"
+    ],
+    "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
+    "event_url": "https://boogiefeetfestival.com/#Facilities",
+    "genres": [
+      "Boogie Woogie"
+    ],
+    "lat": 54.1342666,
+    "lon": 12.0350649
+  },
+  {
+    "title": "Ferienhof Junkern-Beel",
+    "date": "28.07.2026",
+    "city": "Lathen-Hilter",
+    "plz": "49722",
+    "address": "49722 Lathen-Hilter",
+    "desc": "Junkern Beel 1",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ]
+  },
+  {
+    "title": "Ferienhof Junkern-Beel",
+    "date": "29.07.2026",
+    "city": "Lathen-Hilter",
+    "plz": "49722",
+    "address": "49722 Lathen-Hilter",
+    "desc": "Junkern Beel 1",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ]
+  },
+  {
+    "title": "Timberjacks Köln-West",
+    "date": "30.07.2026",
+    "city": "Köln",
+    "plz": "50829",
+    "address": "50829 Köln",
+    "desc": "Garzweilerweg 2",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 50.938361,
+    "lon": 6.959974
+  },
+  {
+    "title": "(31.7-.1.8.)",
+    "date": "31.07.2026",
+    "city": "Mücke",
+    "plz": "06577",
+    "address": "06577 Mücke",
+    "desc": "des",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 50.6272764,
+    "lon": 9.0575621
+  },
+  {
+    "title": "(31.7-.1.8.)",
+    "date": "01.08.2026",
+    "city": "Mücke",
+    "plz": "06577",
+    "address": "06577 Mücke",
+    "desc": "des",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 50.6272764,
+    "lon": 9.0575621
+  },
+  {
+    "title": "(31.7.-2.8.)",
+    "date": "02.08.2026",
+    "city": "Lathen-Hilter",
+    "plz": "49722",
+    "address": "49722 Lathen-Hilter",
+    "desc": "auf dem",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ]
+  },
+  {
+    "title": "Annafest",
+    "date": "03.08.2026",
+    "city": "Forchheim",
+    "plz": "91301",
+    "address": "91301 Forchheim",
+    "desc": "(24.7.-3.8.)",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 49.7122951,
+    "lon": 11.0664285
+  },
+  {
+    "title": "(31.7.-9.8.)",
+    "date": "04.08.2026",
+    "city": "Eging am See",
+    "plz": "94535",
+    "address": "94535 Eging am See",
+    "desc": "in",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 48.7123744,
+    "lon": 13.272393
+  },
+  {
+    "title": "(31.7.-9.8.)",
+    "date": "05.08.2026",
+    "city": "Eging am See",
+    "plz": "94535",
+    "address": "94535 Eging am See",
+    "desc": "in",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 48.7123744,
+    "lon": 13.272393
+  },
+  {
+    "title": "(31.7.-9.8.)",
+    "date": "06.08.2026",
+    "city": "Eging am See",
+    "plz": "94535",
+    "address": "94535 Eging am See",
+    "desc": "in",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 48.7123744,
+    "lon": 13.272393
+  },
+  {
+    "title": "Truckertreffen auf dem Lausitzring",
+    "date": "07.08.2026",
+    "city": "Schipkau",
+    "plz": "01998",
+    "address": "01998 Schipkau",
+    "desc": "(7.-9.8.)",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 51.5186554,
+    "lon": 13.9004375
+  },
+  {
+    "title": "Truckertreffen auf dem Lausitzring",
+    "date": "08.08.2026",
+    "city": "Schipkau",
+    "plz": "01998",
+    "address": "01998 Schipkau",
+    "desc": "(7.-9.8.)",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 51.5186554,
+    "lon": 13.9004375
+  },
+  {
+    "title": "06. bis 08.08.2027",
+    "date": "08.08.2026",
+    "city": "",
+    "plz": "",
+    "address": "Deutschland Zwönitz Marktplatz/Stadtmitte",
+    "desc": "Sommer Oldies 2027 Originaltext vom Veranstalter Yellow Boogie Dancers : Aller zwei Jahre im August - das nächste Mal vom 06. bis 08.08.2027 -  heißt es \"Herzlich willkommen\" in Zwönitz zu einem tollen Wochenende voller Rock'n Roll und Benzin in der Luft, mit fliegenden Röcken, Lederjacken und nostalgischen Fahrzeugen! Lassen Sie sich entführen in die Zeit der 50er, bestaunen Sie blankpolierte Oldtimer, hübsche Mädels und flotte Jungs und feiern Sie bei heißen Evergreens und fetzigen Shows mit! ",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
+    "event_url": "https://www.yellow-boogie-zwoenitz.de",
+    "genres": [
+      "Boogie Woogie"
+    ]
+  },
+  {
+    "title": "Truckertreffen auf dem Lausitzring",
+    "date": "09.08.2026",
+    "city": "Schipkau",
+    "plz": "01998",
+    "address": "01998 Schipkau",
+    "desc": "(7.-9.8.)",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 51.5186554,
+    "lon": 13.9004375
+  },
+  {
+    "title": "Summer Shelter Originaltext vom Veranstalter: Das RocknRoll Open Air Festival be",
+    "date": "09.08.2026",
+    "city": "Biederitz",
+    "plz": "",
+    "address": "Deutschland Magdeburg Bunker Heyrothsberge Parkweg 1A, 39175 Biederitz",
+    "desc": "Summer Shelter Originaltext vom Veranstalter: Das RocknRoll Open Air Festival bei Magdeburg. Mit Live Bands, Shows, Marketplace und Cars. Bunte Lichterkettenin den Bäumen an sommerlichen Abenden, Dazu tolle Musik, kühle Drinks und schicke Leuete. Summershelter ist ein familiäres, kleines Festival mit einer einmaligen, urigen Atmosphäre. Livebands aus allen Sparten des Rock`n`Roll geben sich hier die Ehre. Dazu gibt es ein tollen Markt mit vielen individuellen Ausstellern und Künstlern. Shows, DJ",
+    "time": null,
+    "price": null,
+    "bands": [
+      "Bands",
+      "Marketplace",
+      "Cars"
+    ],
+    "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
+    "event_url": "https://summershelter.de/",
+    "genres": [
+      "Rock'n'Roll"
+    ],
+    "lat": 52.1567102,
+    "lon": 11.7198326
+  },
+  {
+    "title": "JURA Volksfest",
+    "date": "10.08.2026",
+    "city": "Neumarkt",
+    "plz": "92318",
+    "address": "92318 Neumarkt",
+    "desc": "(7.-17.8.)",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 49.2800542,
+    "lon": 11.4585353
+  },
+  {
+    "title": "live  in",
+    "date": "11.08.2026",
+    "city": "Eging am See",
+    "plz": "94535",
+    "address": "94535 Eging am See",
+    "desc": "Pullman City",
+    "time": null,
+    "price": null,
+    "bands": [
+      "in Pullman City"
+    ],
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 48.7123744,
+    "lon": 13.272393
+  },
+  {
+    "title": "JURA Volksfest",
+    "date": "12.08.2026",
+    "city": "Neumarkt",
+    "plz": "92318",
+    "address": "92318 Neumarkt",
+    "desc": "(7.-17.8.)",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 49.2800542,
+    "lon": 11.4585353
+  },
+  {
+    "title": "Music & Line Dance im",
+    "date": "14.08.2026",
+    "city": "Mücke",
+    "plz": "35325",
+    "address": "35325 Mücke",
+    "desc": "Burger & More",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Line Dance"
+    ],
+    "lat": 50.6272764,
+    "lon": 9.0575621
+  },
+  {
+    "title": "Hotel Lehn",
+    "date": "15.08.2026",
+    "city": "Saulheim",
+    "plz": "56291",
+    "address": "56291 Saulheim",
+    "desc": "Neupforte 19",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 49.8749364,
+    "lon": 8.1507729
+  },
+  {
+    "title": "ASV Hattersheim",
+    "date": "16.08.2026",
+    "city": "Hattersheim",
+    "plz": "65795",
+    "address": "65795 Hattersheim",
+    "desc": "Anglersee (Vereinsgelände)",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 50.056,
+    "lon": 8.4819
+  },
+  {
+    "title": "(17.-23.8.)",
+    "date": "17.08.2026",
+    "city": "Eging am See",
+    "plz": "94535",
+    "address": "94535 Eging am See",
+    "desc": "in",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 48.7123744,
+    "lon": 13.272393
+  },
+  {
+    "title": "(17.-23.8.)",
+    "date": "18.08.2026",
+    "city": "Eging am See",
+    "plz": "94535",
+    "address": "94535 Eging am See",
+    "desc": "in",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 48.7123744,
+    "lon": 13.272393
+  },
+  {
+    "title": "Zum Mühlenwirt",
+    "date": "19.08.2026",
+    "city": "Solnhofen",
+    "plz": "91807",
+    "address": "91807 Solnhofen",
+    "desc": "Eßlinger Str. 3",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 48.8972061,
+    "lon": 11.0013236
+  },
+  {
+    "title": "Marktplatz",
+    "date": "20.08.2026",
+    "city": "Edewecht",
+    "plz": "26188",
+    "address": "26188 Edewecht",
+    "desc": "Rathausstr. 7",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 53.1283992,
+    "lon": 7.9855044
+  },
+  {
+    "title": "(21-23.8.)",
+    "date": "21.08.2026",
+    "city": "Rossleben",
+    "plz": "06571",
+    "address": "06571 Rossleben",
+    "desc": "der",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 51.2973072,
+    "lon": 11.4327733
+  },
+  {
+    "title": "Rothenburger Landstr. 60",
+    "date": "22.08.2026",
+    "city": "Görlitz",
+    "plz": "02828",
+    "address": "02828 Görlitz",
+    "desc": "Interpret:",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 51.1563185,
+    "lon": 14.991018
+  },
+  {
+    "title": "DJ Jule",
+    "date": "22.08.2026",
+    "city": "Burgstädt",
+    "plz": "",
+    "address": "Deutschland Burgstädt Hotel Goldener Löwe Burkersdorfer Straße 122 09217 Burgstädt",
+    "desc": "Tanz Spezial - Sommernachtsswing Social Dance im Tanzsaal des Hotels \"Goldener Löwe\" verschiedenen Musikrichtungen und Tänzen wie Lindy Hop, Boogie Woogie und Balboa der Swing-Zeit. DJ Jule Beginn: 20:00 Uhr Weitere Informationen hier: Sommernachtsswing",
+    "time": "20:00",
+    "price": null,
+    "bands": [
+      "richtungen",
+      "Tänzen wie Lindy Hop",
+      "Boogie Woogie",
+      "Balboa der Swing-Zeit"
+    ],
+    "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
+    "event_url": "https://www.loewe-burgstaedt.de/",
+    "genres": [
+      "Boogie Woogie",
+      "Balboa",
+      "Lindy Hop"
+    ],
+    "lat": 50.9199843,
+    "lon": 12.8056571
+  },
+  {
+    "title": "(21-23.8.)",
+    "date": "23.08.2026",
+    "city": "Rossleben",
+    "plz": "06571",
+    "address": "06571 Rossleben",
+    "desc": "der",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 51.2973072,
+    "lon": 11.4327733
+  },
+  {
+    "title": "Das erwartet euch:",
+    "date": "23.08.2026",
+    "city": "Bremen",
+    "plz": "",
+    "address": "Deutschland Flugplatz Ganderkesee Bei Bremen",
+    "desc": "Rock'n'Roll Festival Originaltext vom Veranstalter: Rock ’n‘ Roll Festival Ganderkesee – Ein Wochenende wie in den 50ern und 60ern! Taucht ein in die glanzvolle Welt des Rock ’n‘ Roll! Am Flugplatz Ganderkesee erwartet euch ein Festivalerlebnis der Extraklasse. Umgeben von historischen Flugzeugen, glänzenden Oldtimern und einer stilvollen Retro- & Vintage-Shopping-Meile erlebt ihr eine Zeitreise, die das Herz jedes Rock ’n‘ Roll-Fans höherschlagen lässt. Das erwartet euch: Top-Acts & DJs: Live B",
+    "time": null,
+    "price": "Eintritt frei",
+    "bands": [
+      "Bands",
+      "Deejays sorgen für mitreißende Beats",
+      "die perfekte Tanzstimmung"
+    ],
+    "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
+    "event_url": "https://rocknroll-festival.de/",
+    "genres": [
+      "Rockabilly",
+      "Rock'n'Roll",
+      "Swing"
+    ],
+    "lat": 53.0758196,
+    "lon": 8.8071646
+  },
+  {
+    "title": "Rock'n'Roll Festival Ganderkesee",
+    "date": "23.08.2026",
+    "city": "Ganderkesee",
+    "plz": "",
+    "address": "Flugplatz Ganderkesee, Otto-Lilienthal-Str. 23",
+    "desc": "Rock'n'Roll Festival Ganderkesee - 21.-23.08.2026. Let's rock! Zum Inhalt springen Home Festival Programm Location So war 2018 2023 2024 2025 Tickets FAQ Home Festival Programm Location So war 2018 2023 2024 2025 Tickets FAQ 21. - 23. August 2026 Flugplatz Ganderkesee (bei Bremen) 00 Tage 00 Stunden 00 Minuten 00 Sekunden 3 Tage Rock’n’Roll Festival Rock ’n‘ Roll Festival Ganderkesee – Ein Wochenende wie in den 50ern und 60ern! Taucht ein in die glanzvolle Welt des Rock ’n‘ Roll! Am Flugplatz Ga",
+    "time": "0:00",
+    "price": "5 €",
+    "bands": [
+      "Bands",
+      "Deejays sorgen für mitreißende Beats",
+      "die perfekte Tanzstimmung"
+    ],
+    "url": "https://rocknroll-festival.de/",
+    "event_url": "https://rocknroll-festival.de/",
+    "genres": [
+      "Rock'n'Roll",
+      "Rockabilly"
+    ],
+    "lat": 53.0344984,
+    "lon": 8.5451469
+  },
+  {
+    "title": "Britzer Mühle",
+    "date": "24.08.2026",
+    "city": "Berlin",
+    "plz": "12349",
+    "address": "12349 Berlin",
+    "desc": "Buckower Damm 130",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 52.5173885,
+    "lon": 13.3951309
+  },
+  {
+    "title": "Pullman City",
+    "date": "26.08.2026",
+    "city": "Eging am See",
+    "plz": "94535",
+    "address": "94535 Eging am See",
+    "desc": "Ruberting 30",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 48.7123744,
+    "lon": 13.272393
+  },
+  {
+    "title": "Pullman City",
+    "date": "27.08.2026",
+    "city": "Eging am See",
+    "plz": "94535",
+    "address": "94535 Eging am See",
+    "desc": "Ruberting 30",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 48.7123744,
+    "lon": 13.272393
+  },
+  {
+    "title": "American Western Saloon",
+    "date": "28.08.2026",
+    "city": "Berlin",
+    "plz": "13439",
+    "address": "13439 Berlin",
+    "desc": "Königshorster Str. 6",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 52.5173885,
+    "lon": 13.3951309
+  },
+  {
+    "title": "Burger & More",
+    "date": "29.08.2026",
+    "city": "Mücke",
+    "plz": "35325",
+    "address": "35325 Mücke",
+    "desc": "Hindenburgstr. 28",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 50.6272764,
+    "lon": 9.0575621
+  },
+  {
+    "title": "Swing Dance Night Swing Dance mit Balboa & Lindy Hop",
+    "date": "29.08.2026",
+    "city": "Leipzig",
+    "plz": "",
+    "address": "Deutschland Leipzig Swing Dance Leipzig Holbeinstraße 29, 04229 Leipzig",
+    "desc": "Swing Dance Night Swing Dance mit Balboa & Lindy Hop. Eine Veranstaltung von Swing Dance Leipzig . Originaltext vom Veranstalter: Einmal im Monat bieten wir einen Tanzabend an mit ausgewählter Swing Musik aller Art und Tempi, einen gemütlichen Raum mit Atmosphäre, Parkettboden, Sitzmöglichkeiten und natürlich Getränke für jeden Geschmack. Beginn: 21:00 Uhr Weitere Informationen hier: Swing Dance Night",
+    "time": "21:00",
+    "price": null,
+    "bands": [
+      "aller Art",
+      "Tempi",
+      "einen gemütlichen Raum mit Atmosphäre",
+      "Parkettboden",
+      "Sitzmöglichkeiten"
+    ],
+    "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
+    "event_url": "https://www.swingdanceleipzig.com/",
+    "genres": [
+      "Balboa",
+      "Lindy Hop"
+    ],
+    "lat": 51.3406321,
+    "lon": 12.3747329
+  },
+  {
+    "title": "Truckerfest Birstein",
+    "date": "30.08.2026",
+    "city": "Birstein",
+    "plz": "63633",
+    "address": "63633 Birstein",
+    "desc": "Festplatz an der Hauptstr.",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 50.3923,
+    "lon": 9.30438
+  },
+  {
+    "title": "Live Bands:",
+    "date": "30.08.2026",
+    "city": "Königsleitn",
+    "plz": "",
+    "address": "Österreich Theater- und Feriendorf Königsleitn",
+    "desc": "5,6,7 Swing Dance Camp Ein Dance Camp für Boogie Woogie im Theater- und Feriendorf Königsleitn . Die Veranstaltung ist geplant, der Termin steht schon. 2 Tage Workshops in Boogie Woogie 2 Parties (Freitag und Sonnabend) Live Bands: Folgt noch Trainerteam: Folgt noch... Jessica Kaiser & Markus Kakuska (AUT) Weitere Informationen hier: Swing Dance Camp",
+    "time": null,
+    "price": "Eintritt frei",
+    "bands": null,
+    "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
+    "event_url": "https://koenigsleitn.at/",
+    "genres": [
+      "Boogie Woogie",
+      "Swing"
+    ]
+  },
+  {
+    "title": "Pullman City",
+    "date": "31.08.2026",
+    "city": "Eging am See",
+    "plz": "94535",
+    "address": "94535 Eging am See",
+    "desc": "Ruberting 30",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 48.7123744,
+    "lon": 13.272393
+  },
+  {
+    "title": "live in",
+    "date": "01.09.2026",
+    "city": "Eging am See",
+    "plz": "94535",
+    "address": "94535 Eging am See",
+    "desc": "Pullman City",
+    "time": null,
+    "price": null,
+    "bands": [
+      "in Pullman City"
+    ],
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 48.7123744,
+    "lon": 13.272393
+  },
+  {
+    "title": "Watt'n Country - Festival",
+    "date": "03.09.2026",
+    "city": "Wangerland",
+    "plz": "26424",
+    "address": "26424 Wangerland",
+    "desc": "(3.-6.9.)",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 53.6469448,
+    "lon": 7.9404425
+  },
+  {
+    "title": "Watt'n Country - Festival",
+    "date": "04.09.2026",
+    "city": "Wangerland",
+    "plz": "26424",
+    "address": "26424 Wangerland",
+    "desc": "(3.-6.9.)",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 53.6469448,
+    "lon": 7.9404425
+  },
+  {
+    "title": "Watt'n Country - Festival",
+    "date": "05.09.2026",
+    "city": "Wangerland",
+    "plz": "26424",
+    "address": "26424 Wangerland",
+    "desc": "(3.-6.9.)",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 53.6469448,
+    "lon": 7.9404425
+  },
+  {
+    "title": "Watt'n Country - Festival",
+    "date": "06.09.2026",
+    "city": "Wangerland",
+    "plz": "26424",
+    "address": "26424 Wangerland",
+    "desc": "(3.-6.9.)",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 53.6469448,
+    "lon": 7.9404425
+  },
+  {
+    "title": "S A V E  T H E  D A T E",
+    "date": "06.09.2026",
+    "city": "Leipzig",
+    "plz": "",
+    "address": "Leipzig Markkleeberg bei Leipzig Rathausstraße & Mehringstraße",
+    "desc": "25. Boogie Attack Zweitägiges Seminar mit Workshops für Boogie Woogie und Rockabilly Jive, vom Anfänger bis hin zum Fortgeschrittenem. Top-Trainer werden euch in verschiedenen Levels (Beginners, Intermediate, Intermediate/Advanced, Advanced) unterrichten. Dazu eine Social Dance Party mit Band, DJ und Show-Einlagen am Sonnabend im Festsaal \"Lindensaal\" Markkleeberg \". Hier können die Workshopteilnehmer gleich die neu erlernten Techniken und Moves ausprobieren. Zur großen Party wird es wieder zusä",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
+    "event_url": "https://www.markkleeberg.de/freizeit-und-tourismus/veranstaltungen/veranstaltungsraeume",
+    "genres": [
+      "Rockabilly",
+      "Boogie Woogie"
+    ],
+    "lat": 51.3406321,
+    "lon": 12.3747329
+  },
+  {
+    "title": "Sound of Nashville",
+    "date": "08.09.2026",
+    "city": "Stuttgart",
+    "plz": "70327",
+    "address": "70327 Stuttgart",
+    "desc": "präsentiert im Rahmen seiner 'Tumbleweed World Tour' im",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 48.7784485,
+    "lon": 9.1800132
+  },
+  {
+    "title": "Sound of Nashville",
+    "date": "09.09.2026",
+    "city": "München",
+    "plz": "81671",
+    "address": "81671 München",
+    "desc": "präsentiert im Rahmen seiner 'Tumbleweed World Tour' in der",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 48.1371079,
+    "lon": 11.5753822
+  },
+  {
+    "title": "Chemnitzer Kabarett",
+    "date": "10.09.2026",
+    "city": "Chemnitz",
+    "plz": "09111",
+    "address": "09111 Chemnitz",
+    "desc": "An der Markthalle 1-3",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 50.8323531,
+    "lon": 12.918914
+  },
+  {
+    "title": "Live Tanz Bar",
+    "date": "10.09.2026",
+    "city": "Dresden",
+    "plz": "01324",
+    "address": "01324 Dresden",
+    "desc": "Social mit Live-Band im Parkhotel auf dem Weißen Hirsch.",
+    "time": "20:00 Uhr",
+    "url": "https://www.dresden-hepcats.de/socials-de",
+    "event_url": "https://www.dresden-hepcats.de/socials-de",
+    "genres": [
+      "Swing"
+    ],
+    "lat": 51.0493286,
+    "lon": 13.7381437
+  },
+  {
+    "title": "Zur Alten Burg",
+    "date": "11.09.2026",
+    "city": "Rodalben",
+    "plz": "66976",
+    "address": "66976 Rodalben",
+    "desc": "In der Hettersbach 1",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 49.2384912,
+    "lon": 7.6392258
+  },
+  {
+    "title": "Schweizerberg 1a",
+    "date": "12.09.2026",
+    "city": "Niederstriegis",
+    "plz": "04741",
+    "address": "04741 Niederstriegis",
+    "desc": "Interpreten:",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 51.0833527,
+    "lon": 13.1500477
+  },
+  {
+    "title": "Stadtfest",
+    "date": "13.09.2026",
+    "city": "Landstuhl",
+    "plz": "66849",
+    "address": "66849 Landstuhl",
+    "desc": "(11.-13.9.)",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 49.4143311,
+    "lon": 7.5722301
+  },
+  {
+    "title": "Sound of Nashville",
+    "date": "14.09.2026",
+    "city": "Köln",
+    "plz": "51063",
+    "address": "51063 Köln",
+    "desc": "präsentiert im Rahmen seiner 'Tumbleweed World Tour' im",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 50.938361,
+    "lon": 6.959974
+  },
+  {
+    "title": "Chemnitzer Kabarett",
+    "date": "17.09.2026",
+    "city": "Chemnitz",
+    "plz": "09111",
+    "address": "09111 Chemnitz",
+    "desc": "An der Markthalle 1-3",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 50.8323531,
+    "lon": 12.918914
+  },
+  {
+    "title": "Music & Line Dance im",
+    "date": "18.09.2026",
+    "city": "Mücke",
+    "plz": "35325",
+    "address": "35325 Mücke",
+    "desc": "Burger & More",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Line Dance"
+    ],
+    "lat": 50.6272764,
+    "lon": 9.0575621
+  },
+  {
+    "title": "Stadtfest",
+    "date": "19.09.2026",
+    "city": "Celle",
+    "plz": "29221",
+    "address": "29221 Celle",
+    "desc": "(18.-19.9.)",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 52.624056,
+    "lon": 10.081052
+  },
+  {
+    "title": "Swing Dance Night Swing Dance mit Balboa & Lindy Hop",
+    "date": "19.09.2026",
+    "city": "Leipzig",
+    "plz": "",
+    "address": "Deutschland Leipzig Swing Dance Leipzig Holbeinstraße 29, 04229 Leipzig",
+    "desc": "Swing Dance Night Swing Dance mit Balboa & Lindy Hop. Eine Veranstaltung von Swing Dance Leipzig . Originaltext vom Veranstalter: Einmal im Monat bieten wir einen Tanzabend an mit ausgewählter Swing Musik aller Art und Tempi, einen gemütlichen Raum mit Atmosphäre, Parkettboden, Sitzmöglichkeiten und natürlich Getränke für jeden Geschmack. Beginn: 21:00 Uhr Weitere Informationen hier: Swing Dance Night",
+    "time": "21:00",
+    "price": null,
+    "bands": [
+      "aller Art",
+      "Tempi",
+      "einen gemütlichen Raum mit Atmosphäre",
+      "Parkettboden",
+      "Sitzmöglichkeiten"
+    ],
+    "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
+    "event_url": "https://www.swingdanceleipzig.com/",
+    "genres": [
+      "Balboa",
+      "Lindy Hop"
+    ],
+    "lat": 51.3406321,
+    "lon": 12.3747329
+  },
+  {
+    "title": "Haaner Altstadt Tagen",
+    "date": "20.09.2026",
+    "city": "Dreieichenhain",
+    "plz": "63303",
+    "address": "63303 Dreieichenhain",
+    "desc": "Fahrgasse",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 50.0030445,
+    "lon": 8.7101086
+  },
+  {
+    "title": "Swiss Boogie Weekend Originaltext vom Veranstalter: Wir bieten Workshops für unt",
+    "date": "20.09.2026",
+    "city": "Zürich",
+    "plz": "",
+    "address": "Schweiz Zürich Club Silbando Förrlibuckstrasse 62, 8005 Zürich",
+    "desc": "Swiss Boogie Weekend Originaltext vom Veranstalter: Wir bieten Workshops für unterschiedliche Levels an, von Beginner bis zu Advanced ist für alle etwas dabei. Und falls du solange nicht warten kannst, hast du die Möglichkeit jetzt schon mit Boogie Woogie bei den Crazy Shakers in Zürich durchzustarten. 3 Tage Workshops in Boogie Woogie Party mit Live Band Bands & DJs: Super Swing Brothers Trainerteam: Sondre & Tanya (NOR) Wilma & Victor (SWE) Sophie & Thomas (FRA) Alice & William (ITA) Paula & R",
+    "time": null,
+    "price": null,
+    "bands": [
+      "Band Bands",
+      "DJs: Super Swing Brothers Trainerteam: Sondre",
+      "Tanya (NOR) Wilma",
+      "Victor (SWE) Sophie",
+      "Thomas (FRA) Alice"
+    ],
+    "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
+    "event_url": "https://www.boogieweekend.ch/",
+    "genres": [
+      "Boogie Woogie",
+      "Swing"
+    ],
+    "lat": 48.1118989,
+    "lon": 11.5040018
+  },
+  {
+    "title": "Alten Theater am Jerichower Platz",
+    "date": "24.09.2026",
+    "city": "Magdeburg",
+    "plz": "39114",
+    "address": "39114 Magdeburg",
+    "desc": "Tessenowstr. 11",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 52.1314783,
+    "lon": 11.6400789
+  },
+  {
+    "title": "Bürgerhaus",
+    "date": "25.09.2026",
+    "city": "Neuenhagen",
+    "plz": "15366",
+    "address": "15366 Neuenhagen",
+    "desc": "Hauptstr. 2",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 53.7467873,
+    "lon": 13.1115253
+  },
+  {
+    "title": "Kultur- und Kongresszentrum",
+    "date": "26.09.2026",
+    "city": "Gera",
+    "plz": "07545",
+    "address": "07545 Gera",
+    "desc": "Schloßstr. 1",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 50.8765528,
+    "lon": 12.0832674
+  },
+  {
+    "title": "Kulturweberei",
+    "date": "27.09.2026",
+    "city": "Finsterwalde",
+    "plz": "03238",
+    "address": "03238 Finsterwalde",
+    "desc": "Oscar-Kjellberg-Str. 9",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 51.6315282,
+    "lon": 13.707358
+  },
+  {
+    "title": "Live Tanz Bar",
+    "date": "01.10.2026",
+    "city": "Dresden",
+    "plz": "01324",
+    "address": "01324 Dresden",
+    "desc": "Social mit Live-Band im Parkhotel auf dem Weißen Hirsch.",
+    "time": "20:00 Uhr",
+    "url": "https://www.dresden-hepcats.de/socials-de",
+    "event_url": "https://www.dresden-hepcats.de/socials-de/upcoming-socials-de/social-livetanzbar-2026-10-01",
+    "genres": [
+      "Swing",
+      "Lindy Hop"
+    ],
+    "lat": 51.0493286,
+    "lon": 13.7381437
+  },
+  {
+    "title": "Music & Line Dance im Dorfgemeinschaftshaus Zum Kruggelsche",
+    "date": "02.10.2026",
+    "city": "Limburg",
+    "plz": "65551",
+    "address": "65551 Limburg",
+    "desc": "Am Wingert 6",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Line Dance"
+    ],
+    "lat": 50.3880447,
+    "lon": 8.063531
+  },
+  {
+    "title": "Country Club Nienstedt",
+    "date": "03.10.2026",
+    "city": "Bassum",
+    "plz": "27211",
+    "address": "27211 Bassum",
+    "desc": "Nienstedt 14",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 52.8495881,
+    "lon": 8.728382
+  },
+  {
+    "title": "Biergarten im Schlossgarten",
+    "date": "04.10.2026",
+    "city": "Stuttgart",
+    "plz": "70173",
+    "address": "70173 Stuttgart",
+    "desc": "Am Schlossgarten 18",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 48.7784485,
+    "lon": 9.1800132
+  },
+  {
+    "title": "Golden Nugget Saloon",
+    "date": "07.10.2026",
+    "city": "Stuttgart",
+    "plz": "70439",
+    "address": "70439 Stuttgart",
+    "desc": "Münchinger Str. 90",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 48.7784485,
+    "lon": 9.1800132
+  },
+  {
+    "title": "Landhotel Küffner",
+    "date": "09.10.2026",
+    "city": "Pfedelbach",
+    "plz": "74629",
+    "address": "74629 Pfedelbach",
+    "desc": "Max-Eyth-Str. 8",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 49.1781,
+    "lon": 9.505
+  },
+  {
+    "title": "OMCD Strausberg",
+    "date": "10.10.2026",
+    "city": "Strausberg",
+    "plz": "15344",
+    "address": "15344 Strausberg",
+    "desc": "Landhausstr. 16-18",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 52.5814009,
+    "lon": 13.8833952
+  },
+  {
+    "title": "Music & Line Dance im",
+    "date": "11.10.2026",
+    "city": "Ranstadt",
+    "plz": "63691",
+    "address": "63691 Ranstadt",
+    "desc": "L'incontro",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Line Dance"
+    ],
+    "lat": 50.36681,
+    "lon": 8.98438
+  },
+  {
+    "title": "Rhythm Riot 2026 4 Tage für Fans von Rock'n'Roll und Rhythm & Blues der 50er",
+    "date": "12.10.2026",
+    "city": "Au",
+    "plz": "",
+    "address": "England VAUXHALL HOLIDAY PARK ACLE NEW ROAD, GREAT YARMOUTH NR30 1TB",
+    "desc": "Rhythm Riot 2026 4 Tage für Fans von Rock'n'Roll und Rhythm & Blues der 50er. Viele Bands und ein großes Programm drum herum. Bands & DJs: Ray Collins Hot Club (GER) GIZZELLE and His Band (USA) Sean 'Mack' McDonalds (USA/FRA) Peter & The Wolves (CAN) The Truffle Valley Boys (ITA) Und viele mehr... Weitere Informationen hier: Rhythm Riot",
+    "time": null,
+    "price": null,
+    "bands": [
+      "und ein großes Programm drum herum"
+    ],
+    "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
+    "event_url": "https://rhythmriot.com/",
+    "genres": [
+      "Rock'n'Roll"
+    ],
+    "lat": 47.9552898,
+    "lon": 7.8296094
+  },
+  {
+    "title": "Sound of Nashville",
+    "date": "13.10.2026",
+    "city": "München",
+    "plz": "80639",
+    "address": "80639 München",
+    "desc": "präsentiert im",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 48.1371079,
+    "lon": 11.5753822
+  },
+  {
+    "title": "Sound of Nashville",
+    "date": "14.10.2026",
+    "city": "Köln",
+    "plz": "50735",
+    "address": "50735 Köln",
+    "desc": "präsentiert im",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 50.938361,
+    "lon": 6.959974
+  },
+  {
+    "title": "Stadthalle",
+    "date": "15.10.2026",
+    "city": "Lahnstein",
+    "plz": "56112",
+    "address": "56112 Lahnstein",
+    "desc": "Salhofplatz 1",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 50.3090305,
+    "lon": 7.6044602
+  },
+  {
+    "title": "in der Feldhofhalle",
+    "date": "16.10.2026",
+    "city": "Beverstedt",
+    "plz": "27616",
+    "address": "27616 Beverstedt",
+    "desc": "Feldhofstr. 8",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 53.4340645,
+    "lon": 8.8183369
+  },
+  {
+    "title": "Hannoversche Str. 45",
+    "date": "17.10.2026",
+    "city": "Asendorf",
+    "plz": "27320",
+    "address": "27320 Asendorf",
+    "desc": "Interpret:",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 52.7728283,
+    "lon": 9.0057116
+  },
+  {
+    "title": "Cherry Casinso and The Gamblers",
+    "date": "17.10.2026",
+    "city": "Wolfenbüttel",
+    "plz": "",
+    "address": "Deutschland Wolfenbüttel Kubahalle Lindener Straße 15, 38300 Wolfenbüttel",
+    "desc": "Rockabilly Night #35 Originaltext vom Veranstalter: Rockabilly Night #35 ... Termin fett im Kalender vormerken. Bei Facebook zusagen. Freunden von dieser tollen Veranstaltung erzählen und einladen. Verabreden und mitbringen. Es ist auch EURE Veranstaltung! >>> CHERRY CASINO and the GAMBLERS ... die alten Freunde der Rockabilly Night kehren zurück auf unsere Bühne und bringen ihre lang erwartete neue Platte mit. Eine sehr große Freude für uns! >>> THE ROUNDUP BOYS ... Frontmann Humpty bringt die ",
+    "time": "20:00",
+    "price": null,
+    "bands": null,
+    "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
+    "event_url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
+    "genres": [
+      "Rockabilly"
+    ],
+    "lat": 52.1625283,
+    "lon": 10.5348215
+  },
+  {
+    "title": "Music & Line Dance im",
+    "date": "18.10.2026",
+    "city": "Mücke",
+    "plz": "35325",
+    "address": "35325 Mücke",
+    "desc": "Burger & More",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Line Dance"
+    ],
+    "lat": 50.6272764,
+    "lon": 9.0575621
+  },
+  {
+    "title": "19",
+    "date": "18.10.2026",
+    "city": "Haimhausen",
+    "plz": "",
+    "address": "Deutschland Haimhausen Vereinsheim Moosachstraße 86, 85778 Heimhausen-Inhausermoos",
+    "desc": "19. Moosquitos Tanztage Workshop-Wochende zu Boogie Woogie, West Coast Swing und Discofox. Dazu eine Party am Sonnabend mit besten Social Dance. Live on Stage: DJs Trainerteam: Angela Lex & Matthias Rein (GER) Jessica Kaiser & Markus Kakuschka (AUT) Rahel Greiner & Attila Kobori (AUT) Jasmine Klee & Joscha Brick (GER/AUT) Urs & Bettina Zimmermann (CH) Weitere Informationen hier: Moosquitos Tanztage",
+    "time": null,
+    "price": null,
+    "bands": [
+      "on Stage: DJs Trainerteam: Angela Lex",
+      "Matthias Rein (GER) Jessica Kaiser",
+      "Markus Kakuschka (AUT) Rahel Greiner",
+      "Attila Kobori (AUT) Jasmine Klee",
+      "Joscha Brick (GER/AUT) Urs"
+    ],
+    "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
+    "event_url": "https://moosquitos.de/",
+    "genres": [
+      "West Coast Swing",
+      "Boogie Woogie"
+    ],
+    "lat": 48.315762,
+    "lon": 11.554494
+  },
+  {
+    "title": "Friedrich-Ebert-Halle",
+    "date": "21.10.2026",
+    "city": "Hamburg",
+    "plz": "21075",
+    "address": "21075 Hamburg",
+    "desc": "Alter Postweg 24",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 53.5501721,
+    "lon": 10.0013165
+  },
+  {
+    "title": "VEC Hallen",
+    "date": "22.10.2026",
+    "city": "Vechta",
+    "plz": "49377",
+    "address": "49377 Vechta",
+    "desc": "Buchholzstr. 14",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 52.7310691,
+    "lon": 8.2873162
+  },
+  {
+    "title": "Stadthalle",
+    "date": "23.10.2026",
+    "city": "Osterholz",
+    "plz": "27711",
+    "address": "27711 Osterholz",
+    "desc": "Jakob-Frerichs-Str. 1",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 53.2604518,
+    "lon": 8.7435145
+  },
+  {
+    "title": "Gasthaus Dorfkrug",
+    "date": "24.10.2026",
+    "city": "Elsteraue",
+    "plz": "06729",
+    "address": "06729 Elsteraue",
+    "desc": "Rehmsdorfer Hauptstr. 6",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 51.0787654,
+    "lon": 12.2136328
+  },
+  {
+    "title": "VERDO",
+    "date": "25.10.2026",
+    "city": "Hitzacker",
+    "plz": "29456",
+    "address": "29456 Hitzacker",
+    "desc": "Dr.-Helmut-Meyer-Weg 1",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 53.1512116,
+    "lon": 11.0440938
+  },
+  {
+    "title": "Semmel Concerts",
+    "date": "27.10.2026",
+    "city": "Frankfurt",
+    "plz": "60388",
+    "address": "60388 Frankfurt",
+    "desc": "präsentiert im Rahmen seiner 'World Tour 2026' in der",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 50.1106444,
+    "lon": 8.6820917
+  },
+  {
+    "title": "Semmel Concerts",
+    "date": "28.10.2026",
+    "city": "Berlin",
+    "plz": "10967",
+    "address": "10967 Berlin",
+    "desc": "präsentiert im Rahmen seiner 'World Tour 2026' im",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 52.5173885,
+    "lon": 13.3951309
+  },
+  {
+    "title": "Semmel Concerts",
+    "date": "29.10.2026",
+    "city": "Hamburg",
+    "plz": "20359",
+    "address": "20359 Hamburg",
+    "desc": "präsentiert im Rahmen seiner 'World Tour 2026' in der",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 53.5501721,
+    "lon": 10.0013165
+  },
+  {
+    "title": "Gasthof Zur Kastanie",
+    "date": "30.10.2026",
+    "city": "Schellerten",
+    "plz": "31174",
+    "address": "31174 Schellerten",
+    "desc": "Bierberger Str. 2",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 52.1846299,
+    "lon": 10.1024796
+  },
+  {
+    "title": "Wuppertiger",
+    "date": "31.10.2026",
+    "city": "Wuppertal",
+    "plz": "42277",
+    "address": "42277 Wuppertal",
+    "desc": "Langobardenstr. 11",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 51.264018,
+    "lon": 7.1780374
+  },
+  {
+    "title": "Wilhelm-Bendow-Theater",
+    "date": "01.11.2026",
+    "city": "Einbeck",
+    "plz": "37574",
+    "address": "37574 Einbeck",
+    "desc": "Hubeweg 39",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 51.8222338,
+    "lon": 9.8991418
+  },
+  {
+    "title": "Sound of Nashville",
+    "date": "03.11.2026",
+    "city": "München",
+    "plz": "80639",
+    "address": "80639 München",
+    "desc": "präsentiert in der",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 48.1371079,
+    "lon": 11.5753822
+  },
+  {
+    "title": "Sound of Nashville",
+    "date": "04.11.2026",
+    "city": "Köln",
+    "plz": "50825",
+    "address": "50825 Köln",
+    "desc": "präsentiert im",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 50.938361,
+    "lon": 6.959974
+  },
+  {
+    "title": "Live Tanz Bar",
+    "date": "05.11.2026",
+    "city": "Dresden",
+    "plz": "01324",
+    "address": "01324 Dresden",
+    "desc": "Social mit Live-Band im Parkhotel auf dem Weißen Hirsch.",
+    "time": "20:00 Uhr",
+    "url": "https://www.dresden-hepcats.de/socials-de",
+    "event_url": "https://www.dresden-hepcats.de/socials-de/upcoming-socials-de/social-livetanzbar-2025-11-05",
+    "genres": [
+      "Swing",
+      "Lindy Hop"
+    ],
+    "lat": 51.0493286,
+    "lon": 13.7381437
+  },
+  {
+    "title": "Sound of Nashville",
+    "date": "06.11.2026",
+    "city": "Berlin",
+    "plz": "10961",
+    "address": "10961 Berlin",
+    "desc": "präsentiert im Rahmen der 'Sound of a Woman Europe Tour' in der Passionskirche",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 52.5173885,
+    "lon": 13.3951309
+  },
+  {
+    "title": "Country Club Nienstedt",
+    "date": "07.11.2026",
+    "city": "Bassum",
+    "plz": "27211",
+    "address": "27211 Bassum",
+    "desc": "Nienstedt 14",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 52.8495881,
+    "lon": 8.728382
+  },
+  {
+    "title": "Music & Line Dance im",
+    "date": "08.11.2026",
+    "city": "Mücke",
+    "plz": "35325",
+    "address": "35325 Mücke",
+    "desc": "Burger & More",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Line Dance"
+    ],
+    "lat": 50.6272764,
+    "lon": 9.0575621
+  },
+  {
+    "title": "Die Trainer:",
+    "date": "08.11.2026",
+    "city": "Au",
+    "plz": "",
+    "address": "Österreich Bad Blumau Rogner Bad Blumau Bad Blumau 100",
+    "desc": "Swingin Wellness Weekend Dance Workshops und zwei Parties. Originaltext vom Veranstalter: Vom 6.–8. November 2026 feiern wir unser 10-jähriges Jubiläum des Swinging Wellness Tanzwochenendes in der Therme Rogner Bad Blumau! Damit geht ein Jahrzehnt voller Tanz, Lebensfreude, großartigen Menschen und unvergesslichen Momenten in die nächste Runde – und natürlich haben wir auch diesmal wieder ein Programm zusammengestellt, das ihr nicht verpassen wollt. Was euch 2026 erwartet: Drei Tanzrichtungen: B",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
+    "event_url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
+    "genres": [
+      "West Coast Swing",
+      "Boogie Woogie",
+      "Balboa",
+      "Lindy Hop"
+    ],
+    "lat": 47.9552898,
+    "lon": 7.8296094
+  },
+  {
+    "title": "Sound of Nashville",
+    "date": "09.11.2026",
+    "city": "Hamburg",
+    "plz": "22767",
+    "address": "22767 Hamburg",
+    "desc": "präsentiert im Rahmen der 'Sound of a Woman Europe Tour' in der",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 53.5501721,
+    "lon": 10.0013165
+  },
+  {
+    "title": "Sound of Nashville",
+    "date": "12.11.2026",
+    "city": "Köln",
+    "plz": "50674",
+    "address": "50674 Köln",
+    "desc": "präsentiert im Rahmen seiner 'Dustpiles World Tour' im",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 50.938361,
+    "lon": 6.959974
+  },
+  {
+    "title": "Sound of Nashville",
+    "date": "13.11.2026",
+    "city": "München",
+    "plz": "81373",
+    "address": "81373 München",
+    "desc": "präsentiert im Rahmen seiner 'Dustpiles World Tour' im",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 48.1371079,
+    "lon": 11.5753822
+  },
+  {
+    "title": "Turmstr. 1",
+    "date": "14.11.2026",
+    "city": "Perwenitz",
+    "plz": "14621",
+    "address": "14621 Perwenitz",
+    "desc": "Interpret:",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 52.6588311,
+    "lon": 13.0123255
+  },
+  {
+    "title": "Swing -Boogie - Jive - Rock'n'Roll - RnB  - Doo Woop",
+    "date": "14.11.2026",
+    "city": "Leipzig",
+    "plz": "",
+    "address": "Leipzig Tanzsaal Frische Prieße Prießnitzstraße 1, 04179 Leipzig",
+    "desc": "50s Boogie & Swing Jukebox Eine wilde Party mit Swing, Boogie und Jive auf einer Tanzfläche. Die Jukebox Stompers veranstalten 2026 wieder Parties mit Musik Nonstop vom DJ und Band. Die dritte Veranstaltung im November mit einer Band (geplant) und einem DJ und laden euch alle ein. Putzt eure Tanzschuhe und kommt dazu. Swing -Boogie - Jive - Rock'n'Roll - RnB  - Doo Woop Band und DJ: Ray Allen & Band (GER) DJ Pete Roger Einlass: 19:00 Uhr Beginn: 19:30 Uhr und Ende 15.11.2026 01:00 Uhr Eintritt: ",
+    "time": "19:00",
+    "price": null,
+    "bands": [
+      "Nonstop vom DJ",
+      "Band"
+    ],
+    "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
+    "event_url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender#:~:text=Swing%20-Boogie%20-%20Jive%20-%20Rock%27n%27Roll%20-%20RnB%C2%A0%20-%20Doo%20Wo",
+    "genres": [
+      "Rock'n'Roll",
+      "Boogie Woogie",
+      "Swing"
+    ],
+    "lat": 51.3406321,
+    "lon": 12.3747329
+  },
+  {
+    "title": "Sound of Nashville",
+    "date": "15.11.2026",
+    "city": "Hamburg",
+    "plz": "20146",
+    "address": "20146 Hamburg",
+    "desc": "präsentiert im Rahmen seiner 'Dustpiles World Tour' im",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 53.5501721,
+    "lon": 10.0013165
+  },
+  {
+    "title": "Rattlesnake Saloon",
+    "date": "19.11.2026",
+    "city": "München",
+    "plz": "80995",
+    "address": "80995 München",
+    "desc": "Schneeglöckchenstr. 89b",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 48.1371079,
+    "lon": 11.5753822
+  },
+  {
+    "title": "Harley Garage Wallau",
+    "date": "20.11.2026",
+    "city": "Hofheim",
+    "plz": "65719",
+    "address": "65719 Hofheim",
+    "desc": "Werner-von-Siemens-Str. 4-6",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 50.09494,
+    "lon": 8.42285
+  },
+  {
+    "title": "Gaststätte Deutscher Kaiser",
+    "date": "21.11.2026",
+    "city": "Herzberg",
+    "plz": "37412",
+    "address": "37412 Herzberg",
+    "desc": "Hauptstr. 1",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 51.6565219,
+    "lon": 10.3428415
+  },
+  {
+    "title": "Deutsche Mesterschaft in Boogie Woogie Originaltext vom Veranstalter Boogie Mäus",
+    "date": "21.11.2026",
+    "city": "Rain",
+    "plz": "",
+    "address": "Deutschland Rain Mehrzweckhalle Attinger Stare 10, 94369 Rain",
+    "desc": "Deutsche Mesterschaft in Boogie Woogie Originaltext vom Veranstalter Boogie Mäuse : Der RRC „Straubinger Boogie Mäuse“ e.V. veranstaltet am 21. November 2026 die Deutsche Meisterschaft Boogie Woogie in Rain. Merkt euch den Termin – weitere Informationen folgen in Kürze! Weitere Informationen hier: Deutsche Meisterschaft",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
+    "event_url": "https://www.boogie-mäuse.de/",
+    "genres": [
+      "Boogie Woogie"
+    ],
+    "lat": 48.6961476,
+    "lon": 10.9280499
+  },
+  {
+    "title": "Deutsch-Amerikanischer Weihnachtsmarkt",
+    "date": "22.11.2026",
+    "city": "Eging am See",
+    "plz": "94535",
+    "address": "94535 Eging am See",
+    "desc": "(13.11.-20.12.)",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 48.7123744,
+    "lon": 13.272393
+  },
+  {
+    "title": "Deutsch-Amerikanischer Weihnachtsmarkt",
+    "date": "26.11.2026",
+    "city": "Eging am See",
+    "plz": "94535",
+    "address": "94535 Eging am See",
+    "desc": "(13.11.-20.12.)",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 48.7123744,
+    "lon": 13.272393
+  },
+  {
+    "title": "(13.11.-20.12.)",
+    "date": "27.11.2026",
+    "city": "Eging am See",
+    "plz": "94535",
+    "address": "94535 Eging am See",
+    "desc": "in",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 48.7123744,
+    "lon": 13.272393
+  },
+  {
+    "title": "Ernst-Thälmann-Str. 20",
+    "date": "28.11.2026",
+    "city": "Schönwölkau",
+    "plz": "04509",
+    "address": "04509 Schönwölkau",
+    "desc": "Interpret:",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 51.5115237,
+    "lon": 12.4643575
+  },
+  {
+    "title": "Eventhalle Zum Adler",
+    "date": "29.11.2026",
+    "city": "Weiterstadt",
+    "plz": "64331",
+    "address": "64331 Weiterstadt",
+    "desc": "Georgenstr. 12",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 49.9178,
+    "lon": 8.5924
+  },
+  {
+    "title": "Britzer Mühle",
+    "date": "30.11.2026",
+    "city": "Berlin",
+    "plz": "12349",
+    "address": "12349 Berlin",
+    "desc": "Buckower Damm 130",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 52.5173885,
+    "lon": 13.3951309
+  },
+  {
+    "title": "Timberjacks Düren",
+    "date": "02.12.2026",
+    "city": "Düren",
+    "plz": "52353",
+    "address": "52353 Düren",
+    "desc": "Fehlender Feld 2",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 50.8031684,
+    "lon": 6.4820806
+  },
+  {
+    "title": "Timberjacks Köln-West",
+    "date": "03.12.2026",
+    "city": "Köln",
+    "plz": "50829",
+    "address": "50829 Köln",
+    "desc": "Garzweilerweg 2",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 50.938361,
+    "lon": 6.959974
+  },
+  {
+    "title": "Live Tanz Bar",
+    "date": "03.12.2026",
+    "city": "Dresden",
+    "plz": "01324",
+    "address": "01324 Dresden",
+    "desc": "Social mit Live-Band im Parkhotel auf dem Weißen Hirsch.",
+    "time": "20:00 Uhr",
+    "url": "https://www.dresden-hepcats.de/socials-de",
+    "event_url": "https://www.dresden-hepcats.de/socials-de/upcoming-socials-de/social-livetanzbar-2026-12-01",
+    "genres": [
+      "Swing",
+      "Lindy Hop"
+    ],
+    "lat": 51.0493286,
+    "lon": 13.7381437
+  },
+  {
+    "title": "Music & Line Dance im Dorfgemeinschaftshaus Zum Kruggelsche",
+    "date": "04.12.2026",
+    "city": "Limburg",
+    "plz": "65551",
+    "address": "65551 Limburg",
+    "desc": "Am Wingert 6",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Line Dance"
+    ],
+    "lat": 50.3880447,
+    "lon": 8.063531
+  },
+  {
+    "title": "Night des",
+    "date": "05.12.2026",
+    "city": "Krölpa",
+    "plz": "07387",
+    "address": "07387 Krölpa",
+    "desc": "Country Club White Wolf",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 50.6773291,
+    "lon": 11.539627
+  },
+  {
+    "title": "Music & Line Dance im",
+    "date": "06.12.2026",
+    "city": "Ranstadt",
+    "plz": "63691",
+    "address": "63691 Ranstadt",
+    "desc": "L'incontro",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Line Dance"
+    ],
+    "lat": 50.36681,
+    "lon": 8.98438
+  },
+  {
+    "title": "Empore",
+    "date": "09.12.2026",
+    "city": "Buchholz",
+    "plz": "21244",
+    "address": "21244 Buchholz",
+    "desc": "Breite Str. 10",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 53.2759502,
+    "lon": 12.6459399
+  },
+  {
+    "title": "Deutsch-Amerikanischer Weihnachtsmarkt",
+    "date": "10.12.2026",
+    "city": "Eging am See",
+    "plz": "94535",
+    "address": "94535 Eging am See",
+    "desc": "(13.11.-20.12.)",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 48.7123744,
+    "lon": 13.272393
+  },
+  {
+    "title": "Harley Garage Wallau",
+    "date": "11.12.2026",
+    "city": "Hofheim",
+    "plz": "65719",
+    "address": "65719 Hofheim",
+    "desc": "Werner-von-Siemens-Str. 4-6",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 50.09494,
+    "lon": 8.42285
+  },
+  {
+    "title": "Gaststätte zum Löwen",
+    "date": "12.12.2026",
+    "city": "Tanna",
+    "plz": "07922",
+    "address": "07922 Tanna",
+    "desc": "Frankenberger Str. 21",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 50.4896337,
+    "lon": 11.860657
+  },
+  {
+    "title": "Four Corners",
+    "date": "13.12.2026",
+    "city": "Untermeitingen",
+    "plz": "86836",
+    "address": "86836 Untermeitingen",
+    "desc": "Siemensstr. 1",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 48.1614939,
+    "lon": 10.8069903
+  },
+  {
+    "title": "Deutsch-Amerikanischer Weihnachtsmarkt",
+    "date": "17.12.2026",
+    "city": "Eging am See",
+    "plz": "94535",
+    "address": "94535 Eging am See",
+    "desc": "(13.11.-20.12.)",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 48.7123744,
+    "lon": 13.272393
+  },
+  {
+    "title": "Deutsch-Amerikanischer Weihnachtsmarkt",
+    "date": "18.12.2026",
+    "city": "Eging am See",
+    "plz": "94535",
+    "address": "94535 Eging am See",
+    "desc": "(13.11.-20.12.)",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 48.7123744,
+    "lon": 13.272393
+  },
+  {
+    "title": "Green Valley Dancers",
+    "date": "19.12.2026",
+    "city": "Bissingen",
+    "plz": "86657",
+    "address": "86657 Bissingen",
+    "desc": "im Gasthof Krone",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 48.7177493,
+    "lon": 10.6158383
+  },
+  {
+    "title": "Music & Line Dance im",
+    "date": "20.12.2026",
+    "city": "Mücke",
+    "plz": "35325",
+    "address": "35325 Mücke",
+    "desc": "Burger & More",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Line Dance"
+    ],
+    "lat": 50.6272764,
+    "lon": 9.0575621
+  },
+  {
+    "title": "Wollnersaal",
+    "date": "26.12.2026",
+    "city": "Lauf",
+    "plz": "91207",
+    "address": "91207 Lauf",
+    "desc": "Neunkirchener Str. 6",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 48.6485831,
+    "lon": 8.1292199
+  },
+  {
+    "title": "Special Christmas Week",
+    "date": "27.12.2026",
+    "city": "Eging am See",
+    "plz": "94535",
+    "address": "94535 Eging am See",
+    "desc": "(26.12.-1.1.)",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 48.7123744,
+    "lon": 13.272393
+  },
+  {
+    "title": "HM-Ranch",
+    "date": "28.12.2026",
+    "city": "Bad Lauterberg",
+    "plz": "37431",
+    "address": "37431 Bad Lauterberg",
+    "desc": "Odertal 6",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 51.6313633,
+    "lon": 10.4706667
+  },
+  {
+    "title": "Nikl-Bräu",
+    "date": "29.12.2026",
+    "city": "Pretzfeld",
+    "plz": "91362",
+    "address": "91362 Pretzfeld",
+    "desc": "Egloffsteiner Str. 19",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 49.7416933,
+    "lon": 11.2004691
+  },
+  {
+    "title": "(26.12.-1.1.)",
+    "date": "30.12.2026",
+    "city": "Eging am See",
+    "plz": "94535",
+    "address": "94535 Eging am See",
+    "desc": ", Classic Country Night",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 48.7123744,
+    "lon": 13.272393
+  },
+  {
+    "title": "Pullman City Harz",
+    "date": "31.12.2026",
+    "city": "Hasselfelde",
+    "plz": "38899",
+    "address": "38899 Hasselfelde",
+    "desc": "Am Rosentale 1",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 51.6910307,
+    "lon": 10.8552525
+  },
+  {
+    "title": "BALLROOM BOHEME",
+    "date": "31.12.2026",
+    "city": "Leipzig",
+    "plz": "",
+    "address": "Deutschland Leipzig Felsenkeller Karl-Heine-Str 32 04229 Leipzig",
+    "desc": "Ballroom Boheme Silvester Party Originaltext vom Veranstalter: Herzlich willkommen im BALLROOM BOHEME . Die Silvesterparty im historischen Ballsaal des Felsenkellers Leipzig.Zum Jahreswechsel entführen wir sie wieder und auf eine wilde Reise in die goldenen 1920er Jahre. Mit Live-Bands, einem reichhaltigen Buffet*, Show-Burlesque-Tänzerinnen und Walking-Acts ist der Rahmen für einen unvergesslichen Abend gesteckt. Hinzu kommen die fein kuratierten Sets des DJs die uns durch eine ausgelassene Nac",
+    "time": null,
+    "price": null,
+    "bands": [
+      "-Bands",
+      "einem reichhaltigen Buffet*",
+      "Show-Burlesque-Tänzerinnen"
+    ],
+    "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
+    "event_url": "https://www.felsenkeller-leipzig.com/silvester/",
+    "genres": [
+      "Rock'n'Roll"
+    ],
+    "lat": 51.3406321,
+    "lon": 12.3747329
+  },
+  {
+    "title": "Hasseröder Burghotel",
+    "date": "01.01.2027",
+    "city": "Wernigerode",
+    "plz": "38855",
+    "address": "38855 Wernigerode",
+    "desc": "Langer Stieg 62",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 51.8344172,
+    "lon": 10.7862526
+  },
+  {
+    "title": "Gasthof Hammer",
+    "date": "09.01.2027",
+    "city": "Weichering",
+    "plz": "86706",
+    "address": "86706 Weichering",
+    "desc": "Siedlungsweg 1",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 48.7206211,
+    "lon": 11.3304544
+  },
+  {
+    "title": "Gleis 1",
+    "date": "15.01.2027",
+    "city": "Waldenburg",
+    "plz": "74638",
+    "address": "74638 Waldenburg",
+    "desc": "Am bhf 25",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 49.1894066,
+    "lon": 9.6429504
+  },
+  {
+    "title": "Bürgerhaus",
+    "date": "23.01.2027",
+    "city": "Eching",
+    "plz": "85386",
+    "address": "85386 Eching",
+    "desc": "Roßbergerstr. 6",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 48.2975862,
+    "lon": 11.6221618
+  },
+  {
+    "title": "Bands:",
+    "date": "24.01.2027",
+    "city": "Hohenkirchen",
+    "plz": "",
+    "address": "Hohenkirchen Wangerland Resort Jeversche Straße 100, 26434 Hohenkirchen",
+    "desc": "Winter Rockin' Jive Eine von den Firebirds organisiertes kleines Festival im hohem Norden. Im Wangerland Resort alles unter einem Dach: BANDS, DJs, SHOWS, WORKSHOPS, SOCIAL DANCE Bands: Cat Lee King & His Cocks (GER) Mary Lee & Caesars Cowboys (IT) Laua B (GER) The Firebirds (GER) Jackson Sloan (GBR) Boogie Banausen (GER) Und mehr... Weitere Informationen hier: Winter Rockin'Jive",
+    "time": null,
+    "price": null,
+    "bands": [
+      "SOCIAL DANCE Bands: Cat Lee King",
+      "His Cocks (GER) Mary Lee"
+    ],
+    "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
+    "event_url": "https://www.the-firebirds.de/",
+    "genres": [
+      "Boogie Woogie"
+    ],
+    "lat": 53.9165447,
+    "lon": 11.3066229
+  },
+  {
+    "title": "Bands:",
+    "date": "24.01.2027",
+    "city": "De Rijp",
+    "plz": "",
+    "address": "Niederlande Hotel De Rijp Zuiddijk 2A, 1483 MA De Rijp",
+    "desc": "Triple Step Madness Originaltext vom Veranstalter: Ein Wochenende voller Swing Dance (Lindy Hop und Boogie Woogie) bei De Rijper Eilanden . Workshops mit internationalen Lehrern. Fantastische Bands und DJs. Organisiert von: Danssalon Swing Along und Swing Collective Foundation . Bands: Folgt noch... Trainer: Folgt noch... Weitere Informationen hier: Triple Step Madness",
+    "time": null,
+    "price": null,
+    "bands": [
+      "und DJs"
+    ],
+    "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
+    "event_url": "https://triplestepmadness.nl/de/de-rijper-eilanden/",
+    "genres": [
+      "Boogie Woogie",
+      "Lindy Hop"
+    ]
+  },
+  {
+    "title": "Midland Line Dancers Gunzenhausen",
+    "date": "07.02.2027",
+    "city": "Weichering",
+    "plz": "86706",
+    "address": "86706 Weichering",
+    "desc": "im",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Line Dance"
+    ],
+    "lat": 48.7206211,
+    "lon": 11.3304544
+  },
+  {
+    "title": "SAVE THE DATE!",
+    "date": "08.02.2027",
+    "city": "München",
+    "plz": "",
+    "address": "München Vintage Club & Deutsches Theater Vintage Club, Sonnenstr. 12, Rgb, 3. OG, 80331 München",
+    "desc": "Rock That Swing #20 Das 20. Rock That Swing Festival in München in Planung. Der Termin steht schon Ein großes und internationales Festival rund um die Swingtänze wie Lindy Hop, Shag, Balboa und natürlich Boogie Woogie. Vier Tage Workshops mit Top-Trainern und dazu jeden Abend tolle Parties im Künstler Haus, Vintage Club und Deutschem Theater. Besonders die großen Parties im Deutschen Theater am Sonnabend und Sonntag mit Top-Bands, sowie DJ's in verschiedenen Säälen sind eine Reise nach München w",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
+    "event_url": "http://www.rockthatswing.com/",
+    "genres": [
+      "Boogie Woogie",
+      "Shag",
+      "Balboa",
+      "Lindy Hop"
+    ],
+    "lat": 48.1371079,
+    "lon": 11.5753822
+  },
+  {
+    "title": "Sound of Nashville",
+    "date": "13.02.2027",
+    "city": "Köln",
+    "plz": "50825",
+    "address": "50825 Köln",
+    "desc": "präsentiert im Rahmen seiner 'The Days Of Gold Tour' im",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 50.938361,
+    "lon": 6.959974
+  },
+  {
+    "title": "Sound of Nashville",
+    "date": "14.02.2027",
+    "city": "Hamburg",
+    "plz": "22769",
+    "address": "22769 Hamburg",
+    "desc": "präsentiert im Rahmen seiner 'The Days Of Gold Tour' im",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 53.5501721,
+    "lon": 10.0013165
+  },
+  {
+    "title": "Sound of Nashville",
+    "date": "16.02.2027",
+    "city": "München",
+    "plz": "81373",
+    "address": "81373 München",
+    "desc": "präsentiert im Rahmen seiner 'The Days Of Gold Tour' im",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 48.1371079,
+    "lon": 11.5753822
+  },
+  {
+    "title": "Sound of Nashville",
+    "date": "05.03.2027",
+    "city": "Berlin",
+    "plz": "10243",
+    "address": "10243 Berlin",
+    "desc": "präsentiert C2C - Country To Country 2027",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 52.5173885,
+    "lon": 13.3951309
+  },
+  {
+    "title": "Sound of Nashville",
+    "date": "06.03.2027",
+    "city": "Berlin",
+    "plz": "10243",
+    "address": "10243 Berlin",
+    "desc": "präsentiert C2C - Country To Country 2027",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 52.5173885,
+    "lon": 13.3951309
+  },
+  {
+    "title": "Sound of Nashville",
+    "date": "07.03.2027",
+    "city": "Berlin",
+    "plz": "10243",
+    "address": "10243 Berlin",
+    "desc": "präsentiert C2C - Country To Country 2027",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 52.5173885,
+    "lon": 13.3951309
+  },
+  {
+    "title": "Lindenkeller",
+    "date": "12.03.2027",
+    "city": "Freising",
+    "plz": "85354",
+    "address": "85354 Freising",
+    "desc": "Veitsmüllerweg 2",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 48.4008273,
+    "lon": 11.7439565
+  },
+  {
+    "title": "Wuppertiger",
+    "date": "20.03.2027",
+    "city": "Wuppertal",
+    "plz": "42277",
+    "address": "42277 Wuppertal",
+    "desc": "Langobardenstr. 11",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 51.264018,
+    "lon": 7.1780374
+  },
+  {
+    "title": "Night im",
+    "date": "17.04.2027",
+    "city": "Teuchern",
+    "plz": "06682",
+    "address": "06682 Teuchern",
+    "desc": "Gasthof Plotha",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 51.1185488,
+    "lon": 12.0223935
+  },
+  {
+    "title": "Pretzfelder Keller",
+    "date": "01.05.2027",
+    "city": "Pretzfeld",
+    "plz": "91362",
+    "address": "91362 Pretzfeld",
+    "desc": "Hauptstr. 110",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 49.7416933,
+    "lon": 11.2004691
+  },
+  {
+    "title": "Live Bands:",
+    "date": "17.05.2027",
+    "city": "Landsberg",
+    "plz": "",
+    "address": "Deutschland Landsberg am Lech Sportzentrum Katharinen­­str. 1 86899 Landsberg am Lech",
+    "desc": "BB Dance Camp #40 Das BB-DanceCamp, eines der ältesten Tanzcamps für Boogie Woogie und Lindy Hop in Europa, findet jährlich am Pfingstwochenende statt. Die Veranstaltung ist traditionell immer über Pfingsten geplant. Am Freitag startet das BB Dance Camp mit der Welcome-Party, ab Sonnabend immer die Workshops. und zwei große Parties. Die Anmeldung ist geöffnet. 3 Tage Workshops in Boogie Woogie und Lindy Hop 3 Parties (Freitag, Sonnabend und Sonntag) Live Bands: Folgt noch... Trainerteam: Folgt n",
+    "time": null,
+    "price": "Eintritt frei",
+    "bands": null,
+    "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
+    "event_url": "https://www.bb-dancecamp.com/de/home.html",
+    "genres": [
+      "Boogie Woogie",
+      "Lindy Hop"
+    ],
+    "lat": 48.0497474,
+    "lon": 10.8768728
+  },
+  {
+    "title": "12. und 13. Juli 2025",
+    "date": "11.07.2027",
+    "city": "Au",
+    "plz": "",
+    "address": "Deutschland Wolframs-Eschenbach In der Altstadt verteilt auf 7 Bühnen.",
+    "desc": "Oldietown Festival Die ganze Altstadt im Rock'n'Roll Fieber mit vielen Veranstaltungen, Bands, Tanzshows und Oldtimern. Im Jahr 2027 die nächste Auflage in Planung. Originaltext vom Veranstalter: Nach den großen Erfolgen in den Jahren 2013, 2015 und 2017, und 2023 fand am 12. und 13. Juli 2025 das sechste große Oldie-Town-Festival statt. Ein ganzes Wochenende lang „ Das Beste von Gestern “: Petticoats, Pomade, Rockabilly und viele tolle Schlitten in der gesamten historischen Altstadt von Wolfram",
+    "time": null,
+    "price": null,
+    "bands": [
+      "Oldtimern"
+    ],
+    "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
+    "event_url": "https://oldietown.de/",
+    "genres": [
+      "Rockabilly",
+      "Rock'n'Roll"
+    ],
+    "lat": 47.9552898,
+    "lon": 7.8296094
+  },
+  {
+    "title": "FeG Mühlacker",
+    "date": "16.10.2027",
+    "city": "Mühlacker",
+    "plz": "75417",
+    "address": "75417 Mühlacker",
+    "desc": "in der Kirche am Bahnhof",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.we-love-country.de/1_term.php",
+    "event_url": "https://www.we-love-country.de/index.htm",
+    "genres": [
+      "Country"
+    ],
+    "lat": 48.9466697,
+    "lon": 8.8413323
+  },
+  {
+    "title": "Rock'n'Roll Cruise",
+    "date": "16.10.2027",
+    "city": "Triest",
+    "plz": "",
+    "address": "Italien Mittelmeerkreuzfahrt Start in Triest Ankunft in Triest",
+    "desc": "Rock'n'Roll Cruise The Firebirds Rock'n'Roll Cruise#4 7 Tage auf dem Kreuzfahrtschiff durchs Mittelmeer, mit Bands und DJs mit Rock'n'Roll, Boogie, Swing Workshops mit Top-Trainern Parties & Social Dance rund um die Uhr. Das ganze Schiff voller Rock'n'Roll & Dance Fans. Die Veranstaltung ist geplant und der Termin steht. Weitere Informationen folgen.... Bands: The Firebirds (GER) Boogie Banausen (GER) Cody Lewe (GBR) Conny und die Sonntagsfahrer (GER) Die Eisboys (GER) Lennebrother (GER) Rhythm ",
+    "time": null,
+    "price": null,
+    "bands": [
+      "und DJs mit Rock'n'Roll",
+      "Boogie",
+      "Social Dance rund um die Uhr"
+    ],
+    "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
+    "event_url": "https://www.the-firebirds.de/",
+    "genres": [
+      "Rock'n'Roll",
+      "Boogie Woogie",
+      "Swing"
+    ],
+    "lat": 52.4489683,
+    "lon": 13.2873612
+  }
+]
