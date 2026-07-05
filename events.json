@@ -117,9 +117,9 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "https://rocknroll-festival.de/",
     "genres": [
-      "Rockabilly",
+      "Swing",
       "Rock'n'Roll",
-      "Swing"
+      "Rockabilly"
     ],
     "lat": 53.0758196,
     "lon": 8.8071646
@@ -185,8 +185,8 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "https://koenigsleitn.at/",
     "genres": [
-      "Boogie Woogie",
-      "Swing"
+      "Swing",
+      "Boogie Woogie"
     ]
   },
   {
@@ -202,8 +202,8 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "https://www.markkleeberg.de/freizeit-und-tourismus/veranstaltungen/veranstaltungsraeume",
     "genres": [
-      "Rockabilly",
-      "Boogie Woogie"
+      "Boogie Woogie",
+      "Rockabilly"
     ],
     "lat": 51.3406321,
     "lon": 12.3747329
@@ -268,8 +268,8 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "https://www.boogieweekend.ch/",
     "genres": [
-      "Boogie Woogie",
-      "Swing"
+      "Swing",
+      "Boogie Woogie"
     ],
     "lat": 48.1118989,
     "lon": 11.5040018
@@ -408,9 +408,9 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender#:~:text=Swing%20-Boogie%20-%20Jive%20-%20Rock%27n%27Roll%20-%20RnB%C2%A0%20-%20Doo%20Wo",
     "genres": [
-      "Boogie Woogie",
+      "Swing",
       "Rock'n'Roll",
-      "Swing"
+      "Boogie Woogie"
     ],
     "lat": 51.3406321,
     "lon": 12.3747329
@@ -567,8 +567,8 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "https://oldietown.de/",
     "genres": [
-      "Rockabilly",
-      "Rock'n'Roll"
+      "Rock'n'Roll",
+      "Rockabilly"
     ],
     "lat": 47.9552898,
     "lon": 7.8296094
@@ -590,9 +590,9 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "https://www.the-firebirds.de/",
     "genres": [
-      "Boogie Woogie",
+      "Swing",
       "Rock'n'Roll",
-      "Swing"
+      "Boogie Woogie"
     ],
     "lat": 52.4489683,
     "lon": 13.2873612
