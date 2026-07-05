@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
 """
-Rockabilly Radar Scraper - PLAYWRIGHT VERSION
-- Nutzt Playwright für JavaScript-lastige Seiten (SwingCalendar, SwingInDD)
-- Alle Events aus allen 10 Quellen
-- PLZ-Korrektur für bekannte Fehler
-- PLZ-basiertes Geocoding als Fallback
+Rockabilly Radar Scraper - PLAYWRIGHT INTEGRATED
+- Nutzt Playwright für JS-lastige Seiten (SwingCalendar, SwingInDD)
+- Robustes Fallback-Parsing
 """
 
 import requests
@@ -16,13 +14,13 @@ from datetime import datetime
 from urllib.parse import urljoin, quote
 import sys
 
-# Playwright für JavaScript-Seiten
+# Playwright Import
 try:
-    from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeout
+    from playwright.sync_api import sync_playwright
     PLAYWRIGHT_AVAILABLE = True
 except ImportError:
     PLAYWRIGHT_AVAILABLE = False
-    print("⚠️ Playwright nicht installiert. JavaScript-Seiten werden übersprungen.")
+    print("⚠️ Playwright nicht installiert. JS-Seiten werden übersprungen.")
 
 GEOCODE_CACHE = {}
 TODAY = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
@@ -65,6 +63,30 @@ KNOWN_CITIES = [
 
 def log(msg):
     print(f"[{datetime.now().strftime('%H:%M:%S')}] {msg}", flush=True)
+
+def get_playwright_content(url, scroll=True):
+    """Holt HTML-Content einer Seite mit Playwright (Headless Chrome)"""
+    if not PLAYWRIGHT_AVAILABLE: return None
+    try:
+        with sync_playwright() as p:
+            browser = p.chromium.launch(headless=True)
+            page = browser.new_page()
+            log(f"  🌐 Playwright: Lade {url}...")
+            page.goto(url, wait_until="domcontentloaded", timeout=60000)
+            page.wait_for_timeout(5000) # 5 Sek warten auf JS-Rendering
+            
+            if scroll:
+                # Scrollen um Lazy-Loading auszulösen
+                for _ in range(20):
+                    page.evaluate("window.scrollBy(0, 1000)")
+                    page.wait_for_timeout(500)
+            
+            content = page.content()
+            browser.close()
+            return content
+    except Exception as e:
+        log(f"  ❌ Playwright Fehler: {e}")
+        return None
 
 def geocode_by_plz(plz):
     if not plz: return None
@@ -111,7 +133,7 @@ def is_social_media_url(url):
 
 def clean_city(raw_city):
     if not raw_city: return ""
-    raw_city = raw_city.replace("'", "").replace('"', '').strip()
+    raw_city = raw_city.replace("'", "").replace('"', '').replace('|', '').strip()
     if ',' in raw_city:
         raw_city = raw_city.split(',')[0].strip()
     for known in KNOWN_CITIES:
@@ -123,7 +145,6 @@ def clean_city(raw_city):
 def correct_plz(plz, city):
     if plz in PLZ_CORRECTIONS:
         correct_plz_val, correct_city = PLZ_CORRECTIONS[plz]
-        log(f"  🔧 PLZ-Korrektur: {plz} {city} → {correct_plz_val} {correct_city}")
         return correct_plz_val, correct_city
     return plz, city
 
@@ -144,11 +165,13 @@ def parse_date_flexible(text):
         d1, d2, month_name, y = m.groups()
         mo = months_de.get(month_name.lower(), "01")
         return f"{int(d1):02d}.{mo}.{y}"
-    # English date format: "Jul 3-5, 2026" or "July 3 - July 5, 2026"
     months_en = {"jan":"01","feb":"02","mar":"03","apr":"04","may":"05","jun":"06",
-                 "jul":"07","aug":"08","sep":"09","oct":"10","nov":"11","dec":"12",
-                 "january":"01","february":"02","march":"03","april":"04","june":"06",
-                 "july":"07","august":"08","september":"09","october":"10","november":"11","december":"12"}
+                 "jul":"07","aug":"08","sep":"09","oct":"10","nov":"11","dec":"12"}
+    m = re.search(r'(?:\w+),\s*(\d{1,2})\s*(?:-|–|bis)\s*(?:\w+),\s*(\d{1,2})\s+(\w+)\s+(\d{4})', text)
+    if m:
+        d1, d2, month_name, y = m.groups()
+        mo = months_en.get(month_name[:3].lower(), "01")
+        return f"{int(d1):02d}.{mo}.{y}"
     m = re.search(r'(\w+)\s+(\d{1,2})(?:\s*-\s*(\w+)\s+(\d{1,2}))?,\s*(\d{4})', text, re.IGNORECASE)
     if m:
         mo1_name, d1, mo2_name, d2, y = m.groups()
@@ -197,7 +220,7 @@ def extract_price(text):
 
 def extract_bands(text):
     bands = []
-    m = re.search(r'(?:Bands?|Live|Musik|Line Up)[:\s]*([^\n.]+)', text, re.IGNORECASE)
+    m = re.search(r'(?:Bands?|Live|Musik|Line Up|Interpreten?)[:\s]*([^\n.]+)', text, re.IGNORECASE)
     if m:
         for part in re.split(r'[,;&]| und ', m.group(1)):
             p = part.strip()
@@ -243,7 +266,6 @@ def build_direct_url(base_url, container, title):
 def add_coords(ev):
     city = ev.get("city", "")
     plz = ev.get("plz", "")
-    
     if plz:
         corrected_plz, corrected_city = correct_plz(plz, city)
         if corrected_city != city:
@@ -251,19 +273,16 @@ def add_coords(ev):
             city = corrected_city
         ev["address"] = f"{corrected_plz} {corrected_city}"
         plz = corrected_plz
-    
     if city and "lat" not in ev:
         coords = geocode(city)
         if coords:
             ev["lat"], ev["lon"] = coords
             return ev
-    
     if plz and "lat" not in ev:
         coords = geocode_by_plz(plz)
         if coords:
             ev["lat"], ev["lon"] = coords
             return ev
-    
     return ev
 
 # ==================== QUELLE 1: WeLoveCountry ====================
@@ -274,49 +293,56 @@ def scrape_we_love_country():
     try:
         r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=60)
         r.encoding = "utf-8"
-        if r.status_code != 200:
-            log(f"  ❌ HTTP {r.status_code}")
-            return events
-        
+        if r.status_code != 200: return events
         soup = BeautifulSoup(r.text, "lxml")
         text = soup.get_text("\n", strip=True)
-        
-        pattern = r'(?:Mo|Di|Mi|Do|Fr|Sa|So)\.?\s*(\d{2}\.\d{2}\.\d{4})\s*(\d{5})\s+([^\n]+)\n([^\n]+)(?:\n([^\n]+))?'
-        matches = re.findall(pattern, text)
-        log(f"  🔍 {len(matches)} Regex-Matches gefunden")
-        
+        date_pattern = r'##\s*(?:Mo|Di|Mi|Do|Fr|Sa|So)\.?\s*(\d{2}\.\d{2}\.\d{4})'
+        lines = text.split('\n')
+        current_date = None
         count = 0
-        for match in matches:
-            if len(match) < 4: continue
-            date, plz, city_raw, title = match[0], match[1], match[2].strip(), match[3].strip()
-            details = match[4].strip() if len(match) > 4 else ""
-            
-            if len(title) < 3: continue
-            if not is_future_event(date): continue
-            
-            city = clean_city(city_raw)
-            if not city or len(city) < 3: continue
-            
-            if any(b in title.lower() for b in ["load more", "mehr laden", "seite", "page"]): continue
-            if re.match(r'\d{2}\.\d{2}', title): continue
-            
-            full = f"{title} {details}"
-            genres = detect_genres(full)
-            if not genres: genres = ["Country"]
-            
-            ev = {
-                "title": title, "date": date, "city": city,
-                "plz": plz, "address": f"{plz} {city}",
-                "desc": details[:500] if details else title,
-                "time": extract_time(full), "price": extract_price(full),
-                "bands": extract_bands(full),
-                "url": url, "event_url": build_direct_url(url, soup, title),
-                "genres": genres
-            }
-            ev = add_coords(ev)
-            events.append(ev)
-            count += 1
-        
+        for i, line in enumerate(lines):
+            date_match = re.match(r'##\s*(?:Mo|Di|Mi|Do|Fr|Sa|So)\.?\s*(\d{2}\.\d{2}\.\d{4})', line)
+            if date_match:
+                current_date = date_match.group(1)
+                continue
+            if current_date and line.startswith('|') and 'PLZ' not in line:
+                parts = line.split('|')
+                if len(parts) >= 2:
+                    event_part = parts[1].strip()
+                    plz_match = re.search(r'\b(\d{5})\b', event_part)
+                    if plz_match:
+                        plz = plz_match.group(1)
+                        city_match = re.search(r'\d{5}\s+([^,]+)', event_part)
+                        if city_match:
+                            city_raw = city_match.group(1).strip()
+                            city = clean_city(city_raw)
+                            title_match = re.search(r',\s*[\'"]?([^\'"]+)[\'"]?\s*(?:im|am|auf|der|des|in)', event_part)
+                            if not title_match:
+                                title_match = re.search(r'\d{5}\s+[^,]+,\s*(.+)', event_part)
+                            if title_match:
+                                title = title_match.group(1).strip()[:100]
+                            else:
+                                title = event_part[:100]
+                            details = ""
+                            if i + 2 < len(lines):
+                                detail_line = lines[i + 2]
+                                if detail_line.startswith('|') and 'Interpret' in detail_line:
+                                    details = detail_line.replace('|', '').strip()
+                            if len(title) > 3 and city and is_future_event(current_date):
+                                full = f"{title} {details}"
+                                genres = detect_genres(full)
+                                if not genres: genres = ["Country"]
+                                ev = {
+                                    "title": title, "date": current_date, "city": city,
+                                    "plz": plz, "address": f"{plz} {city}",
+                                    "desc": details[:500] if details else title,
+                                    "time": extract_time(full), "price": extract_price(full),
+                                    "bands": extract_bands(full), "url": url, "event_url": url,
+                                    "genres": genres
+                                }
+                                ev = add_coords(ev)
+                                events.append(ev)
+                                count += 1
         log(f"  ✅ {count} Events")
     except Exception as e:
         log(f"  ❌ Fehler: {e}")
@@ -329,54 +355,39 @@ def scrape_jukeboxstompers():
     log("\n[2/10] JukeboxStompers...")
     try:
         r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=30)
-        if r.status_code != 200:
-            log(f"  ❌ HTTP {r.status_code}")
-            return events
-        
+        if r.status_code != 200: return events
         soup = BeautifulSoup(r.text, "lxml")
-        rows = soup.select("table tr")
-        log(f"  🔍 {len(rows)} Tabellenzeilen gefunden")
-        
-        for row in rows:
-            cells = row.find_all(["td", "th"])
-            if len(cells) < 3: continue
-            
-            date_text = cells[0].get_text(" ", strip=True)
-            date = parse_date_flexible(date_text)
-            if not date or not is_future_event(date): continue
-            
-            loc_text = cells[1].get_text(" ", strip=True)
-            city = ""
-            for c in KNOWN_CITIES:
-                if c.lower() in loc_text.lower():
-                    city = c
-                    break
-            
-            desc_text = cells[2].get_text(" ", strip=True)
-            
-            if "geschlossene veranstaltung" in desc_text.lower(): continue
-            if "abgesagt" in desc_text.lower() or "verschoben" in desc_text.lower(): continue
-            
-            title_el = cells[2].find(["strong", "b", "h3", "h4"])
-            title = title_el.get_text(strip=True) if title_el else desc_text.split(".")[0][:80]
-            if len(title) < 3: continue
-            if "live on stage" in title.lower() or "bands & djs" in title.lower():
-                title = desc_text.split(".")[0][:80]
-            
-            genres = detect_genres(desc_text)
-            if not genres: genres = ["Rock'n'Roll"]
-            
-            ev = {
-                "title": title.strip(), "date": date, "city": city,
-                "plz": "", "address": loc_text, "desc": desc_text[:500],
-                "time": extract_time(desc_text), "price": extract_price(desc_text),
-                "bands": extract_bands(desc_text),
-                "url": url, "event_url": build_direct_url(url, cells[2], title),
-                "genres": genres
-            }
-            ev = add_coords(ev)
-            events.append(ev)
-        
+        tables = soup.find_all("table")
+        for table in tables:
+            rows = table.find_all("tr")
+            for row in rows:
+                cells = row.find_all(["td", "th"])
+                if len(cells) < 3: continue
+                date_text = cells[0].get_text(" ", strip=True)
+                date = parse_date_flexible(date_text)
+                if not date or not is_future_event(date): continue
+                loc_text = cells[1].get_text(" ", strip=True)
+                city = ""
+                for c in KNOWN_CITIES:
+                    if c.lower() in loc_text.lower(): city = c; break
+                desc_text = cells[2].get_text(" ", strip=True)
+                if "geschlossene veranstaltung" in desc_text.lower(): continue
+                if "abgesagt" in desc_text.lower() or "verschoben" in desc_text.lower(): continue
+                title_el = cells[2].find(["strong", "b", "h3", "h4"])
+                title = title_el.get_text(strip=True) if title_el else desc_text.split(".")[0][:80]
+                if len(title) < 3: continue
+                genres = detect_genres(desc_text)
+                if not genres: genres = ["Rock'n'Roll"]
+                ev = {
+                    "title": title.strip(), "date": date, "city": city,
+                    "plz": "", "address": loc_text, "desc": desc_text[:500],
+                    "time": extract_time(desc_text), "price": extract_price(desc_text),
+                    "bands": extract_bands(desc_text),
+                    "url": url, "event_url": build_direct_url(url, cells[2], title),
+                    "genres": genres
+                }
+                ev = add_coords(ev)
+                events.append(ev)
         log(f"  ✅ {len(events)} Events")
     except Exception as e:
         log(f"  ❌ Fehler: {e}")
@@ -389,40 +400,26 @@ def scrape_rockabillyrules():
     log("\n[3/10] RockabillyRules...")
     try:
         r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=30)
-        if r.status_code != 200:
-            log(f"  ❌ HTTP {r.status_code}")
-            return events
-        
+        if r.status_code != 200: return events
         soup = BeautifulSoup(r.text, "lxml")
         text = soup.get_text("\n", strip=True)
-        blocks = re.split(r'\n(?=[A-Z][a-z]+,\s*[A-Z])', text)
-        log(f"  🔍 {len(blocks)} Blöcke gefunden")
-        
-        for block in blocks:
-            lines = [l.strip() for l in block.split("\n") if l.strip()]
-            if len(lines) < 3: continue
-            
-            city_raw = lines[0]
-            city = city_raw.split(",")[0].strip()
-            date = parse_date_flexible(lines[1])
+        pattern = r'([A-Z][a-z]+(?:\s[A-Z][a-z]+)?),\s*([A-Z][a-z]+(?:\s[A-Z][a-z]+)?)\n([^\n]+)\n##\s*([^\n]+)'
+        matches = re.findall(pattern, text)
+        for match in matches:
+            city, country, date_text, title = match
+            date = parse_date_flexible(date_text)
             if not date or not is_future_event(date): continue
-            
-            title = lines[2].replace("##", "").strip()
             if title.lower() in ["load more", "see more", "weiter"]: continue
             if len(title) < 3: continue
-            
-            genres = detect_genres(f"{title} {city_raw}")
+            genres = detect_genres(f"{title} {city} {country}")
             if not genres: genres = ["Rockabilly", "Rock'n'Roll"]
-            
             ev = {
-                "title": title, "date": date, "city": city,
-                "plz": "", "address": city_raw, "desc": f"{title} in {city_raw}",
-                "url": url, "event_url": build_direct_url(url, soup, title),
-                "genres": genres
+                "title": title.strip(), "date": date, "city": city,
+                "plz": "", "address": f"{city}, {country}", "desc": f"{title} in {city}, {country}",
+                "url": url, "event_url": url, "genres": genres
             }
             ev = add_coords(ev)
             events.append(ev)
-        
         log(f"  ✅ {len(events)} Events")
     except Exception as e:
         log(f"  ❌ Fehler: {e}")
@@ -430,215 +427,137 @@ def scrape_rockabillyrules():
 
 # ==================== QUELLE 4: SwingCalendar (PLAYWRIGHT) ====================
 def scrape_swingcalendar():
-    """SwingCalendar benötigt JavaScript - Playwright erforderlich"""
     events = []
     url = "https://swingcalendar.com/de"
-    log("\n[4/10] SwingCalendar (JavaScript)...")
-    
-    if not PLAYWRIGHT_AVAILABLE:
-        log("  ⚠️ Playwright nicht verfügbar, überspringe SwingCalendar")
+    log("\n[4/10] SwingCalendar (Playwright)...")
+    html = get_playwright_content(url)
+    if not html:
+        log("  ⚠️ Playwright fehlgeschlagen oder nicht installiert.")
         return events
     
-    try:
-        with sync_playwright() as p:
-            browser = p.chromium.launch(headless=True)
-            page = browser.new_page()
-            
-            log("  🌐 Lade Seite mit Playwright...")
-            page.goto(url, timeout=60000)
-            
-            # Warte auf Event-Container (JavaScript muss laden)
-            log("  ⏳ Warte auf JavaScript-Events...")
-            try:
-                page.wait_for_selector('[class*="event"], [class*="Event"], article, .card', timeout=30000)
-                time.sleep(3)  # Extra Zeit für dynamisches Laden
-            except PlaywrightTimeout:
-                log("  ⚠️ Timeout beim Warten auf Events")
-            
-            # Scrolle nach unten um mehr Events zu laden
-            for _ in range(5):
-                page.evaluate('window.scrollTo(0, document.body.scrollHeight)')
-                time.sleep(1)
-            
-            content = page.content()
-            browser.close()
-        
-        soup = BeautifulSoup(content, "lxml")
-        log(f"  🔍 Suche Events im geladenen DOM...")
-        
-        # Versuche verschiedene Event-Selektoren
-        event_elements = soup.find_all(["article", "div"], class_=re.compile(r'event|card|listing|item', re.I))
-        if not event_elements:
-            event_elements = soup.find_all(["div", "li", "section"])
-        
-        log(f"  🔍 {len(event_elements)} potentielle Event-Elemente gefunden")
-        
-        for item in event_elements:
-            text = item.get_text(" ", strip=True)
-            if len(text) < 30 or len(text) > 2000:
-                continue
-                
-            date = parse_date_flexible(text)
-            if not date or not is_future_event(date):
-                continue
-            
-            t_el = item.find(["h1", "h2", "h3", "h4", "strong", "b"])
-            title = t_el.get_text(strip=True) if t_el else text[:80]
-            if len(title) < 3 or len(title) > 150:
-                continue
-            
-            # Stadt aus Text extrahieren
+    soup = BeautifulSoup(html, "lxml")
+    text = soup.get_text("\n", strip=True)
+    
+    # SwingCalendar rendert Events oft in Blöcken. Wir suchen nach Datums-Clustern.
+    # Da das DOM komplex ist, parsen wir den reinen Text auf Datums- und Stadt-Muster.
+    lines = [l.strip() for l in text.split('\n') if l.strip()]
+    
+    count = 0
+    for i, line in enumerate(lines):
+        date = parse_date_flexible(line)
+        if date and is_future_event(date):
+            # Suche in den nächsten 5 Zeilen nach Titel und Stadt
+            context = " ".join(lines[i:min(i+6, len(lines))])
             city = ""
             for c in KNOWN_CITIES:
-                if c.lower() in text.lower():
+                if c.lower() in context.lower():
                     city = c
                     break
             
-            if not city:
-                continue
+            if not city: continue
             
-            genres = detect_genres(text)
-            if not genres:
-                genres = ["Swing"]
+            # Titel ist oft die Zeile direkt nach dem Datum oder eine Überschrift
+            title = ""
+            for j in range(i+1, min(i+4, len(lines))):
+                if len(lines[j]) > 5 and not parse_date_flexible(lines[j]):
+                    title = lines[j][:100]
+                    break
             
-            link_el = item.find("a", href=True)
-            event_url = link_el["href"] if link_el else url
+            if not title or len(title) < 3: continue
+            
+            genres = detect_genres(context)
+            if not genres: genres = ["Swing", "Lindy Hop"]
             
             ev = {
-                "title": title[:100],
-                "date": date,
-                "city": city,
-                "plz": "",
-                "address": city,
-                "desc": text[:500],
-                "url": url,
-                "event_url": event_url if event_url.startswith("http") else url,
-                "genres": genres
+                "title": title, "date": date, "city": city,
+                "plz": "", "address": city, "desc": context[:500],
+                "url": url, "event_url": url, "genres": genres
             }
             ev = add_coords(ev)
             events.append(ev)
-        
-        log(f"  ✅ {len(events)} Events")
-    except Exception as e:
-        log(f"  ❌ Fehler: {e}")
-        import traceback
-        log(traceback.format_exc())
-    
+            count += 1
+            
+    log(f"  ✅ {count} Events via Playwright")
     return events
 
 # ==================== QUELLE 5: SwingInDD (PLAYWRIGHT) ====================
 def scrape_swingindd():
-    """SwingInDD hat Dropdown-Stadtfilter - Playwright erforderlich"""
     events = []
-    base_url = "https://swingindd.com/home/regionale-swing-kalender/"
-    log("\n[5/10] SwingInDD (JavaScript)...")
+    url = "https://swingindd.com/home/regionale-swing-kalender/"
+    log("\n[5/10] SwingInDD (Playwright)...")
     
-    if not PLAYWRIGHT_AVAILABLE:
-        log("  ⚠️ Playwright nicht verfügbar, überspringe SwingInDD")
+    # SwingInDD nutzt oft Iframes oder Dropdowns. Wir lassen Playwright scrollen und klicken.
+    if not PLAYWRIGHT_AVAILABLE: 
+        log("  ⚠️ Playwright nicht verfügbar.")
         return events
-    
-    # Städte die wir prüfen wollen
-    cities_to_check = ["Dresden", "Leipzig", "Berlin", "Hamburg", "Prag", "Krakau"]
-    
+        
     try:
         with sync_playwright() as p:
             browser = p.chromium.launch(headless=True)
             page = browser.new_page()
+            page.goto(url, wait_until="domcontentloaded", timeout=60000)
+            page.wait_for_timeout(3000)
             
-            log("  🌐 Lade SwingInDD Hauptseite...")
-            page.goto(base_url, timeout=60000)
-            time.sleep(3)
-            
-            # Versuche alle Events auf der Seite zu finden
-            content = page.content()
-            soup = BeautifulSoup(content, "lxml")
-            
-            # Scrolle durch die Seite um alle versteckten Elemente zu laden
-            log("  📜 Scrolle durch alle Städte...")
-            for _ in range(10):
-                page.evaluate('window.scrollTo(0, document.body.scrollHeight)')
-                time.sleep(0.5)
-            
-            # Versuche Dropdown-Buttons zu klicken
-            try:
-                buttons = page.query_selector_all('button, [role="button"], .dropdown, select')
-                log(f"  🔘 {len(buttons)} potentielle Dropdown-Buttons gefunden")
-                for btn in buttons[:10]:  # Max 10 Buttons klicken
-                    try:
+            # Versuche Dropdowns/Tabs zu klicken, um Inhalte zu laden
+            buttons = page.query_selector_all('button, .dropdown-toggle, [role="tab"], a')
+            for btn in buttons[:20]:
+                try:
+                    if any(city in (btn.inner_text() or "").lower() for city in ["dresden", "leipzig", "berlin", "hamburg", "prag", "krakau"]):
                         btn.click()
-                        time.sleep(0.5)
-                    except:
-                        pass
-            except:
-                pass
-            
+                        page.wait_for_timeout(1500)
+                except: pass
+                
+            # Scrollen
+            for _ in range(15):
+                page.evaluate("window.scrollBy(0, 800)")
+                page.wait_for_timeout(500)
+                
             content = page.content()
             browser.close()
-        
+            
         soup = BeautifulSoup(content, "lxml")
-        log(f"  🔍 Suche Events im geladenen DOM...")
+        text = soup.get_text("\n", strip=True)
+        lines = [l.strip() for l in text.split('\n') if l.strip()]
         
-        # Suche nach Event-Elementen
-        all_items = soup.find_all(["div", "article", "li", "section", "tr"])
-        log(f"  🔍 {len(all_items)} Elemente gefunden")
-        
-        for item in all_items:
-            text = item.get_text(" ", strip=True)
-            if len(text) < 30 or len(text) > 2000:
-                continue
-            
-            date = parse_date_flexible(text)
-            if not date or not is_future_event(date):
-                continue
-            
-            # Prüfe ob Swing/Tanz-Keywords vorhanden sind
-            tl = text.lower()
-            if not any(kw in tl for kw in ["swing", "lindy", "balboa", "shag", "tanz", "dance", "social", "party"]):
-                continue
-            
-            t_el = item.find(["h1", "h2", "h3", "h4", "strong", "b"])
-            title = t_el.get_text(strip=True) if t_el else text[:80]
-            if len(title) < 3:
-                continue
-            
-            # Stadt finden
-            city = ""
-            for c in KNOWN_CITIES:
-                if c.lower() in text.lower():
-                    city = c
-                    break
-            
-            if not city:
-                # Default zu Dresden wenn nicht gefunden
-                city = "Dresden"
-            
-            genres = detect_genres(text)
-            if not genres:
-                genres = ["Swing"]
-            
-            link_el = item.find("a", href=True)
-            event_url = link_el["href"] if link_el else base_url
-            
-            ev = {
-                "title": title[:100],
-                "date": date,
-                "city": city,
-                "plz": "",
-                "address": city,
-                "desc": text[:500],
-                "url": base_url,
-                "event_url": event_url if event_url.startswith("http") else base_url,
-                "genres": genres
-            }
-            ev = add_coords(ev)
-            events.append(ev)
-        
-        log(f"  ✅ {len(events)} Events")
+        count = 0
+        for i, line in enumerate(lines):
+            date = parse_date_flexible(line)
+            if date and is_future_event(date):
+                context = " ".join(lines[i:min(i+6, len(lines))])
+                tl = context.lower()
+                if not any(kw in tl for kw in ["swing", "lindy", "balboa", "shag", "tanz", "dance", "social", "party"]):
+                    continue
+                
+                city = "Dresden" # Default
+                for c in KNOWN_CITIES:
+                    if c.lower() in context.lower():
+                        city = c
+                        break
+                
+                title = ""
+                for j in range(i+1, min(i+4, len(lines))):
+                    if len(lines[j]) > 5 and not parse_date_flexible(lines[j]):
+                        title = lines[j][:100]
+                        break
+                
+                if not title or len(title) < 3: continue
+                
+                genres = detect_genres(context)
+                if not genres: genres = ["Swing", "Lindy Hop"]
+                
+                ev = {
+                    "title": title, "date": date, "city": city,
+                    "plz": "", "address": city, "desc": context[:500],
+                    "url": url, "event_url": url, "genres": genres
+                }
+                ev = add_coords(ev)
+                events.append(ev)
+                count += 1
+                
+        log(f"  ✅ {count} Events via Playwright")
     except Exception as e:
-        log(f"  ❌ Fehler: {e}")
-        import traceback
-        log(traceback.format_exc())
-    
+        log(f"  ❌ Playwright Fehler: {e}")
+        
     return events
 
 # ==================== QUELLE 6: Lindypott ====================
@@ -648,31 +567,22 @@ def scrape_lindypott():
     log("\n[6/10] Lindypott...")
     try:
         r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=30)
-        if r.status_code != 200:
-            log(f"  ❌ HTTP {r.status_code}")
-            return events
-        
+        if r.status_code != 200: return events
         soup = BeautifulSoup(r.text, "lxml")
         items = soup.find_all(["div", "article", "li", "tr"])
-        log(f"  🔍 {len(items)} Elemente gefunden")
-        
         for item in items:
             text = item.get_text(" ", strip=True)
             date = parse_date_flexible(text)
             if not date or len(text) < 20 or not is_future_event(date): continue
-            
             t_el = item.find(["h2", "h3", "h4", "strong"])
             title = t_el.get_text(strip=True) if t_el else text[:80]
             if len(title) < 3: continue
-            
             cm = {"BO": "Bochum", "DO": "Dortmund", "E": "Essen"}
             city = next((v for k, v in cm.items() if v.lower() in text.lower()), "")
             genres = detect_genres(text)
             if "Lindy Hop" not in genres and "Shag" not in genres:
                 genres.insert(0, "Lindy Hop")
-            if not genres:
-                genres = ["Lindy Hop", "Swing"]
-            
+            if not genres: genres = ["Lindy Hop", "Swing"]
             ev = {
                 "title": title, "date": date, "city": city,
                 "plz": "", "address": city, "desc": text[:500],
@@ -681,7 +591,6 @@ def scrape_lindypott():
             }
             ev = add_coords(ev)
             events.append(ev)
-        
         log(f"  ✅ {len(events)} Events")
     except Exception as e:
         log(f"  ❌ Fehler: {e}")
@@ -693,20 +602,13 @@ def scrape_single_festival(url, city, address, default_title, genres):
     log(f"\n  🔍 {url}...")
     try:
         r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=30)
-        if r.status_code != 200:
-            log(f"  ❌ HTTP {r.status_code}")
-            return events
-        
+        if r.status_code != 200: return events
         soup = BeautifulSoup(r.text, "lxml")
         text = soup.get_text(" ", strip=True)
         date = parse_date_flexible(text)
-        if not date or not is_future_event(date):
-            log(f"  ⚠️ Kein gültiges Datum gefunden")
-            return events
-        
+        if not date or not is_future_event(date): return events
         plz_match = re.search(r'\b(\d{5})\b', address)
         plz = plz_match.group(1) if plz_match else ""
-        
         ev = {
             "title": default_title, "date": date, "city": city,
             "plz": plz, "address": address, "desc": text[:500],
@@ -728,22 +630,16 @@ def scrape_dresden_hepcats():
     log("\n[10/10] Dresden-Hepcats...")
     try:
         r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=30)
-        if r.status_code != 200:
-            log(f"  ❌ HTTP {r.status_code}")
-            return events
-        
+        if r.status_code != 200: return events
         soup = BeautifulSoup(r.text, "lxml")
         items = soup.find_all(["div", "article", "section"])
-        
         for item in items:
             text = item.get_text(" ", strip=True)
             date = parse_date_flexible(text)
             if not date or not is_future_event(date): continue
             if "live" not in text.lower() or "tanz" not in text.lower(): continue
-            
             genres = detect_genres(text)
             if not genres: genres = ["Swing", "Lindy Hop"]
-            
             ev = {
                 "title": "Live Tanz Bar", "date": date, "city": "Dresden",
                 "plz": "01324", "address": "Parkhotel, Bautzner Landstraße 32, 01324 Dresden",
@@ -754,7 +650,6 @@ def scrape_dresden_hepcats():
             }
             ev = add_coords(ev)
             events.append(ev)
-        
         log(f"  ✅ {len(events)} Events")
     except Exception as e:
         log(f"  ❌ Fehler: {e}")
@@ -788,34 +683,22 @@ def main():
     time.sleep(2)
     all_events.extend(scrape_swingcalendar())  # PLAYWRIGHT
     time.sleep(2)
-    all_events.extend(scrape_swingindd())  # PLAYWRIGHT
+    all_events.extend(scrape_swingindd())      # PLAYWRIGHT
     time.sleep(2)
     all_events.extend(scrape_lindypott())
     time.sleep(2)
-    all_events.extend(scrape_single_festival(
-        "https://summershelter.de/", "Biederitz",
-        "Parkweg 1A, 39175 Biederitz", "Summer Shelter Open Air",
-        ["Rock'n'Roll", "Rockabilly"]
-    ))
+    all_events.extend(scrape_single_festival("https://summershelter.de/", "Biederitz", "Parkweg 1A, 39175 Biederitz", "Summer Shelter Open Air", ["Rock'n'Roll", "Rockabilly"]))
     time.sleep(2)
-    all_events.extend(scrape_single_festival(
-        "https://www.firebirds-festival.de/", "Grimma",
-        "Kloster Nimbschen, Nimbschener Landstraße 1, 04668 Grimma",
-        "Firebirds Festival", ["Rock'n'Roll", "Boogie Woogie", "Lindy Hop"]
-    ))
+    all_events.extend(scrape_single_festival("https://www.firebirds-festival.de/", "Grimma", "Kloster Nimbschen, Nimbschener Landstraße 1, 04668 Grimma", "Firebirds Festival", ["Rock'n'Roll", "Boogie Woogie", "Lindy Hop"]))
     time.sleep(2)
-    all_events.extend(scrape_single_festival(
-        "https://rocknroll-festival.de/", "Ganderkesee",
-        "Flugplatz Ganderkesee, Otto-Lilienthal-Str. 23",
-        "Rock'n'Roll Festival Ganderkesee", ["Rock'n'Roll", "Rockabilly"]
-    ))
+    all_events.extend(scrape_single_festival("https://rocknroll-festival.de/", "Ganderkesee", "Flugplatz Ganderkesee, Otto-Lilienthal-Str. 23", "Rock'n'Roll Festival Ganderkesee", ["Rock'n'Roll", "Rockabilly"]))
     time.sleep(2)
     all_events.extend(scrape_dresden_hepcats())
 
     log(f"\n{'=' * 70}")
-    log(f"Total vor Deduplikation: {len(all_events)}")
+    log(f"📈 Total vor Deduplikation: {len(all_events)}")
     all_events = deduplicate(all_events)
-    log(f"Total nach Deduplikation: {len(all_events)}")
+    log(f"📈 Total nach Deduplikation: {len(all_events)}")
 
     all_events = sorted(all_events, key=lambda e: parse_date_for_sort(e['date']))
     log("✓ Chronologisch sortiert")
