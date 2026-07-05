@@ -72,8 +72,7 @@
         .stat-number { font-size: 1.5rem; color: var(--red); }
         .stat-label { font-size: 0.8rem; color: #666; }
         .sort-notice { background: #fff4e6; border-left: 4px solid var(--orange); padding: 10px 15px; margin-bottom: 15px; border-radius: 6px; font-size: 0.9rem; }
-        .load-more-btn { display: block; width: 100%; padding: 12px; background: var(--silver); color: var(--brown); border: none; border-radius: 8px; font-family: 'Bebas Neue'; font-size: 1rem; cursor: pointer; margin-top: 10px; }
-        .load-more-btn:hover { background: #b0b0b0; }
+        .loading-notice { text-align: center; padding: 20px; color: #666; font-family: 'Bebas Neue'; font-size: 1.1rem; }
     </style>
 </head>
 <body>
@@ -122,7 +121,6 @@
             <div id="status" style="margin-top:10px; font-size:0.9rem; color:#666;" data-i18n="loading">Lade...</div>
         </div>
         <div id="events-list"></div>
-        <button id="load-more-btn" class="load-more-btn" style="display:none" onclick="loadMoreEvents()">📥 Mehr Events laden</button>
     </div>
     <div id="tab-search" class="tab-content">
         <div class="filter-section">
@@ -211,7 +209,8 @@ const translations = {
         loadError: "⚠️ Lade-Fehler - Fallback Events",
         sortNotice: "📅 Events werden chronologisch nach Datum sortiert (früheste zuerst)",
         timeLabel: "🕐 Uhrzeit", priceLabel: "💰 Preis", addressLabel: "📍 Adresse",
-        bandsLabel: "🎸 Bands", toEvent: "🎯 Zum Event", loadMore: "📥 Mehr Events laden"
+        bandsLabel: "🎸 Bands", toEvent: "🎯 Zum Event", loadMore: "📥 Mehr Events laden",
+        loadingAll: "⏳ Lade alle Events..."
     },
     en: {
         location: "📍 Location", cityPlaceholder: "Enter city...", searchBtn: "Search",
@@ -241,7 +240,8 @@ const translations = {
         loadError: "⚠️ Load error - fallback events",
         sortNotice: "📅 Events are sorted chronologically by date (earliest first)",
         timeLabel: "🕐 Time", priceLabel: "💰 Price", addressLabel: "📍 Address",
-        bandsLabel: "🎸 Bands", toEvent: "🎯 To Event", loadMore: "📥 Load more events"
+        bandsLabel: "🎸 Bands", toEvent: "🎯 To Event", loadMore: "📥 Load more events",
+        loadingAll: "⏳ Loading all events..."
     }
 };
 let currentLang = 'de';
@@ -303,8 +303,6 @@ if (window.matchMedia('(display-mode: standalone)').matches) installContainer.st
 // ========== APP LOGIC ==========
 let events = [], userLat = null, userLon = null, radius = 100, genre = 'all';
 let map, markers, userMarker;
-let displayedCount = 0;
-const CHUNK_SIZE = 50;
 
 function loadSavedLocation() {
     const savedLat = localStorage.getItem('rockabilly-lat');
@@ -592,34 +590,23 @@ function updateDisplay() {
     if (!currentFilteredEvents.length) { 
         list.innerHTML = `<p style="text-align:center;color:#999;padding:20px">${t('noEvents')}</p>`; 
         setStatus(t('noEvents'));
-        document.getElementById('load-more-btn').style.display = 'none';
         return; 
     }
 
-    list.innerHTML = '';
-    displayedCount = 0;
-    loadMoreEvents();
+    // ZEIGE ALLE EVENTS AUF EINMAL (kein Chunking mehr!)
+    list.innerHTML = `<div class="loading-notice">${t('loadingAll')}</div>`;
     
-    if (currentFilteredEvents.length > 0 && markers.getLayers().length > 0) {
-        try {
-            const group = L.featureGroup(markers.getLayers());
-            if (map) map.fitBounds(group.getBounds().pad(0.1));
-        } catch(e) {}
-    }
+    // Verwende setTimeout um UI nicht zu blockieren
+    setTimeout(() => {
+        renderAllEvents();
+    }, 100);
 }
 
-function loadMoreEvents() {
+function renderAllEvents() {
     const list = document.getElementById('events-list');
-    const btn = document.getElementById('load-more-btn');
-    const chunk = currentFilteredEvents.slice(displayedCount, displayedCount + CHUNK_SIZE);
-    
-    if (chunk.length === 0) {
-        btn.style.display = 'none';
-        return;
-    }
-    
     const fragment = document.createDocumentFragment();
-    chunk.forEach(ev => {
+    
+    currentFilteredEvents.forEach(ev => {
         const inRadius = userLat && userLon && ev.dist !== null && ev.dist <= radius;
         if (ev.lat && ev.lon) {
             const markerColor = inRadius ? '#C41E3A' : '#FF8C00';
@@ -668,15 +655,15 @@ function loadMoreEvents() {
         fragment.appendChild(card);
     });
     
+    list.innerHTML = '';
     list.appendChild(fragment);
-    displayedCount += chunk.length;
-    setStatus(t('eventsShown', {n: displayedCount}));
+    setStatus(t('eventsShown', {n: currentFilteredEvents.length}));
     
-    if (displayedCount < currentFilteredEvents.length) {
-        btn.style.display = 'block';
-        btn.textContent = `${t('loadMore')} (${currentFilteredEvents.length - displayedCount})`;
-    } else {
-        btn.style.display = 'none';
+    if (currentFilteredEvents.length > 0 && markers.getLayers().length > 0) {
+        try {
+            const group = L.featureGroup(markers.getLayers());
+            if (map) map.fitBounds(group.getBounds().pad(0.1));
+        } catch(e) {}
     }
 }
 
