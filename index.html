@@ -34,7 +34,7 @@
         #map { height: 100%; width: 100%; }
         .filter-section { background: white; border-radius: 15px; padding: 15px; margin-bottom: 20px; border: 2px solid var(--silver); }
         .filter-title { font-family: 'Bebas Neue'; font-size: 1.2rem; color: var(--red); margin-bottom: 8px; border-bottom: 1px solid var(--silver); padding-bottom: 5px; }
-        input[type="text"] { width: 100%; padding: 10px; background: var(--cream); border: 2px solid var(--silver); border-radius: 8px; font-family: 'Oswald'; margin-bottom: 10px; }
+        input[type="text"], input[type="date"] { width: 100%; padding: 10px; background: var(--cream); border: 2px solid var(--silver); border-radius: 8px; font-family: 'Oswald'; margin-bottom: 10px; }
         button.action-btn { padding: 8px 15px; background: var(--red); color: white; border: 2px solid var(--brown); border-radius: 8px; font-family: 'Bebas Neue'; cursor: pointer; margin-right: 5px; }
         .filter-checkboxes { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
         .filter-checkboxes label { font-size: 0.9rem; display: flex; align-items: center; gap: 6px; cursor: pointer; }
@@ -95,6 +95,15 @@
             <input type="text" id="city-input" data-i18n-placeholder="cityPlaceholder">
             <button class="action-btn" onclick="updateLocation()" data-i18n="searchBtn">Suchen</button>
             <button class="action-btn" onclick="getGPS()">📡 GPS</button>
+            
+            <div class="filter-title" style="margin-top:15px">📅 Zeitraum</div>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <input type="date" id="date-from" style="flex:1; margin-bottom:0;" onchange="updateDisplay()">
+                <span style="font-family:'Bebas Neue'; color:var(--brown); font-size:1.2rem;">-</span>
+                <input type="date" id="date-to" style="flex:1; margin-bottom:0;" onchange="updateDisplay()">
+                <button class="action-btn" onclick="clearDateFilter()" style="margin-right:0; font-size:0.8rem; padding: 8px 10px;">✖</button>
+            </div>
+
             <div class="filter-title" style="margin-top:15px"><span data-i18n="radius">📏 Radius</span>: <span id="radius-val">2500 km</span></div>
             <input type="range" id="radius-slider" min="10" max="5000" value="2500" step="10" style="width:100%" oninput="document.getElementById('radius-val').innerText=this.value+' km'; updateDisplay()">
             <div class="filter-checkboxes">
@@ -121,9 +130,27 @@
     </div>
     <div id="tab-search" class="tab-content">
         <div class="filter-section">
-            <div class="filter-title" data-i18n="search">🔍 Suche</div>
+            <div class="filter-title" data-i18n="search">🔍 Erweiterte Suche</div>
             <input type="text" id="search-input" data-i18n-placeholder="searchPlaceholder" oninput="doSearch()">
-            <div id="search-results"></div>
+            
+            <div style="margin-top: 15px; display: flex; flex-direction: column; gap: 8px;">
+                <div>
+                    <label style="font-family:'Bebas Neue'; color:var(--red); letter-spacing:1px;">📍 Ort / PLZ:</label>
+                    <input type="text" id="search-location" placeholder="z.B. Grimma oder 04668" oninput="doSearch()">
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <div style="flex:1">
+                        <label style="font-family:'Bebas Neue'; color:var(--red); letter-spacing:1px;">📅 Von:</label>
+                        <input type="date" id="search-date-from" oninput="doSearch()">
+                    </div>
+                    <div style="flex:1">
+                        <label style="font-family:'Bebas Neue'; color:var(--red); letter-spacing:1px;">📅 Bis:</label>
+                        <input type="date" id="search-date-to" oninput="doSearch()">
+                    </div>
+                </div>
+            </div>
+            
+            <div id="search-results" style="margin-top: 15px;"></div>
         </div>
     </div>
     <div id="tab-radio" class="tab-content">
@@ -205,7 +232,7 @@ const translations = {
         eventsLoaded: "✅ {n} events loaded", eventsShown: "✅ {n} events shown",
         noEvents: "No events found",
         offlineMode: "⚠️ Offline mode ({n} events)",
-        gpsSearching: "📡 Searching...", gpsFound: "✅ GPS found",
+        gpsSearching: "⏳ Searching...", gpsFound: "✅ GPS found",
         gpsError: "❌ GPS error", gpsNotSupported: "❌ GPS not supported",
         notFound: "❌ Not found", error: "❌ Error",
         hereYouAre: "📍 You are here",
@@ -347,8 +374,8 @@ async function loadEvents() {
 }
 function getFallbackEvents() {
     return [
-        {title:"Summer Jamboree 2026", date:"01.08.2026", city:"Senigallia", lat:43.7147, lon:13.2183, desc:"Europas größtes Rockabilly-Festival", url:"https://www.summerjamboree.com", genres:["Rockabilly"]},
-        {title:"Firebirds Festival #14", date:"03.07.2026", city:"Grimma", lat:51.2294, lon:12.7561, desc:"Rock'n'Roll im Kloster Nimbschen", url:"https://www.firebirds-festival.de/", genres:["Rock'n'Roll","Boogie Woogie","Lindy Hop"]},
+        {title:"Summer Jamboree 2026", date:"01.08.2026", city:"Senigallia", lat:43.7147, lon:13.2183, address:"Ponte Rosso, 61122 Senigallia, Italien", desc:"Europas größtes Rockabilly-Festival", url:"https://www.summerjamboree.com", genres:["Rockabilly"]},
+        {title:"Firebirds Festival #14", date:"03.07.2026 - 05.07.2026", city:"Grimma", lat:51.2294, lon:12.7561, address:"Kloster Nimbschen, Nimbschener Landstraße 1, 04668 Grimma", desc:"Rock'n'Roll im Kloster Nimbschen", url:"https://www.firebirds-festival.de/", event_url:"https://www.firebirds-festival.de/", genres:["Rock'n'Roll","Boogie Woogie","Lindy Hop"]},
         {title:"High Rockabilly 2026", date:"15.05.2026", city:"Irun", lat:43.3396, lon:-1.7894, desc:"Top Rockabilly Festival Spanien", url:"https://www.highrockabilly.com", genres:["Rockabilly"]},
         {title:"Viva Las Vegas 2026", date:"16.04.2026", city:"Las Vegas", lat:36.1699, lon:-115.1398, desc:"Weltgrößtes Rockabilly Festival", url:"https://www.vivalasvegas.net", genres:["Rockabilly","50er"]},
         {title:"Rock That Swing #20", date:"04.02.2027", city:"München", lat:48.1351, lon:11.5820, desc:"20. Rock That Swing Festival", url:"https://www.jukeboxstompers.de/", genres:["Lindy Hop","Boogie Woogie","Balboa","Shag"]},
@@ -360,6 +387,11 @@ function setGenre(g, el) {
     genre = g;
     document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
     el.classList.add('active');
+    updateDisplay();
+}
+function clearDateFilter() {
+    document.getElementById('date-from').value = '';
+    document.getElementById('date-to').value = '';
     updateDisplay();
 }
 function getGoogleCalendarUrl(ev) {
@@ -435,6 +467,13 @@ function updateDisplay() {
     markers.clearLayers();
     const today = new Date(); today.setHours(0, 0, 0, 0);
     
+    // Zeitraum-Filter auslesen
+    const dateFromVal = document.getElementById('date-from').value;
+    const dateToVal = document.getElementById('date-to').value;
+    const dateFrom = dateFromVal ? new Date(dateFromVal) : null;
+    const dateTo = dateToVal ? new Date(dateToVal) : null;
+    if(dateTo) dateTo.setHours(23, 59, 59, 999);
+    
     let processed = events.map(ev => {
         const dist = getDist(userLat, userLon, ev.lat, ev.lon);
         const endDate = parseEventEndDate(ev.date);
@@ -443,6 +482,13 @@ function updateDisplay() {
     
     currentFilteredEvents = processed.filter(ev => {
         if (hidePast && ev.endDate && ev.endDate < today) return false;
+        
+        // Zeitraum prüfen
+        const evStart = parseEventStartDate(ev.date);
+        const evEnd = ev.endDate || evStart;
+        if (dateFrom && evEnd < dateFrom) return false;
+        if (dateTo && evStart > dateTo) return false;
+
         const inRadius = ev.dist === null || ev.dist <= radius;
         const matchGenre = genre === 'all' || (ev.genres && ev.genres.includes(genre));
         if (!matchGenre) return false;
@@ -515,7 +561,10 @@ function loadMoreEvents() {
         
         const timeInfo = ev.time ? `<div class="event-detail-row"><strong>${t('timeLabel')}:</strong> ${ev.time}</div>` : '';
         const priceInfo = ev.price ? `<div class="event-detail-row"><strong>${t('priceLabel')}:</strong> ${ev.price}</div>` : '';
-        const addressInfo = ev.address ? `<div class="event-detail-row"><strong>${t('addressLabel')}:</strong> ${ev.address}</div>` : '';
+        
+        // Adresse ist nun direkt zur offiziellen Website verlinkt
+        const addressInfo = ev.address ? `<div class="event-detail-row"><strong>${t('addressLabel')}:</strong> <a href="${websiteUrl}" target="_blank" rel="noopener noreferrer" style="color:var(--red); text-decoration:underline;">${ev.address}</a></div>` : '';
+        
         const bandsInfo = ev.bands && ev.bands.length > 0 ? `<div class="event-detail-row"><strong>${t('bandsLabel')}:</strong><div class="bands-list">${ev.bands.join(' • ')}</div></div>` : '';
         
         const card = document.createElement('div');
@@ -551,11 +600,42 @@ function loadMoreEvents() {
 }
 function doSearch() {
     const q = document.getElementById('search-input').value.toLowerCase();
+    const loc = document.getElementById('search-location').value.toLowerCase();
+    const dateFromVal = document.getElementById('search-date-from').value;
+    const dateToVal = document.getElementById('search-date-to').value;
+    const dateFrom = dateFromVal ? new Date(dateFromVal) : null;
+    const dateTo = dateToVal ? new Date(dateToVal) : null;
+    if(dateTo) dateTo.setHours(23, 59, 59, 999);
+    
     const res = document.getElementById('search-results');
-    if (!q) { res.innerHTML = ''; return; }
-    const found = events.filter(e => `${e.title} ${e.city} ${e.desc}`.toLowerCase().includes(q));
+    if (!q && !loc && !dateFrom && !dateTo) { res.innerHTML = ''; return; }
+    
+    const found = events.filter(e => {
+        const textMatch = !q || `${e.title} ${e.city} ${e.desc} ${(e.bands||[]).join(' ')}`.toLowerCase().includes(q);
+        const locMatch = !loc || `${e.city} ${e.address||''}`.toLowerCase().includes(loc);
+        
+        let dateMatch = true;
+        if (dateFrom || dateTo) {
+            const evStart = parseEventStartDate(e.date);
+            const evEnd = parseEventEndDate(e.date) || evStart;
+            if (dateFrom && evEnd < dateFrom) dateMatch = false;
+            if (dateTo && evStart > dateTo) dateMatch = false;
+        }
+        
+        return textMatch && locMatch && dateMatch;
+    });
+    
     res.innerHTML = found.length 
-        ? found.map(e => `<div class="event-card" style="padding:10px"><div class="event-title" style="font-size:1.1rem">${e.title}</div><div class="event-date">${e.date||''} • ${e.city||''}</div></div>`).join('')
+        ? found.map(e => {
+            const websiteUrl = e.event_url || e.url;
+            const websiteBtn = websiteUrl ? `<a href="${websiteUrl}" target="_blank" class="btn-link" rel="noopener noreferrer" style="margin-top:8px">🎯 Zur Website</a>` : '';
+            return `<div class="event-card" style="padding:10px">
+                <div class="event-title" style="font-size:1.1rem">${e.title}</div>
+                <div class="event-date">📅 ${e.date||''} • 📍 ${e.city||''}</div>
+                <div style="font-size:0.85rem; color:#666; margin-top:4px;">${e.address||''}</div>
+                ${websiteBtn}
+            </div>`;
+        }).join('')
         : `<p style="color:#999;padding:10px">${t('nothingFound')}</p>`;
 }
 function toggleRadio() {
