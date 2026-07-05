@@ -107,7 +107,7 @@
             <div class="filter-title" style="margin-top:15px"><span data-i18n="radius">📏 Radius</span>: <span id="radius-val">100 km</span></div>
             <input type="range" id="radius-slider" min="10" max="5000" value="100" step="10" style="width:100%" oninput="document.getElementById('radius-val').innerText=this.value+' km'; updateDisplay()">
             <div class="filter-checkboxes">
-                <label><input type="checkbox" id="show-all-events" onchange="updateDisplay()"> <span data-i18n="showAll">Alle Events anzeigen (auch außerhalb des Radius)</span></label>
+                <label><input type="checkbox" id="show-all-events" checked onchange="updateDisplay()"> <span data-i18n="showAll">Alle Events anzeigen (auch außerhalb des Radius)</span></label>
                 <label><input type="checkbox" id="hide-past-events" checked onchange="updateDisplay()"> <span data-i18n="hidePast">🚫 Vergangene Events ausblenden</span></label>
             </div>
             <div class="filter-title" style="margin-top:15px" data-i18n="genre">🎶 Genre</div>
@@ -449,22 +449,18 @@ function clearDateFilter() {
     updateDisplay();
 }
 
-// NEUE GENRE-LOGIK: Fasst Unterkategorien zusammen
 function checkGenreMatch(filterGenre, eventGenres) {
     if (!eventGenres || !Array.isArray(eventGenres)) return false;
     
-    // Swing Oberkategorie
     if (filterGenre === 'Swing') {
         const swingSubGenres = ['Swing', 'Lindy Hop', 'Balboa', 'Charleston', 'West Coast Swing', 'Shag'];
         return swingSubGenres.some(g => eventGenres.includes(g));
     }
     
-    // Country & Line Dance
     if (filterGenre === 'Country') {
         return eventGenres.includes('Country') || eventGenres.includes('Line Dance');
     }
     
-    // Standard
     return eventGenres.includes(filterGenre);
 }
 
@@ -564,15 +560,14 @@ function updateDisplay() {
         if (dateFrom && evEnd < dateFrom) return false;
         if (dateTo && evStart > dateTo) return false;
 
-        // NEUE GENRE-PRÜFUNG
         const matchGenre = genre === 'all' || checkGenreMatch(genre, ev.genres);
         if (!matchGenre) return false;
 
         if (userLat && userLon) {
             const inRadius = ev.dist !== null && ev.dist <= radius;
             if (!showAll) {
-                if (ev.dist === null) return false; 
-                if (!inRadius) return false; 
+                if (ev.dist === null) return false;
+                if (!inRadius) return false;
             }
         }
         
@@ -586,7 +581,6 @@ function updateDisplay() {
     });
     
     const futureEvents = processed.filter(e => !e.endDate || e.endDate >= today);
-    // NEUE GENRE-PRÜFUNG FÜR STATISTIK
     const nearCount = futureEvents.filter(e => e.dist !== null && e.dist <= radius && (genre==='all'||checkGenreMatch(genre, e.genres))).length;
     const farCount = futureEvents.filter(e => e.dist !== null && e.dist > radius && (genre==='all'||checkGenreMatch(genre, e.genres))).length;
     const noCoordCount = futureEvents.filter(e => e.dist === null && (genre==='all'||checkGenreMatch(genre, e.genres))).length;
