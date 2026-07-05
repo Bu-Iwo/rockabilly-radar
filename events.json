@@ -93,9 +93,9 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "https://www.loewe-burgstaedt.de/",
     "genres": [
+      "Balboa",
       "Lindy Hop",
-      "Boogie Woogie",
-      "Balboa"
+      "Boogie Woogie"
     ],
     "lat": 50.9199843,
     "lon": 12.8056571
@@ -166,8 +166,8 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "https://www.swingdanceleipzig.com/",
     "genres": [
-      "Lindy Hop",
-      "Balboa"
+      "Balboa",
+      "Lindy Hop"
     ],
     "lat": 51.3406321,
     "lon": 12.3747329
@@ -243,8 +243,8 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "https://www.swingdanceleipzig.com/",
     "genres": [
-      "Lindy Hop",
-      "Balboa"
+      "Balboa",
+      "Lindy Hop"
     ],
     "lat": 51.3406321,
     "lon": 12.3747329
@@ -348,8 +348,8 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "https://moosquitos.de/",
     "genres": [
-      "Boogie Woogie",
-      "West Coast Swing"
+      "West Coast Swing",
+      "Boogie Woogie"
     ],
     "lat": 48.315762,
     "lon": 11.554494
@@ -384,10 +384,10 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "genres": [
+      "Balboa",
       "Lindy Hop",
       "Boogie Woogie",
-      "West Coast Swing",
-      "Balboa"
+      "West Coast Swing"
     ],
     "lat": 47.9552898,
     "lon": 7.8296094
@@ -408,8 +408,8 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender#:~:text=Swing%20-Boogie%20-%20Jive%20-%20Rock%27n%27Roll%20-%20RnB%C2%A0%20-%20Doo%20Wo",
     "genres": [
-      "Rock'n'Roll",
       "Swing",
+      "Rock'n'Roll",
       "Boogie Woogie"
     ],
     "lat": 51.3406321,
@@ -525,10 +525,10 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "http://www.rockthatswing.com/",
     "genres": [
-      "Lindy Hop",
-      "Boogie Woogie",
+      "Balboa",
       "Shag",
-      "Balboa"
+      "Lindy Hop",
+      "Boogie Woogie"
     ],
     "lat": 48.1371079,
     "lon": 11.5753822
@@ -590,8 +590,8 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "https://www.the-firebirds.de/",
     "genres": [
-      "Rock'n'Roll",
       "Swing",
+      "Rock'n'Roll",
       "Boogie Woogie"
     ],
     "lat": 52.4489683,
