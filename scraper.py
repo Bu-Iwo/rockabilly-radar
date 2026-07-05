@@ -127,12 +127,20 @@ def extract_bands(text):
     return bands[:5] if bands else None
 
 def build_direct_url(base_url, container, title):
-    """Findet echten Link im Container oder nutzt CSS Text Fragment für Auto-Scroll"""
+    """Findet echten Link im Container oder nutzt CSS Text Fragment für Auto-Scroll.
+       WICHTIG: Filtert Facebook, Instagram, TikTok etc. heraus!"""
     link = container.find("a", href=True)
     if link:
         href = link["href"]
-        if href.startswith("http"): return href
+        if href.startswith("http"):
+            # KEINE Social Media Links als Event-URL akzeptieren
+            social_media_domains = ["facebook.com", "instagram.com", "tiktok.com", 
+                                    "twitter.com", "x.com", "youtube.com", "fb.com", "youtu.be"]
+            if any(sm in href.lower() for sm in social_media_domains):
+                return base_url # Fallback auf die Hauptseite der Quelle
+            return href
         return urljoin(base_url, href)
+    
     # Fallback: CSS Text Fragment (scrollt & highlightet automatisch im Browser)
     safe_title = quote(title.strip()[:50])
     return f"{base_url}#:~:text={safe_title}"
