@@ -3,6 +3,8 @@
 Rockabilly Radar Scraper - FINAL PRODUCTION VERSION
 - 10 Quellen, strikte Validierung, keine Generierung
 - Direkte Event-Links oder CSS Text Fragments für Auto-Scroll
+- KEINE Social-Media-Links (Facebook, Instagram, TikTok etc.)
+- Neue Genre-Struktur: Swing (Oberkategorie), Country & Line Dance
 - Optimiert für 1000+ Events
 """
 
@@ -17,6 +19,13 @@ import sys
 
 GEOCODE_CACHE = {}
 TODAY = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
+
+# Social-Media-Domains, die NICHT als Event-URL gespeichert werden dürfen
+SOCIAL_MEDIA_DOMAINS = [
+    "facebook.com", "instagram.com", "tiktok.com", 
+    "twitter.com", "x.com", "youtube.com", "fb.com", "youtu.be",
+    "m.facebook.com", "www.facebook.com"
+]
 
 def log(msg):
     print(f"[{datetime.now().strftime('%H:%M:%S')}] {msg}", flush=True)
@@ -36,6 +45,12 @@ def geocode(city):
             return coords
     except: pass
     return None
+
+def is_social_media_url(url):
+    """Prüft, ob eine URL zu Social Media gehört"""
+    if not url: return False
+    url_lower = url.lower()
+    return any(domain in url_lower for domain in SOCIAL_MEDIA_DOMAINS)
 
 def parse_date_flexible(text):
     """Parst alle bekannten Datumsformate aus den Quellen"""
@@ -126,20 +141,55 @@ def extract_bands(text):
             if 3 < len(p) < 60: bands.append(p)
     return bands[:5] if bands else None
 
+def detect_genres(text):
+    """Erkennt alle Genres im Text basierend auf der neuen Struktur"""
+    genres = []
+    tl = text.lower()
+    
+    # Rockabilly
+    if "rockabilly" in tl: genres.append("Rockabilly")
+    
+    # Rock'n'Roll
+    if "rock'n'roll" in tl or "rock 'n' roll" in tl or "rock and roll" in tl:
+        genres.append("Rock'n'Roll")
+    
+    # Swing-Oberkategorie mit allen Subgenres
+    if "lindy hop" in tl or "lindy" in tl: genres.append("Lindy Hop")
+    if "balboa" in tl: genres.append("Balboa")
+    if "charleston" in tl: genres.append("Charleston")
+    if "west coast swing" in tl or "west coast" in tl: genres.append("West Coast Swing")
+    if "shag" in tl: genres.append("Shag")
+    # Nur "Swing" als Fallback, wenn kein Subgenre erkannt wurde
+    if "swing" in tl and not any(g in genres for g in ["Lindy Hop", "Balboa", "Charleston", "West Coast Swing", "Shag"]):
+        genres.append("Swing")
+    
+    # Boogie Woogie
+    if "boogie" in tl: genres.append("Boogie Woogie")
+    
+    # Country & Line Dance
+    if "country" in tl: genres.append("Country")
+    if "line dance" in tl: genres.append("Line Dance")
+    
+    # Irish (für Country-Events)
+    if "irish" in tl and "Country" not in genres: genres.append("Country")
+    
+    return list(set(genres)) if genres else ["Rock'n'Roll"]  # Fallback
+
 def build_direct_url(base_url, container, title):
-    """Findet echten Link im Container oder nutzt CSS Text Fragment für Auto-Scroll.
-       WICHTIG: Filtert Facebook, Instagram, TikTok etc. heraus!"""
+    """Findet echten Link im Container oder nutzt CSS Text Fragment.
+       WICHTIG: Blockiert Social-Media-Links!"""
     link = container.find("a", href=True)
     if link:
         href = link["href"]
         if href.startswith("http"):
             # KEINE Social Media Links als Event-URL akzeptieren
-            social_media_domains = ["facebook.com", "instagram.com", "tiktok.com", 
-                                    "twitter.com", "x.com", "youtube.com", "fb.com", "youtu.be"]
-            if any(sm in href.lower() for sm in social_media_domains):
-                return base_url # Fallback auf die Hauptseite der Quelle
+            if is_social_media_url(href):
+                return base_url  # Fallback auf die Hauptseite der Quelle
             return href
-        return urljoin(base_url, href)
+        full_url = urljoin(base_url, href)
+        if is_social_media_url(full_url):
+            return base_url
+        return full_url
     
     # Fallback: CSS Text Fragment (scrollt & highlightet automatisch im Browser)
     safe_title = quote(title.strip()[:50])
@@ -173,13 +223,7 @@ def scrape_we_love_country():
             if len(title) < 3 or not is_future_event(date): continue
             
             full = f"{title} {details}"
-            genres = ["Country"]
-            fl = full.lower()
-            if "line dance" in fl: genres.append("Line Dance")
-            if "rockabilly" in fl: genres.append("Rockabilly")
-            if "rock'n'roll" in fl or "rock 'n' roll" in fl: genres.append("Rock'n'Roll")
-            if "boogie" in fl: genres.append("Boogie Woogie")
-            if "irish" in fl: genres.append("Irish")
+            genres = detect_genres(full)
             
             ev = add_coords({
                 "title": title, "date": date, "city": city,
@@ -188,7 +232,7 @@ def scrape_we_love_country():
                 "time": extract_time(full), "price": extract_price(full),
                 "bands": extract_bands(full),
                 "url": url, "event_url": build_direct_url(url, soup, title),
-                "genres": list(set(genres))
+                "genres": genres
             })
             events.append(ev)
             count += 1
@@ -224,11 +268,7 @@ def scrape_jukeboxstompers():
             title = title_el.get_text(strip=True) if title_el else desc_text.split(".")[0][:80]
             if len(title) < 3: continue
             
-            genres = ["Rock'n'Roll"]
-            tl = desc_text.lower()
-            if "boogie" in tl: genres.append("Boogie Woogie")
-            if "swing" in tl or "lindy" in tl: genres.append("Swing")
-            if "rockabilly" in tl: genres.append("Rockabilly")
+            genres = detect_genres(desc_text)
             
             ev = add_coords({
                 "title": title.strip(), "date": date, "city": city,
@@ -236,7 +276,7 @@ def scrape_jukeboxstompers():
                 "time": extract_time(desc_text), "price": extract_price(desc_text),
                 "bands": extract_bands(desc_text),
                 "url": url, "event_url": build_direct_url(url, cells[2], title),
-                "genres": list(set(genres))
+                "genres": genres
             })
             events.append(ev)
         log(f"  ✅ {len(events)} Events")
@@ -254,7 +294,6 @@ def scrape_rockabillyrules():
         soup = BeautifulSoup(r.text, "lxml")
         text = soup.get_text("\n", strip=True)
         
-        # Format: City, Country\nDay, DD - Day, DD Mon YYYY\n## Title
         blocks = re.split(r'\n(?=[A-Z][a-z]+,\s*[A-Z])', text)
         for block in blocks:
             lines = [l.strip() for l in block.split("\n") if l.strip()]
@@ -268,14 +307,13 @@ def scrape_rockabillyrules():
             title = lines[2].replace("##", "").strip()
             if len(title) < 3: continue
             
-            genres = ["Rockabilly", "Rock'n'Roll"]
-            if "psychobilly" in title.lower(): genres.append("Psychobilly")
+            genres = detect_genres(f"{title} {city_raw}")
             
             ev = add_coords({
                 "title": title, "date": date, "city": city,
                 "address": city_raw, "desc": f"{title} in {city_raw}",
                 "url": url, "event_url": build_direct_url(url, soup, title),
-                "genres": list(set(genres))
+                "genres": genres
             })
             events.append(ev)
         log(f"  ✅ {len(events)} Events")
@@ -304,14 +342,12 @@ def scrape_swingcalendar():
             cities = ["Berlin","Dresden","Leipzig","München","Hamburg","Köln","Frankfurt","Wien","Zürich","London","Paris","Rom","Madrid","Prag","Amsterdam","Stockholm","Oslo","Helsinki"]
             city = next((c for c in cities if c in text), "")
             
-            genres = ["Swing"]
-            if "lindy" in text.lower(): genres.append("Lindy Hop")
-            if "balboa" in text.lower(): genres.append("Balboa")
+            genres = detect_genres(text)
             
             ev = add_coords({
                 "title": title, "date": date, "city": city, "address": city,
                 "desc": text[:500], "url": url, "event_url": build_direct_url(url, item, title),
-                "genres": list(set(genres))
+                "genres": genres
             })
             events.append(ev)
         log(f"  ✅ {len(events)} Events")
@@ -338,14 +374,12 @@ def scrape_swingindd():
             if len(title) < 3: continue
             
             city = "Dresden" if "dresden" in text.lower() else ""
-            genres = ["Swing"]
-            if "lindy" in text.lower(): genres.append("Lindy Hop")
-            if "balboa" in text.lower(): genres.append("Balboa")
+            genres = detect_genres(text)
             
             ev = add_coords({
                 "title": title, "date": date, "city": city, "address": city,
                 "desc": text[:500], "url": url, "event_url": build_direct_url(url, item, title),
-                "genres": list(set(genres))
+                "genres": genres
             })
             events.append(ev)
         log(f"  ✅ {len(events)} Events")
@@ -373,13 +407,14 @@ def scrape_lindypott():
             
             cm = {"BO": "Bochum", "DO": "Dortmund", "E": "Essen"}
             city = next((v for k, v in cm.items() if v.lower() in text.lower()), "")
-            genres = ["Swing"]
-            if "lindy" in text.lower(): genres.append("Lindy Hop")
+            genres = detect_genres(text)
+            # Lindypott ist primär Lindy Hop
+            if "Lindy Hop" not in genres: genres.insert(0, "Lindy Hop")
             
             ev = add_coords({
                 "title": title, "date": date, "city": city, "address": city,
                 "desc": text[:500], "url": url, "event_url": build_direct_url(url, item, title),
-                "genres": list(set(genres))
+                "genres": genres
             })
             events.append(ev)
         log(f"  ✅ {len(events)} Events")
@@ -411,7 +446,6 @@ def scrape_single_festival(url, city, address, default_title, genres):
 
 # ==================== QUELLE 10: Dresden-Hepcats ====================
 def scrape_dresden_hepcats():
-    # Strikt: Nur explizit gelistete Daten. Keine Generierung!
     events = []
     url = "https://www.dresden-hepcats.de/socials-de"
     log("\n[10/10] Dresden-Hepcats...")
@@ -425,12 +459,15 @@ def scrape_dresden_hepcats():
             if not date or not is_future_event(date): continue
             if "live" not in text.lower() or "tanz" not in text.lower(): continue
             
+            genres = detect_genres(text)
+            if "Lindy Hop" not in genres: genres.insert(0, "Lindy Hop")
+            
             ev = add_coords({
                 "title": "Live Tanz Bar", "date": date, "city": "Dresden",
                 "address": "Parkhotel, Bautzner Landstraße 32, 01324 Dresden",
                 "desc": "Social mit Live-Band im Parkhotel auf dem Weißen Hirsch.",
                 "time": "20:00 Uhr", "url": url, "event_url": build_direct_url(url, item, "Live Tanz Bar"),
-                "genres": ["Swing", "Lindy Hop"]
+                "genres": genres
             })
             events.append(ev)
         log(f"  ✅ {len(events)} Events (nur explizit gelistet)")
@@ -467,11 +504,30 @@ def main():
     time.sleep(2)
     all_events.extend(scrape_lindypott())
     time.sleep(2)
-    all_events.extend(scrape_single_festival("https://summershelter.de/", "Biederitz", "Parkweg 1A, 39175 Biederitz", "Summer Shelter Open Air", ["Rock'n'Roll", "Rockabilly"]))
+    all_events.extend(scrape_single_festival(
+        "https://summershelter.de/", 
+        "Biederitz", 
+        "Parkweg 1A, 39175 Biederitz", 
+        "Summer Shelter Open Air", 
+        ["Rock'n'Roll", "Rockabilly"]
+    ))
     time.sleep(2)
-    all_events.extend(scrape_single_festival("https://www.firebirds-festival.de/", "Grimma", "Kloster Nimbschen, Nimbschener Landstraße 1", "Firebirds Festival", ["Rock'n'Roll", "Boogie Woogie", "Lindy Hop"]))
+    # KORRIGIERTE ADRESSE für Firebirds Festival (Kloster Nimbschen)
+    all_events.extend(scrape_single_festival(
+        "https://www.firebirds-festival.de/", 
+        "Grimma", 
+        "Kloster Nimbschen, Nimbschener Landstraße 1, 04668 Grimma", 
+        "Firebirds Festival", 
+        ["Rock'n'Roll", "Boogie Woogie", "Lindy Hop"]
+    ))
     time.sleep(2)
-    all_events.extend(scrape_single_festival("https://rocknroll-festival.de/", "Ganderkesee", "Flugplatz Ganderkesee, Otto-Lilienthal-Str. 23", "Rock'n'Roll Festival Ganderkesee", ["Rock'n'Roll", "Rockabilly"]))
+    all_events.extend(scrape_single_festival(
+        "https://rocknroll-festival.de/", 
+        "Ganderkesee", 
+        "Flugplatz Ganderkesee, Otto-Lilienthal-Str. 23", 
+        "Rock'n'Roll Festival Ganderkesee", 
+        ["Rock'n'Roll", "Rockabilly"]
+    ))
     time.sleep(2)
     all_events.extend(scrape_dresden_hepcats())
 
