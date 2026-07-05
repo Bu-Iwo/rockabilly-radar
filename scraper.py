@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Rockabilly Radar Event Scraper - VERIFIED VERSION
-Nur tatsächlich existierende Events, chronologisch sortiert
+Rockabilly Radar Event Scraper - VERIFIED + FUTURE ONLY
+Nur tatsächlich existierende, zukünftige Events (ab heute), chronologisch sortiert
 """
 
 import requests
@@ -9,11 +9,12 @@ from bs4 import BeautifulSoup
 import json
 import time
 import re
-from datetime import datetime
+from datetime import datetime, timedelta
 from urllib.parse import urljoin
 import sys
 
 GEOCODE_CACHE = {}
+TODAY = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
 
 def log(msg):
     print(f"[{datetime.now().strftime('%H:%M:%S')}] {msg}", flush=True)
@@ -61,13 +62,36 @@ def parse_date_for_sort(date_str):
         if m:
             d, mo, y = m.groups()
             return datetime(int(y), int(mo), int(d))
-        m = re.search(r'(\d{2})\.(\d{2})\.', date_str)
-        if m:
-            d, mo = m.groups()
-            return datetime(datetime.now().year, int(mo), int(d))
     except:
         pass
     return datetime.max
+
+def get_event_end_date(date_str):
+    """Extrahiert das ENDDATUM eines Events für Vergangenen-Check"""
+    try:
+        matches = list(re.finditer(r'(\d{2})\.(\d{2})\.(\d{4})', date_str))
+        if len(matches) >= 2:
+            last = matches[-1]
+            d, mo, y = last.groups()
+            return datetime(int(y), int(mo), int(d))
+        elif len(matches) == 1:
+            d, mo, y = matches[0].groups()
+            return datetime(int(y), int(mo), int(d))
+        
+        m = re.search(r'(\d{2})\.(\d{2})\.\s*-\s*(\d{2})\.(\d{2})\.(\d{4})', date_str)
+        if m:
+            d1, m1, d2, m2, y = m.groups()
+            return datetime(int(y), int(m2), int(d2))
+    except:
+        pass
+    return None
+
+def is_future_event(date_str):
+    """Prüft ob ein Event in der Zukunft liegt (Enddatum >= heute)"""
+    end_date = get_event_end_date(date_str)
+    if not end_date:
+        return True  # Wenn kein Datum parsebar, behalten
+    return end_date >= TODAY
 
 def extract_time(text):
     times = []
@@ -91,6 +115,19 @@ def extract_price(text):
         if match:
             return match.group(0)
     return None
+
+def extract_bands(text):
+    patterns = [
+        r'(?:Bands?|Live|Musik)[:\s]*([^\n]+)',
+        r'([A-Z][a-z]+\s+(?:&|and)\s+[A-Z][a-z]+(?:\s+Band)?)',
+    ]
+    bands = []
+    for pattern in patterns:
+        matches = re.findall(pattern, text, re.IGNORECASE)
+        for match in matches:
+            if len(match) > 3 and len(match) < 100:
+                bands.append(match.strip())
+    return bands[:5] if bands else None
 
 def generate_smart_url(base_url, date, city):
     if not date:
@@ -117,19 +154,24 @@ def scrape_we_love_country():
         if r.status_code != 200:
             return events
         
-        log(f"✓ Seite geladen: {len(r.text)} bytes")
-        
         soup = BeautifulSoup(r.text, "lxml")
         text = soup.get_text("\n", strip=True)
         
         pattern = r'(?:Mo|Di|Mi|Do|Fr|Sa|So)\.?\s+(\d{2}\.\d{2}\.\d{4})\s+(\d{5})\s+([^\n]+)\n([^\n]+)(?:\n([^\n]+))?'
         matches = re.findall(pattern, text)
         
-        log(f"✓ {len(matches)} Event-Blöcke gefunden")
+        future_count = 0
+        past_count = 0
         
         for match in matches:
             if len(match) >= 4:
                 date = match[0]
+                
+                # ✅ Nur zukünftige Events
+                if not is_future_event(date):
+                    past_count += 1
+                    continue
+                
                 plz = match[1]
                 city = match[2].strip()
                 title = match[3].strip()
@@ -142,14 +184,16 @@ def scrape_we_love_country():
                 
                 time_info = extract_time(full_text)
                 price_info = extract_price(full_text)
+                bands_info = extract_bands(full_text)
                 address = f"{plz} {city}"
                 
                 genres = ["Country"]
                 full_lower = full_text.lower()
-                
                 if "line dance" in full_lower: genres.append("Line Dance")
                 if "rockabilly" in full_lower: genres.append("Rockabilly")
                 if "rock'n'roll" in full_lower: genres.append("Rock'n'Roll")
+                if "irish" in full_lower: genres.append("Irish")
+                if "boogie" in full_lower: genres.append("Boogie Woogie")
                 
                 ev = {
                     "title": title,
@@ -159,6 +203,7 @@ def scrape_we_love_country():
                     "desc": details[:500] if details else title,
                     "time": time_info,
                     "price": price_info,
+                    "bands": bands_info,
                     "url": url,
                     "event_url": generate_smart_url(url, date, city),
                     "genres": list(set(genres))
@@ -169,8 +214,9 @@ def scrape_we_love_country():
                     ev["lat"], ev["lon"] = coords
                 
                 events.append(ev)
+                future_count += 1
         
-        log(f"✅ WeLoveCountry: {len(events)} Events extrahiert")
+        log(f"✅ WeLoveCountry: {future_count} zukünftige Events ({past_count} vergangene übersprungen)")
         
     except Exception as e:
         log(f"❌ ERROR: {type(e).__name__}: {str(e)}")
@@ -206,6 +252,10 @@ def scrape_jukeboxstompers():
                 if not date:
                     continue
                 
+                # ✅ Nur zukünftige Events
+                if not is_future_event(date):
+                    continue
+                
                 title_cell = cells[0]
                 title_el = title_cell.find(["strong", "b", "a"])
                 title = title_el.get_text(strip=True) if title_el else text[:80]
@@ -218,11 +268,16 @@ def scrape_jukeboxstompers():
                 
                 time_info = extract_time(text)
                 price_info = extract_price(text)
+                bands_info = extract_bands(text)
                 
                 genres = ["Rock'n'Roll"]
                 tl = text.lower()
                 if "boogie" in tl: genres.append("Boogie Woogie")
                 if "swing" in tl or "lindy" in tl: genres.append("Swing")
+                if "rockabilly" in tl: genres.append("Rockabilly")
+                
+                event_link = title_cell.find("a", href=True)
+                event_url = urljoin(url, event_link["href"]) if event_link else generate_smart_url(url, date, city)
                 
                 ev = {
                     "title": title,
@@ -232,8 +287,9 @@ def scrape_jukeboxstompers():
                     "desc": text[:500],
                     "time": time_info,
                     "price": price_info,
+                    "bands": bands_info,
                     "url": url,
-                    "event_url": generate_smart_url(url, date, city),
+                    "event_url": event_url,
                     "genres": list(set(genres))
                 }
                 
@@ -276,6 +332,10 @@ def scrape_swingcalendar():
             if not date or len(item_text) < 20:
                 continue
             
+            # ✅ Nur zukünftige Events
+            if not is_future_event(date):
+                continue
+            
             title_el = item.find(["h2", "h3", "h4", "strong"])
             if title_el:
                 title = title_el.get_text(strip=True)
@@ -285,11 +345,15 @@ def scrape_swingcalendar():
             if len(title) < 3:
                 continue
             
-            cities = ["Berlin", "Dresden", "Leipzig", "München", "Hamburg", "Köln"]
+            cities = ["Berlin", "Dresden", "Leipzig", "München", "Hamburg", "Köln", "Frankfurt", "Wien", "Zürich", "London", "Paris", "Rom", "Madrid", "Prag", "Amsterdam", "Stockholm", "Oslo", "Helsinki"]
             city = next((c for c in cities if c in item_text), "")
             
             genres = ["Swing"]
             if "lindy" in item_text.lower(): genres.append("Lindy Hop")
+            if "balboa" in item_text.lower(): genres.append("Balboa")
+            
+            link = item.find("a", href=True)
+            ev_url = urljoin(url, link["href"]) if link else generate_smart_url(url, date, city)
             
             ev = {
                 "title": title,
@@ -298,7 +362,7 @@ def scrape_swingcalendar():
                 "address": city,
                 "desc": item_text[:500],
                 "url": url,
-                "event_url": generate_smart_url(url, date, city),
+                "event_url": ev_url,
                 "genres": list(set(genres))
             }
             
@@ -341,6 +405,10 @@ def scrape_swingindd():
             if not date or len(item_text) < 20:
                 continue
             
+            # ✅ Nur zukünftige Events
+            if not is_future_event(date):
+                continue
+            
             title_el = item.find(["h2", "h3", "h4", "strong"])
             if title_el:
                 title = title_el.get_text(strip=True)
@@ -354,6 +422,10 @@ def scrape_swingindd():
             
             genres = ["Swing"]
             if "lindy" in item_text.lower(): genres.append("Lindy Hop")
+            if "balboa" in item_text.lower(): genres.append("Balboa")
+            
+            link = item.find("a", href=True)
+            ev_url = urljoin(url, link["href"]) if link else generate_smart_url(url, date, city)
             
             ev = {
                 "title": title,
@@ -362,7 +434,7 @@ def scrape_swingindd():
                 "address": city,
                 "desc": item_text[:500],
                 "url": url,
-                "event_url": generate_smart_url(url, date, city),
+                "event_url": ev_url,
                 "genres": list(set(genres))
             }
             
@@ -381,7 +453,6 @@ def scrape_swingindd():
     return events
 
 def scrape_dresden_hepcats():
-    """Scrapt NUR tatsächlich gelistete Events von Hepcats"""
     events = []
     url = "https://www.dresden-hepcats.de/socials-de"
     
@@ -397,24 +468,19 @@ def scrape_dresden_hepcats():
             return events
         
         soup = BeautifulSoup(r.text, "lxml")
-        text = soup.get_text("\n", strip=True)
-        
-        log(f"✓ Seite geladen: {len(r.text)} bytes")
-        
-        # Suche nach spezifischen Datumsangaben auf der Seite
-        # Die Seite listet nur konkrete Termine, keine generellen Regeln
-        
         items = soup.find_all(["div", "article", "section"])
         
         for item in items:
             item_text = item.get_text(" ", strip=True)
             date = parse_date(item_text)
             
-            # Nur Events mit explizitem Datum extrahieren
             if not date or len(item_text) < 30:
                 continue
             
-            # Suche nach "Live Tanz Bar" oder ähnlichen Titeln
+            # ✅ Nur zukünftige Events
+            if not is_future_event(date):
+                continue
+            
             if "live" in item_text.lower() and "tanz" in item_text.lower():
                 title = "Live Tanz Bar"
             else:
@@ -441,7 +507,7 @@ def scrape_dresden_hepcats():
             
             events.append(ev)
         
-        log(f"✅ Dresden-Hepcats: {len(events)} Events gefunden (nur explizit gelistete)")
+        log(f"✅ Dresden-Hepcats: {len(events)} Events gefunden")
         
     except Exception as e:
         log(f"❌ ERROR: {type(e).__name__}: {str(e)}")
@@ -473,6 +539,10 @@ def scrape_lindypott():
             if not date or len(item_text) < 20:
                 continue
             
+            # ✅ Nur zukünftige Events
+            if not is_future_event(date):
+                continue
+            
             title_el = item.find(["h2", "h3", "h4", "strong"])
             title = title_el.get_text(strip=True) if title_el else item_text[:80]
             
@@ -488,6 +558,10 @@ def scrape_lindypott():
             
             genres = ["Swing"]
             if "lindy" in item_text.lower(): genres.append("Lindy Hop")
+            if "balboa" in item_text.lower(): genres.append("Balboa")
+            
+            link = item.find("a", href=True)
+            ev_url = urljoin(url, link["href"]) if link else generate_smart_url(url, date, city)
             
             ev = {
                 "title": title,
@@ -496,7 +570,7 @@ def scrape_lindypott():
                 "address": city,
                 "desc": item_text[:500],
                 "url": url,
-                "event_url": generate_smart_url(url, date, city),
+                "event_url": ev_url,
                 "genres": list(set(genres))
             }
             
@@ -526,8 +600,8 @@ def deduplicate(events):
 
 def main():
     log("="*70)
-    log("🎸 ROCKABILLY RADAR EVENT SCRAPER - VERIFIED")
-    log("Nur tatsächlich existierende Events")
+    log("🎸 ROCKABILLY RADAR EVENT SCRAPER - VERIFIED + FUTURE ONLY")
+    log(f"Heute: {TODAY.strftime('%d.%m.%Y')} - nur zukünftige Events werden behalten")
     log("="*70)
     
     all_events = []
@@ -557,15 +631,19 @@ def main():
     all_events = deduplicate(all_events)
     log(f"Total nach Deduplikation: {len(all_events)}")
     
+    # ✅ Nur zukünftige Events final filtern (safety check)
+    future_events = [e for e in all_events if is_future_event(e['date'])]
+    log(f"Zukünftige Events: {len(future_events)} (vergangene entfernt)")
+    
     # Chronologisch sortieren
-    all_events = sorted(all_events, key=lambda e: parse_date_for_sort(e['date']))
-    log("✓ Chronologisch sortiert")
+    future_events = sorted(future_events, key=lambda e: parse_date_for_sort(e['date']))
+    log("✓ Chronologisch sortiert (früheste zuerst)")
     
     with open("events.json", "w", encoding="utf-8") as f:
-        json.dump(all_events, f, ensure_ascii=False, indent=2)
+        json.dump(future_events, f, ensure_ascii=False, indent=2)
     
     log(f"\n✅ GESPEICHERT: events.json")
-    log(f"   Events: {len(all_events)}")
+    log(f"   Events: {len(future_events)} (alle zukünftig)")
     log("="*70)
 
 if __name__ == "__main__":
