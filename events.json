@@ -63,7 +63,7 @@
     "city": "Burgstädt",
     "plz": "",
     "address": "Deutschland Burgstädt Hotel Goldener Löwe Burkersdorfer Straße 122 09217 Burgstädt",
-    "desc": "Tanz Spezial - Sommernachtsswing Social Dance im Tanzsaal des Hotels \"Goldener Löwe\" verschiedenen Musikrichtungen und Tänzen wie Lindy Hop, Boogie Woogie und Balboa der Swing-Zeit. DJ Jule Beginn: 20:00 Uhr Weitere Informationen hier: Sommernachtsswing",
+    "desc": "Tanz Spezial - Sommernachtswing Social Dance im Tanzsaal des Hotel \"Goldener Löwe\" verschiedenen Musikrichtungen und Tänzen wie Lindy Hop, Boogie Woogie und Balboa der Swing-Zeit. DJ Jule Beginn: 20:00 Uhr Weitere Informationen hier: Sommernachtswing",
     "time": "20:00",
     "price": null,
     "bands": [
@@ -75,8 +75,8 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "https://www.loewe-burgstaedt.de/",
     "genres": [
-      "Boogie Woogie",
       "Balboa",
+      "Boogie Woogie",
       "Lindy Hop"
     ],
     "lat": 50.9199843,
@@ -99,9 +99,9 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "https://rocknroll-festival.de/",
     "genres": [
+      "Rockabilly",
       "Swing",
-      "Rock'n'Roll",
-      "Rockabilly"
+      "Rock'n'Roll"
     ],
     "lat": 53.0758196,
     "lon": 8.8071646
@@ -184,8 +184,8 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "https://www.markkleeberg.de/freizeit-und-tourismus/veranstaltungen/veranstaltungsraeume",
     "genres": [
-      "Boogie Woogie",
-      "Rockabilly"
+      "Rockabilly",
+      "Boogie Woogie"
     ],
     "lat": 51.3406321,
     "lon": 12.3747329
@@ -366,9 +366,9 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "genres": [
-      "West Coast Swing",
-      "Boogie Woogie",
       "Balboa",
+      "Boogie Woogie",
+      "West Coast Swing",
       "Lindy Hop"
     ],
     "lat": 47.9552898,
@@ -391,8 +391,8 @@
     "event_url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender#:~:text=Swing%20-Boogie%20-%20Jive%20-%20Rock%27n%27Roll%20-%20RnB%C2%A0%20-%20Doo%20Wo",
     "genres": [
       "Swing",
-      "Boogie Woogie",
-      "Rock'n'Roll"
+      "Rock'n'Roll",
+      "Boogie Woogie"
     ],
     "lat": 51.3406321,
     "lon": 12.3747329
@@ -507,9 +507,9 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "http://www.rockthatswing.com/",
     "genres": [
+      "Balboa",
       "Boogie Woogie",
       "Shag",
-      "Balboa",
       "Lindy Hop"
     ],
     "lat": 48.1371079,
@@ -535,6 +535,22 @@
     "lon": 10.8768728
   },
   {
+    "title": "Kloster Buch",
+    "date": "04.07.2027",
+    "city": "",
+    "plz": "",
+    "address": "Leisnig Kloster Buch Klosterbuch 1 04703 Leisnig",
+    "desc": "Firebirds Festival #15 Das nächste und vierzehnte Firebirds Festival im \" Kloster Buch \" bei Grimma, unweit von Leipzig. Der Termin steht und das Festival ist in Planung. Mit 2027 in einer neuern Location! Freut euch wieder auf zahlreiche Bands, DJs, Workshops und Tanzen, Tanzen, Tanzen... Der Veranstaltungsort ist Kloster Buch , zwische Leipzig und Dresden, eine passende Kulisse für Musik, Vintagemarkt, Oldtimer und Dance Camp. BANDS, DJs, SOCIAL DANCE, DANCECAMP, SHOWS & WORLD CHAMPIONS Bands:",
+    "time": null,
+    "price": null,
+    "bands": null,
+    "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
+    "event_url": "https://www.klosterbuch.de/",
+    "genres": [
+      "Rock'n'Roll"
+    ]
+  },
+  {
     "title": "12. und 13. Juli 2025",
     "date": "11.07.2027",
     "city": "Au",
@@ -549,8 +565,8 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "https://oldietown.de/",
     "genres": [
-      "Rock'n'Roll",
-      "Rockabilly"
+      "Rockabilly",
+      "Rock'n'Roll"
     ],
     "lat": 47.9552898,
     "lon": 7.8296094
@@ -573,8 +589,8 @@
     "event_url": "https://www.the-firebirds.de/",
     "genres": [
       "Swing",
-      "Boogie Woogie",
-      "Rock'n'Roll"
+      "Rock'n'Roll",
+      "Boogie Woogie"
     ],
     "lat": 52.4489683,
     "lon": 13.2873612
