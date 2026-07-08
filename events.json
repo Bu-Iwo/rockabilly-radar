@@ -5,11 +5,15 @@
     "city": "Oslo",
     "plz": "",
     "address": "Norwegen Oslo Boogie Feet Festival, Rosenkrantz' gate 7, 0159 Oslo, Norway",
-    "desc": "Boogie Feets Tanya und Sondre veranstalten Ende Juli 2026 ein Workshop Wochenende und dazu einige Parties. Im Jahr 2026 wieder in Oslo. Die Veranstaltung ist in Planung, der Termin steht schon. Die Anmeldung ist geöffnet. Mehr zum Festival und seiner Geschichte hier: Boogie Feets History Workshops in Boogie Woogie Mehrere Parties Bands & DJs: The Whayttcristmas Five (GER) Lizzy Bourbon & The Cobbler Shakers (FRA) Folgt noch... Trainerteam: Tanya & Sondre (NOR) Wilma & Viktor (SWE) Grzegorz & Agn",
+    "desc": "Boogie Feets Tanya und Sondre veranstalten Ende Juli 2026 ein Workshop Wochenende und dazu einige Parties. Im Jahr 2026 wieder in Oslo. Die Veranstaltung ist in Planung, der Termin steht schon. Die Anmeldung ist geöffnet. Mehr zum Festival und seiner Geschichte hier: Boogie Feets History Workshops in Boogie Woogie Mehrere Parties Bands & DJs: The Whayttcristmas Five (GER) Lizzy Bourbon & The Cobbler Shakers (FRA) DJ's Sondre, Dirty Dishes, Runaway V Trainerteam: Tanya & Sondre (NOR) Wilma & Vikt",
     "time": null,
     "price": null,
     "bands": [
-      "DJs: The Whayttcristmas Five (GER) Lizzy Bourbon"
+      "DJs: The Whayttcristmas Five (GER) Lizzy Bourbon",
+      "The Cobbler Shakers (FRA) DJ's Sondre",
+      "Dirty Dishes",
+      "Runaway V Trainerteam: Tanya",
+      "Sondre (NOR) Wilma"
     ],
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "https://boogiefeetfestival.com/#Facilities",
@@ -99,9 +103,9 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "https://rocknroll-festival.de/",
     "genres": [
+      "Swing",
       "Rock'n'Roll",
-      "Rockabilly",
-      "Swing"
+      "Rockabilly"
     ],
     "lat": 53.0758196,
     "lon": 8.8071646
@@ -167,8 +171,8 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "https://koenigsleitn.at/",
     "genres": [
-      "Boogie Woogie",
-      "Swing"
+      "Swing",
+      "Boogie Woogie"
     ]
   },
   {
@@ -184,8 +188,8 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "https://www.markkleeberg.de/freizeit-und-tourismus/veranstaltungen/veranstaltungsraeume",
     "genres": [
-      "Boogie Woogie",
-      "Rockabilly"
+      "Rockabilly",
+      "Boogie Woogie"
     ],
     "lat": 51.3406321,
     "lon": 12.3747329
@@ -250,8 +254,8 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "https://www.boogieweekend.ch/",
     "genres": [
-      "Boogie Woogie",
-      "Swing"
+      "Swing",
+      "Boogie Woogie"
     ],
     "lat": 48.1118989,
     "lon": 11.5040018
@@ -366,9 +370,9 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "genres": [
+      "Boogie Woogie",
       "West Coast Swing",
       "Lindy Hop",
-      "Boogie Woogie",
       "Balboa"
     ],
     "lat": 47.9552898,
@@ -390,8 +394,8 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender#:~:text=Swing%20-Boogie%20-%20Jive%20-%20Rock%27n%27Roll%20-%20RnB%C2%A0%20-%20Doo%20Wo",
     "genres": [
-      "Rock'n'Roll",
       "Swing",
+      "Rock'n'Roll",
       "Boogie Woogie"
     ],
     "lat": 51.3406321,
@@ -490,8 +494,8 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "https://triplestepmadness.nl/de/de-rijper-eilanden/",
     "genres": [
-      "Boogie Woogie",
-      "Lindy Hop"
+      "Lindy Hop",
+      "Boogie Woogie"
     ]
   },
   {
@@ -528,8 +532,8 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "https://www.bb-dancecamp.com/de/home.html",
     "genres": [
-      "Boogie Woogie",
-      "Lindy Hop"
+      "Lindy Hop",
+      "Boogie Woogie"
     ],
     "lat": 48.0497474,
     "lon": 10.8768728
@@ -588,8 +592,8 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "https://www.the-firebirds.de/",
     "genres": [
-      "Rock'n'Roll",
       "Swing",
+      "Rock'n'Roll",
       "Boogie Woogie"
     ],
     "lat": 52.4489683,
