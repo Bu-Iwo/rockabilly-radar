@@ -79,9 +79,9 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "https://www.loewe-burgstaedt.de/",
     "genres": [
-      "Balboa",
+      "Lindy Hop",
       "Boogie Woogie",
-      "Lindy Hop"
+      "Balboa"
     ],
     "lat": 50.9199843,
     "lon": 12.8056571
@@ -103,9 +103,9 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "https://rocknroll-festival.de/",
     "genres": [
-      "Rockabilly",
       "Rock'n'Roll",
-      "Swing"
+      "Swing",
+      "Rockabilly"
     ],
     "lat": 53.0758196,
     "lon": 8.8071646
@@ -152,8 +152,8 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "https://www.swingdanceleipzig.com/",
     "genres": [
-      "Balboa",
-      "Lindy Hop"
+      "Lindy Hop",
+      "Balboa"
     ],
     "lat": 51.3406321,
     "lon": 12.3747329
@@ -188,8 +188,8 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "https://www.markkleeberg.de/freizeit-und-tourismus/veranstaltungen/veranstaltungsraeume",
     "genres": [
-      "Rockabilly",
-      "Boogie Woogie"
+      "Boogie Woogie",
+      "Rockabilly"
     ],
     "lat": 51.3406321,
     "lon": 12.3747329
@@ -229,8 +229,8 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "https://www.swingdanceleipzig.com/",
     "genres": [
-      "Balboa",
-      "Lindy Hop"
+      "Lindy Hop",
+      "Balboa"
     ],
     "lat": 51.3406321,
     "lon": 12.3747329
@@ -371,9 +371,9 @@
     "event_url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "genres": [
       "West Coast Swing",
-      "Balboa",
+      "Lindy Hop",
       "Boogie Woogie",
-      "Lindy Hop"
+      "Balboa"
     ],
     "lat": 47.9552898,
     "lon": 7.8296094
@@ -494,8 +494,8 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "https://triplestepmadness.nl/de/de-rijper-eilanden/",
     "genres": [
-      "Boogie Woogie",
-      "Lindy Hop"
+      "Lindy Hop",
+      "Boogie Woogie"
     ]
   },
   {
@@ -511,10 +511,10 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "http://www.rockthatswing.com/",
     "genres": [
-      "Balboa",
       "Shag",
+      "Lindy Hop",
       "Boogie Woogie",
-      "Lindy Hop"
+      "Balboa"
     ],
     "lat": 48.1371079,
     "lon": 11.5753822
@@ -532,8 +532,8 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "https://www.bb-dancecamp.com/de/home.html",
     "genres": [
-      "Boogie Woogie",
-      "Lindy Hop"
+      "Lindy Hop",
+      "Boogie Woogie"
     ],
     "lat": 48.0497474,
     "lon": 10.8768728
@@ -569,8 +569,8 @@
     "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
     "event_url": "https://oldietown.de/",
     "genres": [
-      "Rockabilly",
-      "Rock'n'Roll"
+      "Rock'n'Roll",
+      "Rockabilly"
     ],
     "lat": 47.9552898,
     "lon": 7.8296094
