@@ -1,0 +1,1079 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Rockabilly Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yellowtail&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: ein Röhrenradio. Oben Typenschild, Skala und Drehknöpfe, darunter Karte (Lautsprecher) und Eintrittskarten. */
+:root {
+  --wood: #5a3320;
+  --wood-dark: #43261a;
+  --ink: #2a1a10;
+  --cream: #f7ecd0;
+  --cream-2: #e8d8b0;
+  --chrome: #d8d4c8;
+  --chrome-dark: #6c6657;
+  --amber: #f2b84b;
+  --amber-dim: #d3ac62;
+  --text: #f3e6c8;
+  --muted: #5b4332;
+  --accent: #b3261e;
+  --mint: #8fd1c0;
+  --sea: #7fbfb0;
+  --land: #f0e4c4;
+  --ok: #1d5a3c;
+  --warn: #8a3b00;
+  --f-display: 'Yellowtail', cursive;
+  --f-label: 'Bebas Neue', Impact, 'Arial Narrow', sans-serif;
+  --f-body: 'Barlow Condensed', 'Arial Narrow', 'Helvetica Neue', sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  background-color: var(--wood);
+  background-image:
+    radial-gradient(ellipse at 50% 12%, rgba(255, 190, 120, 0.22) 0%, rgba(255, 190, 120, 0) 55%),
+    radial-gradient(ellipse at 50% 50%, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.7) 100%),
+    repeating-linear-gradient(88deg, rgba(0, 0, 0, 0.14) 0, rgba(0, 0, 0, 0.14) 2px, transparent 2px, transparent 23px),
+    repeating-linear-gradient(92deg, #5a3320 0, #4a2918 7px, #5e3622 11px, #43261a 18px);
+  box-shadow: inset 0 0 70px rgba(0, 0, 0, 0.75);
+  color: var(--text);
+  font-family: var(--f-body);
+  font-size: 17px;
+  min-height: 100%;
+}
+button, select { font: inherit; color: inherit; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.app {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding-block: 16px 28px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.top { display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch; }
+
+/* Typenschild */
+.plate {
+  flex: 1 1 280px; min-width: 0;
+  display: flex; flex-direction: column; justify-content: center; text-align: center;
+  background: linear-gradient(var(--cream), var(--cream-2));
+  border: 4px solid var(--chrome);
+  box-shadow: 0 0 0 2px var(--chrome-dark), 0 6px 12px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  padding: 10px 16px 12px;
+  color: var(--ink);
+}
+.plate h1 { margin: 0; font: 400 clamp(40px, 9vw, 54px)/1.1 var(--f-display); color: var(--accent); }
+.plate p { margin: 2px 0 0; font: 400 16px var(--f-label); letter-spacing: 3px; color: var(--muted); }
+
+/* Skala */
+.dial {
+  flex: 2 1 380px; min-width: 0;
+  background: radial-gradient(ellipse at 50% 50%, #4a2c12 0%, #2a1a10 75%);
+  border: 4px solid var(--chrome);
+  box-shadow: 0 0 0 2px var(--chrome-dark), inset 0 0 18px rgba(0, 0, 0, 0.8);
+  border-radius: 12px;
+  padding: 10px 12px 10px;
+  display: flex; flex-direction: column; gap: 4px; justify-content: center;
+}
+.dial-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+.year { display: flex; align-items: center; gap: 4px; font: 400 24px var(--f-label); letter-spacing: 2px; color: var(--amber); }
+.year button, .pill {
+  min-height: 44px; padding: 0 16px; cursor: pointer;
+  background: rgba(0, 0, 0, 0.35); border: 2px solid var(--amber-dim); border-radius: 22px;
+  font: 600 16px var(--f-body); color: var(--text);
+}
+.year button { min-width: 44px; padding: 0; font-size: 22px; }
+.pill[aria-pressed="true"] { background: var(--amber); color: var(--ink); border-color: var(--amber); }
+.scale { overflow-x: auto; scrollbar-width: thin; scrollbar-color: var(--amber-dim) transparent; }
+.scale-in { position: relative; min-width: 576px; padding-top: 4px; }
+.months { display: flex; }
+.m {
+  flex: 1 0 0; min-height: 44px; padding: 0; position: relative; cursor: pointer;
+  background: none; border: 0; color: var(--amber-dim);
+  font: 400 20px var(--f-label); letter-spacing: 1px;
+}
+.m.has::after {
+  content: ""; position: absolute; left: 50%; bottom: 3px; width: 6px; height: 6px; margin-left: -3px;
+  border-radius: 50%; background: var(--amber); box-shadow: 0 0 6px var(--amber);
+}
+.m.sel { color: #ffe9a8; text-shadow: 0 0 8px var(--amber); }
+.ticks {
+  height: 20px;
+  background-image: linear-gradient(90deg, var(--amber) 0 2px, transparent 2px), linear-gradient(90deg, var(--amber-dim) 0 1px, transparent 1px);
+  background-size: 8.3333% 100%, 2.0833% 50%;
+  background-repeat: repeat-x; background-position: 0 100%, 0 100%;
+}
+.needle {
+  position: absolute; top: 0; bottom: 0; width: 3px; margin-left: -1.5px; border-radius: 2px;
+  background: var(--accent); box-shadow: 0 0 8px var(--accent); transition: left .25s; pointer-events: none;
+}
+.readout { margin: 0; text-align: center; font: 400 16px var(--f-label); letter-spacing: 2px; color: var(--amber); }
+
+/* Drehknöpfe */
+.knobs {
+  flex: 1 1 300px; min-width: 0;
+  background: linear-gradient(#3a2414, #24150c);
+  border: 2px solid #1a0f08; border-radius: 14px;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.6);
+  padding: 12px 8px 10px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.knob-row { display: flex; flex-wrap: wrap; justify-content: space-around; row-gap: 10px; }
+.knob-wrap { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 0; }
+.knob {
+  position: relative; width: 58px; height: 58px; padding: 0; cursor: pointer; border-radius: 50%;
+  border: 3px solid var(--chrome-dark);
+  background: conic-gradient(#f4f1ea, #b9b4a6, #f4f1ea, #8f8a7c, #f4f1ea);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+}
+.knob-dial { position: absolute; inset: 0; border-radius: 50%; transition: transform .25s; transform: rotate(var(--a, 0deg)); }
+.knob-dial::before { content: ""; position: absolute; left: 50%; top: 5px; width: 4px; height: 20px; margin-left: -2px; border-radius: 2px; background: var(--accent); }
+.knob-label { font: 400 14px var(--f-label); letter-spacing: 2px; color: var(--amber); }
+.knob-val { font: 600 16px var(--f-body); text-align: center; max-width: 80px; overflow-wrap: anywhere; }
+.home { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; border-top: 1px solid rgba(243, 230, 200, 0.18); padding-top: 10px; }
+.home label { font: 400 14px var(--f-label); letter-spacing: 2px; color: var(--amber); }
+.home select {
+  min-height: 44px; padding: 0 10px; border-radius: 10px; cursor: pointer;
+  background: #1c110a; border: 2px solid var(--amber-dim); color: var(--text);
+}
+.geo-msg { flex-basis: 100%; margin: 0; text-align: center; font-size: 14px; }
+
+/* Hauptbereich */
+.main { display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; }
+.mapcol { flex: 1 1 100%; min-width: 0; }
+.list { flex: 1 1 100%; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
+@media (min-width: 920px) {
+  .plate { flex: 0 0 250px; }
+  .dial { flex: 1 1 0; }
+  .knobs { flex: 0 0 290px; }
+  .mapcol { order: 2; flex: 1.5 1 480px; position: sticky; top: 12px; }
+  .list { order: 1; flex: 1 1 420px; }
+}
+.mapframe {
+  background-color: var(--mint);
+  background-image: radial-gradient(var(--ink) 1.3px, transparent 1.6px);
+  background-size: 9px 9px;
+  border: 4px solid var(--chrome);
+  box-shadow: 0 0 0 2px var(--chrome-dark), 0 6px 12px rgba(0, 0, 0, 0.5);
+  border-radius: 18px; padding: 12px;
+}
+.map {
+  position: relative; height: 340px; overflow: hidden; border-radius: 8px;
+  border: 3px solid var(--ink); background: var(--sea);
+  touch-action: none; cursor: grab; user-select: none; -webkit-user-select: none;
+}
+.map.drag { cursor: grabbing; }
+@media (min-width: 920px) { .map { height: clamp(440px, 72vh, 760px); } }
+.layer { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+.land { fill: var(--land); stroke: var(--ink); stroke-width: 1.4; stroke-linejoin: round; }
+.ref-dot { fill: var(--ink); }
+.ref-txt { font: 600 13px var(--f-body); fill: var(--ink); paint-order: stroke; stroke: var(--land); stroke-width: 3px; }
+.tiles { overflow: hidden; filter: sepia(.5) saturate(.85) contrast(.95); }
+.tile { position: absolute; left: 0; top: 0; width: 256px; height: 256px; max-width: none; user-select: none; -webkit-user-drag: none; }
+.radius { fill: rgba(179, 38, 30, 0.08); stroke: var(--ink); stroke-width: 1.6; stroke-dasharray: 6 5; }
+.home-dot { position: absolute; left: 0; top: 0; pointer-events: none; }
+.home-dot::before { content: ""; position: absolute; left: -6px; top: -6px; width: 12px; height: 12px; border-radius: 50%; background: var(--ink); border: 2px solid var(--cream); }
+.home-dot span { position: absolute; left: 10px; top: -8px; font: 400 14px var(--f-label); letter-spacing: 1px; color: var(--ink); text-shadow: 0 0 3px var(--cream), 0 0 3px var(--cream), 0 0 3px var(--cream); }
+.pins { position: absolute; inset: 0; pointer-events: none; }
+.pinbox { position: absolute; left: 0; top: 0; }
+.pin {
+  position: absolute; left: -15px; top: -15px; width: 30px; height: 30px; padding: 0; cursor: pointer; pointer-events: auto;
+  display: grid; place-items: center; border-radius: 50%;
+  background: var(--accent); color: var(--cream); border: 2px solid var(--cream);
+  font: 400 18px var(--f-label); box-shadow: 0 2px 5px rgba(0, 0, 0, 0.55);
+}
+.pin::after { content: ""; position: absolute; inset: -8px; border-radius: 50%; }
+.pin.k-local, .pin.k-course, .pin.k-tribute { left: -11px; top: -11px; width: 22px; height: 22px; font-size: 13px; }
+.pin.k-local { background: #2f6f62; }
+.pin.k-course { background: #6b4a8a; }
+.pin.k-tribute { background: #1d4f8a; }
+.pin.w3 { font-size: 15px; letter-spacing: -1px; }
+.pin.k-local.w3, .pin.k-course.w3, .pin.k-tribute.w3 { font-size: 11px; letter-spacing: -1px; }
+.pin.on { background: var(--ink); transform: scale(1.25); }
+.pin.on + .pin-label { display: block !important; }
+.map:not(.zoomed) .pinbox.lk .pin-label { display: none; }
+.pin-label {
+  position: absolute; left: 19px; top: -10px; white-space: nowrap; pointer-events: none;
+  font: 700 15px var(--f-body); color: var(--ink);
+  text-shadow: 0 0 3px var(--cream), 0 0 3px var(--cream), 0 0 3px var(--cream), 0 0 4px var(--cream);
+}
+.zoom { position: absolute; right: 8px; bottom: 8px; display: flex; flex-direction: column; gap: 6px; }
+.zoom button {
+  width: 44px; height: 44px; padding: 0; cursor: pointer; border-radius: 10px;
+  background: linear-gradient(var(--cream), var(--cream-2)); color: var(--ink);
+  border: 2px solid var(--ink); font: 700 26px/1 var(--f-body);
+}
+.attr {
+  position: absolute; left: 0; bottom: 0; margin: 0; padding: 2px 8px; font-size: 13px; color: var(--ink);
+  background: rgba(247, 236, 208, 0.9); border-top-right-radius: 8px;
+}
+.map-note { margin: 8px 2px 0; font-size: 15px; }
+.legend { list-style: none; margin: 10px 2px 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 15px; }
+.legend li { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--cream); display: inline-block; }
+
+/* Liste */
+.list h2 { margin: 0; font: 400 30px var(--f-label); letter-spacing: 2px; color: var(--amber); }
+.status { margin: -8px 0 0; font-size: 16px; }
+.cards { display: flex; flex-direction: column; gap: 14px; }
+.card {
+  display: flex; background: linear-gradient(var(--cream), #ecdcb4); color: var(--ink);
+  border: 2px solid var(--ink); border-radius: 12px; overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.45);
+}
+.card.on { outline: 3px solid var(--amber); outline-offset: 3px; }
+.stub {
+  width: 88px; flex: none; padding: 10px 6px; text-align: center;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  border-right: 3px dashed var(--ink);
+}
+.stub .d { font: 400 48px/1 var(--f-label); color: var(--accent); }
+.stub .m2 { font: 400 22px var(--f-label); letter-spacing: 2px; }
+.stub .to { margin-top: 4px; font: 600 14px var(--f-body); color: var(--muted); }
+.body { flex: 1; min-width: 0; padding: 10px 14px 12px; }
+.body h3 { margin: 0; font: 700 22px/1.15 var(--f-body); text-wrap: balance; }
+.meta { margin: 3px 0 0; font-size: 17px; color: var(--muted); }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.tag { border: 1.5px solid var(--ink); border-radius: 20px; padding: 1px 10px; font: 600 14px var(--f-body); }
+.tag.soft { border-style: dashed; }
+.acts { margin: 8px 0 0; font-size: 16px; }
+.badge { display: inline-block; margin-top: 8px; font: 700 14px var(--f-body); letter-spacing: .5px; text-transform: uppercase; }
+.badge.ok { color: var(--ok); }
+.badge.check { color: var(--warn); }
+.badge.cal { color: var(--muted); }
+.kindtag { margin: 0 0 2px; font: 400 15px var(--f-label); letter-spacing: 2px; text-transform: uppercase; }
+.kindtag.k-festival { color: var(--accent); }
+.kindtag.k-local { color: #2f6f62; }
+.kindtag.k-course { color: #6b4a8a; }
+.kindtag.k-tribute { color: #1d4f8a; }
+.extras { margin: 0; padding: 10px 12px; border: 1px dashed var(--amber-dim); border-radius: 10px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; font-size: 16px; }
+.more { align-self: center; }
+.note { margin: 4px 0 0; font-size: 15px; color: var(--muted); }
+.btns { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.btn {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; cursor: pointer;
+  border: 2px solid var(--ink); border-radius: 22px; background: transparent; color: var(--ink);
+  font: 700 16px var(--f-body); text-decoration: none;
+}
+.btn.mint { background: var(--mint); }
+.btn:hover { background: var(--cream-2); }
+.btn.mint:hover { background: #a5dccd; }
+.empty {
+  border: 2px dashed var(--amber-dim); border-radius: 12px; padding: 16px; text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+}
+.empty p { margin: 0; font-size: 18px; }
+
+.pending { margin-top: 6px; border-top: 1px solid rgba(243, 230, 200, 0.2); padding-top: 14px; }
+.pending h2 { font-size: 24px; }
+.pending-intro { margin: 4px 0 10px; font-size: 16px; }
+.pending ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.pending li {
+  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 4px 12px;
+  background: rgba(0, 0, 0, 0.28); border: 1px solid rgba(243, 230, 200, 0.2); border-radius: 10px; padding: 8px 12px;
+}
+.pending li strong { font-size: 18px; }
+.pending li span { font-size: 15px; }
+.pending a { font-weight: 700; text-underline-offset: 3px; display: inline-flex; align-items: center; min-height: 44px; }
+.foot { margin: 0; text-align: center; font-size: 14px; opacity: .85; }
+
+@media (max-width: 420px) {
+  .stub { width: 74px; }
+  .stub .d { font-size: 42px; }
+  .body { padding: 10px 12px 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .knob-dial, .needle { transition: none; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="top">
+    <header class="plate">
+      <h1>Rockabilly Radar</h1>
+      <p>Alle Szene-Events · eine Frequenz</p>
+    </header>
+
+    <section class="dial" aria-labelledby="dialTitle">
+      <h2 id="dialTitle" class="vh">Monat einstellen</h2>
+      <div class="dial-bar">
+        <div class="year" id="yearBox" hidden>
+          <button type="button" id="yPrev" aria-label="Vorheriges Jahr">‹</button>
+          <span id="yearLabel"></span>
+          <button type="button" id="yNext" aria-label="Nächstes Jahr">›</button>
+        </div>
+        <span class="year" id="yearOnly"></span>
+        <button type="button" class="pill" id="allMonths" aria-pressed="true">Ganzes Jahr</button>
+      </div>
+      <div class="scale" id="scale">
+        <div class="scale-in" id="scaleIn">
+          <div class="months" id="months"></div>
+          <div class="ticks" aria-hidden="true"></div>
+          <div class="needle" id="needle" aria-hidden="true" hidden></div>
+        </div>
+      </div>
+      <p class="readout" id="readout"></p>
+    </section>
+
+    <section class="knobs" aria-labelledby="knobTitle">
+      <h2 id="knobTitle" class="vh">Filter</h2>
+      <div class="knob-row" id="knobRow"></div>
+      <div class="home">
+        <label for="homeSel">Mein Ort</label>
+        <select id="homeSel"></select>
+        <button type="button" class="pill" id="geoBtn">Standort nutzen</button>
+        <p class="geo-msg" id="geoMsg" role="status" hidden></p>
+      </div>
+    </section>
+  </div>
+
+  <div class="main">
+    <section class="mapcol" aria-label="Karte">
+      <div class="mapframe"><div class="map" id="map"></div></div>
+      <p class="map-note" id="mapNote" hidden>Die echten Kartenbilder werden hier nicht geladen, zum Beispiel weil die Datei direkt vom PC geöffnet wurde. Die Marker liegen dann auf einer vereinfachten Europakarte. Auf der veröffentlichten Webseite erscheint die echte OpenStreetMap-Karte.</p>
+      <ul class="legend" aria-label="Legende der Markierungen">
+        <li><i style="background:var(--accent)"></i>Festival / Großevent</li>
+        <li><i style="background:#2f6f62"></i>Lokaler Abend</li>
+        <li><i style="background:#6b4a8a"></i>Kurs (Extra)</li>
+        <li><i style="background:#1d4f8a"></i>Tribute-Show (Extra)</li>
+      </ul>
+    </section>
+
+    <section class="list" aria-label="Events">
+      <h2>Events</h2>
+      <p class="status" id="status" aria-live="polite"></p>
+      <div class="extras" id="extras" hidden></div>
+      <div class="cards" id="cards"></div>
+      <div class="pending" id="pending"></div>
+    </section>
+  </div>
+
+  <p class="foot">Stand der Recherche: 01.11.2026 · Quellen: Veranstalter-Seiten, jukeboxstompers.de, we-love-country.de · Entfernung als Luftlinie · Termine bitte beim Veranstalter prüfen</p>
+</div>
+
+<script src="europe.js"></script>
+<script src="events.js"></script>
+<script src="events-country-1.js"></script>
+<script src="events-country-2.js"></script>
+<script src="events-country-3.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  /* Die Country-Termine liegen als kurze Zeilen in events-country-1.js bis -3.js und werden hier in Events umgewandelt */
+  function moreToEvents(rows) {
+    return rows.map(function (r, i) {
+      return {
+        id: 'c' + i, start: r[0], end: r[1] || r[0], title: r[2], city: r[3], venue: r[4],
+        styles: r[5], features: r[6], kind: r[7], info: r[8], tickets: r[9], lat: r[10], lng: r[11],
+        countryName: r[12] || 'Deutschland', acts: r[13], note: r[14], status: 'kalender', src: 'we-love-country.de'
+      };
+    });
+  }
+  var EVENTS = (window.RR_EVENTS || []).concat(moreToEvents(window.RR_MORE || []));
+  var PENDING = window.RR_PENDING || [];
+  var LAND = window.RR_LAND || [];
+  var REFCITIES = window.RR_REFCITIES || [];
+
+  var MONTHS = ['JAN', 'FEB', 'MÄR', 'APR', 'MAI', 'JUN', 'JUL', 'AUG', 'SEP', 'OKT', 'NOV', 'DEZ'];
+  var MONTHS_LONG = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
+  var HOMES = [
+    { name: 'Berlin', lat: 52.52, lng: 13.405 },
+    { name: 'Hamburg', lat: 53.5511, lng: 9.9937 },
+    { name: 'Köln', lat: 50.9375, lng: 6.9603 },
+    { name: 'Frankfurt', lat: 50.1109, lng: 8.6821 },
+    { name: 'München', lat: 48.1351, lng: 11.582 },
+    { name: 'Stuttgart', lat: 48.7758, lng: 9.1829 },
+    { name: 'Leipzig', lat: 51.3397, lng: 12.3731 },
+    { name: 'Hannover', lat: 52.3759, lng: 9.732 },
+    { name: 'Dresden', lat: 51.0504, lng: 13.7373 },
+    { name: 'Nürnberg', lat: 49.4521, lng: 11.0767 },
+    { name: 'Dortmund', lat: 51.5136, lng: 7.4653 },
+    { name: 'Bremen', lat: 53.0793, lng: 8.8017 }
+  ];
+  var RADII = [0, 50, 100, 200, 300, 600, 1000, 2000];
+  var PAGE = 40;
+  var KINDS = { festival: 'Festival / Großevent', local: 'Lokaler Abend', course: 'Kurs / Workshop', tribute: 'Tribute-Show' };
+  var KIND_OPTS = [
+    { label: 'Events', kinds: ['festival', 'local'] },
+    { label: 'Festivals', kinds: ['festival'] },
+    { label: 'Lokal', kinds: ['local'] },
+    { label: 'Extras', kinds: ['course', 'tribute'] },
+    { label: 'Alles', kinds: ['festival', 'local', 'course', 'tribute'] }
+  ];
+  var NS = 'http://www.w3.org/2000/svg';
+
+  /* ---------- Hilfsfunktionen ---------- */
+  function el(tag, props, kids) {
+    var n = document.createElement(tag);
+    if (props) {
+      Object.keys(props).forEach(function (k) {
+        var v = props[k];
+        if (v === null || v === undefined) return;
+        if (k === 'class') n.className = v;
+        else if (k === 'text') n.textContent = v;
+        else if (k.slice(0, 2) === 'on') n.addEventListener(k.slice(2), v);
+        else n.setAttribute(k, v);
+      });
+    }
+    (kids || []).forEach(function (c) {
+      if (c === null || c === undefined) return;
+      n.appendChild(typeof c === 'string' ? document.createTextNode(c) : c);
+    });
+    return n;
+  }
+  function svgEl(tag, attrs) {
+    var n = document.createElementNS(NS, tag);
+    Object.keys(attrs || {}).forEach(function (k) { n.setAttribute(k, attrs[k]); });
+    return n;
+  }
+  function pd(s) { var p = s.split('-'); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function iso(d) { return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
+  function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+  function storeGet(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+  function storeSet(k, v) { try { window.localStorage.setItem(k, v); } catch (e) { /* ohne Speicher weiter */ } }
+  function fmtNum(n) { return n.toLocaleString('de-DE'); }
+  function haversine(a, b) {
+    var R = 6371, rad = Math.PI / 180;
+    var dLat = (b.lat - a.lat) * rad, dLng = (b.lng - a.lng) * rad;
+    var h = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(a.lat * rad) * Math.cos(b.lat * rad) * Math.sin(dLng / 2) * Math.sin(dLng / 2);
+    return 2 * R * Math.asin(Math.sqrt(h));
+  }
+  function unique(arr) { return arr.filter(function (v, i) { return arr.indexOf(v) === i; }); }
+
+  /* ---------- Daten ---------- */
+  var now = new Date();
+  var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  var events = EVENTS.map(function (e) {
+    e.startD = pd(e.start);
+    e.endD = pd(e.end || e.start);
+    e.kind = e.kind || 'festival';
+    return e;
+  }).filter(function (e) { return e.endD >= today; })
+    .sort(function (a, b) { return a.startD - b.startD; });
+
+  var years = unique(events.map(function (e) { return e.startD.getFullYear(); })).sort();
+  var STYLE_ORDER = ['Rockabilly', "Rock'n'Roll", 'Swing', 'Boogie', 'Country', 'Hillbilly'];
+  var allStyles = unique([].concat.apply([], events.map(function (e) { return e.styles || []; })));
+  allStyles.sort(function (a, b) {
+    var ia = STYLE_ORDER.indexOf(a), ib = STYLE_ORDER.indexOf(b);
+    return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib) || a.localeCompare(b, 'de');
+  });
+  var styleOpts = ['Alle'].concat(allStyles);
+  var countryOpts = ['Alle'].concat(unique(events.map(function (e) { return e.countryName; })).sort(function (a, b) { return a.localeCompare(b, 'de'); }));
+
+  var savedHome = parseInt(storeGet('rr_home'), 10);
+  var state = {
+    year: years.length ? years[0] : today.getFullYear(),
+    month: -1,
+    style: 0,
+    kindSel: 0,
+    country: 0,
+    radius: 0,
+    limit: PAGE,
+    home: (savedHome >= 0 && savedHome < HOMES.length) ? savedHome : 3,
+    custom: null,
+    active: null
+  };
+  function home() { return state.custom || HOMES[state.home]; }
+  function dist(e) { return haversine(home(), e); }
+
+  function kindOk(e) { return KIND_OPTS[state.kindSel].kinds.indexOf(e.kind) >= 0; }
+  function matches(e, withMonth, ignoreKind) {
+    if (e.startD.getFullYear() !== state.year && e.endD.getFullYear() !== state.year) return false;
+    if (state.style > 0 && (e.styles || []).indexOf(styleOpts[state.style]) < 0) return false;
+    if (state.country > 0 && e.countryName !== countryOpts[state.country]) return false;
+    if (!ignoreKind && !kindOk(e)) return false;
+    var r = RADII[state.radius];
+    if (r > 0 && dist(e) > r) return false;
+    if (withMonth && state.month >= 0) {
+      var ms = new Date(state.year, state.month, 1), me = new Date(state.year, state.month + 1, 0);
+      if (e.startD > me || e.endD < ms) return false;
+    }
+    return true;
+  }
+
+  function fmtRange(e) {
+    var s = e.startD, t = e.endD;
+    if (s.getTime() === t.getTime()) return s.getDate() + '. ' + MONTHS_LONG[s.getMonth()] + ' ' + s.getFullYear();
+    if (s.getMonth() === t.getMonth() && s.getFullYear() === t.getFullYear())
+      return s.getDate() + '.–' + t.getDate() + '. ' + MONTHS_LONG[s.getMonth()] + ' ' + s.getFullYear();
+    return s.getDate() + '. ' + MONTHS_LONG[s.getMonth()] + ' – ' + t.getDate() + '. ' + MONTHS_LONG[t.getMonth()] + ' ' + t.getFullYear();
+  }
+  function bookingUrl(e) {
+    var out = e.endD > e.startD ? e.endD : new Date(e.startD.getFullYear(), e.startD.getMonth(), e.startD.getDate() + 1);
+    var q = (e.bookingCity || e.city) + ', ' + e.countryName;
+    return 'https://www.booking.com/searchresults.de.html?ss=' + encodeURIComponent(q) +
+      '&checkin=' + iso(e.startD) + '&checkout=' + iso(out) + '&group_adults=2&no_rooms=1&group_children=0';
+  }
+
+  /* ---------- Karte ---------- */
+  function worldPx(lng, lat, z) {
+    var s = 256 * Math.pow(2, z);
+    var sin = Math.sin(lat * Math.PI / 180);
+    return { x: (lng + 180) / 360 * s, y: (0.5 - Math.log((1 + sin) / (1 - sin)) / (4 * Math.PI)) * s };
+  }
+  function fromPx(x, y, z) {
+    var s = 256 * Math.pow(2, z);
+    var n = Math.PI - 2 * Math.PI * y / s;
+    return { lng: x / s * 360 - 180, lat: 180 / Math.PI * Math.atan(0.5 * (Math.exp(n) - Math.exp(-n))) };
+  }
+
+  function createMap(box, hooks) {
+    var MINZ = 3, MAXZ = 12;
+    var view = { lng: 10, lat: 49, z: 4 };
+    var data = { items: [], home: null, radius: 0 };
+    var tilesLoaded = 0, tilesFailed = 0;
+    var NO_TILES = !/^https?:$/.test(window.location.protocol), noTilesSent = false;
+    var tileMap = {};
+    var needFit = true, raf = 0;
+
+    var baseSvg = svgEl('svg', { class: 'layer', 'aria-hidden': 'true' });
+    var landPath = svgEl('path', { class: 'land' });
+    var refG = svgEl('g', {});
+    baseSvg.appendChild(landPath);
+    baseSvg.appendChild(refG);
+    var tiles = el('div', { class: 'layer tiles', 'aria-hidden': 'true' });
+    var overSvg = svgEl('svg', { class: 'layer', 'aria-hidden': 'true' });
+    var circle = svgEl('circle', { class: 'radius', r: 0 });
+    circle.style.display = 'none';
+    overSvg.appendChild(circle);
+    var homeEl = el('div', { class: 'home-dot' }, [el('span', { text: 'DU' })]);
+    homeEl.style.display = 'none';
+    var pinsEl = el('div', { class: 'pins' });
+    var attr = el('p', { class: 'attr', text: 'Vereinfachte Vorschaukarte' });
+    var zin = el('button', { type: 'button', 'aria-label': 'Karte vergrößern', text: '+', onclick: function () { zoomAt(1, box.clientWidth / 2, box.clientHeight / 2); } });
+    var zout = el('button', { type: 'button', 'aria-label': 'Karte verkleinern', text: '−', onclick: function () { zoomAt(-1, box.clientWidth / 2, box.clientHeight / 2); } });
+    var zoomEl = el('div', { class: 'zoom' }, [zin, zout]);
+
+    box.setAttribute('tabindex', '0');
+    box.setAttribute('role', 'application');
+    box.setAttribute('aria-label', 'Karte der Events. Pfeiltasten verschieben die Karte, Plus und Minus ändern den Ausschnitt.');
+    [baseSvg, tiles, overSvg, homeEl, pinsEl, zoomEl, attr].forEach(function (n) { box.appendChild(n); });
+
+    var refs = REFCITIES.map(function (c) {
+      var dot = svgEl('circle', { class: 'ref-dot', r: 3 });
+      var txt = svgEl('text', { class: 'ref-txt' });
+      txt.textContent = c.name;
+      refG.appendChild(dot);
+      refG.appendChild(txt);
+      return { c: c, dot: dot, txt: txt };
+    });
+
+    function clampView() {
+      view.lng = clamp(view.lng, -25, 45);
+      view.lat = clamp(view.lat, 33, 68);
+    }
+    function schedule() {
+      if (raf) return;
+      raf = window.requestAnimationFrame(function () { raf = 0; render(); });
+    }
+
+    function onTileLoad(ev) {
+      tilesLoaded++;
+      ev.target.style.visibility = 'visible';
+      attr.textContent = '';
+      attr.appendChild(el('a', { href: 'https://www.openstreetmap.org/copyright', target: '_blank', rel: 'noopener', text: '© OpenStreetMap-Mitwirkende' }));
+      hooks.onTiles(true);
+    }
+    function onTileErr(ev) {
+      tilesFailed++;
+      ev.target.style.visibility = 'hidden';
+      if (!tilesLoaded && tilesFailed >= 2) hooks.onTiles(false);
+    }
+
+    function render() {
+      var w = box.clientWidth, h = box.clientHeight;
+      if (!w || !h) return;
+      if (needFit) { fit(); return; }
+      var z = view.z;
+      box.classList.toggle('zoomed', z >= 8);
+      var c = worldPx(view.lng, view.lat, z);
+      var left = c.x - w / 2, top = c.y - h / 2;
+      function pt(lng, lat) { var p = worldPx(lng, lat, z); return [p.x - left, p.y - top]; }
+
+      var d = '';
+      LAND.forEach(function (poly) {
+        poly.forEach(function (p, i) {
+          var q = pt(p[0], p[1]);
+          d += (i ? 'L' : 'M') + q[0].toFixed(1) + ' ' + q[1].toFixed(1);
+        });
+        d += 'Z';
+      });
+      landPath.setAttribute('d', d);
+      refs.forEach(function (r) {
+        var q = pt(r.c.lng, r.c.lat);
+        var show = z <= 7 && !data.items.some(function (it) {
+          return Math.abs(it.lng - r.c.lng) < 0.7 && Math.abs(it.lat - r.c.lat) < 0.5;
+        });
+        r.dot.setAttribute('cx', q[0]); r.dot.setAttribute('cy', q[1]);
+        r.txt.setAttribute('x', q[0] + 6); r.txt.setAttribute('y', q[1] + 4);
+        r.dot.style.display = r.txt.style.display = show ? '' : 'none';
+      });
+
+      var useTiles = !NO_TILES;
+      if (!useTiles && !noTilesSent) { noTilesSent = true; hooks.onTiles(false); }
+      var n = Math.pow(2, z);
+      var x0 = Math.floor(left / 256), x1 = Math.floor((left + w - 1) / 256);
+      var y0 = Math.max(0, Math.floor(top / 256)), y1 = Math.min(n - 1, Math.floor((top + h - 1) / 256));
+      var need = {};
+      for (var x = x0; useTiles && x <= x1; x++) {
+        for (var y = y0; y <= y1; y++) {
+          var xx = ((x % n) + n) % n;
+          var key = z + '/' + xx + '/' + y + '/' + x;
+          need[key] = 1;
+          var t = tileMap[key];
+          if (!t) {
+            t = el('img', { class: 'tile', alt: '', draggable: 'false', decoding: 'async' });
+            t.style.visibility = 'hidden';
+            t.addEventListener('load', onTileLoad);
+            t.addEventListener('error', onTileErr);
+            t.src = 'https://tile.openstreetmap.org/' + z + '/' + xx + '/' + y + '.png';
+            tiles.appendChild(t);
+            tileMap[key] = t;
+          }
+          t.style.transform = 'translate(' + Math.round(x * 256 - left) + 'px,' + Math.round(y * 256 - top) + 'px)';
+        }
+      }
+      Object.keys(tileMap).forEach(function (k) {
+        if (!need[k]) { tiles.removeChild(tileMap[k]); delete tileMap[k]; }
+      });
+
+      data.items.forEach(function (it) {
+        var q = pt(it.lng, it.lat);
+        it.node.style.transform = 'translate(' + q[0].toFixed(1) + 'px,' + q[1].toFixed(1) + 'px)';
+      });
+
+      if (data.home) {
+        var hq = pt(data.home.lng, data.home.lat);
+        homeEl.style.display = '';
+        homeEl.style.transform = 'translate(' + hq[0].toFixed(1) + 'px,' + hq[1].toFixed(1) + 'px)';
+        if (data.radius > 0) {
+          var mpp = 156543.03392 * Math.cos(data.home.lat * Math.PI / 180) / Math.pow(2, z);
+          circle.setAttribute('cx', hq[0]); circle.setAttribute('cy', hq[1]);
+          circle.setAttribute('r', (data.radius * 1000 / mpp).toFixed(1));
+          circle.style.display = '';
+        } else { circle.style.display = 'none'; }
+      } else { homeEl.style.display = 'none'; circle.style.display = 'none'; }
+    }
+
+    function fit() {
+      var w = box.clientWidth, h = box.clientHeight;
+      if (!w || !h) { needFit = true; return; }
+      needFit = false;
+      var pts = data.items;
+      if (!pts.length) {
+        view.lng = 10; view.lat = 50; view.z = w < 560 ? 3 : 4;
+      } else if (pts.length === 1) {
+        view.lng = pts[0].lng; view.lat = pts[0].lat; view.z = 7;
+      } else {
+        var pad = 64, z, minx, maxx, miny, maxy;
+        for (z = 7; z >= MINZ; z--) {
+          minx = miny = Infinity; maxx = maxy = -Infinity;
+          pts.forEach(function (p) {
+            var q = worldPx(p.lng, p.lat, z);
+            minx = Math.min(minx, q.x); maxx = Math.max(maxx, q.x);
+            miny = Math.min(miny, q.y); maxy = Math.max(maxy, q.y);
+          });
+          if (maxx - minx <= w - 2 * pad && maxy - miny <= h - 2 * pad) break;
+        }
+        var cc = fromPx((minx + maxx) / 2, (miny + maxy) / 2, z);
+        view.lng = cc.lng; view.lat = cc.lat; view.z = Math.max(z, MINZ);
+      }
+      clampView();
+      render();
+    }
+
+    function zoomAt(dz, ax, ay) {
+      var w = box.clientWidth, h = box.clientHeight;
+      var nz = clamp(view.z + dz, MINZ, MAXZ);
+      if (nz === view.z || !w) return;
+      var c = worldPx(view.lng, view.lat, view.z);
+      var g = fromPx(c.x - w / 2 + ax, c.y - h / 2 + ay, view.z);
+      var p = worldPx(g.lng, g.lat, nz);
+      var nc = fromPx(p.x - ax + w / 2, p.y - ay + h / 2, nz);
+      view.z = nz; view.lng = nc.lng; view.lat = nc.lat;
+      clampView();
+      render();
+    }
+
+    /* Ziehen, Zoomen per Doppeltipp, Wischgeste mit zwei Fingern, Tastatur */
+    var pointers = {}, drag = null, pinch = null;
+    function ids() { return Object.keys(pointers); }
+    function startDrag(p) {
+      var c = worldPx(view.lng, view.lat, view.z);
+      drag = { x: p.x, y: p.y, cx: c.x, cy: c.y, z: view.z };
+      box.classList.add('drag');
+    }
+    box.addEventListener('pointerdown', function (e) {
+      if (e.target.closest('button, a')) return;
+      try { box.setPointerCapture(e.pointerId); } catch (err) { /* ignorieren */ }
+      pointers[e.pointerId] = { x: e.clientX, y: e.clientY };
+      var k = ids();
+      if (k.length === 1) startDrag(pointers[k[0]]);
+      else if (k.length === 2) {
+        drag = null;
+        var a = pointers[k[0]], b = pointers[k[1]];
+        pinch = { d: Math.hypot(a.x - b.x, a.y - b.y) };
+      }
+    });
+    box.addEventListener('pointermove', function (e) {
+      if (!pointers[e.pointerId]) return;
+      pointers[e.pointerId] = { x: e.clientX, y: e.clientY };
+      var k = ids();
+      if (k.length === 1 && drag) {
+        var g = fromPx(drag.cx - (e.clientX - drag.x), drag.cy - (e.clientY - drag.y), drag.z);
+        view.lng = g.lng; view.lat = g.lat; clampView();
+        schedule();
+      } else if (k.length === 2 && pinch) {
+        var a = pointers[k[0]], b = pointers[k[1]];
+        var d = Math.hypot(a.x - b.x, a.y - b.y);
+        var r = box.getBoundingClientRect();
+        var mx = (a.x + b.x) / 2 - r.left, my = (a.y + b.y) / 2 - r.top;
+        if (d > pinch.d * 1.6) { zoomAt(1, mx, my); pinch.d = d; }
+        else if (d < pinch.d * 0.62) { zoomAt(-1, mx, my); pinch.d = d; }
+      }
+    });
+    function endPointer(e) {
+      delete pointers[e.pointerId];
+      var k = ids();
+      pinch = null;
+      if (k.length === 1) startDrag(pointers[k[0]]);
+      else { drag = null; box.classList.remove('drag'); }
+    }
+    box.addEventListener('pointerup', endPointer);
+    box.addEventListener('pointercancel', endPointer);
+    box.addEventListener('dblclick', function (e) {
+      if (e.target.closest('button, a')) return;
+      var r = box.getBoundingClientRect();
+      zoomAt(1, e.clientX - r.left, e.clientY - r.top);
+    });
+    var wheelLock = false;
+    box.addEventListener('wheel', function (e) {
+      if (!(e.ctrlKey || e.metaKey)) return;
+      e.preventDefault();
+      if (wheelLock) return;
+      wheelLock = true;
+      window.setTimeout(function () { wheelLock = false; }, 220);
+      var r = box.getBoundingClientRect();
+      zoomAt(e.deltaY < 0 ? 1 : -1, e.clientX - r.left, e.clientY - r.top);
+    }, { passive: false });
+    box.addEventListener('keydown', function (e) {
+      var step = 80, c;
+      if (e.target !== box) return;
+      if (e.key === '+' || e.key === '=') { zoomAt(1, box.clientWidth / 2, box.clientHeight / 2); e.preventDefault(); return; }
+      if (e.key === '-' || e.key === '_') { zoomAt(-1, box.clientWidth / 2, box.clientHeight / 2); e.preventDefault(); return; }
+      var dx = 0, dy = 0;
+      if (e.key === 'ArrowLeft') dx = -step;
+      else if (e.key === 'ArrowRight') dx = step;
+      else if (e.key === 'ArrowUp') dy = -step;
+      else if (e.key === 'ArrowDown') dy = step;
+      else return;
+      e.preventDefault();
+      c = worldPx(view.lng, view.lat, view.z);
+      var g = fromPx(c.x + dx, c.y + dy, view.z);
+      view.lng = g.lng; view.lat = g.lat; clampView();
+      render();
+    });
+
+    if (window.ResizeObserver) new ResizeObserver(function () { schedule(); }).observe(box);
+    else window.addEventListener('resize', schedule);
+
+    return {
+      setData: function (items, homePt, radius) {
+        pinsEl.textContent = '';
+        data.items = items.map(function (it, i) {
+          var btn = el('button', {
+            type: 'button', class: 'pin k-' + (it.kind || 'festival') + (i >= 99 ? ' w3' : ''), text: String(i + 1),
+            'aria-label': 'Event ' + (i + 1) + ': ' + it.title + ', ' + it.city,
+            onclick: function () { hooks.onSelect(it.id); }
+          });
+          it.btn = btn;
+          it.node = el('div', { class: 'pinbox' + (it.kind === 'festival' ? '' : ' lk') }, [btn, el('span', { class: 'pin-label', text: it.city })]);
+          it.node.style.zIndex = it.kind === 'festival' ? '3' : '2';
+          pinsEl.appendChild(it.node);
+          return it;
+        });
+        data.home = homePt; data.radius = radius;
+        needFit = true;
+        render();
+      },
+      setHome: function (homePt, radius) { data.home = homePt; data.radius = radius; render(); },
+      setActive: function (id) {
+        data.items.forEach(function (it) { it.btn.classList.toggle('on', it.id === id); });
+      },
+      focusOn: function (id) {
+        var it = data.items.filter(function (x) { return x.id === id; })[0];
+        if (!it) return;
+        view.lng = it.lng; view.lat = it.lat; view.z = Math.max(view.z, 6);
+        clampView();
+        render();
+      },
+      render: render
+    };
+  }
+
+  /* ---------- Oberfläche ---------- */
+  var $ = function (id) { return document.getElementById(id); };
+  var monthBtns = [];
+  var knobDefs = [
+    { key: 'style', label: 'STIL', name: 'Stil', opts: function () { return styleOpts; } },
+    { key: 'kindSel', label: 'ART', name: 'Art', opts: function () { return KIND_OPTS.map(function (k) { return k.label; }); } },
+    { key: 'country', label: 'LAND', name: 'Land', opts: function () { return countryOpts; } },
+    { key: 'radius', label: 'UMKREIS', name: 'Umkreis', opts: function () { return RADII.map(function (r) { return r ? fmtNum(r) + ' km' : 'Alle'; }); } }
+  ];
+
+  function buildDial() {
+    var months = $('months');
+    MONTHS.forEach(function (m, i) {
+      var b = el('button', {
+        type: 'button', class: 'm', text: m, 'aria-pressed': 'false', 'aria-label': MONTHS_LONG[i],
+        onclick: function () { state.month = (state.month === i) ? -1 : i; state.active = null; refresh(); }
+      });
+      monthBtns.push(b);
+      months.appendChild(b);
+    });
+    $('allMonths').addEventListener('click', function () { state.month = -1; state.active = null; refresh(); });
+    if (years.length > 1) {
+      $('yearBox').hidden = false;
+      $('yearOnly').hidden = true;
+      $('yPrev').addEventListener('click', function () { shiftYear(-1); });
+      $('yNext').addEventListener('click', function () { shiftYear(1); });
+    }
+  }
+  function shiftYear(d) {
+    var i = years.indexOf(state.year) + d;
+    if (i < 0 || i >= years.length) return;
+    state.year = years[i]; state.month = -1; state.active = null;
+    refresh();
+  }
+
+  function buildKnobs() {
+    var row = $('knobRow');
+    knobDefs.forEach(function (k) {
+      k.btn = el('button', { type: 'button', class: 'knob', onclick: function () {
+        state[k.key] = (state[k.key] + 1) % k.opts().length;
+        state.active = null;
+        refresh();
+      } }, [el('span', { class: 'knob-dial' })]);
+      k.val = el('span', { class: 'knob-val' });
+      row.appendChild(el('div', { class: 'knob-wrap' }, [k.btn, el('span', { class: 'knob-label', text: k.label }), k.val]));
+    });
+  }
+
+  function buildHome() {
+    var sel = $('homeSel');
+    sel.addEventListener('change', function () {
+      if (sel.value === 'custom') return;
+      state.home = parseInt(sel.value, 10);
+      state.custom = null;
+      storeSet('rr_home', String(state.home));
+      msg('');
+      refresh();
+    });
+    $('geoBtn').addEventListener('click', function () {
+      msg('Standort wird gesucht …');
+      var fail = function () { msg('Der Standort ist hier nicht verfügbar. Bitte wähle deinen Ort aus der Liste.'); };
+      try {
+        if (!navigator.geolocation) { fail(); return; }
+        navigator.geolocation.getCurrentPosition(function (p) {
+          state.custom = { name: 'Mein Standort', lat: p.coords.latitude, lng: p.coords.longitude };
+          msg('');
+          refresh();
+        }, fail, { timeout: 8000 });
+      } catch (e) { fail(); }
+    });
+  }
+  function msg(t) { var m = $('geoMsg'); m.textContent = t; m.hidden = !t; }
+  function updateHome() {
+    var sel = $('homeSel');
+    sel.textContent = '';
+    HOMES.forEach(function (h, i) { sel.appendChild(el('option', { value: String(i), text: h.name })); });
+    if (state.custom) {
+      sel.appendChild(el('option', { value: 'custom', text: 'Mein Standort' }));
+      sel.value = 'custom';
+    } else { sel.value = String(state.home); }
+  }
+
+  function updateDial(listAll) {
+    $('yearLabel').textContent = state.year;
+    $('yearOnly').textContent = years.length > 1 ? '' : String(state.year);
+    $('allMonths').setAttribute('aria-pressed', state.month < 0 ? 'true' : 'false');
+    var inYear = events.filter(function (e) { return matches(e, false); });
+    monthBtns.forEach(function (b, i) {
+      var ms = new Date(state.year, i, 1), me = new Date(state.year, i + 1, 0);
+      var has = inYear.some(function (e) { return e.startD <= me && e.endD >= ms; });
+      b.classList.toggle('has', has);
+      b.classList.toggle('sel', state.month === i);
+      b.setAttribute('aria-pressed', state.month === i ? 'true' : 'false');
+    });
+    var needle = $('needle');
+    needle.hidden = state.month < 0;
+    if (state.month >= 0) {
+      needle.style.left = ((state.month + 0.5) / 12 * 100) + '%';
+      var box = $('scale'), b = monthBtns[state.month];
+      var target = b.offsetLeft - (box.clientWidth - b.offsetWidth) / 2;
+      if (box.scrollWidth > box.clientWidth) box.scrollLeft = Math.max(0, target);
+    }
+    var when = state.month < 0 ? 'Ganzes Jahr ' + state.year : MONTHS_LONG[state.month] + ' ' + state.year;
+    $('readout').textContent = 'Eingestellt: ' + when + ' · ' + listAll.length + (listAll.length === 1 ? ' Event' : ' Events');
+  }
+
+  function updateKnobs() {
+    knobDefs.forEach(function (k) {
+      var opts = k.opts(), idx = state[k.key];
+      var angle = opts.length > 1 ? -135 + idx / (opts.length - 1) * 270 : 0;
+      k.btn.firstChild.style.setProperty('--a', angle + 'deg');
+      k.val.textContent = opts[idx];
+      k.btn.setAttribute('aria-label', k.name + ': ' + opts[idx] + '. Klicken zum Weiterschalten.');
+    });
+  }
+
+  function card(e, n) {
+    var d = dist(e);
+    var meta = e.city + ', ' + e.countryName + ' · Luftlinie ca. ' + fmtNum(Math.round(d / 10) * 10) + ' km';
+    var multi = e.endD > e.startD;
+    var stub = el('div', { class: 'stub' }, [
+      el('span', { class: 'd', text: String(e.startD.getDate()) }),
+      el('span', { class: 'm2', text: MONTHS[e.startD.getMonth()] }),
+      multi ? el('span', { class: 'to', text: 'bis ' + e.endD.getDate() + '.' + (e.endD.getMonth() + 1) + '.' }) : null
+    ]);
+    var tags = (e.styles || []).map(function (s) { return el('span', { class: 'tag', text: s }); })
+      .concat((e.features || []).map(function (f) { return el('span', { class: 'tag soft', text: f }); }));
+    var btns = [];
+    btns.push(el('a', { class: 'btn', href: e.info, target: '_blank', rel: 'noopener', text: 'Infos ↗' }));
+    if (e.tickets && e.tickets !== e.info) btns.push(el('a', { class: 'btn', href: e.tickets, target: '_blank', rel: 'noopener', text: 'Tickets ↗' }));
+    if (e.hotel) btns.push(el('a', { class: 'btn', href: e.hotel.url, target: '_blank', rel: 'noopener', text: e.hotel.label + ' ↗' }));
+    btns.push(el('a', { class: 'btn mint', href: bookingUrl(e), target: '_blank', rel: 'noopener', text: 'Unterkunft ↗' }));
+    btns.push(el('button', { type: 'button', class: 'btn', text: 'Auf Karte', onclick: function () { selectEvent(e.id, true); } }));
+    var body = el('div', { class: 'body' }, [
+      el('p', { class: 'kindtag k-' + e.kind, text: KINDS[e.kind] }),
+      el('h3', { text: n + '. ' + e.title }),
+      el('p', { class: 'meta', text: fmtRange(e) }),
+      el('p', { class: 'meta', text: meta }),
+      e.venue ? el('p', { class: 'meta', text: e.venue }) : null,
+      tags.length ? el('div', { class: 'tags' }, tags) : null,
+      e.acts ? el('p', { class: 'acts', text: 'Bands: ' + e.acts }) : null,
+      el('span', { class: 'badge ' + (e.status === 'ok' ? 'ok' : e.status === 'kalender' ? 'cal' : 'check'), text: e.status === 'ok' ? 'Termin bestätigt' : e.status === 'kalender' ? 'Termin laut Szene-Kalender' : 'Bitte beim Veranstalter prüfen' }),
+      e.note ? el('p', { class: 'note', text: e.note }) : null,
+      e.src ? el('p', { class: 'note', text: 'Quelle: ' + e.src }) : null,
+      el('div', { class: 'btns' }, btns)
+    ]);
+    var art = el('article', { class: 'card', id: 'ev-' + e.id }, [stub, body]);
+    if (state.active === e.id) art.classList.add('on');
+    return art;
+  }
+
+  function renderList(list) {
+    var box = $('cards');
+    box.textContent = '';
+    if (!list.length) {
+      box.appendChild(el('div', { class: 'empty' }, [
+        el('p', { text: 'Auf dieser Frequenz kommt gerade nichts rein.' }),
+        el('button', { type: 'button', class: 'pill', text: 'Filter zurücksetzen', onclick: function () {
+          state.month = -1; state.style = 0; state.kindSel = 0; state.country = 0; state.radius = 0; state.active = null; refresh();
+        } })
+      ]));
+      return;
+    }
+    list.slice(0, state.limit).forEach(function (e, i) { box.appendChild(card(e, i + 1)); });
+    if (list.length > state.limit) {
+      box.appendChild(el('button', { type: 'button', class: 'pill more', text: 'Weitere ' + Math.min(PAGE, list.length - state.limit) + ' anzeigen (' + (list.length - state.limit) + ' übrig)', onclick: function () {
+        state.limit += PAGE;
+        renderList(list);
+      } }));
+    }
+  }
+
+  function renderPending() {
+    var box = $('pending');
+    if (!PENDING.length) return;
+    box.appendChild(el('h2', { text: 'Noch ohne Termin 2027' }));
+    box.appendChild(el('p', { class: 'pending-intro', text: 'Diese Events sind bekannt, der Termin für 2027 ist aber noch nicht veröffentlicht.' }));
+    var ul = el('ul');
+    PENDING.forEach(function (p) {
+      ul.appendChild(el('li', null, [
+        el('div', null, [el('strong', { text: p.title }), el('br'), el('span', { text: p.place + ' · zuletzt ' + p.last })]),
+        el('a', { href: p.info, target: '_blank', rel: 'noopener', text: 'Webseite ↗' })
+      ]));
+    });
+    box.appendChild(ul);
+  }
+
+  var map;
+  var lastList = [];
+  function selectEvent(id, fromCard) {
+    state.active = id;
+    if (!$('ev-' + id)) {
+      var idx = lastList.map(function (x) { return x.id; }).indexOf(id);
+      if (idx >= 0) { state.limit = idx + 1; renderList(lastList); }
+    }
+    Array.prototype.forEach.call(document.querySelectorAll('.card'), function (c) {
+      c.classList.toggle('on', c.id === 'ev-' + id);
+    });
+    map.setActive(id);
+    if (fromCard) {
+      map.focusOn(id);
+      var mb = $('map').getBoundingClientRect();
+      if (mb.top < 0 || mb.bottom > window.innerHeight) $('map').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    } else {
+      var c = $('ev-' + id);
+      if (c) c.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+
+  function refresh() {
+    state.limit = PAGE;
+    var list = events.filter(function (e) { return matches(e, true); });
+    lastList = list;
+    updateHome();
+    updateDial(list);
+    updateKnobs();
+    renderList(list);
+    $('status').textContent = list.length ? list.length + (list.length === 1 ? ' Event auf dieser Frequenz' : ' Events auf dieser Frequenz') : 'Keine Treffer';
+
+    var extra = events.filter(function (e) { return matches(e, true, true) && (e.kind === 'course' || e.kind === 'tribute'); }).length;
+    var ex = $('extras');
+    ex.textContent = '';
+    if (extra && KIND_OPTS[state.kindSel].kinds.indexOf('course') < 0) {
+      ex.hidden = false;
+      ex.appendChild(el('span', { text: 'Dazu gibt es ' + extra + (extra === 1 ? ' Extra' : ' Extras') + ' (Kurse und Tribute-Shows).' }));
+      ex.appendChild(el('button', { type: 'button', class: 'pill', text: 'Extras anzeigen', onclick: function () { state.kindSel = 3; state.active = null; refresh(); } }));
+    } else { ex.hidden = true; }
+
+    map.setData(list.map(function (e) { return { id: e.id, title: e.title, city: e.city, lat: e.lat, lng: e.lng, kind: e.kind }; }), home(), RADII[state.radius]);
+    map.setActive(state.active);
+  }
+
+  /* ---------- Start ---------- */
+  map = createMap($('map'), {
+    onSelect: function (id) { selectEvent(id, false); },
+    onTiles: function (ok) { $('mapNote').hidden = ok; }
+  });
+  buildDial();
+  buildKnobs();
+  buildHome();
+  renderPending();
+  refresh();
+  window.setTimeout(function () { map.render(); }, 300);
+})();
+</script>
+</body>
+</html>
