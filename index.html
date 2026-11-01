@@ -263,6 +263,7 @@ a { color: inherit; }
 .kindtag.k-tribute { color: #1d4f8a; }
 .extras { margin: 0; padding: 10px 12px; border: 1px dashed var(--amber-dim); border-radius: 10px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; font-size: 16px; }
 .more { align-self: center; }
+.btn.star[aria-pressed="true"] { background: var(--amber); }
 .note { margin: 4px 0 0; font-size: 15px; color: var(--muted); }
 .btns { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
 .btn {
@@ -320,6 +321,7 @@ a { color: inherit; }
         </div>
         <span class="year" id="yearOnly"></span>
         <button type="button" class="pill" id="allMonths" aria-pressed="true">Ganzes Jahr</button>
+        <button type="button" class="pill" id="mineBtn" aria-pressed="false">★ Meine Events (0)</button>
       </div>
       <div class="scale" id="scale">
         <div class="scale-in" id="scaleIn">
@@ -359,6 +361,7 @@ a { color: inherit; }
       <h2>Events</h2>
       <p class="status" id="status" aria-live="polite"></p>
       <div class="extras" id="extras" hidden></div>
+      <p class="status" id="hashMsg" role="status" hidden></p>
       <div class="cards" id="cards"></div>
       <div class="pending" id="pending"></div>
     </section>
@@ -377,10 +380,22 @@ a { color: inherit; }
   'use strict';
 
   /* Die Country-Termine liegen als kurze Zeilen in events-country-1.js bis -3.js und werden hier in Events umgewandelt */
+  var usedIds = {};
+  function slug(t) {
+    return String(t).toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue').replace(/ß/g, 'ss')
+      .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  }
+  function makeId(r) {
+    var base = 'c-' + r[0].replace(/-/g, '') + '-' + slug(r[3]).slice(0, 24) + '-' + slug(r[2]).slice(0, 24);
+    var id = base, k = 2;
+    while (usedIds[id]) { id = base + '-' + k++; }
+    usedIds[id] = 1;
+    return id;
+  }
   function moreToEvents(rows) {
     return rows.map(function (r, i) {
       return {
-        id: 'c' + i, start: r[0], end: r[1] || r[0], title: r[2], city: r[3], venue: r[4],
+        id: makeId(r), start: r[0], end: r[1] || r[0], title: r[2], city: r[3], venue: r[4],
         styles: r[5], features: r[6], kind: r[7], info: r[8], tickets: r[9], lat: r[10], lng: r[11],
         countryName: r[12] || 'Deutschland', acts: r[13], note: r[14], status: 'kalender', src: 'we-love-country.de'
       };
@@ -488,10 +503,15 @@ a { color: inherit; }
     country: 0,
     radius: 0,
     limit: PAGE,
+    onlyMine: false,
     home: (savedHome >= 0 && savedHome < HOMES.length) ? savedHome : 3,
     custom: null,
     active: null
   };
+  var mine = {};
+  (function () {
+    try { JSON.parse(storeGet('rr_mine') || '[]').forEach(function (id) { mine[id] = 1; }); } catch (err) { /* ohne Merkliste weiter */ }
+  })();
   function home() { return state.custom || HOMES[state.home]; }
   function dist(e) { return haversine(home(), e); }
 
@@ -500,7 +520,8 @@ a { color: inherit; }
     if (e.startD.getFullYear() !== state.year && e.endD.getFullYear() !== state.year) return false;
     if (state.style > 0 && (e.styles || []).indexOf(styleOpts[state.style]) < 0) return false;
     if (state.country > 0 && e.countryName !== countryOpts[state.country]) return false;
-    if (!ignoreKind && !kindOk(e)) return false;
+    if (state.onlyMine && !mine[e.id]) return false;
+    if (!ignoreKind && !state.onlyMine && !kindOk(e)) return false;
     var r = RADII[state.radius];
     if (r > 0 && dist(e) > r) return false;
     if (withMonth && state.month >= 0) {
@@ -851,6 +872,7 @@ a { color: inherit; }
       months.appendChild(b);
     });
     $('allMonths').addEventListener('click', function () { state.month = -1; state.active = null; refresh(); });
+    $('mineBtn').addEventListener('click', function () { state.onlyMine = !state.onlyMine; state.active = null; refresh(); });
     if (years.length > 1) {
       $('yearBox').hidden = false;
       $('yearOnly').hidden = true;
@@ -946,6 +968,100 @@ a { color: inherit; }
     });
   }
 
+  function ymd(d) { return d.getFullYear() + ('0' + (d.getMonth() + 1)).slice(-2) + ('0' + d.getDate()).slice(-2); }
+  function ymdhm(d) { return ymd(d) + 'T' + ('0' + d.getHours()).slice(-2) + ('0' + d.getMinutes()).slice(-2) + '00'; }
+  function eventLink(e) { return window.location.href.split('#')[0] + '#' + encodeURIComponent(e.id); }
+  function placeText(e) { return e.city + (e.countryName && e.countryName !== 'Deutschland' ? ', ' + e.countryName : ''); }
+
+  /* Google Kalender: eintägig mit Beginn = mit Uhrzeit (3 Stunden), sonst ganztägig */
+  function calendarUrl(e) {
+    var dates, tz = '';
+    var tm = (e.note || '').match(/Beginn (\d\d):(\d\d)/);
+    if (e.endD.getTime() === e.startD.getTime() && tm) {
+      var st = new Date(e.startD.getFullYear(), e.startD.getMonth(), e.startD.getDate(), +tm[1], +tm[2]);
+      var en = new Date(st.getTime() + 3 * 3600 * 1000);
+      dates = ymdhm(st) + '/' + ymdhm(en);
+      tz = '&ctz=Europe%2FBerlin';
+    } else {
+      var next = new Date(e.endD.getFullYear(), e.endD.getMonth(), e.endD.getDate() + 1);
+      dates = ymd(e.startD) + '/' + ymd(next);
+    }
+    var details = fmtRange(e) + '\nMehr im Rockabilly Radar: ' + eventLink(e) + (tz ? '\nBeginn laut Kalender-Quelle, Dauer geschätzt (3 Stunden).' : '');
+    return 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent(e.title) +
+      '&dates=' + dates + tz +
+      '&location=' + encodeURIComponent((e.venue ? e.venue + ', ' : '') + placeText(e)) +
+      '&details=' + encodeURIComponent(details);
+  }
+
+  function copyText(t, done) {
+    var fallback = function () {
+      try {
+        var ta = el('textarea', { readonly: '', style: 'position:fixed;opacity:0;left:-999px' });
+        ta.value = t;
+        document.body.appendChild(ta);
+        ta.select();
+        var ok = document.execCommand('copy');
+        document.body.removeChild(ta);
+        done(ok ? 'Text kopiert ✓' : 'Kopieren nicht möglich');
+      } catch (err) { done('Kopieren nicht möglich'); }
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(t).then(function () { done('Text kopiert ✓'); }, fallback);
+    } else { fallback(); }
+  }
+  function shareEvent(e, btn) {
+    var text = '🎸 ' + e.title + '\n📅 ' + fmtRange(e) + '\n📍 ' + placeText(e);
+    var url = eventLink(e);
+    var done = function (label) {
+      btn.textContent = label;
+      window.setTimeout(function () { btn.textContent = 'Teilen'; }, 2200);
+    };
+    if (navigator.share) {
+      navigator.share({ title: e.title, text: text, url: url }).catch(function (err) {
+        if (!err || err.name !== 'AbortError') copyText(text + '\n' + url, done);
+      });
+    } else { copyText(text + '\n' + url, done); }
+  }
+
+  function mineCount() { return events.filter(function (e) { return mine[e.id]; }).length; }
+  function updateMineBtn() {
+    var b = $('mineBtn');
+    b.textContent = '★ Meine Events (' + mineCount() + ')';
+    b.setAttribute('aria-pressed', state.onlyMine ? 'true' : 'false');
+  }
+  function toggleMine(id, btn) {
+    if (mine[id]) delete mine[id]; else mine[id] = 1;
+    storeSet('rr_mine', JSON.stringify(Object.keys(mine)));
+    btn.setAttribute('aria-pressed', mine[id] ? 'true' : 'false');
+    btn.textContent = mine[id] ? '★ Gemerkt' : '☆ Ich gehe hin';
+    updateMineBtn();
+    if (state.onlyMine && !mine[id]) refresh();
+  }
+
+  /* Link mit #Kennung öffnet das Radar direkt bei diesem Event */
+  function openFromHash() {
+    var msg = $('hashMsg');
+    msg.hidden = true;
+    var id = '';
+    try { id = decodeURIComponent((window.location.hash || '').replace(/^#/, '')); } catch (err) { id = ''; }
+    if (!id) return;
+    var e = events.filter(function (x) { return x.id === id; })[0];
+    if (!e) {
+      msg.textContent = 'Dieses Event steht nicht mehr in der Liste, vielleicht ist es schon vorbei.';
+      msg.hidden = false;
+      return;
+    }
+    state.year = e.startD.getFullYear();
+    state.month = e.startD.getMonth();
+    state.style = 0; state.country = 0; state.radius = 0; state.onlyMine = false;
+    if (!kindOk(e)) state.kindSel = 4;
+    state.active = null;
+    refresh();
+    selectEvent(id, true);
+    var c = $('ev-' + id);
+    if (c) c.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
   function card(e, n) {
     var d = dist(e);
     var meta = e.city + ', ' + e.countryName + ' · Luftlinie ca. ' + fmtNum(Math.round(d / 10) * 10) + ' km';
@@ -962,7 +1078,14 @@ a { color: inherit; }
     if (e.tickets && e.tickets !== e.info) btns.push(el('a', { class: 'btn', href: e.tickets, target: '_blank', rel: 'noopener', text: 'Tickets ↗' }));
     if (e.hotel) btns.push(el('a', { class: 'btn', href: e.hotel.url, target: '_blank', rel: 'noopener', text: e.hotel.label + ' ↗' }));
     btns.push(el('a', { class: 'btn mint', href: bookingUrl(e), target: '_blank', rel: 'noopener', text: 'Unterkunft ↗' }));
+    btns.push(el('a', { class: 'btn', href: calendarUrl(e), target: '_blank', rel: 'noopener', text: 'Zum Kalender ↗' }));
+    var shareBtn = el('button', { type: 'button', class: 'btn', text: 'Teilen' });
+    shareBtn.addEventListener('click', function () { shareEvent(e, shareBtn); });
+    btns.push(shareBtn);
     btns.push(el('button', { type: 'button', class: 'btn', text: 'Auf Karte', onclick: function () { selectEvent(e.id, true); } }));
+    var starBtn = el('button', { type: 'button', class: 'btn star', 'aria-pressed': mine[e.id] ? 'true' : 'false', text: mine[e.id] ? '★ Gemerkt' : '☆ Ich gehe hin' });
+    starBtn.addEventListener('click', function () { toggleMine(e.id, starBtn); });
+    btns.unshift(starBtn);
     var body = el('div', { class: 'body' }, [
       el('p', { class: 'kindtag k-' + e.kind, text: KINDS[e.kind] }),
       el('h3', { text: n + '. ' + e.title }),
@@ -986,9 +1109,9 @@ a { color: inherit; }
     box.textContent = '';
     if (!list.length) {
       box.appendChild(el('div', { class: 'empty' }, [
-        el('p', { text: 'Auf dieser Frequenz kommt gerade nichts rein.' }),
+        el('p', { text: state.onlyMine ? 'Noch nichts gemerkt. Tippe bei einem Event auf „Ich gehe hin“.' : 'Auf dieser Frequenz kommt gerade nichts rein.' }),
         el('button', { type: 'button', class: 'pill', text: 'Filter zurücksetzen', onclick: function () {
-          state.month = -1; state.style = 0; state.kindSel = 0; state.country = 0; state.radius = 0; state.active = null; refresh();
+          state.month = -1; state.style = 0; state.kindSel = 0; state.country = 0; state.radius = 0; state.onlyMine = false; state.active = null; refresh();
         } })
       ]));
       return;
@@ -1046,13 +1169,14 @@ a { color: inherit; }
     updateHome();
     updateDial(list);
     updateKnobs();
+    updateMineBtn();
     renderList(list);
     $('status').textContent = list.length ? list.length + (list.length === 1 ? ' Event auf dieser Frequenz' : ' Events auf dieser Frequenz') : 'Keine Treffer';
 
     var extra = events.filter(function (e) { return matches(e, true, true) && (e.kind === 'course' || e.kind === 'tribute'); }).length;
     var ex = $('extras');
     ex.textContent = '';
-    if (extra && KIND_OPTS[state.kindSel].kinds.indexOf('course') < 0) {
+    if (extra && !state.onlyMine && KIND_OPTS[state.kindSel].kinds.indexOf('course') < 0) {
       ex.hidden = false;
       ex.appendChild(el('span', { text: 'Dazu gibt es ' + extra + (extra === 1 ? ' Extra' : ' Extras') + ' (Kurse und Tribute-Shows).' }));
       ex.appendChild(el('button', { type: 'button', class: 'pill', text: 'Extras anzeigen', onclick: function () { state.kindSel = 3; state.active = null; refresh(); } }));
@@ -1072,6 +1196,8 @@ a { color: inherit; }
   buildHome();
   renderPending();
   refresh();
+  openFromHash();
+  window.addEventListener('hashchange', openFromHash);
   window.setTimeout(function () { map.render(); }, 300);
 })();
 </script>
