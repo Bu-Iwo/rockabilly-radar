@@ -264,6 +264,14 @@ a { color: inherit; }
 .extras { margin: 0; padding: 10px 12px; border: 1px dashed var(--amber-dim); border-radius: 10px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; font-size: 16px; }
 .more { align-self: center; }
 .btn.star[aria-pressed="true"] { background: var(--amber); }
+.hint { margin: 6px 0 0; font: 700 16px var(--f-body); color: var(--warn); }
+.minepanel { margin: 0; padding: 12px; border: 1px dashed var(--amber-dim); border-radius: 10px; display: flex; flex-direction: column; gap: 10px; font-size: 16px; }
+.minepanel p { margin: 0; }
+.minepanel .row { display: flex; flex-wrap: wrap; gap: 8px; }
+.minepanel textarea {
+  width: 100%; min-height: 84px; padding: 10px; font: 16px var(--f-body);
+  background: #1c110a; border: 2px solid var(--amber-dim); border-radius: 10px; color: var(--text);
+}
 .note { margin: 4px 0 0; font-size: 15px; color: var(--muted); }
 .btns { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
 .btn {
@@ -362,6 +370,7 @@ a { color: inherit; }
       <p class="status" id="status" aria-live="polite"></p>
       <div class="extras" id="extras" hidden></div>
       <p class="status" id="hashMsg" role="status" hidden></p>
+      <div class="minepanel" id="minePanel" hidden></div>
       <div class="cards" id="cards"></div>
       <div class="pending" id="pending"></div>
     </section>
@@ -517,11 +526,11 @@ a { color: inherit; }
 
   function kindOk(e) { return KIND_OPTS[state.kindSel].kinds.indexOf(e.kind) >= 0; }
   function matches(e, withMonth, ignoreKind) {
+    if (state.onlyMine) return !!mine[e.id]; /* Meine Events: alles Gemerkte, unabhängig von Monat und Filtern */
     if (e.startD.getFullYear() !== state.year && e.endD.getFullYear() !== state.year) return false;
     if (state.style > 0 && (e.styles || []).indexOf(styleOpts[state.style]) < 0) return false;
     if (state.country > 0 && e.countryName !== countryOpts[state.country]) return false;
-    if (state.onlyMine && !mine[e.id]) return false;
-    if (!ignoreKind && !state.onlyMine && !kindOk(e)) return false;
+    if (!ignoreKind && !kindOk(e)) return false;
     var r = RADII[state.radius];
     if (r > 0 && dist(e) > r) return false;
     if (withMonth && state.month >= 0) {
@@ -1029,13 +1038,144 @@ a { color: inherit; }
     b.textContent = '★ Meine Events (' + mineCount() + ')';
     b.setAttribute('aria-pressed', state.onlyMine ? 'true' : 'false');
   }
-  function toggleMine(id, btn) {
+  function toggleMine(id, btn, after) {
     if (mine[id]) delete mine[id]; else mine[id] = 1;
     storeSet('rr_mine', JSON.stringify(Object.keys(mine)));
     btn.setAttribute('aria-pressed', mine[id] ? 'true' : 'false');
     btn.textContent = mine[id] ? '★ Gemerkt' : '☆ Ich gehe hin';
     updateMineBtn();
+    updateMinePanel();
+    if (after) after();
     if (state.onlyMine && !mine[id]) refresh();
+  }
+
+  /* ---------- Buchungs-Erinnerung: Festivals 4 Monate, sonst 1 Monat vor Beginn ---------- */
+  function bookDate(e) {
+    var back = e.kind === 'festival' ? 4 : 1;
+    var first = new Date(e.startD.getFullYear(), e.startD.getMonth() - back, 1);
+    var dim = new Date(first.getFullYear(), first.getMonth() + 1, 0).getDate();
+    return new Date(first.getFullYear(), first.getMonth(), Math.min(e.startD.getDate(), dim));
+  }
+  function needsBooking(e) { return !!mine[e.id] && e.startD > today && today >= bookDate(e); }
+
+  /* ---------- Kalenderdatei (.ics) mit allen gemerkten Events ---------- */
+  function icsEsc(t) {
+    return String(t).replace(/\\/g, '\\\\').replace(/;/g, '\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n');
+  }
+  function icsFold(line) {
+    var enc = new TextEncoder(), out = [], cur = '', len = 0;
+    Array.from(line).forEach(function (ch) {
+      var b = enc.encode(ch).length;
+      if (len + b > 72) { out.push(cur); cur = ' ' + ch; len = 1 + b; } else { cur += ch; len += b; }
+    });
+    out.push(cur);
+    return out.join('\r\n');
+  }
+  function plusDay(d) { return new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1); }
+  function buildIcs(list) {
+    var stamp = new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d+/, '');
+    var L = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Rockabilly Radar//DE', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', 'X-WR-CALNAME:Rockabilly Radar'];
+    function alarm(trigger, text) { L.push('BEGIN:VALARM', 'ACTION:DISPLAY', 'DESCRIPTION:' + icsEsc(text), 'TRIGGER:' + trigger, 'END:VALARM'); }
+    list.forEach(function (e) {
+      var tm = (e.note || '').match(/Beginn (\d\d):(\d\d)/);
+      var timed = e.endD.getTime() === e.startD.getTime() && tm;
+      var place = (e.venue ? e.venue + ', ' : '') + placeText(e);
+      L.push('BEGIN:VEVENT', 'UID:' + e.id + '@rockabilly-radar', 'DTSTAMP:' + stamp);
+      if (timed) {
+        var st = new Date(e.startD.getFullYear(), e.startD.getMonth(), e.startD.getDate(), +tm[1], +tm[2]);
+        L.push('DTSTART:' + ymdhm(st), 'DTEND:' + ymdhm(new Date(st.getTime() + 3 * 3600 * 1000)));
+      } else {
+        L.push('DTSTART;VALUE=DATE:' + ymd(e.startD), 'DTEND;VALUE=DATE:' + ymd(plusDay(e.endD)));
+      }
+      L.push('SUMMARY:' + icsEsc(e.title), 'LOCATION:' + icsEsc(place),
+        'DESCRIPTION:' + icsEsc(fmtRange(e) + '\nMehr im Rockabilly Radar: ' + eventLink(e) + (e.info ? '\nInfos: ' + e.info : '') + (timed ? '\nDauer geschätzt (3 Stunden).' : '')));
+      if (/^https?:/.test(e.info || '')) L.push('URL:' + e.info);
+      if (timed) { alarm('-P7D', 'In einer Woche: ' + e.title); alarm('-P1D', 'Morgen: ' + e.title); }
+      else { alarm('-P6DT15H', 'In einer Woche: ' + e.title); alarm('-PT15H', 'Morgen: ' + e.title); }
+      L.push('END:VEVENT');
+      var bd = bookDate(e);
+      if (bd >= today && e.startD > today) {
+        L.push('BEGIN:VEVENT', 'UID:buchen-' + e.id + '@rockabilly-radar', 'DTSTAMP:' + stamp,
+          'DTSTART;VALUE=DATE:' + ymd(bd), 'DTEND;VALUE=DATE:' + ymd(plusDay(bd)),
+          'SUMMARY:' + icsEsc('Tickets & Unterkunft prüfen: ' + e.title),
+          'DESCRIPTION:' + icsEsc(e.title + ' (' + fmtRange(e) + ', ' + placeText(e) + ')\nUnterkunft: ' + bookingUrl(e) + (e.tickets ? '\nTickets: ' + e.tickets : '') + (e.info ? '\nInfos: ' + e.info : '')));
+        alarm('PT9H', 'Tickets und Unterkunft prüfen: ' + e.title);
+        L.push('END:VEVENT');
+      }
+    });
+    L.push('END:VCALENDAR');
+    return L.map(icsFold).join('\r\n') + '\r\n';
+  }
+  function mineList() { return events.filter(function (e) { return mine[e.id]; }); }
+  function mineMsg(t) { var m = $('mineMsg'); if (m) { m.textContent = t; m.hidden = !t; } }
+  function downloadIcs() {
+    var list = mineList();
+    if (!list.length) { mineMsg('Noch nichts gemerkt. Tippe bei einem Event auf „Ich gehe hin“.'); return; }
+    var blob = new Blob([buildIcs(list)], { type: 'text/calendar;charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var a = el('a', { href: url, download: 'rockabilly-radar-meine-events.ics' });
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.setTimeout(function () { URL.revokeObjectURL(url); }, 5000);
+    mineMsg('Kalenderdatei mit ' + list.length + ' Event' + (list.length === 1 ? '' : 's') + ' wurde geladen. Öffne sie, dann fragt dein Kalender nach dem Übernehmen.');
+  }
+
+  /* ---------- Merkcode: Merkliste auf ein anderes Gerät übertragen ---------- */
+  function mineCode() { return 'RR1:' + mineList().map(function (e) { return e.id; }).join('|'); }
+  function shareMineCode() {
+    var list = mineList();
+    if (!list.length) { mineMsg('Noch nichts gemerkt. Tippe bei einem Event auf „Ich gehe hin“.'); return; }
+    var text = 'Meine Merkliste im Rockabilly Radar (' + list.length + ' Event' + (list.length === 1 ? '' : 's') + '). Auf dem anderen Gerät: Meine Events → „Merkliste einfügen“ → diesen Text einfügen.\n\n' + mineCode();
+    var done = function (label) { mineMsg(label === 'Text kopiert ✓' ? 'Merkcode kopiert. Füge ihn jetzt zum Beispiel in WhatsApp ein.' : 'Kopieren hat nicht geklappt. Markiere den Text von Hand.'); };
+    if (navigator.share) {
+      navigator.share({ title: 'Meine Merkliste', text: text }).catch(function (err) {
+        if (!err || err.name !== 'AbortError') copyText(text, done);
+      });
+    } else { copyText(text, done); }
+  }
+  function importMineCode() {
+    var raw = $('importText').value;
+    var m = raw.match(/RR1:([^\s]*)/);
+    if (!m) { mineMsg('In dem Text steht kein Merkcode. Er beginnt mit „RR1:“.'); return; }
+    var known = {};
+    events.forEach(function (e) { known[e.id] = 1; });
+    var ids = m[1].split('|').filter(function (x) { return x; });
+    var added = 0, gone = 0;
+    ids.forEach(function (id) {
+      if (!known[id]) { gone++; return; }
+      if (!mine[id]) { mine[id] = 1; added++; }
+    });
+    storeSet('rr_mine', JSON.stringify(Object.keys(mine)));
+    $('importText').value = '';
+    $('importBox').hidden = true;
+    mineMsg(added + ' Event' + (added === 1 ? '' : 's') + ' übernommen' + (gone ? ', ' + gone + ' gibt es nicht mehr in der Liste' : '') + '.');
+    refresh();
+  }
+  function buildMinePanel() {
+    var panel = $('minePanel');
+    var importBox = el('div', { id: 'importBox' }, [
+      el('textarea', { id: 'importText', placeholder: 'Hier den Merkcode einfügen (beginnt mit RR1:)', 'aria-label': 'Merkcode einfügen' }),
+      el('div', { class: 'row' }, [el('button', { type: 'button', class: 'pill', text: 'Übernehmen', onclick: importMineCode })])
+    ]);
+    importBox.hidden = true;
+    var msg = el('p', { id: 'mineMsg', role: 'status' });
+    msg.hidden = true;
+    [
+      el('p', { id: 'mineInfo' }),
+      el('div', { class: 'row' }, [
+        el('button', { type: 'button', class: 'pill', text: 'Kalenderdatei laden (.ics)', onclick: downloadIcs }),
+        el('button', { type: 'button', class: 'pill', text: 'Merkliste teilen', onclick: shareMineCode }),
+        el('button', { type: 'button', class: 'pill', text: 'Merkliste einfügen', onclick: function () { importBox.hidden = !importBox.hidden; } })
+      ]),
+      importBox, msg
+    ].forEach(function (x) { panel.appendChild(x); });
+  }
+  function updateMinePanel() {
+    $('minePanel').hidden = !state.onlyMine;
+    if (!state.onlyMine) { mineMsg(''); return; }
+    var c = mineCount();
+    $('mineInfo').textContent = c + ' Event' + (c === 1 ? '' : 's') + ' gemerkt. Die Kalenderdatei enthält Erinnerungen und, falls es noch nicht zu spät ist, einen Termin „Tickets & Unterkunft prüfen“ (Festivals 4 Monate, andere 1 Monat vorher).';
   }
 
   /* Link mit #Kennung öffnet das Radar direkt bei diesem Event */
@@ -1084,7 +1224,9 @@ a { color: inherit; }
     btns.push(shareBtn);
     btns.push(el('button', { type: 'button', class: 'btn', text: 'Auf Karte', onclick: function () { selectEvent(e.id, true); } }));
     var starBtn = el('button', { type: 'button', class: 'btn star', 'aria-pressed': mine[e.id] ? 'true' : 'false', text: mine[e.id] ? '★ Gemerkt' : '☆ Ich gehe hin' });
-    starBtn.addEventListener('click', function () { toggleMine(e.id, starBtn); });
+    var hintEl = el('p', { class: 'hint', text: '🏨 Jetzt Unterkunft und Tickets prüfen' });
+    hintEl.hidden = !needsBooking(e);
+    starBtn.addEventListener('click', function () { toggleMine(e.id, starBtn, function () { hintEl.hidden = !needsBooking(e); }); });
     btns.unshift(starBtn);
     var body = el('div', { class: 'body' }, [
       el('p', { class: 'kindtag k-' + e.kind, text: KINDS[e.kind] }),
@@ -1095,6 +1237,7 @@ a { color: inherit; }
       tags.length ? el('div', { class: 'tags' }, tags) : null,
       e.acts ? el('p', { class: 'acts', text: 'Bands: ' + e.acts }) : null,
       el('span', { class: 'badge ' + (e.status === 'ok' ? 'ok' : e.status === 'kalender' ? 'cal' : 'check'), text: e.status === 'ok' ? 'Termin bestätigt' : e.status === 'kalender' ? 'Termin laut Szene-Kalender' : 'Bitte beim Veranstalter prüfen' }),
+      hintEl,
       e.note ? el('p', { class: 'note', text: e.note }) : null,
       e.src ? el('p', { class: 'note', text: 'Quelle: ' + e.src }) : null,
       el('div', { class: 'btns' }, btns)
@@ -1170,8 +1313,10 @@ a { color: inherit; }
     updateDial(list);
     updateKnobs();
     updateMineBtn();
+    updateMinePanel();
     renderList(list);
-    $('status').textContent = list.length ? list.length + (list.length === 1 ? ' Event auf dieser Frequenz' : ' Events auf dieser Frequenz') : 'Keine Treffer';
+    $('status').textContent = state.onlyMine ? (list.length ? list.length + (list.length === 1 ? ' gemerktes Event (alle Monate)' : ' gemerkte Events (alle Monate)') : 'Noch nichts gemerkt')
+      : list.length ? list.length + (list.length === 1 ? ' Event auf dieser Frequenz' : ' Events auf dieser Frequenz') : 'Keine Treffer';
 
     var extra = events.filter(function (e) { return matches(e, true, true) && (e.kind === 'course' || e.kind === 'tribute'); }).length;
     var ex = $('extras');
@@ -1195,6 +1340,7 @@ a { color: inherit; }
   buildKnobs();
   buildHome();
   renderPending();
+  buildMinePanel();
   refresh();
   openFromHash();
   window.addEventListener('hashchange', openFromHash);
