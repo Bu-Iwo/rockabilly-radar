@@ -261,9 +261,13 @@ a { color: inherit; }
 .kindtag.k-local { color: #2f6f62; }
 .kindtag.k-course { color: #6b4a8a; }
 .kindtag.k-tribute { color: #1d4f8a; }
-.extras { margin: 0; padding: 10px 12px; border: 1px dashed var(--amber-dim); border-radius: 10px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; font-size: 16px; }
+.extras { margin: 0; padding: 10px 12px; border: 1px dashed var(--amber-dim); border-radius: 10px; display: flex; flex-direction: column; gap: 10px; font-size: 16px; }
 .more { align-self: center; }
 .btn.star[aria-pressed="true"] { background: var(--amber); }
+.newtag { display: inline-block; margin: 0 6px 0 0; padding: 0 8px; border-radius: 4px; background: var(--amber); color: var(--ink); font: 400 15px var(--f-label); letter-spacing: 2px; vertical-align: 2px; }
+.btn.report { font-weight: 500; }
+.extras p { margin: 0; }
+.extras .xrow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
 .hint { margin: 6px 0 0; font: 700 16px var(--f-body); color: var(--warn); }
 .minepanel { margin: 0; padding: 12px; border: 1px dashed var(--amber-dim); border-radius: 10px; display: flex; flex-direction: column; gap: 10px; font-size: 16px; }
 .minepanel p { margin: 0; }
@@ -330,6 +334,7 @@ a { color: inherit; }
         <span class="year" id="yearOnly"></span>
         <button type="button" class="pill" id="allMonths" aria-pressed="true">Ganzes Jahr</button>
         <button type="button" class="pill" id="mineBtn" aria-pressed="false">★ Meine Events (0)</button>
+        <button type="button" class="pill" id="newBtn" aria-pressed="false" hidden>✨ Nur Neues (0)</button>
       </div>
       <div class="scale" id="scale">
         <div class="scale-in" id="scaleIn">
@@ -376,7 +381,7 @@ a { color: inherit; }
     </section>
   </div>
 
-  <p class="foot">Stand der Recherche: 01.11.2026 · Quellen: Veranstalter-Seiten, jukeboxstompers.de, we-love-country.de · Entfernung als Luftlinie · Termine bitte beim Veranstalter prüfen</p>
+  <p class="foot">Stand der Recherche: 01.11.2026 · Quellen: Veranstalter-Seiten, jukeboxstompers.de, we-love-country.de, boogietanzen.de, rock-and-roll-termine.de, brokensilence.de, swingcalendar.com · Entfernung als Luftlinie · Termine bitte beim Veranstalter prüfen</p>
 </div>
 
 <script src="europe.js"></script>
@@ -493,8 +498,36 @@ a { color: inherit; }
   }).filter(function (e) { return e.endD >= today; })
     .sort(function (a, b) { return a.startD - b.startD; });
 
+  /* NEU seit dem letzten Besuch: Merkt sich im Browser, welche Events beim vorigen Besuch schon da waren */
+  var newIds = {}, newCount = 0;
+  (function () {
+    var cur = events.map(function (e) { return e.id; });
+    var known = null, all = null, ts = 0, advanced = false;
+    try {
+      known = JSON.parse(storeGet('rr_known') || 'null');
+      all = JSON.parse(storeGet('rr_all') || 'null');
+      ts = parseInt(storeGet('rr_ts'), 10) || 0;
+    } catch (err) { known = null; }
+    if (!known || !known.length) {
+      known = cur; /* erster Besuch auf diesem Gerät: nichts ist neu */
+      advanced = true;
+    } else if (all && Date.now() - ts > 6 * 3600 * 1000) {
+      known = known.concat(all); /* neuer Besuch: was beim letzten Mal zu sehen war, ist nicht mehr neu */
+      advanced = true;
+    }
+    var curMap = {}, knownMap = {};
+    cur.forEach(function (id) { curMap[id] = 1; });
+    known = known.filter(function (id) { if (!curMap[id] || knownMap[id]) return false; knownMap[id] = 1; return true; });
+    cur.forEach(function (id) { if (!knownMap[id]) { newIds[id] = 1; newCount++; } });
+    storeSet('rr_known', JSON.stringify(known));
+    storeSet('rr_all', JSON.stringify(cur));
+    if (advanced) storeSet('rr_ts', String(Date.now()));
+  })();
+
   var years = unique(events.map(function (e) { return e.startD.getFullYear(); })).sort();
-  var STYLE_ORDER = ['Rockabilly', "Rock'n'Roll", 'Swing', 'Boogie', 'Country', 'Hillbilly'];
+  var STYLE_ORDER = ['Rockabilly', "Rock'n'Roll", 'Swing', 'Lindy Hop', 'Balboa', 'Charleston', 'Blues', 'Shag', 'Boogie', 'Country', 'Hillbilly'];
+  /* Hier kann eine Adresse für „Stimmt nicht?“ eingetragen werden, zum Beispiel 'mailto:name@example.de'. Leer = Teilen-Menü des Handys. */
+  var REPORT_TO = '';
   var allStyles = unique([].concat.apply([], events.map(function (e) { return e.styles || []; })));
   allStyles.sort(function (a, b) {
     var ia = STYLE_ORDER.indexOf(a), ib = STYLE_ORDER.indexOf(b);
@@ -513,6 +546,7 @@ a { color: inherit; }
     radius: 0,
     limit: PAGE,
     onlyMine: false,
+    onlyNew: false,
     home: (savedHome >= 0 && savedHome < HOMES.length) ? savedHome : 3,
     custom: null,
     active: null
@@ -525,15 +559,18 @@ a { color: inherit; }
   function dist(e) { return haversine(home(), e); }
 
   function kindOk(e) { return KIND_OPTS[state.kindSel].kinds.indexOf(e.kind) >= 0; }
-  function matches(e, withMonth, ignoreKind) {
+  function isNew(e) { return !!newIds[e.id]; }
+  function matches(e, withMonth, ignoreKind, ignoreDance) {
     if (state.onlyMine) return !!mine[e.id]; /* Meine Events: alles Gemerkte, unabhängig von Monat und Filtern */
-    if (e.startD.getFullYear() !== state.year && e.endD.getFullYear() !== state.year) return false;
+    if (state.onlyNew && !isNew(e)) return false; /* Nur Neues: alle Monate, die übrigen Filter gelten */
+    if (!state.onlyNew && e.startD.getFullYear() !== state.year && e.endD.getFullYear() !== state.year) return false;
+    if (!ignoreDance && !state.onlyNew && state.style === 0 && e.dance) return false; /* Swing-Tanztermine erscheinen erst, wenn der Stil Swing (oder Lindy Hop usw.) gewählt ist */
     if (state.style > 0 && (e.styles || []).indexOf(styleOpts[state.style]) < 0) return false;
     if (state.country > 0 && e.countryName !== countryOpts[state.country]) return false;
     if (!ignoreKind && !kindOk(e)) return false;
     var r = RADII[state.radius];
     if (r > 0 && dist(e) > r) return false;
-    if (withMonth && state.month >= 0) {
+    if (withMonth && state.month >= 0 && !state.onlyNew) {
       var ms = new Date(state.year, state.month, 1), me = new Date(state.year, state.month + 1, 0);
       if (e.startD > me || e.endD < ms) return false;
     }
@@ -882,6 +919,7 @@ a { color: inherit; }
     });
     $('allMonths').addEventListener('click', function () { state.month = -1; state.active = null; refresh(); });
     $('mineBtn').addEventListener('click', function () { state.onlyMine = !state.onlyMine; state.active = null; refresh(); });
+    $('newBtn').addEventListener('click', function () { state.onlyNew = !state.onlyNew; state.active = null; refresh(); });
     if (years.length > 1) {
       $('yearBox').hidden = false;
       $('yearOnly').hidden = true;
@@ -1030,6 +1068,26 @@ a { color: inherit; }
         if (!err || err.name !== 'AbortError') copyText(text + '\n' + url, done);
       });
     } else { copyText(text + '\n' + url, done); }
+  }
+
+  /* „Stimmt nicht?“: bereitet einen Text mit allen Angaben zum Event vor, der Rest läuft über das Teilen-Menü (oder eine feste Adresse, siehe REPORT_TO) */
+  function reportEvent(e, btn) {
+    var text = 'Rockabilly Radar – Meldung zu einem Event\n' + e.title + '\n' + fmtRange(e) + '\n' + placeText(e) +
+      (e.src ? '\nQuelle: ' + e.src : '') + '\n' + eventLink(e) + '\n\nWas stimmt nicht? (bitte kurz beschreiben): ';
+    var done = function (label) {
+      btn.textContent = label;
+      window.setTimeout(function () { btn.textContent = 'Stimmt nicht?'; }, 3000);
+    };
+    if (REPORT_TO) {
+      var sep = REPORT_TO.indexOf('?') >= 0 ? '&' : '?';
+      window.location.href = REPORT_TO + sep + 'subject=' + encodeURIComponent('Rockabilly Radar: ' + e.title) + '&body=' + encodeURIComponent(text);
+      return;
+    }
+    if (navigator.share) {
+      navigator.share({ title: 'Rockabilly Radar: Meldung', text: text }).catch(function (err) {
+        if (!err || err.name !== 'AbortError') copyText(text, done);
+      });
+    } else { copyText(text, done); }
   }
 
   function mineCount() { return events.filter(function (e) { return mine[e.id]; }).length; }
@@ -1193,7 +1251,8 @@ a { color: inherit; }
     }
     state.year = e.startD.getFullYear();
     state.month = e.startD.getMonth();
-    state.style = 0; state.country = 0; state.radius = 0; state.onlyMine = false;
+    state.style = e.dance ? Math.max(0, styleOpts.indexOf('Swing')) : 0;
+    state.country = 0; state.radius = 0; state.onlyMine = false; state.onlyNew = false;
     if (!kindOk(e)) state.kindSel = 4;
     state.active = null;
     refresh();
@@ -1214,7 +1273,7 @@ a { color: inherit; }
     var tags = (e.styles || []).map(function (s) { return el('span', { class: 'tag', text: s }); })
       .concat((e.features || []).map(function (f) { return el('span', { class: 'tag soft', text: f }); }));
     var btns = [];
-    btns.push(el('a', { class: 'btn', href: e.info, target: '_blank', rel: 'noopener', text: 'Infos ↗' }));
+    if (e.info) btns.push(el('a', { class: 'btn', href: e.info, target: '_blank', rel: 'noopener', text: 'Infos ↗' }));
     if (e.tickets && e.tickets !== e.info) btns.push(el('a', { class: 'btn', href: e.tickets, target: '_blank', rel: 'noopener', text: 'Tickets ↗' }));
     if (e.hotel) btns.push(el('a', { class: 'btn', href: e.hotel.url, target: '_blank', rel: 'noopener', text: e.hotel.label + ' ↗' }));
     btns.push(el('a', { class: 'btn mint', href: bookingUrl(e), target: '_blank', rel: 'noopener', text: 'Unterkunft ↗' }));
@@ -1223,6 +1282,9 @@ a { color: inherit; }
     shareBtn.addEventListener('click', function () { shareEvent(e, shareBtn); });
     btns.push(shareBtn);
     btns.push(el('button', { type: 'button', class: 'btn', text: 'Auf Karte', onclick: function () { selectEvent(e.id, true); } }));
+    var reportBtn = el('button', { type: 'button', class: 'btn report', text: 'Stimmt nicht?' });
+    reportBtn.addEventListener('click', function () { reportEvent(e, reportBtn); });
+    btns.push(reportBtn);
     var starBtn = el('button', { type: 'button', class: 'btn star', 'aria-pressed': mine[e.id] ? 'true' : 'false', text: mine[e.id] ? '★ Gemerkt' : '☆ Ich gehe hin' });
     var hintEl = el('p', { class: 'hint', text: '🏨 Jetzt Unterkunft und Tickets prüfen' });
     hintEl.hidden = !needsBooking(e);
@@ -1230,7 +1292,7 @@ a { color: inherit; }
     btns.unshift(starBtn);
     var body = el('div', { class: 'body' }, [
       el('p', { class: 'kindtag k-' + e.kind, text: KINDS[e.kind] }),
-      el('h3', { text: n + '. ' + e.title }),
+      el('h3', null, [isNew(e) ? el('span', { class: 'newtag', text: 'NEU' }) : null, n + '. ' + e.title]),
       el('p', { class: 'meta', text: fmtRange(e) }),
       el('p', { class: 'meta', text: meta }),
       e.venue ? el('p', { class: 'meta', text: e.venue }) : null,
@@ -1252,9 +1314,9 @@ a { color: inherit; }
     box.textContent = '';
     if (!list.length) {
       box.appendChild(el('div', { class: 'empty' }, [
-        el('p', { text: state.onlyMine ? 'Noch nichts gemerkt. Tippe bei einem Event auf „Ich gehe hin“.' : 'Auf dieser Frequenz kommt gerade nichts rein.' }),
+        el('p', { text: state.onlyMine ? 'Noch nichts gemerkt. Tippe bei einem Event auf „Ich gehe hin“.' : state.onlyNew ? 'Seit deinem letzten Besuch ist nichts Neues dazugekommen.' : 'Auf dieser Frequenz kommt gerade nichts rein.' }),
         el('button', { type: 'button', class: 'pill', text: 'Filter zurücksetzen', onclick: function () {
-          state.month = -1; state.style = 0; state.kindSel = 0; state.country = 0; state.radius = 0; state.onlyMine = false; state.active = null; refresh();
+          state.month = -1; state.style = 0; state.kindSel = 0; state.country = 0; state.radius = 0; state.onlyMine = false; state.onlyNew = false; state.active = null; refresh();
         } })
       ]));
       return;
@@ -1315,17 +1377,33 @@ a { color: inherit; }
     updateMineBtn();
     updateMinePanel();
     renderList(list);
+    var nb = $('newBtn');
+    nb.hidden = newCount === 0 && !state.onlyNew;
+    nb.textContent = '✨ Nur Neues (' + newCount + ')';
+    nb.setAttribute('aria-pressed', state.onlyNew ? 'true' : 'false');
     $('status').textContent = state.onlyMine ? (list.length ? list.length + (list.length === 1 ? ' gemerktes Event (alle Monate)' : ' gemerkte Events (alle Monate)') : 'Noch nichts gemerkt')
+      : state.onlyNew ? (list.length ? list.length + (list.length === 1 ? ' neues Event seit deinem letzten Besuch (alle Monate)' : ' neue Events seit deinem letzten Besuch (alle Monate)') : 'Nichts Neues')
       : list.length ? list.length + (list.length === 1 ? ' Event auf dieser Frequenz' : ' Events auf dieser Frequenz') : 'Keine Treffer';
 
     var extra = events.filter(function (e) { return matches(e, true, true) && (e.kind === 'course' || e.kind === 'tribute'); }).length;
     var ex = $('extras');
     ex.textContent = '';
-    if (extra && !state.onlyMine && KIND_OPTS[state.kindSel].kinds.indexOf('course') < 0) {
-      ex.hidden = false;
-      ex.appendChild(el('span', { text: 'Dazu gibt es ' + extra + (extra === 1 ? ' Extra' : ' Extras') + ' (Kurse und Tribute-Shows).' }));
-      ex.appendChild(el('button', { type: 'button', class: 'pill', text: 'Extras anzeigen', onclick: function () { state.kindSel = 3; state.active = null; refresh(); } }));
-    } else { ex.hidden = true; }
+    var swingIdx = styleOpts.indexOf('Swing');
+    var dance = (!state.onlyMine && !state.onlyNew && state.style === 0 && swingIdx > 0) ? events.filter(function (e) { return e.dance && matches(e, true, false, true); }).length : 0;
+    var showExtra = extra && !state.onlyMine && KIND_OPTS[state.kindSel].kinds.indexOf('course') < 0;
+    if (showExtra) {
+      ex.appendChild(el('div', { class: 'xrow' }, [
+        el('span', { text: 'Dazu gibt es ' + extra + (extra === 1 ? ' Extra' : ' Extras') + ' (Kurse und Tribute-Shows).' }),
+        el('button', { type: 'button', class: 'pill', text: 'Extras anzeigen', onclick: function () { state.kindSel = 3; state.active = null; refresh(); } })
+      ]));
+    }
+    if (dance) {
+      ex.appendChild(el('div', { class: 'xrow' }, [
+        el('span', { text: 'Dazu gibt es ' + dance + ' Swing-Tanztermine (Lindy Hop, Balboa, Charleston, Blues).' }),
+        el('button', { type: 'button', class: 'pill', text: 'Swing-Tanz anzeigen', onclick: function () { state.style = swingIdx; state.active = null; refresh(); } })
+      ]));
+    }
+    ex.hidden = !(showExtra || dance);
 
     map.setData(list.map(function (e) { return { id: e.id, title: e.title, city: e.city, lat: e.lat, lng: e.lng, kind: e.kind }; }), home(), RADII[state.radius]);
     map.setActive(state.active);
