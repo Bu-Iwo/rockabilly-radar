@@ -6,6 +6,14 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Rockabilly Radar</title>
+<meta name="theme-color" content="#43261a">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Rockabilly Radar">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Yellowtail&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
@@ -305,6 +313,15 @@ a { color: inherit; }
 .pending a { font-weight: 700; text-underline-offset: 3px; display: inline-flex; align-items: center; min-height: 44px; }
 .foot { margin: 0; text-align: center; font-size: 14px; opacity: .85; }
 
+/* Installieren-Hinweis (App aufs Handy holen) */
+.install {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 14px;
+  background: rgba(0, 0, 0, 0.28); border: 1px solid rgba(243, 230, 200, 0.2); border-radius: 10px; padding: 10px 14px;
+}
+.install p { margin: 0; flex: 1 1 240px; font-size: 16px; }
+.install p strong { color: var(--amber); }
+.install .acts { display: flex; gap: 8px; flex-wrap: wrap; }
+
 @media (max-width: 420px) {
   .stub { width: 74px; }
   .stub .d { font-size: 42px; }
@@ -379,6 +396,14 @@ a { color: inherit; }
       <div class="cards" id="cards"></div>
       <div class="pending" id="pending"></div>
     </section>
+  </div>
+
+  <div class="install" id="installBox" role="region" aria-label="App installieren" hidden>
+    <p id="installText"></p>
+    <div class="acts">
+      <button type="button" class="pill" id="installBtn" hidden>Als App installieren</button>
+      <button type="button" class="pill" id="installLater">Später</button>
+    </div>
   </div>
 
   <p class="foot">Stand der Recherche: 01.11.2026 · Quellen: Veranstalter-Seiten, jukeboxstompers.de, we-love-country.de, boogietanzen.de, rock-and-roll-termine.de, brokensilence.de, swingcalendar.com · Entfernung als Luftlinie · Termine bitte beim Veranstalter prüfen</p>
@@ -1423,6 +1448,67 @@ a { color: inherit; }
   openFromHash();
   window.addEventListener('hashchange', openFromHash);
   window.setTimeout(function () { map.render(); }, 300);
+})();
+</script>
+<script>
+/* App-Installation (PWA): Offline-Speicher anmelden und Installieren-Hinweis anzeigen */
+(function () {
+  'use strict';
+  function get(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+  function set(k, v) { try { window.localStorage.setItem(k, v); } catch (e) { /* ohne Speicher weiter */ } }
+
+  if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('sw.js').catch(function () { /* ohne Offline-Speicher weiter */ });
+    });
+  }
+
+  var box = document.getElementById('installBox');
+  var text = document.getElementById('installText');
+  var btn = document.getElementById('installBtn');
+  var later = document.getElementById('installLater');
+  if (!box || !text || !btn || !later) { return; }
+
+  var standalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || window.navigator.standalone === true;
+  if (standalone) { return; }
+
+  var DAY = 24 * 60 * 60 * 1000;
+  var hiddenUntil = parseInt(get('rr_install_hide') || '0', 10);
+  var snoozed = hiddenUntil && Date.now() < hiddenUntil;
+
+  var ua = navigator.userAgent || '';
+  var isIOS = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+  var otherIOSBrowser = /CriOS|FxiOS|EdgiOS|OPiOS/.test(ua);
+
+  function show() { if (!snoozed) { box.hidden = false; } }
+
+  later.addEventListener('click', function () {
+    set('rr_install_hide', String(Date.now() + 30 * DAY));
+    box.hidden = true;
+  });
+
+  if (isIOS) {
+    text.innerHTML = otherIOSBrowser
+      ? '<strong>Als App auf dem iPhone:</strong> Öffne diese Seite in Safari, tippe dort auf das Teilen-Symbol und wähle „Zum Home-Bildschirm“.'
+      : '<strong>Als App auf dem iPhone:</strong> Tippe unten auf das Teilen-Symbol (Quadrat mit Pfeil) und wähle „Zum Home-Bildschirm“.';
+    show();
+    return;
+  }
+
+  var deferred = null;
+  window.addEventListener('beforeinstallprompt', function (e) {
+    e.preventDefault();
+    deferred = e;
+    text.innerHTML = '<strong>Rockabilly Radar als App:</strong> Mit eigenem Symbol auf dem Startbildschirm, auch ohne Netz nutzbar.';
+    btn.hidden = false;
+    show();
+  });
+  btn.addEventListener('click', function () {
+    if (!deferred) { return; }
+    deferred.prompt();
+    deferred.userChoice.then(function () { deferred = null; box.hidden = true; });
+  });
+  window.addEventListener('appinstalled', function () { box.hidden = true; });
 })();
 </script>
 </body>
