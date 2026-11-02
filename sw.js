@@ -12,7 +12,7 @@
 var CACHE = 'rr-v1';
 var DATEIEN = [
   './', 'index.html', 'europe.js', 'events.js',
-  'events-country-1.js', 'events-country-2.js', 'events-country-3.js',
+  'events-country-1.js', 'events-country-2.js', 'events-country-3.js', 'pruefung.js',
   'manifest.json', 'icon-192.png', 'icon-512.png', 'icon-maskable-512.png', 'apple-touch-icon.png'
 ];
 var SCHRIFTEN = ['fonts.googleapis.com', 'fonts.gstatic.com'];

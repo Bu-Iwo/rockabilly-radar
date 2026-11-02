@@ -414,6 +414,7 @@ a { color: inherit; }
 <script src="events-country-1.js"></script>
 <script src="events-country-2.js"></script>
 <script src="events-country-3.js"></script>
+<script src="pruefung.js"></script>
 <script>
 (function () {
   'use strict';
@@ -608,6 +609,25 @@ a { color: inherit; }
     if (s.getMonth() === t.getMonth() && s.getFullYear() === t.getFullYear())
       return s.getDate() + '.–' + t.getDate() + '. ' + MONTHS_LONG[s.getMonth()] + ' ' + s.getFullYear();
     return s.getDate() + '. ' + MONTHS_LONG[s.getMonth()] + ' – ' + t.getDate() + '. ' + MONTHS_LONG[t.getMonth()] + ' ' + t.getFullYear();
+  }
+  /* „Zuletzt geprüft“: Die Prüfdaten stehen in pruefung.js. Fehlt die Datei, bleibt die Zeile einfach weg. */
+  var PRUEFUNG = window.RR_PRUEFUNG || {};
+  function ownCheck(e) { return PRUEFUNG.termine && PRUEFUNG.termine[e.id] ? PRUEFUNG.termine[e.id] : null; }
+  function statusOf(e) {
+    var own = ownCheck(e);
+    return own && own.art === 'veranstalter' ? 'ok' : e.status;
+  }
+  function isoToDe(iso) {
+    var m = /^(\d{4})-(\d\d)-(\d\d)$/.exec(iso || '');
+    return m ? m[3] + '.' + m[2] + '.' + m[1] : null;
+  }
+  function checkedText(e) {
+    var own = ownCheck(e);
+    var srcKey = String(e.src || '').split(/ \(|,/)[0].trim();
+    var iso = (own && own.datum) || (PRUEFUNG.quellen && PRUEFUNG.quellen[srcKey]) || PRUEFUNG.stand;
+    var date = isoToDe(iso);
+    if (!date) { return null; }
+    return 'Zuletzt geprüft: ' + date + ' · ' + (statusOf(e) === 'ok' ? 'beim Veranstalter' : 'Szene-Kalender');
   }
   function bookingUrl(e) {
     var out = e.endD > e.startD ? e.endD : new Date(e.startD.getFullYear(), e.startD.getMonth(), e.startD.getDate() + 1);
@@ -1098,7 +1118,7 @@ a { color: inherit; }
   /* „Stimmt nicht?“: bereitet einen Text mit allen Angaben zum Event vor, der Rest läuft über das Teilen-Menü (oder eine feste Adresse, siehe REPORT_TO) */
   function reportEvent(e, btn) {
     var text = 'Rockabilly Radar – Meldung zu einem Event\n' + e.title + '\n' + fmtRange(e) + '\n' + placeText(e) +
-      (e.src ? '\nQuelle: ' + e.src : '') + '\n' + eventLink(e) + '\n\nWas stimmt nicht? (bitte kurz beschreiben): ';
+      (e.src ? '\nQuelle: ' + e.src : '') + (checkedText(e) ? '\n' + checkedText(e) : '') + '\n' + eventLink(e) + '\n\nWas stimmt nicht? (bitte kurz beschreiben): ';
     var done = function (label) {
       btn.textContent = label;
       window.setTimeout(function () { btn.textContent = 'Stimmt nicht?'; }, 3000);
@@ -1311,6 +1331,7 @@ a { color: inherit; }
     reportBtn.addEventListener('click', function () { reportEvent(e, reportBtn); });
     btns.push(reportBtn);
     var starBtn = el('button', { type: 'button', class: 'btn star', 'aria-pressed': mine[e.id] ? 'true' : 'false', text: mine[e.id] ? '★ Gemerkt' : '☆ Ich gehe hin' });
+    var st = statusOf(e);
     var hintEl = el('p', { class: 'hint', text: '🏨 Jetzt Unterkunft und Tickets prüfen' });
     hintEl.hidden = !needsBooking(e);
     starBtn.addEventListener('click', function () { toggleMine(e.id, starBtn, function () { hintEl.hidden = !needsBooking(e); }); });
@@ -1323,10 +1344,11 @@ a { color: inherit; }
       e.venue ? el('p', { class: 'meta', text: e.venue }) : null,
       tags.length ? el('div', { class: 'tags' }, tags) : null,
       e.acts ? el('p', { class: 'acts', text: 'Bands: ' + e.acts }) : null,
-      el('span', { class: 'badge ' + (e.status === 'ok' ? 'ok' : e.status === 'kalender' ? 'cal' : 'check'), text: e.status === 'ok' ? 'Termin bestätigt' : e.status === 'kalender' ? 'Termin laut Szene-Kalender' : 'Bitte beim Veranstalter prüfen' }),
+      el('span', { class: 'badge ' + (st === 'ok' ? 'ok' : st === 'kalender' ? 'cal' : 'check'), text: st === 'ok' ? 'Termin bestätigt' : st === 'kalender' ? 'Termin laut Szene-Kalender' : 'Bitte beim Veranstalter prüfen' }),
       hintEl,
       e.note ? el('p', { class: 'note', text: e.note }) : null,
       e.src ? el('p', { class: 'note', text: 'Quelle: ' + e.src }) : null,
+      checkedText(e) ? el('p', { class: 'note', text: checkedText(e) }) : null,
       el('div', { class: 'btns' }, btns)
     ]);
     var art = el('article', { class: 'card', id: 'ev-' + e.id }, [stub, body]);
