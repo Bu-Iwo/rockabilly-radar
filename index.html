@@ -371,6 +371,8 @@ a { color: inherit; }
   color: var(--text); font: 600 17px var(--f-body); color-scheme: dark; min-width: 0;
 }
 .search input[type="search"] { width: 100%; }
+.langbar { display: flex; justify-content: flex-end; gap: 6px; margin-bottom: -8px; }
+.langbar .pill { min-height: 36px; padding: 0 14px; font-size: 15px; letter-spacing: 1px; }
 @media (prefers-reduced-motion: reduce) {
   .knob-dial, .needle { transition: none; }
 }
@@ -378,22 +380,26 @@ a { color: inherit; }
 </head>
 <body>
 <div class="app">
+  <div class="langbar" role="group" aria-label="Sprache / Language" data-en-aria-label="Language / Sprache">
+    <button type="button" class="pill" id="langDe" lang="de" aria-pressed="true">DE</button>
+    <button type="button" class="pill" id="langEn" lang="en" aria-pressed="false">EN</button>
+  </div>
   <div class="top">
     <header class="plate">
       <h1>Rockabilly Radar</h1>
-      <p>Alle Szene-Events · eine Frequenz</p>
+      <p data-en="All scene events · one frequency">Alle Szene-Events · eine Frequenz</p>
     </header>
 
     <section class="dial" aria-labelledby="dialTitle">
-      <h2 id="dialTitle" class="vh">Monat einstellen</h2>
+      <h2 id="dialTitle" class="vh" data-en="Set the month">Monat einstellen</h2>
       <div class="dial-bar">
         <div class="year" id="yearBox" hidden>
-          <button type="button" id="yPrev" aria-label="Vorheriges Jahr">‹</button>
+          <button type="button" id="yPrev" aria-label="Vorheriges Jahr" data-en-aria-label="Previous year">‹</button>
           <span id="yearLabel"></span>
-          <button type="button" id="yNext" aria-label="Nächstes Jahr">›</button>
+          <button type="button" id="yNext" aria-label="Nächstes Jahr" data-en-aria-label="Next year">›</button>
         </div>
         <span class="year" id="yearOnly"></span>
-        <button type="button" class="pill" id="allMonths" aria-pressed="true">Ganzes Jahr</button>
+        <button type="button" class="pill" id="allMonths" aria-pressed="true" data-en="Whole year">Ganzes Jahr</button>
         <button type="button" class="pill" id="mineBtn" aria-pressed="false">★ Meine Events (0)</button>
         <button type="button" class="pill" id="newBtn" aria-pressed="false" hidden>✨ Nur Neues (0)</button>
       </div>
@@ -408,46 +414,46 @@ a { color: inherit; }
     </section>
 
     <section class="knobs" aria-labelledby="knobTitle">
-      <h2 id="knobTitle" class="vh">Filter</h2>
+      <h2 id="knobTitle" class="vh" data-en="Filters">Filter</h2>
       <div class="knob-row" id="knobRow"></div>
       <ul class="knob-list" id="knobList" role="listbox" hidden></ul>
       <div class="home">
-        <label for="homeSel">Mein Ort</label>
+        <label for="homeSel" data-en="My location">Mein Ort</label>
         <select id="homeSel"></select>
-        <button type="button" class="pill" id="geoBtn">Standort nutzen</button>
+        <button type="button" class="pill" id="geoBtn" data-en="Use my location">Standort nutzen</button>
         <p class="geo-msg" id="geoMsg" role="status" hidden></p>
       </div>
     </section>
   </div>
 
-  <section class="search" aria-label="Suche und Zeitraum">
+  <section class="search" aria-label="Suche und Zeitraum" data-en-aria-label="Search and dates">
     <div class="search-bar">
-      <button type="button" class="pill" id="searchBtn" aria-expanded="false" aria-controls="searchBody">🔎 Suchen / Zeitraum</button>
+      <button type="button" class="pill" id="searchBtn" aria-expanded="false" aria-controls="searchBody" data-en="🔎 Search / dates">🔎 Suchen / Zeitraum</button>
       <span class="search-sum" id="searchSum"></span>
     </div>
     <div class="search-body" id="searchBody" hidden>
       <div class="quick" id="quickRow"></div>
       <div class="range">
-        <div class="rf"><label for="dFrom">Von</label><input type="date" id="dFrom"></div>
-        <div class="rf"><label for="dTo">Bis</label><input type="date" id="dTo"></div>
+        <div class="rf"><label for="dFrom" data-en="From">Von</label><input type="date" id="dFrom"></div>
+        <div class="rf"><label for="dTo" data-en="To">Bis</label><input type="date" id="dTo"></div>
       </div>
       <div class="txt">
-        <label for="qText" class="vh">Suchtext</label>
-        <input type="search" id="qText" placeholder="Name, Stadt, Ort oder Band" autocomplete="off" enterkeyhint="search">
+        <label for="qText" class="vh" data-en="Search text">Suchtext</label>
+        <input type="search" id="qText" placeholder="Name, Stadt, Ort oder Band" data-en-placeholder="Name, city, venue or band" autocomplete="off" enterkeyhint="search">
       </div>
-      <div class="quick"><button type="button" class="pill" id="searchClear">Suche zurücksetzen</button></div>
+      <div class="quick"><button type="button" class="pill" id="searchClear" data-en="Reset search">Suche zurücksetzen</button></div>
     </div>
   </section>
 
   <div class="main">
-    <section class="mapcol" aria-label="Karte">
+    <section class="mapcol" aria-label="Karte" data-en-aria-label="Map">
       <div class="mapframe"><div class="map" id="map"></div></div>
-      <p class="map-note" id="mapNote" hidden>Die echten Kartenbilder werden hier nicht geladen, zum Beispiel weil die Datei direkt vom PC geöffnet wurde. Die Marker liegen dann auf einer vereinfachten Europakarte. Auf der veröffentlichten Webseite erscheint die echte OpenStreetMap-Karte.</p>
-      <ul class="legend" aria-label="Legende der Markierungen">
-        <li><i style="background:var(--accent)"></i>Festival / Großevent</li>
-        <li><i style="background:#2f6f62"></i>Lokaler Abend</li>
-        <li><i style="background:#6b4a8a"></i>Kurs (Extra)</li>
-        <li><i style="background:#1d4f8a"></i>Tribute-Show (Extra)</li>
+      <p class="map-note" id="mapNote" hidden data-en="The real map tiles are not loading here, for example because the file was opened directly from a computer. The markers are then shown on a simplified map of Europe. On the published website the real OpenStreetMap map appears.">Die echten Kartenbilder werden hier nicht geladen, zum Beispiel weil die Datei direkt vom PC geöffnet wurde. Die Marker liegen dann auf einer vereinfachten Europakarte. Auf der veröffentlichten Webseite erscheint die echte OpenStreetMap-Karte.</p>
+      <ul class="legend" aria-label="Legende der Markierungen" data-en-aria-label="Map legend">
+        <li><i style="background:var(--accent)"></i><span data-en="Festival / major event">Festival / Großevent</span></li>
+        <li><i style="background:#2f6f62"></i><span data-en="Local night">Lokaler Abend</span></li>
+        <li><i style="background:#6b4a8a"></i><span data-en="Course (extra)">Kurs (Extra)</span></li>
+        <li><i style="background:#1d4f8a"></i><span data-en="Tribute show (extra)">Tribute-Show (Extra)</span></li>
       </ul>
     </section>
 
@@ -462,15 +468,15 @@ a { color: inherit; }
     </section>
   </div>
 
-  <div class="install" id="installBox" role="region" aria-label="App installieren" hidden>
+  <div class="install" id="installBox" role="region" aria-label="App installieren" data-en-aria-label="Install app" hidden>
     <p id="installText"></p>
     <div class="acts">
-      <button type="button" class="pill" id="installBtn" hidden>Als App installieren</button>
-      <button type="button" class="pill" id="installLater">Später</button>
+      <button type="button" class="pill" id="installBtn" hidden data-en="Install as app">Als App installieren</button>
+      <button type="button" class="pill" id="installLater" data-en="Later">Später</button>
     </div>
   </div>
 
-  <p class="foot">Stand der Recherche: 01.11.2026 · Quellen: Veranstalter-Seiten, jukeboxstompers.de, we-love-country.de, boogietanzen.de, rock-and-roll-termine.de, brokensilence.de, swingcalendar.com · Entfernung als Luftlinie · Termine bitte beim Veranstalter prüfen</p>
+  <p class="foot" data-en="Research as of 1 Nov 2026 · Sources: organiser websites, jukeboxstompers.de, we-love-country.de, boogietanzen.de, rock-and-roll-termine.de, brokensilence.de, swingcalendar.com · Distance as the crow flies · Please check dates with the organiser">Stand der Recherche: 01.11.2026 · Quellen: Veranstalter-Seiten, jukeboxstompers.de, we-love-country.de, boogietanzen.de, rock-and-roll-termine.de, brokensilence.de, swingcalendar.com · Entfernung als Luftlinie · Termine bitte beim Veranstalter prüfen</p>
 </div>
 
 <script src="europe.js"></script>
@@ -479,6 +485,7 @@ a { color: inherit; }
 <script src="events-country-2.js"></script>
 <script src="events-country-3.js"></script>
 <script src="pruefung.js"></script>
+<script src="uebersetzung-en.js"></script>
 <script>
 (function () {
   'use strict';
@@ -510,8 +517,58 @@ a { color: inherit; }
   var LAND = window.RR_LAND || [];
   var REFCITIES = window.RR_REFCITIES || [];
 
-  var MONTHS = ['JAN', 'FEB', 'MÄR', 'APR', 'MAI', 'JUN', 'JUL', 'AUG', 'SEP', 'OKT', 'NOV', 'DEZ'];
-  var MONTHS_LONG = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
+  /* ---------- Sprache (Deutsch / Englisch) ---------- */
+  var EN = window.RR_EN || {};
+  EN.countries = EN.countries || {}; EN.cities = EN.cities || {}; EN.features = EN.features || {};
+  EN.venues = EN.venues || {};
+  EN.hotel = EN.hotel || {}; EN.pending = EN.pending || {}; EN.notes = EN.notes || {};
+  var LANG = (function () {
+    var saved = storeGet('rr_lang');
+    if (saved === 'de' || saved === 'en') return saved;
+    var nav = String(navigator.language || 'de').toLowerCase();
+    return nav.indexOf('de') === 0 ? 'de' : 'en'; /* Handy auf Deutsch = deutsche App, sonst Englisch */
+  })();
+  window.RR_LANG = LANG;
+  document.documentElement.lang = LANG;
+  /* tt(deutsch, englisch) gibt den Text in der gewählten Sprache zurück */
+  function tt(de, en) { return LANG === 'en' ? en : de; }
+  function plural(n, deOne, deMany, enOne, enMany) { return n === 1 ? tt(deOne, enOne) : tt(deMany, enMany); }
+  function cityOf(c, lang) {
+    if (lang !== 'en' || !c) return c;
+    var keys = Object.keys(EN.cities);
+    for (var i = 0; i < keys.length; i++) {
+      var k = keys[i];
+      if (c.indexOf(k) === 0 && (c.length === k.length || /[-\s(\/]/.test(c.charAt(k.length)))) return EN.cities[k] + c.slice(k.length);
+    }
+    return c;
+  }
+  function cityDisp(c) { return cityOf(c, LANG); }
+  function countryOf(c, lang) { return lang === 'en' && EN.countries[c] ? EN.countries[c] : c; }
+  function countryDisp(c) { return countryOf(c, LANG); }
+  function featDisp(f) { return LANG === 'en' && EN.features[f] ? EN.features[f] : f; }
+  function noteDisp(n) {
+    if (LANG !== 'en' || !n) return n;
+    if (EN.notes[n]) return EN.notes[n];
+    return n.replace(/Beginn (\d\d:\d\d) Uhr/g, 'Starts $1')
+      .replace(/Einlass (\d\d?)(?::(\d\d))? Uhr/g, function (m, h, mi) { return 'Doors ' + ('0' + h).slice(-2) + ':' + (mi || '00'); })
+      .replace(/\(Stadtkoordinate\)/g, '(pin at city centre)')
+      .replace(/Abendkasse/g, 'box office')
+      .replace(/Veranstalter:/g, 'Organiser:')
+      .replace(/Konzerttermin laut /g, 'Concert date per ');
+  }
+  function venueDisp(v) { return LANG === 'en' && v && EN.venues[v] ? EN.venues[v] : v; }
+  function srcDisp(sr) { return LANG === 'en' && sr ? String(sr).replace('(Stand ', '(as of ').replace('ohne Gewähr', 'no guarantee') : sr; }
+  function quote(t) { return tt('„' + t + '“', '“' + t + '”'); }
+  /* Feste Texte aus dem HTML in die gewählte Sprache umstellen */
+  if (LANG === 'en') {
+    Array.prototype.forEach.call(document.querySelectorAll('[data-en]'), function (n) { n.textContent = n.getAttribute('data-en'); });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-en-aria-label]'), function (n) { n.setAttribute('aria-label', n.getAttribute('data-en-aria-label')); });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-en-placeholder]'), function (n) { n.setAttribute('placeholder', n.getAttribute('data-en-placeholder')); });
+  }
+
+  var MONTHS = tt(['JAN', 'FEB', 'MÄR', 'APR', 'MAI', 'JUN', 'JUL', 'AUG', 'SEP', 'OKT', 'NOV', 'DEZ'], ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']);
+  var MONTHS_LONG = tt(['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'], ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']);
+  var MON_SHORT = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   var HOMES = [
     { name: 'Berlin', lat: 52.52, lng: 13.405 },
     { name: 'Hamburg', lat: 53.5511, lng: 9.9937 },
@@ -528,13 +585,13 @@ a { color: inherit; }
   ];
   var RADII = [0, 50, 100, 200, 300, 600, 1000, 2000];
   var PAGE = 40;
-  var KINDS = { festival: 'Festival / Großevent', local: 'Lokaler Abend', course: 'Kurs / Workshop', tribute: 'Tribute-Show' };
+  var KINDS = { festival: tt('Festival / Großevent', 'Festival / major event'), local: tt('Lokaler Abend', 'Local night'), course: tt('Kurs / Workshop', 'Course / workshop'), tribute: tt('Tribute-Show', 'Tribute show') };
   var KIND_OPTS = [
     { label: 'Events', kinds: ['festival', 'local'] },
     { label: 'Festivals', kinds: ['festival'] },
-    { label: 'Lokal', kinds: ['local'] },
+    { label: tt('Lokal', 'Local'), kinds: ['local'] },
     { label: 'Extras', kinds: ['course', 'tribute'] },
-    { label: 'Alles', kinds: ['festival', 'local', 'course', 'tribute'] }
+    { label: tt('Alles', 'Everything'), kinds: ['festival', 'local', 'course', 'tribute'] }
   ];
   var NS = 'http://www.w3.org/2000/svg';
 
@@ -567,7 +624,7 @@ a { color: inherit; }
   function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
   function storeGet(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
   function storeSet(k, v) { try { window.localStorage.setItem(k, v); } catch (e) { /* ohne Speicher weiter */ } }
-  function fmtNum(n) { return n.toLocaleString('de-DE'); }
+  function fmtNum(n) { return n.toLocaleString(LANG === 'en' ? 'en-GB' : 'de-DE'); }
   function haversine(a, b) {
     var R = 6371, rad = Math.PI / 180;
     var dLat = (b.lat - a.lat) * rad, dLng = (b.lng - a.lng) * rad;
@@ -620,7 +677,7 @@ a { color: inherit; }
   }
   function fold2(t) { return t.replace(/ae/g, 'a').replace(/oe/g, 'o').replace(/ue/g, 'u'); }
   events.forEach(function (e) {
-    var h = fold([e.title, e.city, e.venue, e.countryName, e.acts, (e.styles || []).join(' '), (e.features || []).join(' ')].join(' '));
+    var h = fold([e.title, e.city, cityOf(e.city, 'en'), e.venue, e.countryName, countryOf(e.countryName, 'en'), e.acts, (e.styles || []).join(' '), (e.features || []).join(' '), (e.features || []).map(function (f) { return EN.features[f] || ''; }).join(' ')].join(' '));
     e._h1 = ' ' + h;
     e._h2 = ' ' + fold2(h);
   });
@@ -635,7 +692,7 @@ a { color: inherit; }
     return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib) || a.localeCompare(b, 'de');
   });
   var styleOpts = ['Alle'].concat(allStyles);
-  var countryOpts = ['Alle'].concat(unique(events.map(function (e) { return e.countryName; })).sort(function (a, b) { return a.localeCompare(b, 'de'); }));
+  var countryOpts = ['Alle'].concat(unique(events.map(function (e) { return e.countryName; })).sort(function (a, b) { return countryDisp(a).localeCompare(countryDisp(b), LANG); }));
 
   var savedHome = parseInt(storeGet('rr_home'), 10);
   var state = {
@@ -695,6 +752,12 @@ a { color: inherit; }
 
   function fmtRange(e) {
     var s = e.startD, t = e.endD;
+    if (LANG === 'en') {
+      if (s.getTime() === t.getTime()) return s.getDate() + ' ' + MONTHS_LONG[s.getMonth()] + ' ' + s.getFullYear();
+      if (s.getMonth() === t.getMonth() && s.getFullYear() === t.getFullYear())
+        return s.getDate() + '–' + t.getDate() + ' ' + MONTHS_LONG[s.getMonth()] + ' ' + s.getFullYear();
+      return s.getDate() + ' ' + MONTHS_LONG[s.getMonth()] + ' – ' + t.getDate() + ' ' + MONTHS_LONG[t.getMonth()] + ' ' + t.getFullYear();
+    }
     if (s.getTime() === t.getTime()) return s.getDate() + '. ' + MONTHS_LONG[s.getMonth()] + ' ' + s.getFullYear();
     if (s.getMonth() === t.getMonth() && s.getFullYear() === t.getFullYear())
       return s.getDate() + '.–' + t.getDate() + '. ' + MONTHS_LONG[s.getMonth()] + ' ' + s.getFullYear();
@@ -709,6 +772,7 @@ a { color: inherit; }
   }
   function isoToDe(iso) {
     var m = /^(\d{4})-(\d\d)-(\d\d)$/.exec(iso || '');
+    if (m && LANG === 'en') return (+m[3]) + ' ' + MON_SHORT[+m[2] - 1] + ' ' + m[1];
     return m ? m[3] + '.' + m[2] + '.' + m[1] : null;
   }
   function checkedText(e) {
@@ -717,12 +781,12 @@ a { color: inherit; }
     var iso = (own && own.datum) || (PRUEFUNG.quellen && PRUEFUNG.quellen[srcKey]) || PRUEFUNG.stand;
     var date = isoToDe(iso);
     if (!date) { return null; }
-    return 'Zuletzt geprüft: ' + date + ' · ' + (statusOf(e) === 'ok' ? 'beim Veranstalter' : 'Szene-Kalender');
+    return tt('Zuletzt geprüft: ', 'Last checked: ') + date + ' · ' + (statusOf(e) === 'ok' ? tt('beim Veranstalter', 'with the organiser') : tt('Szene-Kalender', 'scene calendar'));
   }
   function bookingUrl(e) {
     var out = e.endD > e.startD ? e.endD : new Date(e.startD.getFullYear(), e.startD.getMonth(), e.startD.getDate() + 1);
     var q = (e.bookingCity || e.city) + ', ' + e.countryName;
-    return 'https://www.booking.com/searchresults.de.html?ss=' + encodeURIComponent(q) +
+    return 'https://www.booking.com/searchresults.' + tt('de', 'en-gb') + '.html?ss=' + encodeURIComponent(q) +
       '&checkin=' + iso(e.startD) + '&checkout=' + iso(out) + '&group_adults=2&no_rooms=1&group_children=0';
   }
 
@@ -757,23 +821,23 @@ a { color: inherit; }
     var circle = svgEl('circle', { class: 'radius', r: 0 });
     circle.style.display = 'none';
     overSvg.appendChild(circle);
-    var homeEl = el('div', { class: 'home-dot' }, [el('span', { text: 'DU' })]);
+    var homeEl = el('div', { class: 'home-dot' }, [el('span', { text: tt('DU', 'YOU') })]);
     homeEl.style.display = 'none';
     var pinsEl = el('div', { class: 'pins' });
-    var attr = el('p', { class: 'attr', text: 'Vereinfachte Vorschaukarte' });
-    var zin = el('button', { type: 'button', 'aria-label': 'Karte vergrößern', text: '+', onclick: function () { zoomAt(1, box.clientWidth / 2, box.clientHeight / 2); } });
-    var zout = el('button', { type: 'button', 'aria-label': 'Karte verkleinern', text: '−', onclick: function () { zoomAt(-1, box.clientWidth / 2, box.clientHeight / 2); } });
+    var attr = el('p', { class: 'attr', text: tt('Vereinfachte Vorschaukarte', 'Simplified preview map') });
+    var zin = el('button', { type: 'button', 'aria-label': tt('Karte vergrößern', 'Zoom in'), text: '+', onclick: function () { zoomAt(1, box.clientWidth / 2, box.clientHeight / 2); } });
+    var zout = el('button', { type: 'button', 'aria-label': tt('Karte verkleinern', 'Zoom out'), text: '−', onclick: function () { zoomAt(-1, box.clientWidth / 2, box.clientHeight / 2); } });
     var zoomEl = el('div', { class: 'zoom' }, [zin, zout]);
 
     box.setAttribute('tabindex', '0');
     box.setAttribute('role', 'application');
-    box.setAttribute('aria-label', 'Karte der Events. Pfeiltasten verschieben die Karte, Plus und Minus ändern den Ausschnitt.');
+    box.setAttribute('aria-label', tt('Karte der Events. Pfeiltasten verschieben die Karte, Plus und Minus ändern den Ausschnitt.', 'Map of the events. Arrow keys move the map, plus and minus change the zoom.'));
     [baseSvg, tiles, overSvg, homeEl, pinsEl, zoomEl, attr].forEach(function (n) { box.appendChild(n); });
 
     var refs = REFCITIES.map(function (c) {
       var dot = svgEl('circle', { class: 'ref-dot', r: 3 });
       var txt = svgEl('text', { class: 'ref-txt' });
-      txt.textContent = c.name;
+      txt.textContent = cityDisp(c.name);
       refG.appendChild(dot);
       refG.appendChild(txt);
       return { c: c, dot: dot, txt: txt };
@@ -792,7 +856,7 @@ a { color: inherit; }
       tilesLoaded++;
       ev.target.style.visibility = 'visible';
       attr.textContent = '';
-      attr.appendChild(el('a', { href: 'https://www.openstreetmap.org/copyright', target: '_blank', rel: 'noopener', text: '© OpenStreetMap-Mitwirkende' }));
+      attr.appendChild(el('a', { href: 'https://www.openstreetmap.org/copyright', target: '_blank', rel: 'noopener', text: tt('© OpenStreetMap-Mitwirkende', '© OpenStreetMap contributors') }));
       hooks.onTiles(true);
     }
     function onTileErr(ev) {
@@ -1036,10 +1100,10 @@ a { color: inherit; }
   var $ = function (id) { return document.getElementById(id); };
   var monthBtns = [];
   var knobDefs = [
-    { key: 'style', label: 'STIL', name: 'Stil', opts: function () { return styleOpts; } },
-    { key: 'kindSel', label: 'ART', name: 'Art', opts: function () { return KIND_OPTS.map(function (k) { return k.label; }); } },
-    { key: 'country', label: 'LAND', name: 'Land', opts: function () { return countryOpts; } },
-    { key: 'radius', label: 'UMKREIS', name: 'Umkreis', opts: function () { return RADII.map(function (r) { return r ? fmtNum(r) + ' km' : 'Alle'; }); } }
+    { key: 'style', label: tt('STIL', 'STYLE'), name: tt('Stil', 'Style'), opts: function () { return styleOpts.map(function (o, i) { return i === 0 ? tt('Alle', 'All') : o; }); } },
+    { key: 'kindSel', label: tt('ART', 'TYPE'), name: tt('Art', 'Type'), opts: function () { return KIND_OPTS.map(function (k) { return k.label; }); } },
+    { key: 'country', label: tt('LAND', 'COUNTRY'), name: tt('Land', 'Country'), opts: function () { return countryOpts.map(function (o, i) { return i === 0 ? tt('Alle', 'All') : countryDisp(o); }); } },
+    { key: 'radius', label: tt('UMKREIS', 'RADIUS'), name: tt('Umkreis', 'Radius'), opts: function () { return RADII.map(function (r) { return r ? fmtNum(r) + ' km' : tt('Alle', 'All'); }); } }
   ];
 
   function buildDial() {
@@ -1093,7 +1157,7 @@ a { color: inherit; }
     openKnob = k;
     var opts = k.opts();
     pop.textContent = '';
-    pop.setAttribute('aria-label', k.name + ' wählen');
+    pop.setAttribute('aria-label', k.name + tt(' wählen', ' – choose'));
     pop.appendChild(el('li', { class: 'kl-head', role: 'presentation', text: k.label }));
     var items = opts.map(function (o, i) {
       var li = el('li', { role: 'option', tabindex: '-1', 'aria-selected': i === state[k.key] ? 'true' : 'false', text: o });
@@ -1134,24 +1198,25 @@ a { color: inherit; }
 
   function fmtD(isoStr) {
     var d = pd(isoStr);
+    if (LANG === 'en') return d.getDate() + ' ' + MON_SHORT[d.getMonth()] + (d.getFullYear() !== today.getFullYear() ? ' ' + d.getFullYear() : '');
     return d.getDate() + '.' + (d.getMonth() + 1) + '.' + (d.getFullYear() !== today.getFullYear() ? d.getFullYear() : '');
   }
   function rangeLabel() {
     if (state.from && state.to) return state.from === state.to ? fmtD(state.from) : fmtD(state.from) + '–' + fmtD(state.to);
-    if (state.from) return 'ab ' + fmtD(state.from);
-    if (state.to) return 'bis ' + fmtD(state.to);
+    if (state.from) return tt('ab ', 'from ') + fmtD(state.from);
+    if (state.to) return tt('bis ', 'until ') + fmtD(state.to);
     return '';
   }
   function addDays(d, n) { return new Date(d.getFullYear(), d.getMonth(), d.getDate() + n); }
   var QUICK = [
-    { label: 'Dieses Wochenende', range: function () {
+    { label: tt('Dieses Wochenende', 'This weekend'), range: function () {
       var dow = today.getDay();
       var start = dow === 0 ? today : dow >= 5 ? today : addDays(today, 5 - dow);
       var sun = addDays(today, dow === 0 ? 0 : 7 - dow);
       return [iso(start), iso(sun)];
     } },
-    { label: 'Nächste 7 Tage', range: function () { return [iso(today), iso(addDays(today, 6))]; } },
-    { label: 'Nächste 30 Tage', range: function () { return [iso(today), iso(addDays(today, 29))]; } }
+    { label: tt('Nächste 7 Tage', 'Next 7 days'), range: function () { return [iso(today), iso(addDays(today, 6))]; } },
+    { label: tt('Nächste 30 Tage', 'Next 30 days'), range: function () { return [iso(today), iso(addDays(today, 29))]; } }
   ];
   function setRange(f, t) {
     state.from = f || '';
@@ -1207,7 +1272,7 @@ a { color: inherit; }
     $('searchBtn').classList.toggle('on', on);
     var parts = [];
     if (rangeOn()) parts.push(rangeLabel());
-    if (state.qRaw) parts.push('„' + state.qRaw + '“');
+    if (state.qRaw) parts.push(quote(state.qRaw));
     $('searchSum').textContent = parts.join(' · ');
     var dF = $('dFrom'), dT = $('dTo'), qIn = $('qText');
     if (dF.value !== state.from) dF.value = state.from;
@@ -1230,8 +1295,8 @@ a { color: inherit; }
       refresh();
     });
     $('geoBtn').addEventListener('click', function () {
-      msg('Standort wird gesucht …');
-      var fail = function () { msg('Der Standort ist hier nicht verfügbar. Bitte wähle deinen Ort aus der Liste.'); };
+      msg(tt('Standort wird gesucht …', 'Finding your location …'));
+      var fail = function () { msg(tt('Der Standort ist hier nicht verfügbar. Bitte wähle deinen Ort aus der Liste.', 'Your location is not available here. Please choose your city from the list.')); };
       try {
         if (!navigator.geolocation) { fail(); return; }
         navigator.geolocation.getCurrentPosition(function (p) {
@@ -1246,9 +1311,9 @@ a { color: inherit; }
   function updateHome() {
     var sel = $('homeSel');
     sel.textContent = '';
-    HOMES.forEach(function (h, i) { sel.appendChild(el('option', { value: String(i), text: h.name })); });
+    HOMES.forEach(function (h, i) { sel.appendChild(el('option', { value: String(i), text: cityDisp(h.name) })); });
     if (state.custom) {
-      sel.appendChild(el('option', { value: 'custom', text: 'Mein Standort' }));
+      sel.appendChild(el('option', { value: 'custom', text: tt('Mein Standort', 'My location') }));
       sel.value = 'custom';
     } else { sel.value = String(state.home); }
   }
@@ -1275,11 +1340,11 @@ a { color: inherit; }
       var target = b.offsetLeft - (box.clientWidth - b.offsetWidth) / 2;
       if (box.scrollWidth > box.clientWidth) box.scrollLeft = Math.max(0, target);
     }
-    var when = state.month < 0 ? 'Ganzes Jahr ' + state.year : MONTHS_LONG[state.month] + ' ' + state.year;
-    if (state.onlyMine) when = 'Meine Events (alle Monate)';
-    else if (state.onlyNew) when = 'Neues seit deinem letzten Besuch';
-    else if (rangeOn()) when = 'Zeitraum ' + rangeLabel();
-    $('readout').textContent = 'Eingestellt: ' + when + ' · ' + listAll.length + (listAll.length === 1 ? ' Event' : ' Events');
+    var when = state.month < 0 ? tt('Ganzes Jahr ', 'Whole year ') + state.year : MONTHS_LONG[state.month] + ' ' + state.year;
+    if (state.onlyMine) when = tt('Meine Events (alle Monate)', 'My events (all months)');
+    else if (state.onlyNew) when = tt('Neues seit deinem letzten Besuch', 'New since your last visit');
+    else if (rangeOn()) when = tt('Zeitraum ', 'Dates ') + rangeLabel();
+    $('readout').textContent = tt('Eingestellt: ', 'Set to: ') + when + ' · ' + listAll.length + plural(listAll.length, ' Event', ' Events', ' event', ' events');
   }
 
   function updateKnobs() {
@@ -1288,15 +1353,15 @@ a { color: inherit; }
       var angle = opts.length > 1 ? -135 + idx / (opts.length - 1) * 270 : 0;
       k.btn.firstChild.style.setProperty('--a', angle + 'deg');
       k.val.textContent = opts[idx];
-      k.btn.setAttribute('aria-label', k.name + ': ' + opts[idx] + '. Tippen öffnet die Auswahlliste.');
-      k.val.setAttribute('aria-label', k.name + ': ' + opts[idx] + ' (Auswahlliste öffnen)');
+      k.btn.setAttribute('aria-label', k.name + ': ' + opts[idx] + tt('. Tippen öffnet die Auswahlliste.', '. Tap to open the list.'));
+      k.val.setAttribute('aria-label', k.name + ': ' + opts[idx] + tt(' (Auswahlliste öffnen)', ' (open list)'));
     });
   }
 
   function ymd(d) { return d.getFullYear() + ('0' + (d.getMonth() + 1)).slice(-2) + ('0' + d.getDate()).slice(-2); }
   function ymdhm(d) { return ymd(d) + 'T' + ('0' + d.getHours()).slice(-2) + ('0' + d.getMinutes()).slice(-2) + '00'; }
   function eventLink(e) { return window.location.href.split('#')[0] + '#' + encodeURIComponent(e.id); }
-  function placeText(e) { return e.city + (e.countryName && e.countryName !== 'Deutschland' ? ', ' + e.countryName : ''); }
+  function placeText(e) { return cityDisp(e.city) + (e.countryName && e.countryName !== 'Deutschland' ? ', ' + countryDisp(e.countryName) : ''); }
 
   /* Google Kalender: eintägig mit Beginn = mit Uhrzeit (3 Stunden), sonst ganztägig */
   function calendarUrl(e) {
@@ -1311,13 +1376,14 @@ a { color: inherit; }
       var next = new Date(e.endD.getFullYear(), e.endD.getMonth(), e.endD.getDate() + 1);
       dates = ymd(e.startD) + '/' + ymd(next);
     }
-    var details = fmtRange(e) + '\nMehr im Rockabilly Radar: ' + eventLink(e) + (tz ? '\nBeginn laut Kalender-Quelle, Dauer geschätzt (3 Stunden).' : '');
+    var details = fmtRange(e) + tt('\nMehr im Rockabilly Radar: ', '\nMore in Rockabilly Radar: ') + eventLink(e) + (tz ? tt('\nBeginn laut Kalender-Quelle, Dauer geschätzt (3 Stunden).', '\nStart time per calendar source, duration estimated (3 hours).') : '');
     return 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent(e.title) +
       '&dates=' + dates + tz +
-      '&location=' + encodeURIComponent((e.venue ? e.venue + ', ' : '') + placeText(e)) +
+      '&location=' + encodeURIComponent((e.venue ? venueDisp(e.venue) + ', ' : '') + placeText(e)) +
       '&details=' + encodeURIComponent(details);
   }
 
+  var COPIED = tt('Text kopiert ✓', 'Text copied ✓');
   function copyText(t, done) {
     var fallback = function () {
       try {
@@ -1327,11 +1393,11 @@ a { color: inherit; }
         ta.select();
         var ok = document.execCommand('copy');
         document.body.removeChild(ta);
-        done(ok ? 'Text kopiert ✓' : 'Kopieren nicht möglich');
-      } catch (err) { done('Kopieren nicht möglich'); }
+        done(ok ? COPIED : tt('Kopieren nicht möglich', 'Copying not possible'));
+      } catch (err) { done(tt('Kopieren nicht möglich', 'Copying not possible')); }
     };
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(t).then(function () { done('Text kopiert ✓'); }, fallback);
+      navigator.clipboard.writeText(t).then(function () { done(COPIED); }, fallback);
     } else { fallback(); }
   }
   function shareEvent(e, btn) {
@@ -1339,7 +1405,7 @@ a { color: inherit; }
     var url = eventLink(e);
     var done = function (label) {
       btn.textContent = label;
-      window.setTimeout(function () { btn.textContent = 'Teilen'; }, 2200);
+      window.setTimeout(function () { btn.textContent = tt('Teilen', 'Share'); }, 2200);
     };
     if (navigator.share) {
       navigator.share({ title: e.title, text: text, url: url }).catch(function (err) {
@@ -1350,11 +1416,11 @@ a { color: inherit; }
 
   /* „Stimmt nicht?“: bereitet einen Text mit allen Angaben zum Event vor, der Rest läuft über das Teilen-Menü (oder eine feste Adresse, siehe REPORT_TO) */
   function reportEvent(e, btn) {
-    var text = 'Rockabilly Radar – Meldung zu einem Event\n' + e.title + '\n' + fmtRange(e) + '\n' + placeText(e) +
-      (e.src ? '\nQuelle: ' + e.src : '') + (checkedText(e) ? '\n' + checkedText(e) : '') + '\n' + eventLink(e) + '\n\nWas stimmt nicht? (bitte kurz beschreiben): ';
+    var text = tt('Rockabilly Radar – Meldung zu einem Event\n', 'Rockabilly Radar – report about an event\n') + e.title + '\n' + fmtRange(e) + '\n' + placeText(e) +
+      (e.src ? tt('\nQuelle: ', '\nSource: ') + srcDisp(e.src) : '') + (checkedText(e) ? '\n' + checkedText(e) : '') + '\n' + eventLink(e) + tt('\n\nWas stimmt nicht? (bitte kurz beschreiben): ', '\n\nWhat is wrong? (please describe briefly): ');
     var done = function (label) {
       btn.textContent = label;
-      window.setTimeout(function () { btn.textContent = 'Stimmt nicht?'; }, 3000);
+      window.setTimeout(function () { btn.textContent = tt('Stimmt nicht?', 'Wrong info?'); }, 3000);
     };
     if (REPORT_TO) {
       var sep = REPORT_TO.indexOf('?') >= 0 ? '&' : '?';
@@ -1362,7 +1428,7 @@ a { color: inherit; }
       return;
     }
     if (navigator.share) {
-      navigator.share({ title: 'Rockabilly Radar: Meldung', text: text }).catch(function (err) {
+      navigator.share({ title: tt('Rockabilly Radar: Meldung', 'Rockabilly Radar: report'), text: text }).catch(function (err) {
         if (!err || err.name !== 'AbortError') copyText(text, done);
       });
     } else { copyText(text, done); }
@@ -1371,14 +1437,14 @@ a { color: inherit; }
   function mineCount() { return events.filter(function (e) { return mine[e.id]; }).length; }
   function updateMineBtn() {
     var b = $('mineBtn');
-    b.textContent = '★ Meine Events (' + mineCount() + ')';
+    b.textContent = tt('★ Meine Events (', '★ My events (') + mineCount() + ')';
     b.setAttribute('aria-pressed', state.onlyMine ? 'true' : 'false');
   }
   function toggleMine(id, btn, after) {
     if (mine[id]) delete mine[id]; else mine[id] = 1;
     storeSet('rr_mine', JSON.stringify(Object.keys(mine)));
     btn.setAttribute('aria-pressed', mine[id] ? 'true' : 'false');
-    btn.textContent = mine[id] ? '★ Gemerkt' : '☆ Ich gehe hin';
+    btn.textContent = mine[id] ? tt('★ Gemerkt', '★ Saved') : tt('☆ Ich gehe hin', '☆ I\'m going');
     updateMineBtn();
     updateMinePanel();
     if (after) after();
@@ -1415,7 +1481,7 @@ a { color: inherit; }
     list.forEach(function (e) {
       var tm = (e.note || '').match(/Beginn (\d\d):(\d\d)/);
       var timed = e.endD.getTime() === e.startD.getTime() && tm;
-      var place = (e.venue ? e.venue + ', ' : '') + placeText(e);
+      var place = (e.venue ? venueDisp(e.venue) + ', ' : '') + placeText(e);
       L.push('BEGIN:VEVENT', 'UID:' + e.id + '@rockabilly-radar', 'DTSTAMP:' + stamp);
       if (timed) {
         var st = new Date(e.startD.getFullYear(), e.startD.getMonth(), e.startD.getDate(), +tm[1], +tm[2]);
@@ -1424,18 +1490,18 @@ a { color: inherit; }
         L.push('DTSTART;VALUE=DATE:' + ymd(e.startD), 'DTEND;VALUE=DATE:' + ymd(plusDay(e.endD)));
       }
       L.push('SUMMARY:' + icsEsc(e.title), 'LOCATION:' + icsEsc(place),
-        'DESCRIPTION:' + icsEsc(fmtRange(e) + '\nMehr im Rockabilly Radar: ' + eventLink(e) + (e.info ? '\nInfos: ' + e.info : '') + (timed ? '\nDauer geschätzt (3 Stunden).' : '')));
+        'DESCRIPTION:' + icsEsc(fmtRange(e) + tt('\nMehr im Rockabilly Radar: ', '\nMore in Rockabilly Radar: ') + eventLink(e) + (e.info ? tt('\nInfos: ', '\nInfo: ') + e.info : '') + (timed ? tt('\nDauer geschätzt (3 Stunden).', '\nDuration estimated (3 hours).') : '')));
       if (/^https?:/.test(e.info || '')) L.push('URL:' + e.info);
-      if (timed) { alarm('-P7D', 'In einer Woche: ' + e.title); alarm('-P1D', 'Morgen: ' + e.title); }
-      else { alarm('-P6DT15H', 'In einer Woche: ' + e.title); alarm('-PT15H', 'Morgen: ' + e.title); }
+      if (timed) { alarm('-P7D', tt('In einer Woche: ', 'In one week: ') + e.title); alarm('-P1D', tt('Morgen: ', 'Tomorrow: ') + e.title); }
+      else { alarm('-P6DT15H', tt('In einer Woche: ', 'In one week: ') + e.title); alarm('-PT15H', tt('Morgen: ', 'Tomorrow: ') + e.title); }
       L.push('END:VEVENT');
       var bd = bookDate(e);
       if (bd >= today && e.startD > today) {
         L.push('BEGIN:VEVENT', 'UID:buchen-' + e.id + '@rockabilly-radar', 'DTSTAMP:' + stamp,
           'DTSTART;VALUE=DATE:' + ymd(bd), 'DTEND;VALUE=DATE:' + ymd(plusDay(bd)),
-          'SUMMARY:' + icsEsc('Tickets & Unterkunft prüfen: ' + e.title),
-          'DESCRIPTION:' + icsEsc(e.title + ' (' + fmtRange(e) + ', ' + placeText(e) + ')\nUnterkunft: ' + bookingUrl(e) + (e.tickets ? '\nTickets: ' + e.tickets : '') + (e.info ? '\nInfos: ' + e.info : '')));
-        alarm('PT9H', 'Tickets und Unterkunft prüfen: ' + e.title);
+          'SUMMARY:' + icsEsc(tt('Tickets & Unterkunft prüfen: ', 'Check tickets & accommodation: ') + e.title),
+          'DESCRIPTION:' + icsEsc(e.title + ' (' + fmtRange(e) + ', ' + placeText(e) + ')' + tt('\nUnterkunft: ', '\nAccommodation: ') + bookingUrl(e) + (e.tickets ? '\nTickets: ' + e.tickets : '') + (e.info ? tt('\nInfos: ', '\nInfo: ') + e.info : '')));
+        alarm('PT9H', tt('Tickets und Unterkunft prüfen: ', 'Check tickets and accommodation: ') + e.title);
         L.push('END:VEVENT');
       }
     });
@@ -1443,10 +1509,11 @@ a { color: inherit; }
     return L.map(icsFold).join('\r\n') + '\r\n';
   }
   function mineList() { return events.filter(function (e) { return mine[e.id]; }); }
+  var NOTHING_SAVED = tt('Noch nichts gemerkt. Tippe bei einem Event auf „Ich gehe hin“.', 'Nothing saved yet. Tap “I\'m going” on an event.');
   function mineMsg(t) { var m = $('mineMsg'); if (m) { m.textContent = t; m.hidden = !t; } }
   function downloadIcs() {
     var list = mineList();
-    if (!list.length) { mineMsg('Noch nichts gemerkt. Tippe bei einem Event auf „Ich gehe hin“.'); return; }
+    if (!list.length) { mineMsg(NOTHING_SAVED); return; }
     var blob = new Blob([buildIcs(list)], { type: 'text/calendar;charset=utf-8' });
     var url = URL.createObjectURL(blob);
     var a = el('a', { href: url, download: 'rockabilly-radar-meine-events.ics' });
@@ -1454,18 +1521,18 @@ a { color: inherit; }
     a.click();
     document.body.removeChild(a);
     window.setTimeout(function () { URL.revokeObjectURL(url); }, 5000);
-    mineMsg('Kalenderdatei mit ' + list.length + ' Event' + (list.length === 1 ? '' : 's') + ' wurde geladen. Öffne sie, dann fragt dein Kalender nach dem Übernehmen.');
+    mineMsg(tt('Kalenderdatei mit ', 'Calendar file with ') + list.length + plural(list.length, ' Event', ' Events', ' event', ' events') + tt(' wurde geladen. Öffne sie, dann fragt dein Kalender nach dem Übernehmen.', ' downloaded. Open it and your calendar will ask whether to import it.'));
   }
 
   /* ---------- Merkcode: Merkliste auf ein anderes Gerät übertragen ---------- */
   function mineCode() { return 'RR1:' + mineList().map(function (e) { return e.id; }).join('|'); }
   function shareMineCode() {
     var list = mineList();
-    if (!list.length) { mineMsg('Noch nichts gemerkt. Tippe bei einem Event auf „Ich gehe hin“.'); return; }
-    var text = 'Meine Merkliste im Rockabilly Radar (' + list.length + ' Event' + (list.length === 1 ? '' : 's') + '). Auf dem anderen Gerät: Meine Events → „Merkliste einfügen“ → diesen Text einfügen.\n\n' + mineCode();
-    var done = function (label) { mineMsg(label === 'Text kopiert ✓' ? 'Merkcode kopiert. Füge ihn jetzt zum Beispiel in WhatsApp ein.' : 'Kopieren hat nicht geklappt. Markiere den Text von Hand.'); };
+    if (!list.length) { mineMsg(NOTHING_SAVED); return; }
+    var text = tt('Meine Merkliste im Rockabilly Radar (', 'My saved list in Rockabilly Radar (') + list.length + plural(list.length, ' Event', ' Events', ' event', ' events') + tt('). Auf dem anderen Gerät: Meine Events → „Merkliste einfügen“ → diesen Text einfügen.\n\n', '). On the other device: My events → “Paste saved list” → paste this text.\n\n') + mineCode();
+    var done = function (label) { mineMsg(label === COPIED ? tt('Merkcode kopiert. Füge ihn jetzt zum Beispiel in WhatsApp ein.', 'Code copied. Now paste it into WhatsApp, for example.') : tt('Kopieren hat nicht geklappt. Markiere den Text von Hand.', 'Copying did not work. Select the text by hand.')); };
     if (navigator.share) {
-      navigator.share({ title: 'Meine Merkliste', text: text }).catch(function (err) {
+      navigator.share({ title: tt('Meine Merkliste', 'My saved list'), text: text }).catch(function (err) {
         if (!err || err.name !== 'AbortError') copyText(text, done);
       });
     } else { copyText(text, done); }
@@ -1473,7 +1540,7 @@ a { color: inherit; }
   function importMineCode() {
     var raw = $('importText').value;
     var m = raw.match(/RR1:([^\s]*)/);
-    if (!m) { mineMsg('In dem Text steht kein Merkcode. Er beginnt mit „RR1:“.'); return; }
+    if (!m) { mineMsg(tt('In dem Text steht kein Merkcode. Er beginnt mit „RR1:“.', 'The text contains no code. It starts with “RR1:”.')); return; }
     var known = {};
     events.forEach(function (e) { known[e.id] = 1; });
     var ids = m[1].split('|').filter(function (x) { return x; });
@@ -1485,14 +1552,14 @@ a { color: inherit; }
     storeSet('rr_mine', JSON.stringify(Object.keys(mine)));
     $('importText').value = '';
     $('importBox').hidden = true;
-    mineMsg(added + ' Event' + (added === 1 ? '' : 's') + ' übernommen' + (gone ? ', ' + gone + ' gibt es nicht mehr in der Liste' : '') + '.');
+    mineMsg(added + plural(added, ' Event', ' Events', ' event', ' events') + tt(' übernommen', ' imported') + (gone ? tt(', ' + gone + ' gibt es nicht mehr in der Liste', ', ' + gone + ' no longer in the list') : '') + '.');
     refresh();
   }
   function buildMinePanel() {
     var panel = $('minePanel');
     var importBox = el('div', { id: 'importBox' }, [
-      el('textarea', { id: 'importText', placeholder: 'Hier den Merkcode einfügen (beginnt mit RR1:)', 'aria-label': 'Merkcode einfügen' }),
-      el('div', { class: 'row' }, [el('button', { type: 'button', class: 'pill', text: 'Übernehmen', onclick: importMineCode })])
+      el('textarea', { id: 'importText', placeholder: tt('Hier den Merkcode einfügen (beginnt mit RR1:)', 'Paste the code here (starts with RR1:)'), 'aria-label': tt('Merkcode einfügen', 'Paste code') }),
+      el('div', { class: 'row' }, [el('button', { type: 'button', class: 'pill', text: tt('Übernehmen', 'Import'), onclick: importMineCode })])
     ]);
     importBox.hidden = true;
     var msg = el('p', { id: 'mineMsg', role: 'status' });
@@ -1500,9 +1567,9 @@ a { color: inherit; }
     [
       el('p', { id: 'mineInfo' }),
       el('div', { class: 'row' }, [
-        el('button', { type: 'button', class: 'pill', text: 'Kalenderdatei laden (.ics)', onclick: downloadIcs }),
-        el('button', { type: 'button', class: 'pill', text: 'Merkliste teilen', onclick: shareMineCode }),
-        el('button', { type: 'button', class: 'pill', text: 'Merkliste einfügen', onclick: function () { importBox.hidden = !importBox.hidden; } })
+        el('button', { type: 'button', class: 'pill', text: tt('Kalenderdatei laden (.ics)', 'Download calendar file (.ics)'), onclick: downloadIcs }),
+        el('button', { type: 'button', class: 'pill', text: tt('Merkliste teilen', 'Share saved list'), onclick: shareMineCode }),
+        el('button', { type: 'button', class: 'pill', text: tt('Merkliste einfügen', 'Paste saved list'), onclick: function () { importBox.hidden = !importBox.hidden; } })
       ]),
       importBox, msg
     ].forEach(function (x) { panel.appendChild(x); });
@@ -1511,7 +1578,7 @@ a { color: inherit; }
     $('minePanel').hidden = !state.onlyMine;
     if (!state.onlyMine) { mineMsg(''); return; }
     var c = mineCount();
-    $('mineInfo').textContent = c + ' Event' + (c === 1 ? '' : 's') + ' gemerkt. Die Kalenderdatei enthält Erinnerungen und, falls es noch nicht zu spät ist, einen Termin „Tickets & Unterkunft prüfen“ (Festivals 4 Monate, andere 1 Monat vorher).';
+    $('mineInfo').textContent = c + plural(c, ' Event', ' Events', ' event', ' events') + tt(' gemerkt. Die Kalenderdatei enthält Erinnerungen und, falls es noch nicht zu spät ist, einen Termin „Tickets & Unterkunft prüfen“ (Festivals 4 Monate, andere 1 Monat vorher).', ' saved. The calendar file contains reminders and, if it is not too late, an entry “Check tickets & accommodation” (4 months before for festivals, 1 month before for others).');
   }
 
   /* Link mit #Kennung öffnet das Radar direkt bei diesem Event */
@@ -1523,7 +1590,7 @@ a { color: inherit; }
     if (!id) return;
     var e = events.filter(function (x) { return x.id === id; })[0];
     if (!e) {
-      msg.textContent = 'Dieses Event steht nicht mehr in der Liste, vielleicht ist es schon vorbei.';
+      msg.textContent = tt('Dieses Event steht nicht mehr in der Liste, vielleicht ist es schon vorbei.', 'This event is no longer in the list; it may already be over.');
       msg.hidden = false;
       return;
     }
@@ -1542,46 +1609,46 @@ a { color: inherit; }
 
   function card(e, n) {
     var d = dist(e);
-    var meta = e.city + ', ' + e.countryName + ' · Luftlinie ca. ' + fmtNum(Math.round(d / 10) * 10) + ' km';
+    var meta = cityDisp(e.city) + ', ' + countryDisp(e.countryName) + tt(' · Luftlinie ca. ', ' · approx. ') + fmtNum(Math.round(d / 10) * 10) + tt(' km', ' km as the crow flies');
     var multi = e.endD > e.startD;
     var stub = el('div', { class: 'stub' }, [
       el('span', { class: 'd', text: String(e.startD.getDate()) }),
       el('span', { class: 'm2', text: MONTHS[e.startD.getMonth()] }),
-      multi ? el('span', { class: 'to', text: 'bis ' + e.endD.getDate() + '.' + (e.endD.getMonth() + 1) + '.' }) : null
+      multi ? el('span', { class: 'to', text: LANG === 'en' ? 'until ' + e.endD.getDate() + ' ' + MON_SHORT[e.endD.getMonth()] : 'bis ' + e.endD.getDate() + '.' + (e.endD.getMonth() + 1) + '.' }) : null
     ]);
     var tags = (e.styles || []).map(function (s) { return el('span', { class: 'tag', text: s }); })
-      .concat((e.features || []).map(function (f) { return el('span', { class: 'tag soft', text: f }); }));
+      .concat((e.features || []).map(function (f) { return el('span', { class: 'tag soft', text: featDisp(f) }); }));
     var btns = [];
-    if (e.info) btns.push(el('a', { class: 'btn', href: e.info, target: '_blank', rel: 'noopener', text: 'Infos ↗' }));
+    if (e.info) btns.push(el('a', { class: 'btn', href: e.info, target: '_blank', rel: 'noopener', text: tt('Infos ↗', 'Info ↗') }));
     if (e.tickets && e.tickets !== e.info) btns.push(el('a', { class: 'btn', href: e.tickets, target: '_blank', rel: 'noopener', text: 'Tickets ↗' }));
-    if (e.hotel) btns.push(el('a', { class: 'btn', href: e.hotel.url, target: '_blank', rel: 'noopener', text: e.hotel.label + ' ↗' }));
-    btns.push(el('a', { class: 'btn mint', href: bookingUrl(e), target: '_blank', rel: 'noopener', text: 'Unterkunft ↗' }));
-    btns.push(el('a', { class: 'btn', href: calendarUrl(e), target: '_blank', rel: 'noopener', text: 'Zum Kalender ↗' }));
-    var shareBtn = el('button', { type: 'button', class: 'btn', text: 'Teilen' });
+    if (e.hotel) btns.push(el('a', { class: 'btn', href: e.hotel.url, target: '_blank', rel: 'noopener', text: (LANG === 'en' && EN.hotel[e.hotel.label] ? EN.hotel[e.hotel.label] : e.hotel.label) + ' ↗' }));
+    btns.push(el('a', { class: 'btn mint', href: bookingUrl(e), target: '_blank', rel: 'noopener', text: tt('Unterkunft ↗', 'Accommodation ↗') }));
+    btns.push(el('a', { class: 'btn', href: calendarUrl(e), target: '_blank', rel: 'noopener', text: tt('Zum Kalender ↗', 'Add to calendar ↗') }));
+    var shareBtn = el('button', { type: 'button', class: 'btn', text: tt('Teilen', 'Share') });
     shareBtn.addEventListener('click', function () { shareEvent(e, shareBtn); });
     btns.push(shareBtn);
-    btns.push(el('button', { type: 'button', class: 'btn', text: 'Auf Karte', onclick: function () { selectEvent(e.id, true); } }));
-    var reportBtn = el('button', { type: 'button', class: 'btn report', text: 'Stimmt nicht?' });
+    btns.push(el('button', { type: 'button', class: 'btn', text: tt('Auf Karte', 'On map'), onclick: function () { selectEvent(e.id, true); } }));
+    var reportBtn = el('button', { type: 'button', class: 'btn report', text: tt('Stimmt nicht?', 'Wrong info?') });
     reportBtn.addEventListener('click', function () { reportEvent(e, reportBtn); });
     btns.push(reportBtn);
-    var starBtn = el('button', { type: 'button', class: 'btn star', 'aria-pressed': mine[e.id] ? 'true' : 'false', text: mine[e.id] ? '★ Gemerkt' : '☆ Ich gehe hin' });
+    var starBtn = el('button', { type: 'button', class: 'btn star', 'aria-pressed': mine[e.id] ? 'true' : 'false', text: mine[e.id] ? tt('★ Gemerkt', '★ Saved') : tt('☆ Ich gehe hin', '☆ I\'m going') });
     var st = statusOf(e);
-    var hintEl = el('p', { class: 'hint', text: '🏨 Jetzt Unterkunft und Tickets prüfen' });
+    var hintEl = el('p', { class: 'hint', text: tt('🏨 Jetzt Unterkunft und Tickets prüfen', '🏨 Check accommodation and tickets now') });
     hintEl.hidden = !needsBooking(e);
     starBtn.addEventListener('click', function () { toggleMine(e.id, starBtn, function () { hintEl.hidden = !needsBooking(e); }); });
     btns.unshift(starBtn);
     var body = el('div', { class: 'body' }, [
       el('p', { class: 'kindtag k-' + e.kind, text: KINDS[e.kind] }),
-      el('h3', null, [isNew(e) ? el('span', { class: 'newtag', text: 'NEU' }) : null, n + '. ' + e.title]),
+      el('h3', null, [isNew(e) ? el('span', { class: 'newtag', text: tt('NEU', 'NEW') }) : null, n + '. ' + e.title]),
       el('p', { class: 'meta', text: fmtRange(e) }),
       el('p', { class: 'meta', text: meta }),
-      e.venue ? el('p', { class: 'meta', text: e.venue }) : null,
+      e.venue ? el('p', { class: 'meta', text: venueDisp(e.venue) }) : null,
       tags.length ? el('div', { class: 'tags' }, tags) : null,
       e.acts ? el('p', { class: 'acts', text: 'Bands: ' + e.acts }) : null,
-      el('span', { class: 'badge ' + (st === 'ok' ? 'ok' : st === 'kalender' ? 'cal' : 'check'), text: st === 'ok' ? 'Termin bestätigt' : st === 'kalender' ? 'Termin laut Szene-Kalender' : 'Bitte beim Veranstalter prüfen' }),
+      el('span', { class: 'badge ' + (st === 'ok' ? 'ok' : st === 'kalender' ? 'cal' : 'check'), text: st === 'ok' ? tt('Termin bestätigt', 'Date confirmed') : st === 'kalender' ? tt('Termin laut Szene-Kalender', 'Date per scene calendar') : tt('Bitte beim Veranstalter prüfen', 'Please check with the organiser') }),
       hintEl,
-      e.note ? el('p', { class: 'note', text: e.note }) : null,
-      e.src ? el('p', { class: 'note', text: 'Quelle: ' + e.src }) : null,
+      e.note ? el('p', { class: 'note', text: noteDisp(e.note) }) : null,
+      e.src ? el('p', { class: 'note', text: tt('Quelle: ', 'Source: ') + srcDisp(e.src) }) : null,
       checkedText(e) ? el('p', { class: 'note', text: checkedText(e) }) : null,
       el('div', { class: 'btns' }, btns)
     ]);
@@ -1595,8 +1662,8 @@ a { color: inherit; }
     box.textContent = '';
     if (!list.length) {
       box.appendChild(el('div', { class: 'empty' }, [
-        el('p', { text: state.onlyMine && !state.qTok.length && !rangeOn() ? 'Noch nichts gemerkt. Tippe bei einem Event auf „Ich gehe hin“.' : (state.qTok.length || rangeOn()) ? 'Zu deiner Suche gibt es nichts. Ändere Zeitraum, Suchtext oder Filter.' : state.onlyNew ? 'Seit deinem letzten Besuch ist nichts Neues dazugekommen.' : 'Auf dieser Frequenz kommt gerade nichts rein.' }),
-        el('button', { type: 'button', class: 'pill', text: 'Filter zurücksetzen', onclick: function () {
+        el('p', { text: state.onlyMine && !state.qTok.length && !rangeOn() ? NOTHING_SAVED : (state.qTok.length || rangeOn()) ? tt('Zu deiner Suche gibt es nichts. Ändere Zeitraum, Suchtext oder Filter.', 'Nothing matches your search. Change the dates, search text or filters.') : state.onlyNew ? tt('Seit deinem letzten Besuch ist nichts Neues dazugekommen.', 'Nothing new has been added since your last visit.') : tt('Auf dieser Frequenz kommt gerade nichts rein.', 'Nothing is coming in on this frequency right now.') }),
+        el('button', { type: 'button', class: 'pill', text: tt('Filter zurücksetzen', 'Reset filters'), onclick: function () {
           state.month = -1; state.style = 0; state.kindSel = 0; state.country = 0; state.radius = 0; state.onlyMine = false; state.onlyNew = false; state.from = ''; state.to = ''; state.qRaw = ''; state.qTok = []; state.active = null; refresh();
         } })
       ]));
@@ -1604,7 +1671,7 @@ a { color: inherit; }
     }
     list.slice(0, state.limit).forEach(function (e, i) { box.appendChild(card(e, i + 1)); });
     if (list.length > state.limit) {
-      box.appendChild(el('button', { type: 'button', class: 'pill more', text: 'Weitere ' + Math.min(PAGE, list.length - state.limit) + ' anzeigen (' + (list.length - state.limit) + ' übrig)', onclick: function () {
+      box.appendChild(el('button', { type: 'button', class: 'pill more', text: tt('Weitere ' + Math.min(PAGE, list.length - state.limit) + ' anzeigen (' + (list.length - state.limit) + ' übrig)', 'Show ' + Math.min(PAGE, list.length - state.limit) + ' more (' + (list.length - state.limit) + ' left)'), onclick: function () {
         state.limit += PAGE;
         renderList(list);
       } }));
@@ -1614,13 +1681,14 @@ a { color: inherit; }
   function renderPending() {
     var box = $('pending');
     if (!PENDING.length) return;
-    box.appendChild(el('h2', { text: 'Noch ohne Termin 2027' }));
-    box.appendChild(el('p', { class: 'pending-intro', text: 'Diese Events sind bekannt, der Termin für 2027 ist aber noch nicht veröffentlicht.' }));
+    box.appendChild(el('h2', { text: tt('Noch ohne Termin 2027', 'No 2027 date yet') }));
+    box.appendChild(el('p', { class: 'pending-intro', text: tt('Diese Events sind bekannt, der Termin für 2027 ist aber noch nicht veröffentlicht.', 'These events are known, but the 2027 date has not been published yet.') }));
     var ul = el('ul');
     PENDING.forEach(function (p) {
+      var pe = LANG === 'en' ? EN.pending[p.title] : null;
       ul.appendChild(el('li', null, [
-        el('div', null, [el('strong', { text: p.title }), el('br'), el('span', { text: p.place + ' · zuletzt ' + p.last })]),
-        el('a', { href: p.info, target: '_blank', rel: 'noopener', text: 'Webseite ↗' })
+        el('div', null, [el('strong', { text: p.title }), el('br'), el('span', { text: pe ? pe.place + ' · last: ' + pe.last : p.place + ' · zuletzt ' + p.last })]),
+        el('a', { href: p.info, target: '_blank', rel: 'noopener', text: tt('Webseite ↗', 'Website ↗') })
       ]));
     });
     box.appendChild(ul);
@@ -1661,14 +1729,14 @@ a { color: inherit; }
     updateSearch();
     var nb = $('newBtn');
     nb.hidden = newCount === 0 && !state.onlyNew;
-    nb.textContent = '✨ Nur Neues (' + newCount + ')';
+    nb.textContent = tt('✨ Nur Neues (', '✨ New only (') + newCount + ')';
     nb.setAttribute('aria-pressed', state.onlyNew ? 'true' : 'false');
-    $('status').textContent = state.onlyMine ? (list.length ? list.length + (list.length === 1 ? ' gemerktes Event (alle Monate)' : ' gemerkte Events (alle Monate)') : 'Noch nichts gemerkt')
-      : state.onlyNew ? (list.length ? list.length + (list.length === 1 ? ' neues Event seit deinem letzten Besuch (alle Monate)' : ' neue Events seit deinem letzten Besuch (alle Monate)') : 'Nichts Neues')
-      : list.length ? list.length + (list.length === 1 ? ' Event auf dieser Frequenz' : ' Events auf dieser Frequenz') : 'Keine Treffer';
+    $('status').textContent = state.onlyMine ? (list.length ? list.length + plural(list.length, ' gemerktes Event (alle Monate)', ' gemerkte Events (alle Monate)', ' saved event (all months)', ' saved events (all months)') : tt('Noch nichts gemerkt', 'Nothing saved yet'))
+      : state.onlyNew ? (list.length ? list.length + plural(list.length, ' neues Event seit deinem letzten Besuch (alle Monate)', ' neue Events seit deinem letzten Besuch (alle Monate)', ' new event since your last visit (all months)', ' new events since your last visit (all months)') : tt('Nichts Neues', 'Nothing new'))
+      : list.length ? list.length + plural(list.length, ' Event auf dieser Frequenz', ' Events auf dieser Frequenz', ' event on this frequency', ' events on this frequency') : tt('Keine Treffer', 'No matches');
     var sfx = [];
     if (rangeOn()) sfx.push(rangeLabel());
-    if (state.qRaw) sfx.push('„' + state.qRaw + '“');
+    if (state.qRaw) sfx.push(quote(state.qRaw));
     if (sfx.length) $('status').textContent += ' · ' + sfx.join(' · ');
 
     var extra = events.filter(function (e) { return matches(e, true, true) && (e.kind === 'course' || e.kind === 'tribute'); }).length;
@@ -1679,19 +1747,19 @@ a { color: inherit; }
     var showExtra = extra && !state.onlyMine && KIND_OPTS[state.kindSel].kinds.indexOf('course') < 0;
     if (showExtra) {
       ex.appendChild(el('div', { class: 'xrow' }, [
-        el('span', { text: 'Dazu gibt es ' + extra + (extra === 1 ? ' Extra' : ' Extras') + ' (Kurse und Tribute-Shows).' }),
-        el('button', { type: 'button', class: 'pill', text: 'Extras anzeigen', onclick: function () { state.kindSel = 3; state.active = null; refresh(); } })
+        el('span', { text: tt('Dazu gibt es ' + extra + (extra === 1 ? ' Extra' : ' Extras') + ' (Kurse und Tribute-Shows).', 'Plus ' + extra + (extra === 1 ? ' extra' : ' extras') + ' (courses and tribute shows).') }),
+        el('button', { type: 'button', class: 'pill', text: tt('Extras anzeigen', 'Show extras'), onclick: function () { state.kindSel = 3; state.active = null; refresh(); } })
       ]));
     }
     if (dance) {
       ex.appendChild(el('div', { class: 'xrow' }, [
-        el('span', { text: 'Dazu gibt es ' + dance + ' Swing-Tanztermine (Lindy Hop, Balboa, Charleston, Blues).' }),
-        el('button', { type: 'button', class: 'pill', text: 'Swing-Tanz anzeigen', onclick: function () { state.style = swingIdx; state.active = null; refresh(); } })
+        el('span', { text: tt('Dazu gibt es ' + dance + ' Swing-Tanztermine (Lindy Hop, Balboa, Charleston, Blues).', 'Plus ' + dance + ' swing dance events (Lindy Hop, Balboa, Charleston, Blues).') }),
+        el('button', { type: 'button', class: 'pill', text: tt('Swing-Tanz anzeigen', 'Show swing dancing'), onclick: function () { state.style = swingIdx; state.active = null; refresh(); } })
       ]));
     }
     ex.hidden = !(showExtra || dance);
 
-    map.setData(list.map(function (e) { return { id: e.id, title: e.title, city: e.city, lat: e.lat, lng: e.lng, kind: e.kind }; }), home(), RADII[state.radius]);
+    map.setData(list.map(function (e) { return { id: e.id, title: e.title, city: cityDisp(e.city), lat: e.lat, lng: e.lng, kind: e.kind }; }), home(), RADII[state.radius]);
     map.setActive(state.active);
   }
 
@@ -1700,6 +1768,18 @@ a { color: inherit; }
     onSelect: function (id) { selectEvent(id, false); },
     onTiles: function (ok) { $('mapNote').hidden = ok; }
   });
+  (function () {
+    var bd = $('langDe'), be = $('langEn');
+    bd.setAttribute('aria-pressed', LANG === 'de' ? 'true' : 'false');
+    be.setAttribute('aria-pressed', LANG === 'en' ? 'true' : 'false');
+    function pick(l) {
+      if (l === LANG) return;
+      storeSet('rr_lang', l);
+      window.location.reload();
+    }
+    bd.addEventListener('click', function () { pick('de'); });
+    be.addEventListener('click', function () { pick('en'); });
+  })();
   buildDial();
   buildKnobs();
   buildSearch();
@@ -1741,6 +1821,7 @@ a { color: inherit; }
   var ua = navigator.userAgent || '';
   var isIOS = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
   var otherIOSBrowser = /CriOS|FxiOS|EdgiOS|OPiOS/.test(ua);
+  var en = window.RR_LANG === 'en';
 
   function show() { if (!snoozed) { box.hidden = false; } }
 
@@ -1751,8 +1832,8 @@ a { color: inherit; }
 
   if (isIOS) {
     text.innerHTML = otherIOSBrowser
-      ? '<strong>Als App auf dem iPhone:</strong> Öffne diese Seite in Safari, tippe dort auf das Teilen-Symbol und wähle „Zum Home-Bildschirm“.'
-      : '<strong>Als App auf dem iPhone:</strong> Tippe unten auf das Teilen-Symbol (Quadrat mit Pfeil) und wähle „Zum Home-Bildschirm“.';
+      ? (en ? '<strong>As an app on iPhone:</strong> Open this page in Safari, tap the Share icon there and choose “Add to Home Screen”.' : '<strong>Als App auf dem iPhone:</strong> Öffne diese Seite in Safari, tippe dort auf das Teilen-Symbol und wähle „Zum Home-Bildschirm“.')
+      : (en ? '<strong>As an app on iPhone:</strong> Tap the Share icon (square with arrow) at the bottom and choose “Add to Home Screen”.' : '<strong>Als App auf dem iPhone:</strong> Tippe unten auf das Teilen-Symbol (Quadrat mit Pfeil) und wähle „Zum Home-Bildschirm“.');
     show();
     return;
   }
@@ -1761,7 +1842,7 @@ a { color: inherit; }
   window.addEventListener('beforeinstallprompt', function (e) {
     e.preventDefault();
     deferred = e;
-    text.innerHTML = '<strong>Rockabilly Radar als App:</strong> Mit eigenem Symbol auf dem Startbildschirm, auch ohne Netz nutzbar.';
+    text.innerHTML = en ? '<strong>Rockabilly Radar as an app:</strong> With its own icon on your home screen, works offline too.' : '<strong>Rockabilly Radar als App:</strong> Mit eigenem Symbol auf dem Startbildschirm, auch ohne Netz nutzbar.';
     btn.hidden = false;
     show();
   });
