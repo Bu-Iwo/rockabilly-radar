@@ -766,8 +766,11 @@ a { color: inherit; }
   /* „Zuletzt geprüft“: Die Prüfdaten stehen in pruefung.js. Fehlt die Datei, bleibt die Zeile einfach weg. */
   var PRUEFUNG = window.RR_PRUEFUNG || {};
   function ownCheck(e) { return PRUEFUNG.termine && PRUEFUNG.termine[e.id] ? PRUEFUNG.termine[e.id] : null; }
+  /* "fehlt": Termine, die bei der letzten Prüfung in ihrer Quelle nicht mehr gefunden wurden. Sie bleiben sichtbar, aber mit Warnung. */
+  function missing(e) { return PRUEFUNG.fehlt && PRUEFUNG.fehlt[e.id] ? PRUEFUNG.fehlt[e.id] : null; }
   function statusOf(e) {
     var own = ownCheck(e);
+    if (missing(e)) return 'check';
     return own && own.art === 'veranstalter' ? 'ok' : e.status;
   }
   function isoToDe(iso) {
@@ -1649,6 +1652,7 @@ a { color: inherit; }
       hintEl,
       e.note ? el('p', { class: 'note', text: noteDisp(e.note) }) : null,
       e.src ? el('p', { class: 'note', text: tt('Quelle: ', 'Source: ') + srcDisp(e.src) }) : null,
+      missing(e) ? el('p', { class: 'note', text: tt('Bei der Prüfung am ', 'Not found at the check on ') + (isoToDe(missing(e).seit) || '') + tt(' nicht mehr gefunden. Bitte beim Veranstalter prüfen.', '. Please check with the organiser.') }) : null,
       checkedText(e) ? el('p', { class: 'note', text: checkedText(e) }) : null,
       el('div', { class: 'btns' }, btns)
     ]);
@@ -1768,6 +1772,10 @@ a { color: inherit; }
     onSelect: function (id) { selectEvent(id, false); },
     onTiles: function (ok) { $('mapNote').hidden = ok; }
   });
+  (function () { /* Fußzeile: Datum der letzten Gesamt-Recherche aus pruefung.js */
+    var d = isoToDe(PRUEFUNG.stand), f = document.querySelector('.foot');
+    if (d && f) f.textContent = f.textContent.replace(/\d{1,2}\.\d{2}\.\d{4}|\d{1,2} [A-Z][a-z]{2} \d{4}/, d);
+  })();
   (function () {
     var bd = $('langDe'), be = $('langEn');
     bd.setAttribute('aria-pressed', LANG === 'de' ? 'true' : 'false');

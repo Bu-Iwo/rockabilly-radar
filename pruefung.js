@@ -11,6 +11,11 @@
             art "veranstalter" = erscheint als "Termin bestätigt" und "beim Veranstalter geprüft".
             Beispiel: "rockin-race-2027": { datum: "2026-11-29", art: "veranstalter" }
 
+  fehlt     Termine, die bei der letzten Prüfung in ihrer Quelle nicht mehr gefunden wurden. Die App zeigt sie weiter an, aber mit der
+            Warnung "Bitte beim Veranstalter prüfen". Wird der Termin bei der nächsten Prüfung wieder gefunden, fliegt der Eintrag raus.
+            Fehlt er erneut, wird der Termin aus den Daten entfernt.
+            Beispiel: "x-rr-20261106-karlsruhe-swingin-charlie-20": { seit: "2026-11-29", anzahl: 1 }
+
   Die Monatsaufgabe pflegt diese Datei. Datumsangaben immer im Format JJJJ-MM-TT.
 */
 
@@ -19,5 +24,7 @@ window.RR_PRUEFUNG = {
   quellen: {
   },
   termine: {
+  },
+  fehlt: {
   }
 };
