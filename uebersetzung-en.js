@@ -65,7 +65,9 @@ window.RR_EN = {
   /* Orte, die eine Beschreibung statt eines Namens enthalten */
   venues: {
     'Swingkurse und -parties (Orte beim Veranstalter)': 'Swing classes and parties (venues via the organiser)',
-    'Auditorio Príncipe de Asturias und weitere Orte in Torremolinos': 'Auditorio Príncipe de Asturias and other venues in Torremolinos'
+    'Auditorio Príncipe de Asturias und weitere Orte in Torremolinos': 'Auditorio Príncipe de Asturias and other venues in Torremolinos',
+    'Davos (Ort nicht genannt)': 'Davos (venue not named)',
+    '10 Years Luckymonkey (Ort nicht genannt)': '10 Years Luckymonkey (venue not named)'
   },
 
   hotel: {
@@ -126,6 +128,42 @@ window.RR_EN = {
     'Der Ort ist nur als „Leubnitz“ angegeben, die Lage ist geschätzt. Konzerttermin laut Broken Silence. (Stadtkoordinate)':
       'The place is only given as “Leubnitz”, so the location is estimated. Concert date per Broken Silence. (pin at city centre)',
     'Programm laut Veranstalter u. a. Tribut „Streets of Bakersfield“, 70 Jahre Carl Perkins Dance Album und eine Show zum 50. Todestag von Elvis Presley. Einzelne Künstler stehen noch nicht auf der Seite.':
-      'Programme per organiser includes the tribute “Streets of Bakersfield”, 70 years of the Carl Perkins Dance Album and a show for the 50th anniversary of Elvis Presley\'s death. Some artists are not yet on the website.'
+      'Programme per organiser includes the tribute “Streets of Bakersfield”, 70 years of the Carl Perkins Dance Album and a show for the 50th anniversary of Elvis Presley\'s death. Some artists are not yet on the website.',
+    'Konzerttermin laut Homepage der Band.':
+      'Concert date per the band\'s website.',
+    'Konzerttermin laut Homepage der Band. (Stadtkoordinate)':
+      'Concert date per the band\'s website. (pin at city centre)',
+    'Konzerte am 28. und 29.05.2027 laut Homepage der Band. Den Veranstaltungsort nennt die Seite nicht. (Stadtkoordinate)':
+      'Concerts on 28 and 29 May 2027 per the band\'s website. The page does not name the venue. (pin at city centre)',
+    'Kartenreservierung: 0178 9332241. Konzerttermin laut Homepage der Band. (Stadtkoordinate)':
+      'Ticket reservation: 0178 9332241. Concert date per the band\'s website. (pin at city centre)',
+    'Kartenreservierung: 03774 505851. Konzerttermin laut Homepage der Band. (Stadtkoordinate)':
+      'Ticket reservation: 03774 505851. Concert date per the band\'s website. (pin at city centre)',
+    'Shotgun Jones spielt laut Homepage der Band. Die Seite nennt „US Car & Bike Evolution, F60“. Bitte den Ort beim Veranstalter prüfen. (Stadtkoordinate)':
+      'Shotgun Jones play, per the band\'s website. The page says “US Car & Bike Evolution, F60”. Please check the venue with the organiser. (pin at city centre)',
+    'Shotgun Jones spielt laut Homepage der Band am 16.07. (Main Street) und am 17.07. (Hudson Bay Bühne). Das Festival-Programm steht noch nicht beim Veranstalter. Bitte dort prüfen.':
+      'Shotgun Jones play, per the band\'s website, on 16 July (Main Street) and 17 July (Hudson Bay stage). The festival programme is not yet on the organiser\'s site. Please check there.',
+    'Beginn 20:30 Uhr. Konzerttermin laut Homepage der Band.':
+      'Starts 20:30. Concert date per the band\'s website.',
+    'Beginn 20:30 Uhr. Konzerttermin laut Homepage der Band. (Stadtkoordinate)':
+      'Starts 20:30. Concert date per the band\'s website. (pin at city centre)',
+    'Beginn 21:00 Uhr. Konzerttermin laut Homepage der Band. (Stadtkoordinate)':
+      'Starts 21:00. Concert date per the band\'s website. (pin at city centre)',
+    'Die Seite der Band nennt nur „10 Years Luckymonkey“. Den genauen Ort bitte prüfen. (Stadtkoordinate)':
+      'The band\'s page only says “10 Years Luckymonkey”. Please check the exact venue. (pin at city centre)',
+    'Beginn 20:00 Uhr, Bar ab 18:00 Uhr. Eintritt 15 € an der Abendkasse, Reservierung per E-Mail an kontakt@kajuete-ratzdorf.com. (Stadtkoordinate)':
+      'Starts 20:00, bar open from 18:00. Admission €15 at the box office, reservations by e-mail to kontakt@kajuete-ratzdorf.com. (pin at city centre)',
+    'Bei Eventim steht „Silvestersause mit Boppin\'B und Celebration X“ am 31.12.2026, ohne Ortsangabe. Dreieich und Bürgerhaus stammen aus der Bandsuche. Bitte prüfen. (Stadtkoordinate)':
+      'Eventim lists “Silvestersause mit Boppin\'B und Celebration X” on 31 Dec 2026 without a location. Dreieich and Bürgerhaus come from the band search. Please check. (pin at city centre)',
+    'Beginn 20:00 Uhr. Karten ab 27 €.':
+      'Starts 20:00. Tickets from €27.',
+    'Karten ab 23,85 €. Uhrzeit nicht angegeben.':
+      'Tickets from €23.85. Start time not given.',
+    'Einlass 19:00 Uhr, Beginn 20:00 Uhr, Karten ab 25 €. Mit dem Heidelberger Boogie-Woogie-Pianisten Harald „Lee“ Krüger.':
+      'Doors 19:00, starts 20:00, tickets from €25. With Heidelberg boogie-woogie pianist Harald “Lee” Krüger.',
+    'Zwei Abende: 30. und 31.05.2027. Karten ab 46 €.':
+      'Two evenings: 30 and 31 May 2027. Tickets from €46.',
+    'Beginn 18:00 Uhr. Konzerttermin laut Homepage der Band. (Stadtkoordinate)':
+      'Starts 18:00. Concert date per the band\'s website. (pin at city centre)'
   }
 };

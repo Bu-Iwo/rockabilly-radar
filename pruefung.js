@@ -22,6 +22,18 @@
 window.RR_PRUEFUNG = {
   stand: "2026-11-03",
   quellen: {
+    "the-hot-club.com": "2026-11-05",
+    "wyattchristmasfive.de": "2026-11-05",
+    "shotgunjones.de": "2026-11-05",
+    "rocats.de": "2026-11-05",
+    "b-shakers.ch": "2026-11-05",
+    "kajuete-ratzdorf.com": "2026-11-05",
+    "dochornberlin.de": "2026-11-05",
+    "Eventim": "2026-11-05",
+    "Jambase": "2026-11-05",
+    "Songkick": "2026-11-05",
+    "mvp.de": "2026-11-05",
+    "alanpowerandtheaftershocks.com": "2026-11-05"
   },
   termine: {
   },
