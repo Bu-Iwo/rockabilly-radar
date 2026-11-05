@@ -33,7 +33,8 @@ window.RR_PRUEFUNG = {
     "Jambase": "2026-11-05",
     "Songkick": "2026-11-05",
     "mvp.de": "2026-11-05",
-    "alanpowerandtheaftershocks.com": "2026-11-05"
+    "alanpowerandtheaftershocks.com": "2026-11-05",
+    "shboomfestival.it": "2026-11-05"
   },
   termine: {
   },

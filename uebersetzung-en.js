@@ -59,7 +59,10 @@ window.RR_EN = {
     'Kreuzfahrt': 'Cruise',
     'Poolpartys': 'Pool parties',
     'Live-Musik täglich': 'Live music daily',
-    'Steptanz': 'Tap dance'
+    'Steptanz': 'Tap dance',
+    'Live-Musik': 'Live music',
+    'Tanzen': 'Dancing',
+    'Vintage-Markt': 'Vintage market'
   },
 
   /* Orte, die eine Beschreibung statt eines Namens enthalten */
@@ -164,6 +167,10 @@ window.RR_EN = {
     'Zwei Abende: 30. und 31.05.2027. Karten ab 46 €.':
       'Two evenings: 30 and 31 May 2027. Tickets from €46.',
     'Beginn 18:00 Uhr. Konzerttermin laut Homepage der Band. (Stadtkoordinate)':
-      'Starts 18:00. Concert date per the band\'s website. (pin at city centre)'
+      'Starts 18:00. Concert date per the band\'s website. (pin at city centre)',
+    'Beginn 19:00 Uhr. Konzerttermin laut Homepage der Band.':
+      'Starts 19:00. Concert date per the band\'s website.',
+    '11. Ausgabe, 20. bis 23.05.2027. Das Programm mit den Bands steht noch nicht auf der Seite.':
+      '11th edition, 20 to 23 May 2027. The band line-up is not yet on the website.'
   }
 };
