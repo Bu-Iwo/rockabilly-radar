@@ -22,6 +22,11 @@
 window.RR_PRUEFUNG = {
   stand: "2026-11-03",
   quellen: {
+    "we-love-country.de": "2026-11-09",
+    "jukeboxstompers.de": "2026-11-09",
+    "swingcalendar.com": "2026-11-09",
+    "rock-and-roll-termine.de": "2026-11-09",
+    "brokensilence.de": "2026-11-09",
     "the-hot-club.com": "2026-11-05",
     "wyattchristmasfive.de": "2026-11-05",
     "shotgunjones.de": "2026-11-05",
