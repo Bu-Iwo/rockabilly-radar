@@ -86,6 +86,22 @@ window.RR_EN = {
 
   /* Hinweise zu Terminen (Feld "note"). Einfache Hinweise wie "Beginn 20:00 Uhr" übersetzt die App selbst. */
   notes: {
+    "Der 26.03.2027 und der Ort stehen auf der Veranstalterseite. Das Enddatum 28.03. nennt nur der Kalender.":
+      "The date 26 March 2027 and the venue are on the organiser's page. Only the calendar gives the end date, 28 March.",
+    "Tanzshow um 21:50 Uhr im Rahmen des Polyballs.":
+      "Dance show at 21:50 as part of the Polyball.",
+    "Beginn 20:00 Uhr. Eintritt frei, Spenden erbeten.":
+      "Starts 20:00. Free admission, donations welcome.",
+    "Rock 'n' Roll Tanztee. (Stadtkoordinate)":
+      "Rock 'n' roll tea dance. (pin at city centre)",
+    "Rock'n'Roll- und Boogie-Woogie-Party. (Stadtkoordinate)":
+      "Rock'n'roll and boogie woogie party. (pin at city centre)",
+    "Einlass 19:30 Uhr (Stadtkoordinate)":
+      "Doors 19:30 (pin at city centre)",
+    "Beginn 18:00 Uhr: erst eine Stunde Weihnachtsmusik, dann Country-Konzert. (Stadtkoordinate)":
+      "Starts 18:00: one hour of Christmas music, then a country concert. (pin at city centre)",
+    "Einlass 11:00 Uhr, Beginn 12:00 Uhr, nur Vorverkauf. (Stadtkoordinate)":
+      "Doors 11:00, starts 12:00, advance tickets only. (pin at city centre)",
     'Der 26.03.2027 steht bei einem Ticketportal und im Kalender der Jukebox Stompers. Das Enddatum 28.03. nennt nur der Kalender.':
       'The date 26 March 2027 is listed on a ticket portal and in the Jukebox Stompers calendar. Only the calendar gives the end date, 28 March.',
     'Die Seite nennt 2.–4. April, im Text aber nur zwei Tage (2. und 3.). Bitte beim Veranstalter prüfen.':
