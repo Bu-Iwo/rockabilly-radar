@@ -1,5 +1,5 @@
 /*
-  ROCKABILLY RADAR – Künstlerliste (Stand 2026-11-05)
+  ROCKABILLY RADAR – Künstlerliste (Stand 2026-11-09)
 
   Wofür diese Datei da ist:
   - Sie sammelt die Bands und Acts, die in unseren Terminen vorkommen, mit ihrer eigenen Homepage.
@@ -20,7 +20,7 @@
   - ignorieren: Liste von Terminen (JJJJ-MM-TT), die der Nutzer abgelehnt hat. Die Pflege-Aufgabe meldet sie nicht wieder als Kandidaten.
 */
 window.RR_KUENSTLER = {
- "stand": "2026-11-05",
+ "stand": "2026-11-09",
  "eintraege": [
   {
    "name": "The Cashbags",
@@ -458,8 +458,8 @@ window.RR_KUENSTLER = {
     "Catch Trio feat. Kim Bennet"
    ],
    "homepage": "https://www.catch-country.de",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-09",
    "naechste": "",
    "termine": 11,
    "stil": [
@@ -468,7 +468,7 @@ window.RR_KUENSTLER = {
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Adresse gehört evtl. einem Lokal oder Veranstalter, nicht der Band. Bitte prüfen."
+   "hinweis": "Startseite am 09.11.2026 gelesen."
   },
   {
    "name": "Reach",
@@ -561,8 +561,8 @@ window.RR_KUENSTLER = {
    "name": "Chris Angels & Miriam",
    "alias": [],
    "homepage": "https://chrisangelscountry.wixsite.com/my-site-1",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-09",
    "naechste": "",
    "termine": 5,
    "stil": [
@@ -571,7 +571,7 @@ window.RR_KUENSTLER = {
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Adresse stammt aus dem Termin-Link, noch nicht geprüft."
+   "hinweis": "Startseite am 09.11.2026 gelesen."
   },
   {
    "name": "Country Friends",
@@ -927,8 +927,8 @@ window.RR_KUENSTLER = {
    "name": "BANDANA",
    "alias": [],
    "homepage": "https://www.bandana-music.de",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-09",
    "naechste": "",
    "termine": 2,
    "stil": [
@@ -937,14 +937,15 @@ window.RR_KUENSTLER = {
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Adresse stammt aus dem Termin-Link, noch nicht geprüft."
+   "hinweis": "Startseite am 09.11.2026 gelesen. Termine stehen auf der Unterseite.",
+   "terminseite": "https://www.bandana-music.de/gigs"
   },
   {
    "name": "Becky Jay & Band",
    "alias": [],
    "homepage": "https://becky-jay.de",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-09",
    "naechste": "",
    "termine": 2,
    "stil": [
@@ -953,14 +954,15 @@ window.RR_KUENSTLER = {
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Adresse stammt aus dem Termin-Link, noch nicht geprüft."
+   "hinweis": "Startseite am 09.11.2026 gelesen. Termine stehen auf der Unterseite.",
+   "terminseite": "https://becky-jay.de/termine/"
   },
   {
    "name": "Big S. Fullband",
    "alias": [],
    "homepage": "https://www.bigsmusic.com",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-09",
    "naechste": "",
    "termine": 2,
    "stil": [
@@ -969,7 +971,7 @@ window.RR_KUENSTLER = {
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Adresse stammt aus dem Termin-Link, noch nicht geprüft."
+   "hinweis": "Startseite am 09.11.2026 gelesen."
   },
   {
    "name": "Bloodsucking Zombies from Outer Space",
@@ -992,8 +994,8 @@ window.RR_KUENSTLER = {
    "name": "Bonny Tones",
    "alias": [],
    "homepage": "https://bonnytones.de",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-09",
    "naechste": "",
    "termine": 2,
    "stil": [
@@ -1003,14 +1005,15 @@ window.RR_KUENSTLER = {
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Adresse stammt aus dem Termin-Link, noch nicht geprüft."
+   "hinweis": "Startseite am 09.11.2026 gelesen. Termine stehen auf der Unterseite.",
+   "terminseite": "https://bonnytones.de/termine/"
   },
   {
    "name": "Bud'n'Cellar",
    "alias": [],
    "homepage": "https://budncellar.live",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-09",
    "naechste": "",
    "termine": 2,
    "stil": [
@@ -1019,14 +1022,14 @@ window.RR_KUENSTLER = {
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Adresse stammt aus dem Termin-Link, noch nicht geprüft."
+   "hinweis": "Startseite am 09.11.2026 gelesen."
   },
   {
    "name": "Cagey Strings",
    "alias": [],
    "homepage": "https://cageystrings.de",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-09",
    "naechste": "",
    "termine": 2,
    "stil": [
@@ -1036,7 +1039,7 @@ window.RR_KUENSTLER = {
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Adresse stammt aus dem Termin-Link, noch nicht geprüft."
+   "hinweis": "Startseite am 09.11.2026 gelesen."
   },
   {
    "name": "Daniel T. Coates Trio & Saints & Sinners",
@@ -1421,8 +1424,8 @@ window.RR_KUENSTLER = {
    "name": "'Hofgenuss' Country Music",
    "alias": [],
    "homepage": "https://weingut-hillabrand.de",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-09",
    "naechste": "",
    "termine": 1,
    "stil": [
@@ -1431,14 +1434,14 @@ window.RR_KUENSTLER = {
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Adresse stammt aus dem Termin-Link, noch nicht geprüft."
+   "hinweis": "Startseite am 09.11.2026 gelesen."
   },
   {
    "name": "2U & Mi",
    "alias": [],
    "homepage": "https://www.2u-and-mi.de",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-09",
    "naechste": "",
    "termine": 1,
    "stil": [
@@ -1447,14 +1450,14 @@ window.RR_KUENSTLER = {
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Adresse stammt aus dem Termin-Link, noch nicht geprüft."
+   "hinweis": "Startseite am 09.11.2026 gelesen."
   },
   {
    "name": "4 Cash",
    "alias": [],
    "homepage": "https://www.4cash-band.de",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-09",
    "naechste": "",
    "termine": 1,
    "stil": [
@@ -1463,14 +1466,15 @@ window.RR_KUENSTLER = {
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Adresse stammt aus dem Termin-Link, noch nicht geprüft."
+   "hinweis": "Startseite am 09.11.2026 gelesen. Termine stehen auf der Unterseite.",
+   "terminseite": "https://www.4cash-band.de/termine.php"
   },
   {
    "name": "Alex Klein Band",
    "alias": [],
    "homepage": "https://www.alexklein.ch",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-09",
    "naechste": "",
    "termine": 1,
    "stil": [
@@ -1479,7 +1483,7 @@ window.RR_KUENSTLER = {
    "land": [
     "Schweiz"
    ],
-   "hinweis": "Adresse stammt aus dem Termin-Link, noch nicht geprüft."
+   "hinweis": "Startseite am 09.11.2026 gelesen."
   },
   {
    "name": "All in Tune",
@@ -1501,8 +1505,8 @@ window.RR_KUENSTLER = {
    "name": "Andy Lee & His Rockin' Country Men",
    "alias": [],
    "homepage": "https://www.andylee.de",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-09",
    "naechste": "",
    "termine": 1,
    "stil": [
@@ -1512,14 +1516,14 @@ window.RR_KUENSTLER = {
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Adresse stammt aus dem Termin-Link, noch nicht geprüft."
+   "hinweis": "Startseite am 09.11.2026 gelesen."
   },
   {
    "name": "Andy Nickel & Tom Rascal",
    "alias": [],
    "homepage": "https://linedancebang.de",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-09",
    "naechste": "",
    "termine": 1,
    "stil": [
@@ -1528,14 +1532,14 @@ window.RR_KUENSTLER = {
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Adresse stammt aus dem Termin-Link, noch nicht geprüft."
+   "hinweis": "Startseite am 09.11.2026 gelesen."
   },
   {
    "name": "Angie & Hillbilly Deluxe",
    "alias": [],
    "homepage": "https://www.hillbillydeluxe.de",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-09",
    "naechste": "",
    "termine": 1,
    "stil": [
@@ -1545,7 +1549,7 @@ window.RR_KUENSTLER = {
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Adresse stammt aus dem Termin-Link, noch nicht geprüft."
+   "hinweis": "Startseite am 09.11.2026 gelesen."
   },
   {
    "name": "Aron King & His Ferriday Rockers",
@@ -1749,8 +1753,8 @@ window.RR_KUENSTLER = {
    "name": "Buddy Dee & The Ghostriders",
    "alias": [],
    "homepage": "https://www.buddydee.ch",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-09",
    "naechste": "",
    "termine": 1,
    "stil": [
@@ -1759,14 +1763,14 @@ window.RR_KUENSTLER = {
    "land": [
     "Schweiz"
    ],
-   "hinweis": "Adresse stammt aus dem Termin-Link, noch nicht geprüft."
+   "hinweis": "Startseite am 09.11.2026 gelesen."
   },
   {
    "name": "Buffalo Drive",
    "alias": [],
    "homepage": "https://www.buffalodrive.de",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-09",
    "naechste": "",
    "termine": 1,
    "stil": [
@@ -1775,7 +1779,8 @@ window.RR_KUENSTLER = {
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Adresse stammt aus dem Termin-Link, noch nicht geprüft."
+   "hinweis": "Startseite am 09.11.2026 gelesen. Termine stehen auf der Unterseite.",
+   "terminseite": "https://www.buffalodrive.de/termine"
   },
   {
    "name": "Carter Faith",
@@ -1813,8 +1818,8 @@ window.RR_KUENSTLER = {
    "name": "CCR Tribute Band",
    "alias": [],
    "homepage": "https://www.ccr-tribute.de",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-09",
    "naechste": "",
    "termine": 1,
    "stil": [
@@ -1823,7 +1828,8 @@ window.RR_KUENSTLER = {
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Adresse stammt aus dem Termin-Link, noch nicht geprüft."
+   "hinweis": "Startseite am 09.11.2026 gelesen. Termine stehen auf der Unterseite.",
+   "terminseite": "https://www.ccr-tribute.de/termine/"
   },
   {
    "name": "Chicago Swing Collective",
