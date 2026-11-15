@@ -29,6 +29,7 @@ window.RR_PRUEFUNG = {
     "brokensilence.de": "2026-11-15",
     "vintage-club.de": "2026-11-15",
     "head-over-heels.ch": "2026-11-15",
+    "rattlesnake-saloon.com": "2026-11-15",
     "hasseroeder-burghotel.de": "2026-11-15",
     "screaminfestival.com": "2026-11-15",
     "the-hot-club.com": "2026-11-05",
@@ -89,7 +90,8 @@ window.RR_PRUEFUNG = {
     "x-bs-20261120-wernigerode-lennebrothers-band": { datum: "2026-11-15", art: "veranstalter" },
     "x-hb-20261121-wernigerode-die-eis-boys": { datum: "2026-11-15", art: "veranstalter" },
     "x-vc-20261121-muenchen-sweety-swing-night": { datum: "2026-11-15", art: "veranstalter" },
-    "x-vc-20261128-muenchen-15-jahre-vintage-club": { datum: "2026-11-15", art: "veranstalter" }
+    "x-vc-20261128-muenchen-15-jahre-vintage-club": { datum: "2026-11-15", art: "veranstalter" },
+    "x-rs-20261128-muenchen-the-clouds-munich": { datum: "2026-11-15", art: "veranstalter" }
   },
   fehlt: {
   }
