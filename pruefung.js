@@ -42,11 +42,16 @@ window.RR_PRUEFUNG = {
     "shboomfestival.it": "2026-11-05"
   },
   termine: {
+    "js-teadance-1129": { datum: "2026-11-15", art: "veranstalter" },
+    "js-teadance-1213": { datum: "2026-11-15", art: "veranstalter" },
+    "js-sdn-1212": { datum: "2026-11-15", art: "veranstalter" },
+    "x-rr-20261205-stuttgart-feue-jeepers-creepers": { datum: "2026-11-15", art: "veranstalter" },
+    "x-rr-20261121-karlsruhe-shakin-cats": { datum: "2026-11-15", art: "veranstalter" },
     "sc-20261114-zuerich-swingfloor-party": { datum: "2026-11-09", art: "veranstalter" },
-    "sc-20261205-zuerich-swingfloor-party": { datum: "2026-11-09", art: "veranstalter" },
-    "sc-20261127-zuerich-stir-it": { datum: "2026-11-09", art: "veranstalter" },
-    "sc-20261210-wien-blues-fever-festival": { datum: "2026-11-09", art: "veranstalter" },
-    "sc-20261211-augsburg-xmaswing": { datum: "2026-11-09", art: "veranstalter" },
+    "sc-20261205-zuerich-swingfloor-party": { datum: "2026-11-15", art: "veranstalter" },
+    "sc-20261127-zuerich-stir-it": { datum: "2026-11-15", art: "veranstalter" },
+    "sc-20261210-wien-blues-fever-festival": { datum: "2026-11-15", art: "veranstalter" },
+    "sc-20261211-augsburg-xmaswing": { datum: "2026-11-15", art: "veranstalter" },
     "js-xmas-dortmund-2026": { datum: "2026-11-09", art: "veranstalter" },
     "sc-20270108-basel-jitterbugs-delight-202": { datum: "2026-11-09", art: "veranstalter" },
     "sc-20270121-frankfurt-am-main-mainhatten-blues-frank": { datum: "2026-11-09", art: "veranstalter" },
@@ -57,13 +62,12 @@ window.RR_PRUEFUNG = {
     "sc-20270326-zuerich-istherehop-2027": { datum: "2026-11-09", art: "veranstalter" },
     "js-silvester-boheme-2026": { datum: "2026-11-09", art: "veranstalter" },
     "x-rr-20261219-speyer-la-nuit-boheme-l-a": { datum: "2026-11-09", art: "veranstalter" },
-    "sc-20261128-berlin-boh-me-sauvage-berlin-": { datum: "2026-11-09", art: "veranstalter" },
+    "sc-20261128-berlin-boh-me-sauvage-berlin-": { datum: "2026-11-15", art: "veranstalter" },
     "sc-20261231-berlin-boh-me-sauvage-berlin-": { datum: "2026-11-09", art: "veranstalter" },
     "sc-20270213-berlin-boh-me-sauvage-berlin-": { datum: "2026-11-09", art: "veranstalter" },
     "sc-20270417-jena-boh-me-sauvage-jena-n-": { datum: "2026-11-09", art: "veranstalter" },
     "sc-20270522-berlin-boh-me-sauvage-berlin-": { datum: "2026-11-09", art: "veranstalter" }
   },
   fehlt: {
-    "c-20261114-muecke-ruppertenrod-rascal-dodger-country-li": { seit: "2026-11-09", anzahl: 1 }
   }
 };
