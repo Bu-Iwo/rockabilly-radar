@@ -47,16 +47,16 @@ window.RR_EVENTS = [
   {
     id: "rocking-riot-2027", kind: "festival",
     title: "Rocking Riot",
-    start: "2027-04-02", end: "2027-04-04",
+    start: "2027-04-02", end: "2027-04-03",
     city: "Eindhoven", countryName: "Niederlande",
     venue: "Beursgebouw, Lardinoisstraat 8",
-    lat: 51.4414, lng: 5.4813,
+    lat: 51.4432, lng: 5.4763,
     styles: ["Rockabilly", "Rock'n'Roll"],
     features: ["Rocking Rebels Eindhoven"],
     info: "https://www.rebelshop.nl/details-en-registratie/rocking-riot-2027",
     tickets: "https://www.rebelshop.nl/details-en-registratie/rocking-riot-2027",
-    status: "check",
-    note: "Die Seite nennt 2.–4. April, im Text aber nur zwei Tage (2. und 3.). Bitte beim Veranstalter prüfen."
+    status: "ok",
+    note: "Beginn 2. April um 17:00 Uhr, Ende laut Seite am 4. April um 04:00 Uhr (Nacht nach dem 3.)."
   },
   {
     id: "wiesloch-weekender-2027", kind: "festival",
@@ -269,9 +269,9 @@ window.RR_EVENTS = [
   {"id":"sc-20261231-hamburg-new-year-s-eve-party-for-","kind":"local","title":"New Year’s Eve Party For Swift Soles","start":"2026-12-31","end":"2027-01-01","city":"Hamburg","countryName":"Deutschland","venue":"New Swing Studio, Boschstraße 15 (Moritzhof, Eingang D)","lat":53.567,"lng":9.9146,"styles":["Swing","Balboa","Shag"],"features":[],"info":"https://www.newswinggeneration.de/new-years-eve-party-for-swift-soles-second-edition-31-dez-26/","acts":"","status":"kalender","src":"swingcalendar.com","note":"Beginn 20:30 Uhr","dance":true},
   {"id":"sc-20261129-kassel-swingcafe","kind":"local","title":"Swingcafé","start":"2026-11-29","end":"2026-11-29","city":"Kassel","countryName":"Deutschland","venue":"Karthäuserstraße 5A (Zero)","lat":51.3137,"lng":9.4852,"styles":["Swing","Lindy Hop","Balboa","Charleston","Shag"],"features":[],"info":"https://www.swing-kassel.de/specials/","acts":"","status":"kalender","src":"swingcalendar.com","note":"Beginn 15:00 Uhr","dance":true},
   {"id":"sc-20261212-kassel-swing-party-mit-live-act-c","kind":"local","title":"Swing-Party mit Live-Act „Chris Hopkins’ Swinging Christmas“","start":"2026-12-12","end":"2026-12-12","city":"Kassel","countryName":"Deutschland","venue":"Karthäuserstraße 5A","lat":51.3137,"lng":9.4852,"styles":["Swing","Lindy Hop","Balboa","Charleston","Shag"],"features":[],"info":"https://www.swing-kassel.de/specials/","acts":"","status":"kalender","src":"swingcalendar.com","note":"Beginn 19:00 Uhr","dance":true},
-  {"id":"x-hb-20261121-wernigerode-die-eis-boys","kind":"local","title":"Die Eis Boys – Rock’n’Roll à la Eis am Stiel","start":"2026-11-21","end":"2026-11-21","city":"Wernigerode","countryName":"Deutschland","venue":"Hasseröder Burghotel","lat":51.836,"lng":10.785,"styles":["Rock'n'Roll"],"features":[],"info":"https://www.hasseroeder-burghotel.de/veranstaltung/die-eis-boys/","status":"ok","src":"hasseroeder-burghotel.de","note":"Beginn 20:30 Uhr. (Stadtkoordinate)"},
-  {"id":"x-vc-20261121-muenchen-sweety-swing-night","kind":"local","title":"Sweety Swing Night","start":"2026-11-21","end":"2026-11-21","city":"München","countryName":"Deutschland","venue":"Vintage Club, Sonnenstr. 12b","lat":48.1371,"lng":11.5754,"styles":["Swing","Lindy Hop","Balboa","Shag","Blues"],"features":[],"info":"https://www.vintage-club.de/","status":"ok","src":"vintage-club.de","note":"Beginn 20:00 Uhr. (Stadtkoordinate)"},
-  {"id":"x-vc-20261128-muenchen-15-jahre-vintage-club","kind":"local","title":"15 Jahre Vintage Club – Jubiläumsparty","start":"2026-11-28","end":"2026-11-28","city":"München","countryName":"Deutschland","venue":"Vintage Club, Sonnenstr. 12b","lat":48.1371,"lng":11.5754,"styles":["Swing","Boogie","Rock'n'Roll"],"features":[],"info":"https://www.vintage-club.de/","status":"ok","src":"vintage-club.de","note":"Beginn 20:00 Uhr. (Stadtkoordinate)"},
+  {"id":"x-hb-20261121-wernigerode-die-eis-boys","kind":"local","title":"Die Eis Boys – Rock’n’Roll à la Eis am Stiel","start":"2026-11-21","end":"2026-11-21","city":"Wernigerode","countryName":"Deutschland","venue":"Hasseröder Burghotel","lat":51.8211,"lng":10.7551,"styles":["Rock'n'Roll"],"features":[],"info":"https://www.hasseroeder-burghotel.de/veranstaltung/die-eis-boys/","status":"ok","src":"hasseroeder-burghotel.de","note":"Beginn 20:30 Uhr."},
+  {"id":"x-vc-20261121-muenchen-sweety-swing-night","kind":"local","title":"Sweety Swing Night","start":"2026-11-21","end":"2026-11-21","city":"München","countryName":"Deutschland","venue":"Vintage Club, Sonnenstr. 12b","lat":48.1385,"lng":11.566,"styles":["Swing","Lindy Hop","Balboa","Shag","Blues"],"features":[],"info":"https://www.vintage-club.de/","status":"ok","src":"vintage-club.de","note":"Beginn 20:00 Uhr. Lage nach der Adresse geschätzt (Nähe Stachus)."},
+  {"id":"x-vc-20261128-muenchen-15-jahre-vintage-club","kind":"local","title":"15 Jahre Vintage Club – Jubiläumsparty","start":"2026-11-28","end":"2026-11-28","city":"München","countryName":"Deutschland","venue":"Vintage Club, Sonnenstr. 12b","lat":48.1385,"lng":11.566,"styles":["Swing","Boogie","Rock'n'Roll"],"features":[],"info":"https://www.vintage-club.de/","status":"ok","src":"vintage-club.de","note":"Beginn 20:00 Uhr. Lage nach der Adresse geschätzt (Nähe Stachus)."},
   {"id":"x-bd-20261121-orpund-head-over-heels","kind":"local","title":"Head Over Heels – Rock'n'Roll Tanzparty","start":"2026-11-21","end":"2026-11-21","city":"Orpund","countryName":"Schweiz","venue":"Rest. Ranch","lat":47.13,"lng":7.31,"styles":["Rock'n'Roll"],"features":[],"info":"https://head-over-heels.ch/event/rocknroll-tanzparty-7/","status":"kalender","src":"head-over-heels.ch (Stand 15.11.2026)","note":"Beginn 20:00 Uhr. Konzerttermin laut Homepage der Band. (Stadtkoordinate)"},
   {"id":"x-bd-20261219-langenthal-head-over-heels","kind":"local","title":"Head Over Heels – Rock'n'Roll Tanzparty","start":"2026-12-19","end":"2026-12-19","city":"Langenthal","countryName":"Schweiz","venue":"Rest. Bären","lat":47.2157,"lng":7.7877,"styles":["Rock'n'Roll"],"features":[],"info":"https://head-over-heels.ch/event/rocknroll-tanzparty-rest-baeren-langenthal-be/","status":"kalender","src":"head-over-heels.ch (Stand 15.11.2026)","note":"Beginn 20:00 Uhr. Konzerttermin laut Homepage der Band. (Stadtkoordinate)"},
   {"id":"x-bd-20270116-lyss-head-over-heels","kind":"local","title":"Head Over Heels – Rock'n'Roll Tanzparty","start":"2027-01-16","end":"2027-01-16","city":"Lyss","countryName":"Schweiz","venue":"Seelandhotel Weisses Kreuz","lat":47.073,"lng":7.307,"styles":["Rock'n'Roll"],"features":[],"info":"https://head-over-heels.ch/event/rocknroll-tanzparty-11/","status":"kalender","src":"head-over-heels.ch (Stand 15.11.2026)","note":"Beginn 20:00 Uhr. Konzerttermin laut Homepage der Band. (Stadtkoordinate)"},
