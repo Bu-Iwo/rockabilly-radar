@@ -27,6 +27,10 @@ window.RR_PRUEFUNG = {
     "swingcalendar.com": "2026-11-15",
     "rock-and-roll-termine.de": "2026-11-15",
     "brokensilence.de": "2026-11-15",
+    "vintage-club.de": "2026-11-15",
+    "head-over-heels.ch": "2026-11-15",
+    "hasseroeder-burghotel.de": "2026-11-15",
+    "screaminfestival.com": "2026-11-15",
     "the-hot-club.com": "2026-11-05",
     "wyattchristmasfive.de": "2026-11-05",
     "shotgunjones.de": "2026-11-05",
@@ -83,7 +87,9 @@ window.RR_PRUEFUNG = {
     "sc-20270305-augsburg-sweet-bal-weekend": { datum: "2026-11-15", art: "veranstalter" },
     "sc-20270416-schwerin-swinging-weekender": { datum: "2026-11-15", art: "veranstalter" },
     "x-bs-20261120-wernigerode-lennebrothers-band": { datum: "2026-11-15", art: "veranstalter" },
-    "x-hb-20261121-wernigerode-die-eis-boys": { datum: "2026-11-15", art: "veranstalter" }
+    "x-hb-20261121-wernigerode-die-eis-boys": { datum: "2026-11-15", art: "veranstalter" },
+    "x-vc-20261121-muenchen-sweety-swing-night": { datum: "2026-11-15", art: "veranstalter" },
+    "x-vc-20261128-muenchen-15-jahre-vintage-club": { datum: "2026-11-15", art: "veranstalter" }
   },
   fehlt: {
   }
