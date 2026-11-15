@@ -86,6 +86,12 @@ window.RR_EN = {
 
   /* Hinweise zu Terminen (Feld "note"). Einfache Hinweise wie "Beginn 20:00 Uhr" übersetzt die App selbst. */
   notes: {
+    'Beginn 20:00 Uhr. Konzerttermin laut Homepage der Band. (Stadtkoordinate)':
+      'Starts 20:00. Concert date per the band\'s website. (pin at city centre)',
+    'Beginn 11:00 Uhr. Konzerttermin laut Homepage der Band. (Stadtkoordinate)':
+      'Starts 11:00. Concert date per the band\'s website. (pin at city centre)',
+    'Der Veranstalter nennt auf seiner Seite nur 2026 und fragt, ob es eine dritte Ausgabe gibt. Bitte beim Veranstalter prüfen.':
+      'The organiser\'s page only mentions 2026 and asks whether there will be a third edition. Please check with the organiser.',
     "Der 26.03.2027 und der Ort stehen auf der Veranstalterseite. Das Enddatum 28.03. nennt nur der Kalender.":
       "The date 26 March 2027 and the venue are on the organiser's page. Only the calendar gives the end date, 28 March.",
     "Tanzshow um 21:50 Uhr im Rahmen des Polyballs.":
