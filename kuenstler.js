@@ -20,7 +20,7 @@
   - ignorieren: Liste von Terminen (JJJJ-MM-TT), die der Nutzer abgelehnt hat. Die Pflege-Aufgabe meldet sie nicht wieder als Kandidaten.
 */
 window.RR_KUENSTLER = {
- "stand": "2026-11-09",
+ "stand": "2026-11-15",
  "eintraege": [
   {
    "name": "The Cashbags",
@@ -491,8 +491,8 @@ window.RR_KUENSTLER = {
    "name": "High Risk",
    "alias": [],
    "homepage": "https://high-risk-web.de",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "nein",
+   "geprueft": "2026-11-15",
    "naechste": "",
    "termine": 7,
    "stil": [
@@ -501,7 +501,7 @@ window.RR_KUENSTLER = {
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Adresse stammt aus dem Termin-Link, noch nicht geprüft."
+   "hinweis": "Tourdaten 2026/27 stehen nur als Bild auf high-risk-web.de/tour/, nicht lesbar."
   },
   {
    "name": "Tom Rascal & The Lakeland Cowboys",
@@ -577,8 +577,8 @@ window.RR_KUENSTLER = {
    "name": "Country Friends",
    "alias": [],
    "homepage": "https://countryfriends-zirndorf.de",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-15",
    "naechste": "",
    "termine": 5,
    "stil": [
@@ -587,14 +587,14 @@ window.RR_KUENSTLER = {
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Adresse stammt aus dem Termin-Link, noch nicht geprüft."
+   "hinweis": "Terminseite lesbar (3 Termine)."
   },
   {
    "name": "CountryBell",
    "alias": [],
    "homepage": "https://www.countrybell.de",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-15",
    "naechste": "",
    "termine": 5,
    "stil": [
@@ -603,7 +603,7 @@ window.RR_KUENSTLER = {
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Adresse stammt aus dem Termin-Link, noch nicht geprüft."
+   "hinweis": "Startseite lesbar; die Auftritte-Seite meldete beim Abruf einen Fehler (client_error)."
   },
   {
    "name": "Four Roses",
@@ -761,8 +761,8 @@ window.RR_KUENSTLER = {
    "name": "Copperhead Jack & Co",
    "alias": [],
    "homepage": "https://copperheadjack.de",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-15",
    "naechste": "",
    "termine": 3,
    "stil": [
@@ -771,14 +771,14 @@ window.RR_KUENSTLER = {
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Adresse stammt aus dem Termin-Link, noch nicht geprüft."
+   "hinweis": "Terminseite lesbar, 2026-11-15: keine Termine ab 15.11.2026 aufgefuehrt (Liste endet 11.10.2026)."
   },
   {
    "name": "Country Company",
    "alias": [],
    "homepage": "https://www.country-company.eu",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "nein",
+   "geprueft": "2026-11-15",
    "naechste": "",
    "termine": 3,
    "stil": [
@@ -787,7 +787,7 @@ window.RR_KUENSTLER = {
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Adresse stammt aus dem Termin-Link, noch nicht geprüft."
+   "hinweis": "Abruf am 15.11.2026 meldete client_error, Seite nicht lesbar."
   },
   {
    "name": "Hee Haw Pickin' Band",
@@ -1047,8 +1047,8 @@ window.RR_KUENSTLER = {
     "Daniel T. Coates Band"
    ],
    "homepage": "https://danieltcoates.jimdofree.com",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-15",
    "naechste": "",
    "termine": 2,
    "stil": [
@@ -1057,7 +1057,7 @@ window.RR_KUENSTLER = {
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Adresse stammt aus dem Termin-Link, noch nicht geprüft."
+   "hinweis": "Terminseite lesbar: https://danieltcoates.jimdofree.com/schedule-termine-2026-2027/"
   },
   {
    "name": "Dasha",
@@ -1079,8 +1079,8 @@ window.RR_KUENSTLER = {
    "name": "De Waltons",
    "alias": [],
    "homepage": "https://dewaltons.de",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-15",
    "naechste": "",
    "termine": 2,
    "stil": [
@@ -1089,7 +1089,7 @@ window.RR_KUENSTLER = {
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Adresse stammt aus dem Termin-Link, noch nicht geprüft."
+   "hinweis": "Terminseite lesbar."
   },
   {
    "name": "Emily Ann Roberts",
@@ -1922,8 +1922,8 @@ window.RR_KUENSTLER = {
    "name": "Country Music Award",
    "alias": [],
    "homepage": "https://www.pullmancity.de",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-15",
    "naechste": "",
    "termine": 1,
    "stil": [
@@ -1932,14 +1932,14 @@ window.RR_KUENSTLER = {
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Adresse stammt aus dem Termin-Link, noch nicht geprüft."
+   "hinweis": "pullmancity.de lesbar (Rockabilly Night 27.12.2026 gefunden)."
   },
   {
    "name": "Country Wochenende der NZ Bäbenger Wildsaue",
    "alias": [],
    "homepage": "https://www.mountainmusicband.de",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-15",
    "naechste": "",
    "termine": 1,
    "stil": [
@@ -1948,14 +1948,14 @@ window.RR_KUENSTLER = {
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Adresse stammt aus dem Termin-Link, noch nicht geprüft."
+   "hinweis": "mountainmusicband.de lesbar (Tourdaten 2027)."
   },
   {
    "name": "Countryholics",
    "alias": [],
    "homepage": "https://countryholics.de",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-15",
    "naechste": "",
    "termine": 1,
    "stil": [
@@ -1964,14 +1964,14 @@ window.RR_KUENSTLER = {
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Adresse stammt aus dem Termin-Link, noch nicht geprüft."
+   "hinweis": "Terminseite lesbar, 12 Termine 2027."
   },
   {
    "name": "Dakota Train (Daisy Town)",
    "alias": [],
    "homepage": "https://www.daisytown-band.de",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-15",
    "naechste": "",
    "termine": 1,
    "stil": [
@@ -1980,7 +1980,7 @@ window.RR_KUENSTLER = {
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Adresse stammt aus dem Termin-Link, noch nicht geprüft."
+   "hinweis": "Termine-Seite lesbar, 2026-11-15: keine Termine ab 15.11.2026, 2027 nur in Planung."
   },
   {
    "name": "Daniel Duspiwa Quartet",
@@ -2037,8 +2037,8 @@ window.RR_KUENSTLER = {
    "name": "Dee Dee & The Bel Airs",
    "alias": [],
    "homepage": "https://www.deedeeandthebelairs.de",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-15",
    "naechste": "",
    "termine": 1,
    "stil": [
@@ -2048,7 +2048,7 @@ window.RR_KUENSTLER = {
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Adresse stammt aus dem Termin-Link, noch nicht geprüft."
+   "hinweis": "Startseite braucht JavaScript, die Seite bevorstehende-auftritte.html ist lesbar."
   },
   {
    "name": "Doc Adams",
@@ -2070,8 +2070,8 @@ window.RR_KUENSTLER = {
    "name": "Dr. Wisebrod's Swingboppers",
    "alias": [],
    "homepage": "https://shop.kinoweinheim.de/products/8-november-2026-11-uhr-matinee-mit-dr-wisebrod-s-swingboppers",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "nein",
+   "geprueft": "2026-11-15",
    "naechste": "",
    "termine": 1,
    "stil": [
@@ -2080,7 +2080,7 @@ window.RR_KUENSTLER = {
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Adresse stammt aus dem Termin-Link, noch nicht geprüft."
+   "hinweis": "Abruf der Kino-Weinheim-Seite am 15.11.2026 meldete client_error."
   },
   {
    "name": "Drew Baldridge",
@@ -2121,8 +2121,8 @@ window.RR_KUENSTLER = {
    "name": "Fairschärft",
    "alias": [],
    "homepage": "https://www.fairschaerft.de",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-15",
    "naechste": "",
    "termine": 1,
    "stil": [
@@ -2131,7 +2131,7 @@ window.RR_KUENSTLER = {
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Adresse stammt aus dem Termin-Link, noch nicht geprüft."
+   "hinweis": "Terminseite https://www.fairschaerft.de/termine/ lesbar."
   },
   {
    "name": "Federolfs Syncopators",
@@ -2155,8 +2155,8 @@ window.RR_KUENSTLER = {
    "name": "Flaggstaff",
    "alias": [],
    "homepage": "https://flaggstaff.de",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-15",
    "naechste": "",
    "termine": 1,
    "stil": [
@@ -2165,7 +2165,7 @@ window.RR_KUENSTLER = {
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Adresse stammt aus dem Termin-Link, noch nicht geprüft."
+   "hinweis": "Terminseite lesbar."
   },
   {
    "name": "George Hug Band & Martina Meier",
@@ -2187,8 +2187,8 @@ window.RR_KUENSTLER = {
    "name": "Gudrun Lange & Kactus",
    "alias": [],
    "homepage": "https://www.gudrunlange-kactus.de",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-15",
    "naechste": "",
    "termine": 1,
    "stil": [
@@ -2197,7 +2197,7 @@ window.RR_KUENSTLER = {
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Adresse stammt aus dem Termin-Link, noch nicht geprüft."
+   "hinweis": "Terminseite https://www.gudrunlange-kactus.de/on-tour/ lesbar."
   },
   {
    "name": "Hagen Horn and his Little Big Band",
@@ -2222,8 +2222,8 @@ window.RR_KUENSTLER = {
    "name": "Hard Travelin'",
    "alias": [],
    "homepage": "https://www.hardtravelin.com",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-15",
    "naechste": "",
    "termine": 1,
    "stil": [
@@ -2232,14 +2232,14 @@ window.RR_KUENSTLER = {
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Adresse stammt aus dem Termin-Link, noch nicht geprüft."
+   "hinweis": "Terminseite https://www.hardtravelin.com/live/ lesbar."
   },
   {
    "name": "Head Over Heels",
    "alias": [],
    "homepage": "https://head-over-heels.ch",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-15",
    "naechste": "",
    "termine": 1,
    "stil": [
@@ -2248,7 +2248,7 @@ window.RR_KUENSTLER = {
    "land": [
     "Schweiz"
    ],
-   "hinweis": "Adresse stammt aus dem Termin-Link, noch nicht geprüft."
+   "hinweis": "Terminseite https://head-over-heels.ch/konzerte/ lesbar (viele Rock'n'Roll-Tanzparties in der Schweiz)."
   },
   {
    "name": "Hee Haw Pickin' Band mit Bill Conlon",
