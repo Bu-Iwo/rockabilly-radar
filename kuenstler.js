@@ -20,7 +20,7 @@
   - ignorieren: Liste von Terminen (JJJJ-MM-TT), die der Nutzer abgelehnt hat. Die Pflege-Aufgabe meldet sie nicht wieder als Kandidaten.
 */
 window.RR_KUENSTLER = {
- "stand": "2026-11-15",
+ "stand": "2026-11-23",
  "eintraege": [
   {
    "name": "The Cashbags",
@@ -422,8 +422,8 @@ window.RR_KUENSTLER = {
    "name": "Purling Brooks",
    "alias": [],
    "homepage": "https://purlingbrooks.de",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-23",
    "naechste": "",
    "termine": 12,
    "stil": [
@@ -647,8 +647,8 @@ window.RR_KUENSTLER = {
    "name": "Nashville",
    "alias": [],
    "homepage": "https://www.nashville-band.de",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-23",
    "naechste": "",
    "termine": 5,
    "stil": [
@@ -713,8 +713,8 @@ window.RR_KUENSTLER = {
    "name": "Paul & Eric Stowe",
    "alias": [],
    "homepage": "https://paulstowe.com",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-23",
    "naechste": "",
    "termine": 4,
    "stil": [
@@ -826,8 +826,8 @@ window.RR_KUENSTLER = {
    "name": "Mountain Four",
    "alias": [],
    "homepage": "https://www.mountain-four.de",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-23",
    "naechste": "",
    "termine": 3,
    "stil": [
@@ -1161,8 +1161,8 @@ window.RR_KUENSTLER = {
    "name": "Little Roadhouse",
    "alias": [],
    "homepage": "https://littleroadhouse.de",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-23",
    "naechste": "",
    "termine": 2,
    "stil": [
@@ -1177,8 +1177,8 @@ window.RR_KUENSTLER = {
    "name": "Loose Moose Band",
    "alias": [],
    "homepage": "https://loose-moose-band.online",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "nein",
+   "geprueft": "2026-11-23",
    "naechste": "",
    "termine": 2,
    "stil": [
@@ -1193,8 +1193,8 @@ window.RR_KUENSTLER = {
    "name": "Matt Lang",
    "alias": [],
    "homepage": "https://mattlangmusic.com",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-23",
    "naechste": "",
    "termine": 2,
    "stil": [
@@ -1227,8 +1227,8 @@ window.RR_KUENSTLER = {
    "name": "Pick Up Ramblers",
    "alias": [],
    "homepage": "http://pick-up-ramblers.de",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-23",
    "naechste": "",
    "termine": 2,
    "stil": [
@@ -2339,8 +2339,8 @@ window.RR_KUENSTLER = {
    "name": "Jeepers Creepers",
    "alias": [],
    "homepage": "https://www.jeeperscreepers.de",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-23",
    "naechste": "",
    "termine": 1,
    "stil": [
@@ -2371,8 +2371,8 @@ window.RR_KUENSTLER = {
    "name": "Johnny Ray",
    "alias": [],
    "homepage": "https://johnnyray-country.wixsite.com/countrymusic",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-23",
    "naechste": "",
    "termine": 1,
    "stil": [
@@ -2387,8 +2387,8 @@ window.RR_KUENSTLER = {
    "name": "Jolina Carl & Der Wuppertiger",
    "alias": [],
    "homepage": "https://jolinacarl.com",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-23",
    "naechste": "",
    "termine": 1,
    "stil": [
@@ -2459,8 +2459,8 @@ window.RR_KUENSTLER = {
    "name": "Keep Calm",
    "alias": [],
    "homepage": "https://keepcalm-band.de",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-23",
    "naechste": "",
    "termine": 1,
    "stil": [
@@ -2491,8 +2491,8 @@ window.RR_KUENSTLER = {
    "name": "La Nuit Boheme",
    "alias": [],
    "homepage": "https://www.mein-event.shop/produkt/la-nuit-boheme-lavant-garde-19122026",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-23",
    "naechste": "",
    "termine": 1,
    "stil": [
@@ -2507,8 +2507,8 @@ window.RR_KUENSTLER = {
    "name": "LenneRockets",
    "alias": [],
    "homepage": "https://www.lennerockets.de",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-23",
    "naechste": "",
    "termine": 1,
    "stil": [
@@ -2574,8 +2574,8 @@ window.RR_KUENSTLER = {
    "name": "Lottmann & Masters",
    "alias": [],
    "homepage": "https://www.robertlottmann.com",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-23",
    "naechste": "",
    "termine": 1,
    "stil": [
@@ -2590,8 +2590,8 @@ window.RR_KUENSTLER = {
    "name": "Louisiana & Kings Cotton",
    "alias": [],
    "homepage": "https://www.louisiana-ontour.de",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-23",
    "naechste": "",
    "termine": 1,
    "stil": [
@@ -2606,8 +2606,8 @@ window.RR_KUENSTLER = {
    "name": "Ludwig Seuss & Band mit Henry Heggen",
    "alias": [],
    "homepage": "http://www.ludwig-seuss.de",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-23",
    "naechste": "",
    "termine": 1,
    "stil": [
@@ -2687,8 +2687,8 @@ window.RR_KUENSTLER = {
    "name": "Ramblin' Boots",
    "alias": [],
    "homepage": "https://www.ramblinboots.nl",
-   "lesbar": "offen",
-   "geprueft": "",
+   "lesbar": "ja",
+   "geprueft": "2026-11-23",
    "naechste": "",
    "termine": 1,
    "stil": [
