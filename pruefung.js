@@ -46,6 +46,10 @@ window.RR_PRUEFUNG = {
     "alanpowerandtheaftershocks.com": "2026-11-05",
     "shboomfestival.it": "2026-11-05",
     "golden-oldies.de": "2026-11-23",
+    "reindeers.de": "2026-11-23",
+    "4cash-band.de": "2026-11-23",
+    "becky-jay.de": "2026-11-23",
+    "alexklein.ch": "2026-11-23",
     "pullmancity.de": "2026-11-23",
     "lennerockets.de": "2026-11-23"
   },
