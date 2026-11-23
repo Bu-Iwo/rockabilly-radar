@@ -147,6 +147,8 @@ window.RR_EN = {
       'Starts 20:00, tickets via the organiser. (pin at city centre)',
     'Einlass 19 Uhr, Beginn 20:30 Uhr, Abendkasse 15 €. (Stadtkoordinate)':
       'Doors 19:00, starts 20:30, box office €15. (pin at city centre)',
+    'Musik ab 17:00 Uhr in der Music Hall, Park ab 10:00 Uhr geöffnet.':
+      'Music from 17:00 in the Music Hall, park open from 10:00.',
     'Eintritt 40 Euro inkl. Buffet. (Stadtkoordinate)':
       'Admission €40 incl. buffet. (pin at city centre)',
     'Beginn 19:00 Uhr, Eintritt 64,50 € inkl. Getränke und Häppchen. (Stadtkoordinate)':
