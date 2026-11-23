@@ -1,0 +1,3626 @@
+{
+ "gestartet": "2026-11-23T13:21:55.706Z",
+ "seiten": [
+  {
+   "id": "jukeboxstompers",
+   "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 35776,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "we-love-country",
+   "url": "https://www.we-love-country.de/1_term.php",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 170189,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "boogietanzen",
+   "url": "https://boogietanzen.de/boogieliste.html",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 6550,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "rock-and-roll-termine",
+   "url": "https://rock-and-roll-termine.de/termine",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 8308,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "brokensilence",
+   "url": "https://brokensilence.de/live/?s=Rock%27n%27Roll",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 15329,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "swingcalendar-de",
+   "url": "https://swingcalendar.com/de/",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 7609,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "swingcalendar-germany",
+   "url": "https://swingcalendar.com/events/Germany",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 7024,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "swingcalendar-austria",
+   "url": "https://swingcalendar.com/events/Austria",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 5930,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "swingcalendar-switzerland",
+   "url": "https://swingcalendar.com/events/Switzerland",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 7027,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "swingindd",
+   "url": "https://swingindd.com/home/regionale-swing-kalender/",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 9558,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "golden-oldies",
+   "url": "https://www.golden-oldies.de/",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 15497,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "golden-oldies-bands",
+   "url": "https://www.golden-oldies.de/bands-kuenstler/",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 13121,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "sc-germany-berlin",
+   "url": "https://swingcalendar.com/events/Germany/Berlin",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 2442,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "sc-germany-hamburg",
+   "url": "https://swingcalendar.com/events/Germany/Hamburg",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 2245,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "sc-germany-munich",
+   "url": "https://swingcalendar.com/events/Germany/Munich",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 1876,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "sc-germany-cologne",
+   "url": "https://swingcalendar.com/events/Germany/Cologne",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 1501,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "sc-germany-frankfurtammain",
+   "url": "https://swingcalendar.com/events/Germany/Frankfurt%20am%20Main",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 1705,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "sc-germany-stuttgart",
+   "url": "https://swingcalendar.com/events/Germany/Stuttgart",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 1870,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "sc-germany-dresden",
+   "url": "https://swingcalendar.com/events/Germany/Dresden",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 2213,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "sc-germany-leipzig",
+   "url": "https://swingcalendar.com/events/Germany/Leipzig",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 1509,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "sc-germany-dsseldorf",
+   "url": "https://swingcalendar.com/events/Germany/Düsseldorf",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 1757,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "sc-germany-dortmund",
+   "url": "https://swingcalendar.com/events/Germany/Dortmund",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 1780,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "sc-germany-essen",
+   "url": "https://swingcalendar.com/events/Germany/Essen",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 1640,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "sc-germany-bremen",
+   "url": "https://swingcalendar.com/events/Germany/Bremen",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 1610,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "sc-germany-hanover",
+   "url": "https://swingcalendar.com/events/Germany/Hanover",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 1505,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "sc-germany-nuremberg",
+   "url": "https://swingcalendar.com/events/Germany/Nuremberg",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 1465,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "sc-germany-augsburg",
+   "url": "https://swingcalendar.com/events/Germany/Augsburg",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 1966,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "sc-germany-mainz",
+   "url": "https://swingcalendar.com/events/Germany/Mainz",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 1791,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "sc-germany-wiesbaden",
+   "url": "https://swingcalendar.com/events/Germany/Wiesbaden",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 1799,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "sc-germany-bielefeld",
+   "url": "https://swingcalendar.com/events/Germany/Bielefeld",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 1465,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "sc-germany-saarbrcken",
+   "url": "https://swingcalendar.com/events/Germany/Saarbrücken",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 2000,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "sc-germany-wuppertal",
+   "url": "https://swingcalendar.com/events/Germany/Wuppertal",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 1648,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "sc-germany-osnabrck",
+   "url": "https://swingcalendar.com/events/Germany/Osnabrück",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 1663,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "sc-germany-jena",
+   "url": "https://swingcalendar.com/events/Germany/Jena",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 1611,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "sc-germany-konstanz",
+   "url": "https://swingcalendar.com/events/Germany/Konstanz",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 3926,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "sc-germany-schwerin",
+   "url": "https://swingcalendar.com/events/Germany/Schwerin",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 1619,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "sc-germany-offenbach",
+   "url": "https://swingcalendar.com/events/Germany/Offenbach",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 1689,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "sc-germany-kassel",
+   "url": "https://swingcalendar.com/events/Germany/Kassel",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 2036,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "sc-germany-karlsruhe",
+   "url": "https://swingcalendar.com/events/Germany/Karlsruhe",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 1673,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "sc-germany-freiburg",
+   "url": "https://swingcalendar.com/events/Germany/Freiburg",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 1463,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "sc-germany-heidelberg",
+   "url": "https://swingcalendar.com/events/Germany/Heidelberg",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 1916,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "sc-germany-mnster",
+   "url": "https://swingcalendar.com/events/Germany/Münster",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 1461,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "sc-germany-kln",
+   "url": "https://swingcalendar.com/events/Germany/Köln",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 1498,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "sc-austria-vienna",
+   "url": "https://swingcalendar.com/events/Austria/Vienna",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 5960,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "sc-austria-graz",
+   "url": "https://swingcalendar.com/events/Austria/Graz",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 1455,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "sc-austria-salzburg",
+   "url": "https://swingcalendar.com/events/Austria/Salzburg",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 1463,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "sc-austria-innsbruck",
+   "url": "https://swingcalendar.com/events/Austria/Innsbruck",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 1465,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "sc-austria-linz",
+   "url": "https://swingcalendar.com/events/Austria/Linz",
+   "typ": "kalender",
+   "status": "ok",
+   "bytes": 1455,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-rockinrace-com",
+   "url": "https://rockinrace.com/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 5177,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-berlinshake-com",
+   "url": "https://www.berlinshake.com/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 28647,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-palatin-de",
+   "url": "https://www.palatin.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 22106,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-swingdanceleipzig-com",
+   "url": "https://www.swingdanceleipzig.com/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 12512,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-lindyhopleipzig-de",
+   "url": "https://www.lindyhopleipzig.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 3136,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-musiktheater-piano-de",
+   "url": "https://www.musiktheater-piano.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 22067,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-wangerland-resort-de",
+   "url": "https://www.wangerland-resort.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 22517,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-triplestepmadness-nl",
+   "url": "https://triplestepmadness.nl/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 5024,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-rockthatswing-com",
+   "url": "http://www.rockthatswing.com/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 12069,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-rockaclock-com",
+   "url": "https://rockaclock.com/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 38,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-bb-dancecamp-com",
+   "url": "https://www.bb-dancecamp.com/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 6710,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-hangar-312-de",
+   "url": "https://hangar-312.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 3983,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-boogieschmiede-de",
+   "url": "https://boogieschmiede.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 2253,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-firebirds-festival-de",
+   "url": "https://www.firebirds-festival.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 7089,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-oldietown-de",
+   "url": "https://oldietown.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 9767,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-boogiefeetfestival-com",
+   "url": "https://boogiefeetfestival.com/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 2439,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-sommeroldies-zwoenitz-de",
+   "url": "https://sommeroldies.zwoenitz.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 8091,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-rocknrollcruise-de",
+   "url": "https://www.rocknrollcruise.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 9715,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-screaminfestival-com",
+   "url": "https://www.screaminfestival.com/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 434,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-jam-circle-com",
+   "url": "https://jam-circle.com/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 20779,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-ballhauswedding-de",
+   "url": "https://www.ballhauswedding.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 7846,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-swing-ch",
+   "url": "https://swing.ch/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 6453,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-stirit-ch",
+   "url": "https://stirit.ch/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 5805,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-boheme-sauvage-com",
+   "url": "https://www.boheme-sauvage.com/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 15901,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-wupperswing-de",
+   "url": "https://www.wupperswing.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 672,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-bluesfever-eu",
+   "url": "https://www.bluesfever.eu/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 5812,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-xmaswing-com",
+   "url": "https://www.xmaswing.com/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 4304,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-swinginkonstanz-de",
+   "url": "https://www.swinginkonstanz.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 11184,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-en-jitterbugsdelight-ch",
+   "url": "https://en.jitterbugsdelight.ch/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 21737,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-jitterbugsdelight-ch",
+   "url": "https://www.jitterbugsdelight.ch/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 22314,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-blues-rmswing-de",
+   "url": "https://blues.rmswing.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 1973,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-swingmantau-de",
+   "url": "https://swingmantau.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 12522,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-swinginwiesbaden-de",
+   "url": "https://www.swinginwiesbaden.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 3289,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-sweet-augsburgbalboa-com",
+   "url": "https://sweet.augsburgbalboa.com/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 4287,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-dontforgetyourdancingshoes-eu",
+   "url": "https://dontforgetyourdancingshoes.eu/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 77,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-istherehop-ch",
+   "url": "https://istherehop.ch/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 12068,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-lindypott-de",
+   "url": "https://www.lindypott.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 7532,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-swinging-weekender-de",
+   "url": "https://www.swinging-weekender.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 7306,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-swing-ex-konstanz-de",
+   "url": "https://www.swing-ex-konstanz.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 16903,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-yodelhop-at",
+   "url": "https://yodelhop.at/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 9,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-familyhop-de",
+   "url": "https://www.familyhop.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 83,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-veloswingfestival-com",
+   "url": "https://veloswingfestival.com/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 5203,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-openthearts-de",
+   "url": "https://www.openthearts.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 2242,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-the-hot-club-com",
+   "url": "https://www.the-hot-club.com/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 762,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-wyattchristmasfive-de",
+   "url": "https://wyattchristmasfive.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 5423,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-shotgunjones-de",
+   "url": "https://www.shotgunjones.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 3417,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-pullmancity-de",
+   "url": "https://www.pullmancity.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 18883,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-rocats-de",
+   "url": "https://rocats.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 13096,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-b-shakers-ch",
+   "url": "https://www.b-shakers.ch/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 10767,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-kajuete-ratzdorf-com",
+   "url": "https://kajuete-ratzdorf.com/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 4662,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-dochornberlin-de",
+   "url": "https://dochornberlin.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 8697,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-alanpowerandtheaftershocks-com",
+   "url": "https://alanpowerandtheaftershocks.com/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 11737,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-shboomfestival-it",
+   "url": "https://shboomfestival.it/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 2674,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-jitterbug-bites-de",
+   "url": "https://www.jitterbug-bites.de/",
+   "typ": "veranstalter",
+   "status": "fehler",
+   "bytes": 0,
+   "fehler": "fetch failed",
+   "ok_seit": ""
+  },
+  {
+   "id": "v-shakin-cats-de",
+   "url": "http://www.shakin-cats.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 1847,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-jeeperscreepers-de",
+   "url": "https://www.jeeperscreepers.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 2312,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-weingut-hillabrand-de",
+   "url": "https://weingut-hillabrand.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 4452,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-swing-kassel-de",
+   "url": "https://swing-kassel.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 5196,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-loewe-burgstaedt-de",
+   "url": "https://www.loewe-burgstaedt.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 10549,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-xn-boogie-muse-s8a-de",
+   "url": "https://www.xn--boogie-muse-s8a.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 8148,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-polyball-ch",
+   "url": "https://www.polyball.ch/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 4216,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-app-lindyharbour-ch",
+   "url": "https://app.lindyharbour.ch/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 13,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-lhsb-kb3-swingdance-services",
+   "url": "https://lhsb-kb3.swingdance.services/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 0,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-shop-kinoweinheim-de",
+   "url": "https://shop.kinoweinheim.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 2619,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-rebelshop-nl",
+   "url": "https://www.rebelshop.nl/",
+   "typ": "veranstalter",
+   "status": "fehler",
+   "bytes": 0,
+   "fehler": "fetch failed",
+   "ok_seit": ""
+  },
+  {
+   "id": "v-felsenkeller-leipzig-com",
+   "url": "https://www.felsenkeller-leipzig.com/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 19461,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-parkschlossleipzig-de",
+   "url": "https://parkschlossleipzig.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 23059,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-heissesohle-de",
+   "url": "http://www.heissesohle.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 3947,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-mein-event-shop",
+   "url": "https://www.mein-event.shop/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 9199,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-rausgegangen-de",
+   "url": "https://rausgegangen.de/",
+   "typ": "veranstalter",
+   "status": "robots",
+   "bytes": 0,
+   "fehler": "robots.txt verbietet das Lesen",
+   "ok_seit": ""
+  },
+  {
+   "id": "v-eversports-de",
+   "url": "https://www.eversports.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 7627,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-roadrunners-paradise-de",
+   "url": "http://www.roadrunners-paradise.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 534,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-hasseroeder-burghotel-de",
+   "url": "https://hasseroeder-burghotel.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 10136,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-regioactive-de",
+   "url": "https://www.regioactive.de/",
+   "typ": "veranstalter",
+   "status": "fehler",
+   "bytes": 0,
+   "fehler": "HTTP 403",
+   "ok_seit": ""
+  },
+  {
+   "id": "v-kalender-karlsruhe-de",
+   "url": "https://kalender.karlsruhe.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 15610,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-vintage-club-de",
+   "url": "https://www.vintage-club.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 10707,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-boogie-baeren-de",
+   "url": "https://www.boogie-baeren.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 13683,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-lh-saarbruecken-swingdance-services",
+   "url": "https://lh-saarbruecken.swingdance.services/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 0,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-rattlesnake-saloon-com-programm",
+   "url": "https://rattlesnake-saloon.com/programm",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 10233,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-head-over-heels-ch-konzerte",
+   "url": "https://head-over-heels.ch/konzerte/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 2187,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-deedeeandthebelairs-de-bevorstehende-auf",
+   "url": "https://www.deedeeandthebelairs.de/bevorstehende-auftritte.html",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 4006,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-boppinb-de",
+   "url": "https://www.boppinb.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 5763,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-atributetojohnnycash-com",
+   "url": "https://atributetojohnnycash.com/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 5015,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-boogiebanausen-de",
+   "url": "https://www.boogiebanausen.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 17884,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-dustydave-mystrikingly-com",
+   "url": "https://dustydave.mystrikingly.com/",
+   "typ": "band",
+   "status": "fehler",
+   "bytes": 11075,
+   "fehler": "HTTP 403",
+   "ok_seit": "2026-11-23",
+   "veraltet": true
+  },
+  {
+   "id": "b-imeldamay-co-uk",
+   "url": "https://www.imeldamay.co.uk/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 220,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-jumpinup-it",
+   "url": "https://www.jumpinup.it/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 149,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-sicranstoun-com",
+   "url": "https://www.sicranstoun.com/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 1609,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-rhythm-torpedoes-com",
+   "url": "https://www.rhythm-torpedoes.com/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 1327,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-rick-allen-country-com",
+   "url": "https://www.rick-allen-country.com/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 863,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-purlingbrooks-de",
+   "url": "https://purlingbrooks.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 2160,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-simon-saz-de",
+   "url": "https://simon-saz.de/",
+   "typ": "band",
+   "status": "fehler",
+   "bytes": 0,
+   "fehler": "HTTP 403",
+   "ok_seit": ""
+  },
+  {
+   "id": "b-catch-country-de",
+   "url": "https://www.catch-country.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 2251,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-high-risk-web-de",
+   "url": "https://high-risk-web.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 4293,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-lakelandcowboys-com",
+   "url": "https://lakelandcowboys.com/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 5829,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-western-saloon-de",
+   "url": "http://www.western-saloon.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 12156,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-countryfriends-zirndorf-de",
+   "url": "https://countryfriends-zirndorf.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 1204,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-countrybell-de",
+   "url": "https://www.countrybell.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 2243,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-nashville-band-de",
+   "url": "https://www.nashville-band.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 3054,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-rocknrodeo-de",
+   "url": "https://www.rocknrodeo.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 392,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-paulstowe-com",
+   "url": "https://paulstowe.com/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 1643,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-rattlesnake-saloon-com",
+   "url": "https://rattlesnake-saloon.com/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 13746,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-copperheadjack-de",
+   "url": "https://copperheadjack.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 3822,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-country-company-eu",
+   "url": "https://www.country-company.eu/",
+   "typ": "band",
+   "status": "fehler",
+   "bytes": 0,
+   "fehler": "HTTP 403",
+   "ok_seit": ""
+  },
+  {
+   "id": "b-ruediger-helbig-de",
+   "url": "https://www.ruediger-helbig.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 1586,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-mountain-four-de",
+   "url": "https://www.mountain-four.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 2538,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-silver-highway-de",
+   "url": "https://silver-highway.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 6975,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-scottybullocktrio-de",
+   "url": "https://scottybullocktrio.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 5355,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-waylonwyatt-com",
+   "url": "https://www.waylonwyatt.com/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 4635,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-bandana-music-de",
+   "url": "https://www.bandana-music.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 1187,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-becky-jay-de",
+   "url": "https://becky-jay.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 3700,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-bigsmusic-com",
+   "url": "https://www.bigsmusic.com/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 2567,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-bonnytones-de",
+   "url": "https://bonnytones.de/",
+   "typ": "band",
+   "status": "fehler",
+   "bytes": 0,
+   "fehler": "fetch failed",
+   "ok_seit": ""
+  },
+  {
+   "id": "b-budncellar-live",
+   "url": "https://budncellar.live/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 14642,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-cageystrings-de",
+   "url": "https://cageystrings.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 4313,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-danieltcoates-jimdofree-com",
+   "url": "https://danieltcoates.jimdofree.com/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 13415,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-dewaltons-de",
+   "url": "https://dewaltons.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 13878,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-honkytonkfive-de",
+   "url": "https://honkytonkfive.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 760,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-littleroadhouse-de",
+   "url": "https://littleroadhouse.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 4122,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-loose-moose-band-online",
+   "url": "https://loose-moose-band.online/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 23,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-mattlangmusic-com",
+   "url": "https://mattlangmusic.com/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 10301,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-pick-up-ramblers-de",
+   "url": "http://pick-up-ramblers.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 2254,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-reindeers-de",
+   "url": "http://www.reindeers.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 1756,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-der-flotte-dreier-com",
+   "url": "https://www.der-flotte-dreier.com/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 1578,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-westernsaloon-okee-dokee-de",
+   "url": "https://westernsaloon-okee-dokee.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 5291,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-southernhillsband-de",
+   "url": "https://www.southernhillsband.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 3247,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-thewashboardunion-com",
+   "url": "https://www.thewashboardunion.com/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 3249,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-truck-stop-de",
+   "url": "https://www.truck-stop.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 14817,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-wild-country-band-de",
+   "url": "https://wild-country-band.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 3828,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-2u-and-mi-de",
+   "url": "https://www.2u-and-mi.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 2419,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-4cash-band-de",
+   "url": "https://www.4cash-band.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 1843,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-alexklein-ch",
+   "url": "https://www.alexklein.ch/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 7442,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-andylee-de",
+   "url": "https://www.andylee.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 1508,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-linedancebang-de",
+   "url": "https://linedancebang.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 5024,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-hillbillydeluxe-de",
+   "url": "https://www.hillbillydeluxe.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 4411,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-buddydee-ch",
+   "url": "https://www.buddydee.ch/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 3284,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-buffalodrive-de",
+   "url": "https://www.buffalodrive.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 3369,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-ccr-tribute-de",
+   "url": "https://www.ccr-tribute.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 6106,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-mountainmusicband-de",
+   "url": "https://www.mountainmusicband.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 2973,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-countryholics-de",
+   "url": "https://countryholics.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 21346,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-daisytown-band-de",
+   "url": "https://www.daisytown-band.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 10905,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-deedeeandthebelairs-de",
+   "url": "https://www.deedeeandthebelairs.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 2918,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-fairschaerft-de",
+   "url": "https://www.fairschaerft.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 2519,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-flaggstaff-de",
+   "url": "https://flaggstaff.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 10063,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-gudrunlange-kactus-de",
+   "url": "https://www.gudrunlange-kactus.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 10193,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-hardtravelin-com",
+   "url": "https://www.hardtravelin.com/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 460,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-head-over-heels-ch",
+   "url": "https://head-over-heels.ch/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 1049,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-keepcalm-band-de",
+   "url": "https://keepcalm-band.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 2657,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-lennerockets-de",
+   "url": "https://www.lennerockets.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 2458,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-robertlottmann-com",
+   "url": "https://www.robertlottmann.com/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 4289,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-louisiana-ontour-de",
+   "url": "https://www.louisiana-ontour.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 4709,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-ludwig-seuss-de",
+   "url": "http://www.ludwig-seuss.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 3816,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-ramblinboots-nl",
+   "url": "https://www.ramblinboots.nl/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 2609,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-ronnynash-de",
+   "url": "https://www.ronnynash.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 2159,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-band-roy-de",
+   "url": "http://www.band-roy.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 665,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-saddleandboots-de",
+   "url": "https://www.saddleandboots.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 9720,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-swingincharlie-de",
+   "url": "https://www.swingincharlie.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 2512,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-t-bone-country-de",
+   "url": "https://www.t-bone-country.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 3428,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-rogerleuenberger-ch",
+   "url": "https://rogerleuenberger.ch/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 2579,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-kaisers-mackenbach-com",
+   "url": "https://www.kaisers-mackenbach.com/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 4068,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-tommyromero-com",
+   "url": "https://www.tommyromero.com/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 1940,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-western-helden-de",
+   "url": "https://www.western-helden.de/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 1990,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "t-rockinrace-com-entradas-a4e3c1",
+   "url": "https://rockinrace.com/entradas/",
+   "typ": "tickets",
+   "status": "ok",
+   "bytes": 6032,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-rebelshop-nl-details-en-registratie-rocking-riot-2-8a44fa",
+   "url": "https://www.rebelshop.nl/details-en-registratie/rocking-riot-2027",
+   "typ": "veranstalter",
+   "status": "fehler",
+   "bytes": 0,
+   "fehler": "fetch failed",
+   "ok_seit": ""
+  },
+  {
+   "id": "v-palatin-de-kultur-rocknroll-weekender-1b50c8",
+   "url": "https://www.palatin.de/kultur/rocknroll-weekender/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 17538,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-lindyhopleipzig-de-Veranstaltungen-1e9fac",
+   "url": "https://www.lindyhopleipzig.de/Veranstaltungen/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 3564,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-swingdanceleipzig-com-index-php-tanzen-leipzig-39e9ca",
+   "url": "https://www.swingdanceleipzig.com/index.php/tanzen-leipzig/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 11563,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-musiktheater-piano-de-events-rockin-around-the-chr-883b39",
+   "url": "https://www.musiktheater-piano.de/events/rockin-around-the-christmas-tree-20261218/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 10366,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-loewe-burgstaedt-de-VORSCHAU-TERMINE-TANZ-2026-43c872",
+   "url": "https://www.loewe-burgstaedt.de/VORSCHAU-TERMINE-TANZ-2026/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 13326,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-felsenkeller-leipzig-com-silvester-357833",
+   "url": "https://www.felsenkeller-leipzig.com/silvester/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 5478,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-parkschlossleipzig-de-silvester-760cf8",
+   "url": "https://parkschlossleipzig.de/silvester/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 21842,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-wangerland-resort-de-winter-rock-jive-weekender-660a09",
+   "url": "https://www.wangerland-resort.de/winter-rock-jive-weekender/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 16083,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-triplestepmadness-nl-de-9546d9",
+   "url": "https://triplestepmadness.nl/de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 5380,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-bb-dancecamp-com-de-home-html-51eb3e",
+   "url": "https://www.bb-dancecamp.com/de/home.html",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 6896,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-hangar-312-de-veranstaltungen-skyrocket-festival-9ba74a",
+   "url": "https://hangar-312.de/veranstaltungen/skyrocket-festival",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 8070,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-rocknrollcruise-de-de-index-html-b179c8",
+   "url": "https://www.rocknrollcruise.de/de/index.html",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 9861,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-jitterbug-bites-de-e59b8d",
+   "url": "http://www.jitterbug-bites.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 3130,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-mein-event-shop-produkt-la-nuit-boheme-lavant-gard-7a6c44",
+   "url": "https://www.mein-event.shop/produkt/la-nuit-boheme-lavant-garde-19122026/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 10248,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-reservix-de-tickets-the-big-int-boogie-woogie-nigh-549f54",
+   "url": "https://www.reservix.de/tickets-the-big-int-boogie-woogie-night-in-kaiserslautern-kammgarn-am-27-12-2026/e2572932",
+   "typ": "veranstalter",
+   "status": "fehler",
+   "bytes": 0,
+   "fehler": "HTTP 403",
+   "ok_seit": ""
+  },
+  {
+   "id": "v-screaminfestival-com-home-ccd986",
+   "url": "https://www.screaminfestival.com/home/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 7353,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "t-screaminfestival-com-tickets-1c5fd7",
+   "url": "https://www.screaminfestival.com/tickets/",
+   "typ": "tickets",
+   "status": "ok",
+   "bytes": 3538,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-stirit-ch-09edcd",
+   "url": "https://stirit.ch",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 5805,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-app-lindyharbour-ch-events-1406f318-74bb-4c24-8ede-434218",
+   "url": "https://app.lindyharbour.ch/events/1406f318-74bb-4c24-8ede-5fcd4c82f09a",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 13,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-boheme-sauvage-com-e2e43a",
+   "url": "https://www.boheme-sauvage.com",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 15901,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-wupperswing-de-4ff3b3",
+   "url": "https://www.wupperswing.de",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 672,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-swing-ch-partys-aa01be",
+   "url": "https://swing.ch/partys/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 4397,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-bluesfever-eu-0a79e4",
+   "url": "https://www.bluesfever.eu",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 5812,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-xmaswing-com-87a8ab",
+   "url": "https://www.xmaswing.com",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 4304,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-app-lindyharbour-ch-events-d19c0e94-7b4a-440c-a0c8-110aa8",
+   "url": "https://app.lindyharbour.ch/events/d19c0e94-7b4a-440c-a0c8-94cb9a799b2f",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 13,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-rausgegangen-de-events-die-kapelle-federolf-spielt-7e0a01",
+   "url": "https://rausgegangen.de/events/die-kapelle-federolf-spielt-zum-5-uhr-tee-one-step-tanzkurs-0/",
+   "typ": "veranstalter",
+   "status": "robots",
+   "bytes": 0,
+   "fehler": "robots.txt verbietet das Lesen",
+   "ok_seit": ""
+  },
+  {
+   "id": "v-eversports-de-org-activity-876d6a2a-ade7-416f-836a-e4be6e",
+   "url": "https://www.eversports.de/org/activity/876d6a2a-ade7-416f-836a-f245466a7981",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 2231,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-en-jitterbugsdelight-ch-welcome-92d645",
+   "url": "https://en.jitterbugsdelight.ch/welcome/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 21737,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-app-lindyharbour-ch-events-1f55d1fa-744e-4beb-8ff4-b33cb8",
+   "url": "https://app.lindyharbour.ch/events/1f55d1fa-744e-4beb-8ff4-22302339dd56",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 13,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-blues-rmswing-de-686724",
+   "url": "https://blues.rmswing.de",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 1983,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-swingmantau-de-switch-man-tau-b75857",
+   "url": "https://swingmantau.de/switch-man-tau",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 18236,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-swinginwiesbaden-de-swingmeetshiphop-5780f1",
+   "url": "https://www.swinginwiesbaden.de/swingmeetshiphop/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 11464,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-app-lindyharbour-ch-events-63cd01f9-36ef-4e27-97a7-97123e",
+   "url": "https://app.lindyharbour.ch/events/63cd01f9-36ef-4e27-97a7-b929aca391b3",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 13,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-sweet-augsburgbalboa-com-ae2f99",
+   "url": "https://sweet.augsburgbalboa.com",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 4287,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "t-sweet-augsburgbalboa-com-registration-18a9c7",
+   "url": "https://sweet.augsburgbalboa.com/registration",
+   "typ": "tickets",
+   "status": "ok",
+   "bytes": 6226,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-jitterbug-bites-de-seiten-termine-html-49383f",
+   "url": "https://www.jitterbug-bites.de/seiten/termine.html",
+   "typ": "veranstalter",
+   "status": "fehler",
+   "bytes": 0,
+   "fehler": "fetch failed",
+   "ok_seit": ""
+  },
+  {
+   "id": "v-lindypott-de-302f27",
+   "url": "https://www.lindypott.de",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 7532,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-swinging-weekender-de-ffbe1c",
+   "url": "https://www.swinging-weekender.de",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 7306,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-yodelhop-at-b03837",
+   "url": "https://yodelhop.at",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 9,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "t-yodelhop-at-registration-681396",
+   "url": "https://yodelhop.at/registration",
+   "typ": "tickets",
+   "status": "fehler",
+   "bytes": 0,
+   "fehler": "HTTP 404",
+   "ok_seit": ""
+  },
+  {
+   "id": "v-familyhop-de-3bb02b",
+   "url": "https://www.familyhop.de",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 83,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-jitterbugsdelight-ch-balboa-80f74e",
+   "url": "https://www.jitterbugsdelight.ch/balboa",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 376,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-veloswingfestival-com-12a6bb",
+   "url": "https://veloswingfestival.com",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 5203,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-jitterbugsdelight-ch-shag-91bff4",
+   "url": "https://www.jitterbugsdelight.ch/shag",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 359,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-the-hot-club-com-tour-dates-gloria-koeln-germany-4-b1f4fb",
+   "url": "https://www.the-hot-club.com/tour-dates/gloria-koeln-germany-4/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 888,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-the-hot-club-com-tour-dates-forli-naima-club-italy-2494ab",
+   "url": "https://www.the-hot-club.com/tour-dates/forli-naima-club-italy/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 892,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-the-hot-club-com-tour-dates-6c1384",
+   "url": "https://www.the-hot-club.com/tour_dates/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 1094,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-the-hot-club-com-tour-dates-knust-hamburg-germany--0df8f2",
+   "url": "https://www.the-hot-club.com/tour-dates/knust-hamburg-germany-4/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 892,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-the-hot-club-com-tour-dates-davos-switzerland-fa3cdf",
+   "url": "https://www.the-hot-club.com/tour-dates/davos-switzerland/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 852,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-wyattchristmasfive-de-termine-5a09aa",
+   "url": "https://wyattchristmasfive.de/termine/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 8487,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-shotgunjones-de-konzerte-2027-2579ea",
+   "url": "https://www.shotgunjones.de/konzerte-2027",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 3262,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-pullmancity-de-166bf5",
+   "url": "https://www.pullmancity.de",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 18883,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-rocats-de-event-wild-west-rockabilly-special-pullm-4fc593",
+   "url": "https://rocats.de/event/wild-west-rockabilly-special-pullman-city/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 3918,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-rocats-de-event-hasseroeder-burghotel-526b10",
+   "url": "https://rocats.de/event/hasseroeder-burghotel/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 4068,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-rocats-de-event-silvesterparty-kulturhaus-klackx-df8617",
+   "url": "https://rocats.de/event/silvesterparty-kulturhaus-klackx/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 3345,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-b-shakers-ch-index-php-gigs-4678c3",
+   "url": "https://www.b-shakers.ch/index.php/gigs",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 3449,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-eventim-de-artist-boppin-b-dbad96",
+   "url": "https://www.eventim.de/artist/boppin-b/",
+   "typ": "veranstalter",
+   "status": "fehler",
+   "bytes": 0,
+   "fehler": "The operation was aborted due to timeout",
+   "ok_seit": ""
+  },
+  {
+   "id": "v-jambase-com-show-boppin-b-pitcher-20270122-ea0f56",
+   "url": "https://www.jambase.com/show/boppin-b-pitcher-20270122",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 16235,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-songkick-com-concerts-43282208-boppin-b-at-kesselh-d3d418",
+   "url": "https://www.songkick.com/concerts/43282208-boppin-b-at-kesselhaus-schlachthof-wiesbaden",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 10286,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-mvp-de-rheinland-pfalz-veranstaltungen-rockabilly--6afec4",
+   "url": "https://www.mvp.de/rheinland-pfalz/veranstaltungen/rockabilly-night-mit-krueger-rockt-congress-center-ramstein-ramstein-miesenbach/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 17587,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-songkick-com-concerts-43341616-firebirds-at-komodi-973daf",
+   "url": "https://www.songkick.com/concerts/43341616-firebirds-at-komodie-dresden",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 9855,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-alanpowerandtheaftershocks-com-home-94ba89",
+   "url": "https://alanpowerandtheaftershocks.com/home",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 11737,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "t-shboomfestival-it-booking-3d58cd",
+   "url": "https://shboomfestival.it/booking/",
+   "typ": "tickets",
+   "status": "ok",
+   "bytes": 1747,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-shiny-stockings-de-fbe50c",
+   "url": "https://shiny-stockings.de",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 2043,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-newswinggeneration-de-new-years-eve-party-for-swif-d03079",
+   "url": "https://www.newswinggeneration.de/new-years-eve-party-for-swift-soles-second-edition-31-dez-26/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 9519,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-swing-kassel-de-specials-49ccbc",
+   "url": "https://www.swing-kassel.de/specials/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 7411,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-head-over-heels-ch-event-rocknroll-tanzparty-rest--7c4d80",
+   "url": "https://head-over-heels.ch/event/rocknroll-tanzparty-rest-baeren-langenthal-be/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 6634,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-head-over-heels-ch-event-rocknroll-tanzparty-11-86e2d6",
+   "url": "https://head-over-heels.ch/event/rocknroll-tanzparty-11/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 4807,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-head-over-heels-ch-event-rocknroll-tanzparty-rest--01db5f",
+   "url": "https://head-over-heels.ch/event/rocknroll-tanzparty-rest-roessli-rothrist-ag/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 4786,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-head-over-heels-ch-event-rocknroll-tanzparty-9-c1cec4",
+   "url": "https://head-over-heels.ch/event/rocknroll-tanzparty-9/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 4921,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-head-over-heels-ch-event-rocknroll-tanzparty-20-ja-92843c",
+   "url": "https://head-over-heels.ch/event/rocknroll-tanzparty-20-jahre-head-over-heels-hotel-sonne-reiden-lu/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 4094,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-head-over-heels-ch-event-rocknroll-tanzparty-10-89b5f9",
+   "url": "https://head-over-heels.ch/event/rocknroll-tanzparty-10/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 5112,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-head-over-heels-ch-event-rocknroll-tanzparty-8-fd82e7",
+   "url": "https://head-over-heels.ch/event/rocknroll-tanzparty-8/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 3325,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-rattlesnake-saloon-com-veranstaltung-the-clouds-mu-caf83a",
+   "url": "https://rattlesnake-saloon.com/veranstaltung/the-clouds-munich-22/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 11168,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-fraueninsel-christkindlmarkt-de-765c1a",
+   "url": "https://fraueninsel-christkindlmarkt.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 4604,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-rattlesnake-saloon-com-rattlesnake-torpedos-3726e2",
+   "url": "https://rattlesnake-saloon.com/rattlesnake-torpedos",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 12116,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-c2cfestivalger-de-2a804c",
+   "url": "https://c2cfestivalger.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 2923,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "t-axs-com-de-events-1629525-c2c-country-to-country-b-71c74c",
+   "url": "https://www.axs.com/de/events/1629525/c2c-country-to-country-berlin-2027-tickets",
+   "typ": "tickets",
+   "status": "fehler",
+   "bytes": 0,
+   "fehler": "HTTP 403",
+   "ok_seit": ""
+  },
+  {
+   "id": "v-thecountyboys-de-290148",
+   "url": "https://thecountyboys.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 2724,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-harzgoescountry-de-05d1ae",
+   "url": "https://harzgoescountry.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 2248,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-bird-mountain-de-89bbb8",
+   "url": "https://bird-mountain.de/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 2703,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "v-rick-allen-country-com-aed210",
+   "url": "https://rick-allen-country.com/",
+   "typ": "veranstalter",
+   "status": "ok",
+   "bytes": 823,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-atributetojohnnycash-com-termine-766f44",
+   "url": "https://www.atributetojohnnycash.com/termine",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 5857,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-atributetojohnnycash-com-aa335f",
+   "url": "https://atributetojohnnycash.com",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 5015,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-boppinb-de-live-213843",
+   "url": "https://www.boppinb.de/live",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 2030,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-boppinb-de-1ecd4c",
+   "url": "https://www.boppinb.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 5763,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-bandsintown-com-a-6046190-spunyboys-cb29c4",
+   "url": "https://www.bandsintown.com/a/6046190-spunyboys",
+   "typ": "band",
+   "status": "fehler",
+   "bytes": 0,
+   "fehler": "HTTP 403",
+   "ok_seit": ""
+  },
+  {
+   "id": "b-alanpowerandtheaftershocks-com-ba48bd",
+   "url": "https://alanpowerandtheaftershocks.com",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 11737,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-boogiebanausen-de-d88070",
+   "url": "https://www.boogiebanausen.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 17884,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-dochornberlin-de-fd39ea",
+   "url": "https://dochornberlin.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 8697,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-dustydave-mystrikingly-com-25a7cc",
+   "url": "https://dustydave.mystrikingly.com",
+   "typ": "band",
+   "status": "fehler",
+   "bytes": 11075,
+   "fehler": "HTTP 403",
+   "ok_seit": "2026-11-23",
+   "veraltet": true
+  },
+  {
+   "id": "b-imeldamay-co-uk-b52297",
+   "url": "https://www.imeldamay.co.uk",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 220,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-jumpinup-it-1f9fb5",
+   "url": "https://www.jumpinup.it",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 149,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-the-hot-club-com-0eb728",
+   "url": "https://www.the-hot-club.com",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 762,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-shotgunjones-de-4a5dfb",
+   "url": "https://www.shotgunjones.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 3417,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-sicranstoun-com-fb70a2",
+   "url": "https://www.sicranstoun.com",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 1609,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-rocats-de-events-debdea",
+   "url": "https://rocats.de/events/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 3671,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-rocats-de-082627",
+   "url": "https://rocats.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 13096,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-b-shakers-ch-c524ee",
+   "url": "https://www.b-shakers.ch",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 10767,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-rhythm-torpedoes-com-d82441",
+   "url": "https://www.rhythm-torpedoes.com",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 1327,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-wyattchristmasfive-de-e0c132",
+   "url": "https://wyattchristmasfive.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 5423,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-rick-allen-country-com-fe8f3e",
+   "url": "https://www.rick-allen-country.com",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 863,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-purlingbrooks-de-20bb75",
+   "url": "https://purlingbrooks.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 2160,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-simon-saz-de-wnb-v3-85652d",
+   "url": "https://simon-saz.de/wnb/v3/?page_id=2",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 7152,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-catch-country-de-03330d",
+   "url": "https://www.catch-country.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 2251,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-high-risk-web-de-00736e",
+   "url": "https://high-risk-web.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 4293,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-lakelandcowboys-com-b22a0c",
+   "url": "https://lakelandcowboys.com",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 5829,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-western-saloon-de-a89247",
+   "url": "http://www.western-saloon.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 12156,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-chrisangelscountry-wixsite-com-my-site-1-6e6d8d",
+   "url": "https://chrisangelscountry.wixsite.com/my-site-1",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 1960,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-countryfriends-zirndorf-de-a4cdbf",
+   "url": "https://countryfriends-zirndorf.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 1204,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-countrybell-de-235562",
+   "url": "https://www.countrybell.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 2243,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-nashville-band-de-b03ae1",
+   "url": "https://www.nashville-band.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 5221,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-rocknrodeo-de-d44f03",
+   "url": "https://www.rocknrodeo.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 392,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-paulstowe-com-e39f27",
+   "url": "https://paulstowe.com",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 1643,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-copperheadjack-de-cfb370",
+   "url": "https://copperheadjack.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 3822,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-country-company-eu-fbd474",
+   "url": "https://www.country-company.eu",
+   "typ": "band",
+   "status": "fehler",
+   "bytes": 0,
+   "fehler": "HTTP 403",
+   "ok_seit": ""
+  },
+  {
+   "id": "b-ruediger-helbig-de-c7542f",
+   "url": "https://www.ruediger-helbig.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 1586,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-mountain-four-de-7d5263",
+   "url": "https://www.mountain-four.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 2538,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-shakin-cats-de-9d41e9",
+   "url": "http://www.shakin-cats.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 1847,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-silver-highway-de-fb5b0e",
+   "url": "https://silver-highway.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 6975,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-jitterbug-bites-de-f9c06f",
+   "url": "http://www.jitterbug-bites.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 3130,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-scottybullocktrio-de-6f9c19",
+   "url": "https://scottybullocktrio.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 5355,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-waylonwyatt-com-792925",
+   "url": "https://www.waylonwyatt.com",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 4635,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-bandana-music-de-gigs-aa62c6",
+   "url": "https://www.bandana-music.de/gigs",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 2043,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-bandana-music-de-4fe707",
+   "url": "https://www.bandana-music.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 1187,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-becky-jay-de-termine-f32175",
+   "url": "https://becky-jay.de/termine/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 4941,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-becky-jay-de-841ae5",
+   "url": "https://becky-jay.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 3700,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-bigsmusic-com-9a08e0",
+   "url": "https://www.bigsmusic.com",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 3184,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-bonnytones-de-termine-f3c176",
+   "url": "https://bonnytones.de/termine/",
+   "typ": "band",
+   "status": "fehler",
+   "bytes": 0,
+   "fehler": "fetch failed",
+   "ok_seit": ""
+  },
+  {
+   "id": "b-bonnytones-de-e15db3",
+   "url": "https://bonnytones.de",
+   "typ": "band",
+   "status": "fehler",
+   "bytes": 0,
+   "fehler": "fetch failed",
+   "ok_seit": ""
+  },
+  {
+   "id": "b-budncellar-live-5f7a2c",
+   "url": "https://budncellar.live",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 14642,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-cageystrings-de-f7c5cf",
+   "url": "https://cageystrings.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 4313,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-danieltcoates-jimdofree-com-668d9f",
+   "url": "https://danieltcoates.jimdofree.com",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 13415,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-dewaltons-de-564df6",
+   "url": "https://dewaltons.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 13878,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-honkytonkfive-de-3d0601",
+   "url": "https://honkytonkfive.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 760,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-littleroadhouse-de-96f494",
+   "url": "https://littleroadhouse.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 4122,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-loose-moose-band-online-9ecdd5",
+   "url": "https://loose-moose-band.online",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 23,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-mattlangmusic-com-2daecc",
+   "url": "https://mattlangmusic.com",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 10430,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-pick-up-ramblers-de-450ec3",
+   "url": "http://pick-up-ramblers.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 2254,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-reindeers-de-0c7f6c",
+   "url": "http://www.reindeers.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 1756,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-eventim-de-artist-rita-wilson-0fbcdd",
+   "url": "https://www.eventim.de/artist/rita-wilson",
+   "typ": "band",
+   "status": "fehler",
+   "bytes": 0,
+   "fehler": "The operation was aborted due to timeout",
+   "ok_seit": ""
+  },
+  {
+   "id": "b-der-flotte-dreier-com-f5d709",
+   "url": "https://www.der-flotte-dreier.com",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 1578,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-westernsaloon-okee-dokee-de-0ef519",
+   "url": "https://westernsaloon-okee-dokee.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 5291,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-southernhillsband-de-7cb698",
+   "url": "https://www.southernhillsband.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 3247,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-thewashboardunion-com-915d3a",
+   "url": "https://www.thewashboardunion.com",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 3249,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-truck-stop-de-89179a",
+   "url": "https://www.truck-stop.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 14817,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-wild-country-band-de-31b9d4",
+   "url": "https://wild-country-band.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 3828,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-weingut-hillabrand-de-9717c7",
+   "url": "https://weingut-hillabrand.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 4452,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-2u-and-mi-de-7e2a3e",
+   "url": "https://www.2u-and-mi.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 2419,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-4cash-band-de-termine-php-6a515a",
+   "url": "https://www.4cash-band.de/termine.php",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 12250,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-4cash-band-de-804ee1",
+   "url": "https://www.4cash-band.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 1843,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-alexklein-ch-e53b6d",
+   "url": "https://www.alexklein.ch",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 7442,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-andylee-de-a47240",
+   "url": "https://www.andylee.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 1508,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-linedancebang-de-4474c9",
+   "url": "https://linedancebang.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 5042,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-hillbillydeluxe-de-80727b",
+   "url": "https://www.hillbillydeluxe.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 4411,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-buddydee-ch-a0965e",
+   "url": "https://www.buddydee.ch",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 3284,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-buffalodrive-de-termine-79a9df",
+   "url": "https://www.buffalodrive.de/termine",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 10235,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-buffalodrive-de-ccfbc2",
+   "url": "https://www.buffalodrive.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 3369,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-ccr-tribute-de-termine-f5ddb5",
+   "url": "https://www.ccr-tribute.de/termine/",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 3142,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-ccr-tribute-de-e3cf87",
+   "url": "https://www.ccr-tribute.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 6106,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-mountainmusicband-de-9fcc91",
+   "url": "https://www.mountainmusicband.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 2973,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-countryholics-de-394db8",
+   "url": "https://countryholics.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 21346,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-daisytown-band-de-7630c3",
+   "url": "https://www.daisytown-band.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 10905,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-deedeeandthebelairs-de-08718e",
+   "url": "https://www.deedeeandthebelairs.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 2918,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-shop-kinoweinheim-de-products-8-november-2026-11-u-0fe053",
+   "url": "https://shop.kinoweinheim.de/products/8-november-2026-11-uhr-matinee-mit-dr-wisebrod-s-swingboppers",
+   "typ": "band",
+   "status": "fehler",
+   "bytes": 0,
+   "fehler": "HTTP 404",
+   "ok_seit": ""
+  },
+  {
+   "id": "b-fairschaerft-de-37e4d5",
+   "url": "https://www.fairschaerft.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 2519,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-flaggstaff-de-35304a",
+   "url": "https://flaggstaff.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 10063,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-gudrunlange-kactus-de-8fe507",
+   "url": "https://www.gudrunlange-kactus.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 10188,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-hardtravelin-com-80f84d",
+   "url": "https://www.hardtravelin.com",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 460,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-head-over-heels-ch-f39174",
+   "url": "https://head-over-heels.ch",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 1049,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-jeeperscreepers-de-a9a7b1",
+   "url": "https://www.jeeperscreepers.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 2312,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-johnnyray-country-wixsite-com-countrymusic-caf2f5",
+   "url": "https://johnnyray-country.wixsite.com/countrymusic",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 3717,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-jolinacarl-com-d0d2ca",
+   "url": "https://jolinacarl.com",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 5812,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-keepcalm-band-de-16ebce",
+   "url": "https://keepcalm-band.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 2663,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-mein-event-shop-produkt-la-nuit-boheme-lavant-gard-8515bb",
+   "url": "https://www.mein-event.shop/produkt/la-nuit-boheme-lavant-garde-19122026",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 10248,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-lennerockets-de-dbe9fd",
+   "url": "https://www.lennerockets.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 2458,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-robertlottmann-com-371708",
+   "url": "https://www.robertlottmann.com",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 4289,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-louisiana-ontour-de-6fecc0",
+   "url": "https://www.louisiana-ontour.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 4709,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-ludwig-seuss-de-417703",
+   "url": "http://www.ludwig-seuss.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 3816,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-ramblinboots-nl-a82228",
+   "url": "https://www.ramblinboots.nl",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 2609,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-ronnynash-de-f5ffca",
+   "url": "https://www.ronnynash.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 2159,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-band-roy-de-642561",
+   "url": "http://www.band-roy.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 665,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-saddleandboots-de-83c0ef",
+   "url": "https://www.saddleandboots.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 9720,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-swingincharlie-de-aa06f4",
+   "url": "https://www.swingincharlie.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 2512,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-t-bone-country-de-d9741a",
+   "url": "https://www.t-bone-country.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 3428,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-rogerleuenberger-ch-rudolphs-html-27708b",
+   "url": "https://rogerleuenberger.ch/rudolphs.html",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 1697,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-kaisers-mackenbach-com-ac006b",
+   "url": "https://www.kaisers-mackenbach.com",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 4068,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-tommyromero-com-c97feb",
+   "url": "https://www.tommyromero.com",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 1940,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  },
+  {
+   "id": "b-western-helden-de-f2b063",
+   "url": "https://www.western-helden.de",
+   "typ": "band",
+   "status": "ok",
+   "bytes": 1990,
+   "fehler": "",
+   "ok_seit": "2026-11-23"
+  }
+ ],
+ "zusammenfassung": {
+  "gesamt": 401,
+  "ok": 379,
+  "robots": 2,
+  "fehler": 20,
+  "veraltet": 2,
+  "hauptquellen_ok": 48,
+  "hauptquellen_gesamt": 48
+ },
+ "beendet": "2026-11-23T13:49:21.238Z"
+}
