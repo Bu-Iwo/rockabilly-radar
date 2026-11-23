@@ -1,6 +1,7 @@
 # ROCKABILLY RADAR - Wochen-Abruf
 # Liest jeden Sonntag die Quellen (vor dem Claude-Lauf um 14:43 Uhr) und legt die Ergebnisse
 # im Zweig "abruf-daten" ab. Auf main wird NICHT geschrieben.
+# Faellt eine Seite aus, bleibt ihr letzter guter Text erhalten und wird als "veraltet" markiert.
 name: Abruf
 on:
   schedule:
@@ -8,32 +9,37 @@ on:
   workflow_dispatch: {}
 permissions:
   contents: write
+concurrency:
+  group: abruf
+  cancel-in-progress: false
 jobs:
   abruf:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
+      - name: Letzten Stand des Datenzweigs holen (falls vorhanden)
+        uses: actions/checkout@v4
+        continue-on-error: true
+        with:
+          ref: abruf-daten
+          path: prev
       - uses: actions/setup-node@v4
         with: { node-version: 20 }
       - run: npm install --no-audit --no-fund
       - run: npx playwright install --with-deps chromium
-      - run: node abruf/abruf.mjs out
+      - name: Seiten lesen
+        run: PREV=prev REPO=. node abruf/abruf.mjs out
       - name: Ergebnisse in den Zweig abruf-daten schreiben
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
+          rm -rf /tmp/pub && mkdir /tmp/pub && cp -r out/. /tmp/pub/
+          cd /tmp/pub
+          git init -q -b abruf-daten
           git config user.name "rockabilly-radar-abruf"
           git config user.email "abruf@users.noreply.github.com"
-          git fetch origin abruf-daten || true
-          rm -rf /tmp/daten && mkdir /tmp/daten && cp -r out/. /tmp/daten/
-          if git show-ref --verify --quiet refs/remotes/origin/abruf-daten; then
-            git checkout -B abruf-daten origin/abruf-daten
-            git rm -rq . || true
-          else
-            git checkout --orphan abruf-daten
-            git rm -rfq . || true
-          fi
-          git clean -fdxq
-          cp -r /tmp/daten/. .
           git add -A
-          git commit -m "Abruf $(date -u +%Y-%m-%d)" || echo "keine Aenderung"
-          git push origin abruf-daten
+          git commit -q -m "Abruf $(date -u +%Y-%m-%d)"
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git push -q --force origin abruf-daten
