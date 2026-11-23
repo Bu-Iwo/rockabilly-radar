@@ -1,0 +1,39 @@
+# ROCKABILLY RADAR - Wochen-Abruf
+# Liest jeden Sonntag die Quellen (vor dem Claude-Lauf um 14:43 Uhr) und legt die Ergebnisse
+# im Zweig "abruf-daten" ab. Auf main wird NICHT geschrieben.
+name: Abruf
+on:
+  schedule:
+    - cron: '30 10 * * 0'   # Sonntag 10:30 UTC = 11:30 (Winter) bzw. 12:30 (Sommer) deutsche Zeit
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  abruf:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: npm install --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium
+      - run: node abruf/abruf.mjs out
+      - name: Ergebnisse in den Zweig abruf-daten schreiben
+        run: |
+          git config user.name "rockabilly-radar-abruf"
+          git config user.email "abruf@users.noreply.github.com"
+          git fetch origin abruf-daten || true
+          rm -rf /tmp/daten && mkdir /tmp/daten && cp -r out/. /tmp/daten/
+          if git show-ref --verify --quiet refs/remotes/origin/abruf-daten; then
+            git checkout -B abruf-daten origin/abruf-daten
+            git rm -rq . || true
+          else
+            git checkout --orphan abruf-daten
+            git rm -rfq . || true
+          fi
+          git clean -fdxq
+          cp -r /tmp/daten/. .
+          git add -A
+          git commit -m "Abruf $(date -u +%Y-%m-%d)" || echo "keine Aenderung"
+          git push origin abruf-daten

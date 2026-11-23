@@ -1,0 +1,235 @@
+{
+ "hinweis": "Liste der Seiten, die der Abrufer liest. Neue Seiten nur nach Freigabe durch den Nutzer eintragen. js:true = mit Browser lesen.",
+ "seiten": [
+  {
+   "id": "jukeboxstompers",
+   "url": "https://www.jukeboxstompers.de/index.php/veranstaltungen/veranstaltungskalender",
+   "js": false
+  },
+  {
+   "id": "we-love-country",
+   "url": "https://www.we-love-country.de/1_term.php",
+   "js": false
+  },
+  {
+   "id": "boogietanzen",
+   "url": "https://boogietanzen.de/boogieliste.html",
+   "js": false
+  },
+  {
+   "id": "rock-and-roll-termine",
+   "url": "https://rock-and-roll-termine.de/termine",
+   "js": false
+  },
+  {
+   "id": "brokensilence",
+   "url": "https://brokensilence.de/live/?s=Rock%27n%27Roll",
+   "js": false
+  },
+  {
+   "id": "swingcalendar-de",
+   "url": "https://swingcalendar.com/de/",
+   "js": true
+  },
+  {
+   "id": "swingcalendar-germany",
+   "url": "https://swingcalendar.com/events/Germany",
+   "js": true
+  },
+  {
+   "id": "swingcalendar-austria",
+   "url": "https://swingcalendar.com/events/Austria",
+   "js": true
+  },
+  {
+   "id": "swingcalendar-switzerland",
+   "url": "https://swingcalendar.com/events/Switzerland",
+   "js": true
+  },
+  {
+   "id": "swingindd",
+   "url": "https://swingindd.com/home/regionale-swing-kalender/",
+   "js": false
+  },
+  {
+   "id": "sc-germany-berlin",
+   "url": "https://swingcalendar.com/events/Germany/Berlin",
+   "js": true
+  },
+  {
+   "id": "sc-germany-hamburg",
+   "url": "https://swingcalendar.com/events/Germany/Hamburg",
+   "js": true
+  },
+  {
+   "id": "sc-germany-munich",
+   "url": "https://swingcalendar.com/events/Germany/Munich",
+   "js": true
+  },
+  {
+   "id": "sc-germany-cologne",
+   "url": "https://swingcalendar.com/events/Germany/Cologne",
+   "js": true
+  },
+  {
+   "id": "sc-germany-frankfurtammain",
+   "url": "https://swingcalendar.com/events/Germany/Frankfurt%20am%20Main",
+   "js": true
+  },
+  {
+   "id": "sc-germany-stuttgart",
+   "url": "https://swingcalendar.com/events/Germany/Stuttgart",
+   "js": true
+  },
+  {
+   "id": "sc-germany-dresden",
+   "url": "https://swingcalendar.com/events/Germany/Dresden",
+   "js": true
+  },
+  {
+   "id": "sc-germany-leipzig",
+   "url": "https://swingcalendar.com/events/Germany/Leipzig",
+   "js": true
+  },
+  {
+   "id": "sc-germany-dsseldorf",
+   "url": "https://swingcalendar.com/events/Germany/Düsseldorf",
+   "js": true
+  },
+  {
+   "id": "sc-germany-dortmund",
+   "url": "https://swingcalendar.com/events/Germany/Dortmund",
+   "js": true
+  },
+  {
+   "id": "sc-germany-essen",
+   "url": "https://swingcalendar.com/events/Germany/Essen",
+   "js": true
+  },
+  {
+   "id": "sc-germany-bremen",
+   "url": "https://swingcalendar.com/events/Germany/Bremen",
+   "js": true
+  },
+  {
+   "id": "sc-germany-hanover",
+   "url": "https://swingcalendar.com/events/Germany/Hanover",
+   "js": true
+  },
+  {
+   "id": "sc-germany-nuremberg",
+   "url": "https://swingcalendar.com/events/Germany/Nuremberg",
+   "js": true
+  },
+  {
+   "id": "sc-germany-augsburg",
+   "url": "https://swingcalendar.com/events/Germany/Augsburg",
+   "js": true
+  },
+  {
+   "id": "sc-germany-mainz",
+   "url": "https://swingcalendar.com/events/Germany/Mainz",
+   "js": true
+  },
+  {
+   "id": "sc-germany-wiesbaden",
+   "url": "https://swingcalendar.com/events/Germany/Wiesbaden",
+   "js": true
+  },
+  {
+   "id": "sc-germany-bielefeld",
+   "url": "https://swingcalendar.com/events/Germany/Bielefeld",
+   "js": true
+  },
+  {
+   "id": "sc-germany-saarbrcken",
+   "url": "https://swingcalendar.com/events/Germany/Saarbrücken",
+   "js": true
+  },
+  {
+   "id": "sc-germany-wuppertal",
+   "url": "https://swingcalendar.com/events/Germany/Wuppertal",
+   "js": true
+  },
+  {
+   "id": "sc-germany-osnabrck",
+   "url": "https://swingcalendar.com/events/Germany/Osnabrück",
+   "js": true
+  },
+  {
+   "id": "sc-germany-jena",
+   "url": "https://swingcalendar.com/events/Germany/Jena",
+   "js": true
+  },
+  {
+   "id": "sc-germany-konstanz",
+   "url": "https://swingcalendar.com/events/Germany/Konstanz",
+   "js": true
+  },
+  {
+   "id": "sc-germany-schwerin",
+   "url": "https://swingcalendar.com/events/Germany/Schwerin",
+   "js": true
+  },
+  {
+   "id": "sc-germany-offenbach",
+   "url": "https://swingcalendar.com/events/Germany/Offenbach",
+   "js": true
+  },
+  {
+   "id": "sc-germany-kassel",
+   "url": "https://swingcalendar.com/events/Germany/Kassel",
+   "js": true
+  },
+  {
+   "id": "sc-germany-karlsruhe",
+   "url": "https://swingcalendar.com/events/Germany/Karlsruhe",
+   "js": true
+  },
+  {
+   "id": "sc-germany-freiburg",
+   "url": "https://swingcalendar.com/events/Germany/Freiburg",
+   "js": true
+  },
+  {
+   "id": "sc-germany-heidelberg",
+   "url": "https://swingcalendar.com/events/Germany/Heidelberg",
+   "js": true
+  },
+  {
+   "id": "sc-germany-mnster",
+   "url": "https://swingcalendar.com/events/Germany/Münster",
+   "js": true
+  },
+  {
+   "id": "sc-germany-kln",
+   "url": "https://swingcalendar.com/events/Germany/Köln",
+   "js": true
+  },
+  {
+   "id": "sc-austria-vienna",
+   "url": "https://swingcalendar.com/events/Austria/Vienna",
+   "js": true
+  },
+  {
+   "id": "sc-austria-graz",
+   "url": "https://swingcalendar.com/events/Austria/Graz",
+   "js": true
+  },
+  {
+   "id": "sc-austria-salzburg",
+   "url": "https://swingcalendar.com/events/Austria/Salzburg",
+   "js": true
+  },
+  {
+   "id": "sc-austria-innsbruck",
+   "url": "https://swingcalendar.com/events/Austria/Innsbruck",
+   "js": true
+  },
+  {
+   "id": "sc-austria-linz",
+   "url": "https://swingcalendar.com/events/Austria/Linz",
+   "js": true
+  }
+ ]
+}

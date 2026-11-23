@@ -1,0 +1,1 @@
+{ "name": "rockabilly-radar-abruf", "private": true, "type": "module", "dependencies": { "playwright": "1.49.1" } }
