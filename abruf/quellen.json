@@ -52,6 +52,16 @@
    "js": false
   },
   {
+   "id": "golden-oldies",
+   "url": "https://www.golden-oldies.de/",
+   "js": false
+  },
+  {
+   "id": "golden-oldies-bands",
+   "url": "https://www.golden-oldies.de/bands-kuenstler/",
+   "js": false
+  },
+  {
    "id": "sc-germany-berlin",
    "url": "https://swingcalendar.com/events/Germany/Berlin",
    "js": true
