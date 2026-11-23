@@ -65,28 +65,41 @@ const bekannt = new Set();
 const ignoriert = /(facebook|instagram|twitter|x\.com|youtube|google|apple|tiktok|whatsapp|linkedin|paypal|wikipedia|spotify|fb\.me|goo\.gl|bit\.ly|openstreetmap|maps)/i;
 
 const robotsCache = new Map();
+function musterZuRegex(m) {
+  const ende = m.endsWith('$');
+  const kern = (ende ? m.slice(0, -1) : m).replace(/[.+?^${}()|[\]\\]/g, '\\$&').replace(/\*/g, '.*');
+  return new RegExp('^' + kern + (ende ? '$' : ''));
+}
 async function robotsErlaubt(url) {
   const u = new URL(url);
   if (!robotsCache.has(u.origin)) {
-    let regeln = [];
+    const regeln = []; // { erlaubt, laenge, re }
     try {
       const r = await fetch(u.origin + '/robots.txt', { headers: { 'User-Agent': UA }, signal: AbortSignal.timeout(15000) });
-      if (r.ok) {
-        let gilt = false;
+      if (r.ok && /text|plain/i.test(r.headers.get('content-type') || 'text/plain')) {
+        let gilt = false, letzteWarAgent = false;
         for (const zeile of (await r.text()).split(/\r?\n/)) {
           const z = zeile.split('#')[0].trim();
           const m = z.match(/^([A-Za-z-]+)\s*:\s*(.*)$/);
           if (!m) continue;
           const k = m[1].toLowerCase(), v = m[2].trim();
-          if (k === 'user-agent') gilt = (v === '*' || /rockabillyradar/i.test(v));
-          else if (gilt && k === 'disallow' && v) regeln.push(v);
+          if (k === 'user-agent') {
+            const trifft = (v === '*' || /rockabillyradar/i.test(v));
+            gilt = letzteWarAgent ? (gilt || trifft) : trifft;
+            letzteWarAgent = true;
+          } else {
+            letzteWarAgent = false;
+            if (gilt && (k === 'disallow' || k === 'allow') && v) regeln.push({ erlaubt: k === 'allow', laenge: v.length, re: musterZuRegex(v) });
+          }
         }
       }
     } catch { /* robots.txt nicht lesbar: dann gilt nichts als gesperrt */ }
     robotsCache.set(u.origin, regeln);
   }
   const p = u.pathname + u.search;
-  return !robotsCache.get(u.origin).some(r => r === '/' || p.startsWith(r.split('*')[0].replace(/\$$/, '')));
+  let best = null;
+  for (const r of robotsCache.get(u.origin)) if (r.re.test(p) && (!best || r.laenge > best.laenge || (r.laenge === best.laenge && r.erlaubt))) best = r;
+  return !best || best.erlaubt;
 }
 
 function htmlZuText(html, basis) {
