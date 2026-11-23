@@ -46,6 +46,7 @@ window.RR_PRUEFUNG = {
     "alanpowerandtheaftershocks.com": "2026-11-05",
     "shboomfestival.it": "2026-11-05",
     "golden-oldies.de": "2026-11-23",
+    "pullmancity.de": "2026-11-23",
     "lennerockets.de": "2026-11-23"
   },
   termine: {
@@ -103,7 +104,8 @@ window.RR_PRUEFUNG = {
     "sc-20270625-basel-balboa-delight-2027": { datum: "2026-11-23", art: "veranstalter" },
     "sc-20270910-basel-shag-delight-2027": { datum: "2026-11-23", art: "veranstalter" },
     "sc-20261231-hamburg-new-year-s-eve-party-for-": { datum: "2026-11-23", art: "veranstalter" },
-    "golden-oldies-2027": { datum: "2026-11-23", art: "veranstalter" }
+    "golden-oldies-2027": { datum: "2026-11-23", art: "veranstalter" },
+    "x-pc-20261227-eging-am-see-rockabilly-night": { datum: "2026-11-23", art: "veranstalter" }
   },
   fehlt: {
     "c-20270213-untermeitingen-why-not-band-country-nig": { seit: "2026-11-23", anzahl: 1 }
