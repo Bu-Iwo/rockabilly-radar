@@ -6,7 +6,7 @@
   stand     Tag der letzten Gesamt-Recherche. Gilt für alle Termine, die unten keine eigene Angabe haben.
             Diese Termine erscheinen als "Szene-Kalender".
   quellen   Wann eine Quelle zuletzt gelesen wurde (überschreibt "stand" für Termine dieser Quelle).
-            Beispiel: "jukeboxstompers.de": "2026-11-29"
+            Beispiel: "jukeboxstompers.de": "2026-11-23"
   termine   Termine, die beim Veranstalter geprüft wurden. Der Schlüssel ist die id des Termins.
             art "veranstalter" = erscheint als "Termin bestätigt" und "beim Veranstalter geprüft".
             Beispiel: "rockin-race-2027": { datum: "2026-11-29", art: "veranstalter" }
@@ -22,14 +22,14 @@
 window.RR_PRUEFUNG = {
   stand: "2026-11-03",
   quellen: {
-    "we-love-country.de": "2026-11-15",
-    "jukeboxstompers.de": "2026-11-15",
-    "swingcalendar.com": "2026-11-15",
-    "rock-and-roll-termine.de": "2026-11-15",
-    "brokensilence.de": "2026-11-15",
-    "vintage-club.de": "2026-11-15",
+    "we-love-country.de": "2026-11-23",
+    "jukeboxstompers.de": "2026-11-23",
+    "swingcalendar.com": "2026-11-23",
+    "rock-and-roll-termine.de": "2026-11-23",
+    "brokensilence.de": "2026-11-23",
+    "vintage-club.de": "2026-11-23",
     "head-over-heels.ch": "2026-11-15",
-    "rattlesnake-saloon.com": "2026-11-15",
+    "rattlesnake-saloon.com": "2026-11-23",
     "hasseroeder-burghotel.de": "2026-11-15",
     "screaminfestival.com": "2026-11-15",
     "the-hot-club.com": "2026-11-05",
@@ -44,7 +44,9 @@ window.RR_PRUEFUNG = {
     "Songkick": "2026-11-05",
     "mvp.de": "2026-11-05",
     "alanpowerandtheaftershocks.com": "2026-11-05",
-    "shboomfestival.it": "2026-11-05"
+    "shboomfestival.it": "2026-11-05",
+    "golden-oldies.de": "2026-11-23",
+    "lennerockets.de": "2026-11-23"
   },
   termine: {
     "js-teadance-1129": { datum: "2026-11-23", art: "veranstalter" },
@@ -58,34 +60,34 @@ window.RR_PRUEFUNG = {
     "sc-20261210-wien-blues-fever-festival": { datum: "2026-11-23", art: "veranstalter" },
     "sc-20261211-augsburg-xmaswing": { datum: "2026-11-23", art: "veranstalter" },
     "js-xmas-dortmund-2026": { datum: "2026-11-23", art: "veranstalter" },
-    "sc-20270108-basel-jitterbugs-delight-202": { datum: "2026-11-09", art: "veranstalter" },
-    "sc-20270121-frankfurt-am-main-mainhatten-blues-frank": { datum: "2026-11-09", art: "veranstalter" },
+    "sc-20270108-basel-jitterbugs-delight-202": { datum: "2026-11-23", art: "veranstalter" },
+    "sc-20270121-frankfurt-am-main-mainhatten-blues-frank": { datum: "2026-11-23", art: "veranstalter" },
     "js-winter-rockin-jive-2027": { datum: "2026-11-09", art: "veranstalter" },
     "js-triple-step-2027": { datum: "2026-11-09", art: "veranstalter" },
-    "js-rts-20-2027": { datum: "2026-11-09", art: "veranstalter" },
+    "js-rts-20-2027": { datum: "2026-11-23", art: "veranstalter" },
     "berlin-shake-5-2027": { datum: "2026-11-09", art: "veranstalter" },
-    "sc-20270326-zuerich-istherehop-2027": { datum: "2026-11-09", art: "veranstalter" },
-    "js-silvester-boheme-2026": { datum: "2026-11-15", art: "veranstalter" },
+    "sc-20270326-zuerich-istherehop-2027": { datum: "2026-11-23", art: "veranstalter" },
+    "js-silvester-boheme-2026": { datum: "2026-11-23", art: "veranstalter" },
     "x-rr-20261219-speyer-la-nuit-boheme-l-a": { datum: "2026-11-23", art: "veranstalter" },
     "sc-20261128-berlin-boh-me-sauvage-berlin-": { datum: "2026-11-23", art: "veranstalter" },
     "sc-20261231-berlin-boh-me-sauvage-berlin-": { datum: "2026-11-09", art: "veranstalter" },
     "sc-20270213-berlin-boh-me-sauvage-berlin-": { datum: "2026-11-09", art: "veranstalter" },
     "sc-20270417-jena-boh-me-sauvage-jena-n-": { datum: "2026-11-09", art: "veranstalter" },
-    "sc-20270522-berlin-boh-me-sauvage-berlin-": { datum: "2026-11-09", art: "veranstalter" },
+    "sc-20270522-berlin-boh-me-sauvage-berlin-": { datum: "2026-11-23", art: "veranstalter" },
     "js-sdn-burg-1121": { datum: "2026-11-15", art: "veranstalter" },
-    "js-sdn-burg-1229": { datum: "2026-11-15", art: "veranstalter" },
-    "js-golden-swing-2026": { datum: "2026-11-15", art: "veranstalter" },
+    "js-sdn-burg-1229": { datum: "2026-11-23", art: "veranstalter" },
+    "js-golden-swing-2026": { datum: "2026-11-23", art: "veranstalter" },
     "wiesloch-weekender-2027": { datum: "2026-11-15", art: "veranstalter" },
     "rocking-riot-2027": { datum: "2026-11-15", art: "veranstalter" },
     "js-bb-camp-2027": { datum: "2026-11-15", art: "veranstalter" },
-    "js-skyrocket-2027": { datum: "2026-11-15", art: "veranstalter" },
+    "js-skyrocket-2027": { datum: "2026-11-23", art: "veranstalter" },
     "js-oldietown-2027": { datum: "2026-11-15", art: "veranstalter" },
     "js-boogie-feets-2027": { datum: "2026-11-15", art: "veranstalter" },
     "js-sommer-oldies-2027": { datum: "2026-11-15", art: "veranstalter" },
-    "js-cruise-2027": { datum: "2026-11-15", art: "veranstalter" },
+    "js-cruise-2027": { datum: "2026-11-23", art: "veranstalter" },
     "screamin-festival-2027": { datum: "2026-11-15", art: "veranstalter" },
     "sc-20270129-bremen-switch-man-tau-2": { datum: "2026-11-15", art: "veranstalter" },
-    "sc-20270305-augsburg-sweet-bal-weekend": { datum: "2026-11-15", art: "veranstalter" },
+    "sc-20270305-augsburg-sweet-bal-weekend": { datum: "2026-11-23", art: "veranstalter" },
     "sc-20270416-schwerin-swinging-weekender": { datum: "2026-11-15", art: "veranstalter" },
     "x-bs-20261120-wernigerode-lennebrothers-band": { datum: "2026-11-15", art: "veranstalter" },
     "x-hb-20261121-wernigerode-die-eis-boys": { datum: "2026-11-15", art: "veranstalter" },
@@ -95,8 +97,15 @@ window.RR_PRUEFUNG = {
     "x-rr-20261205-filderstadt-bo-the-jitterbug-bite": { datum: "2026-11-23", art: "veranstalter" },
     "sc-20261128-zuerich-polyball-mit-hellzapoppin": { datum: "2026-11-23", art: "veranstalter" },
     "sc-20261129-kassel-swingcafe": { datum: "2026-11-23", art: "veranstalter" },
-    "sc-20261212-kassel-swing-party-mit-live-act-c": { datum: "2026-11-23", art: "veranstalter" }
+    "sc-20261212-kassel-swing-party-mit-live-act-c": { datum: "2026-11-23", art: "veranstalter" },
+    "js-firebirds-2027": { datum: "2026-11-23", art: "veranstalter" },
+    "sc-20261231-hamburg-swing-out-2026-swing-i": { datum: "2026-11-23", art: "veranstalter" },
+    "sc-20270625-basel-balboa-delight-2027": { datum: "2026-11-23", art: "veranstalter" },
+    "sc-20270910-basel-shag-delight-2027": { datum: "2026-11-23", art: "veranstalter" },
+    "sc-20261231-hamburg-new-year-s-eve-party-for-": { datum: "2026-11-23", art: "veranstalter" },
+    "golden-oldies-2027": { datum: "2026-11-23", art: "veranstalter" }
   },
   fehlt: {
+    "c-20270213-untermeitingen-why-not-band-country-nig": { seit: "2026-11-23", anzahl: 1 }
   }
 };

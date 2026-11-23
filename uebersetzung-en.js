@@ -61,6 +61,7 @@ window.RR_EN = {
     'Live-Musik täglich': 'Live music daily',
     'Steptanz': 'Tap dance',
     'Live-Musik': 'Live music',
+    'Oldtimer': 'Vintage cars',
     'Tanzen': 'Dancing',
     'Vintage-Markt': 'Vintage market'
   },
@@ -146,6 +147,8 @@ window.RR_EN = {
       'Starts 20:00, tickets via the organiser. (pin at city centre)',
     'Einlass 19 Uhr, Beginn 20:30 Uhr, Abendkasse 15 €. (Stadtkoordinate)':
       'Doors 19:00, starts 20:30, box office €15. (pin at city centre)',
+    'Eintritt 40 Euro inkl. Buffet. (Stadtkoordinate)':
+      'Admission €40 incl. buffet. (pin at city centre)',
     'Beginn 19:00 Uhr, Eintritt 64,50 € inkl. Getränke und Häppchen. (Stadtkoordinate)':
       'Starts 19:00, admission €64.50 incl. drinks and canapés. (pin at city centre)',
     'Beginn 20:00 Uhr. Mit Christoph Steinbach, Albert Koch, Richie Loidl, Daniel Balázs, Lluís Coloma, Robert Shumy, Ben Holder, Walt Bender und Wolfgang Janischowski. (Stadtkoordinate)':
