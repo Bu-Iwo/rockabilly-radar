@@ -372,6 +372,7 @@ a { color: inherit; }
 }
 .search input[type="search"] { width: 100%; }
 .langbar { display: flex; justify-content: flex-end; gap: 6px; margin-bottom: -8px; }
+.regsw { display: flex; gap: 6px; margin-right: auto; }
 .langbar .pill { min-height: 36px; padding: 0 14px; font-size: 15px; letter-spacing: 1px; }
 @media (prefers-reduced-motion: reduce) {
   .knob-dial, .needle { transition: none; }
@@ -381,6 +382,10 @@ a { color: inherit; }
 <body>
 <div class="app">
   <div class="langbar" role="group" aria-label="Sprache / Language" data-en-aria-label="Language / Sprache">
+    <div class="regsw" role="group" aria-label="Region" data-en-aria-label="Region">
+      <button type="button" class="pill" id="regEu" aria-pressed="true" data-en="Europe">Europa</button>
+      <button type="button" class="pill" id="regWorld" aria-pressed="false" data-en="🌍 Worldwide">🌍 Weltweit</button>
+    </div>
     <button type="button" class="pill" id="langDe" lang="de" aria-pressed="true">DE</button>
     <button type="button" class="pill" id="langEn" lang="en" aria-pressed="false">EN</button>
   </div>
@@ -484,6 +489,7 @@ a { color: inherit; }
 <script src="events-country-1.js"></script>
 <script src="events-country-2.js"></script>
 <script src="events-country-3.js"></script>
+<script src="events-world.js"></script>
 <script src="pruefung.js"></script>
 <script src="uebersetzung-en.js"></script>
 <script>
@@ -512,7 +518,7 @@ a { color: inherit; }
       };
     });
   }
-  var EVENTS = (window.RR_EVENTS || []).concat(moreToEvents(window.RR_MORE || []));
+  var EVENTS = (window.RR_EVENTS || []).concat(moreToEvents(window.RR_MORE || []), window.RR_WORLD || []);
   var PENDING = window.RR_PENDING || [];
   var LAND = window.RR_LAND || [];
   var REFCITIES = window.RR_REFCITIES || [];
@@ -554,7 +560,8 @@ a { color: inherit; }
       .replace(/\(Stadtkoordinate\)/g, '(pin at city centre)')
       .replace(/Abendkasse/g, 'box office')
       .replace(/Veranstalter:/g, 'Organiser:')
-      .replace(/Konzerttermin laut /g, 'Concert date per ');
+      .replace(/Konzerttermin laut /g, 'Concert date per ')
+      .replace(/Tour-Termin, weitere Orte auf der Detailseite\./g, 'Tour date, more places on the detail page.');
   }
   function venueDisp(v) { return LANG === 'en' && v && EN.venues[v] ? EN.venues[v] : v; }
   function srcDisp(sr) { return LANG === 'en' && sr ? String(sr).replace('(Stand ', '(as of ').replace('ohne Gewähr', 'no guarantee') : sr; }
@@ -648,7 +655,7 @@ a { color: inherit; }
   /* NEU seit dem letzten Besuch: Merkt sich im Browser, welche Events beim vorigen Besuch schon da waren */
   var newIds = {}, newCount = 0;
   (function () {
-    var cur = events.map(function (e) { return e.id; });
+    var cur = events.filter(function (e) { return !e.world; }).map(function (e) { return e.id; }); /* Weltweit-Termine zählen nicht als „neu“ */
     var known = null, all = null, ts = 0, advanced = false;
     try {
       known = JSON.parse(storeGet('rr_known') || 'null');
@@ -683,16 +690,23 @@ a { color: inherit; }
   });
 
   var years = unique(events.map(function (e) { return e.startD.getFullYear(); })).sort();
-  var STYLE_ORDER = ['Rockabilly', "Rock'n'Roll", 'Swing', 'Lindy Hop', 'Balboa', 'Charleston', 'Blues', 'Shag', 'Boogie', 'Country', 'Hillbilly'];
+  var STYLE_ORDER = ['Rockabilly', "Rock'n'Roll", 'Swing', 'Jazz', 'Lindy Hop', 'Balboa', 'Charleston', 'Blues', 'Shag', 'Boogie', 'Country', 'Hillbilly'];
   /* Hier kann eine Adresse für „Stimmt nicht?“ eingetragen werden, zum Beispiel 'mailto:name@example.de'. Leer = Teilen-Menü des Handys. */
   var REPORT_TO = '';
-  var allStyles = unique([].concat.apply([], events.map(function (e) { return e.styles || []; })));
-  allStyles.sort(function (a, b) {
-    var ia = STYLE_ORDER.indexOf(a), ib = STYLE_ORDER.indexOf(b);
-    return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib) || a.localeCompare(b, 'de');
-  });
-  var styleOpts = ['Alle'].concat(allStyles);
-  var countryOpts = ['Alle'].concat(unique(events.map(function (e) { return e.countryName; })).sort(function (a, b) { return countryDisp(a).localeCompare(countryDisp(b), LANG); }));
+  /* Reiter: "eu" = Europa (Schwerpunkt DACH), "world" = Weltweit (Termine aus rockabillyrules.com) */
+  var REGION = storeGet('rr_region') === 'world' && events.some(function (e) { return e.world; }) ? 'world' : 'eu';
+  var styleOpts = ['Alle'], countryOpts = ['Alle'];
+  function computeOpts() {
+    var evs = events.filter(function (e) { return !!e.world === (REGION === 'world'); });
+    var allStyles = unique([].concat.apply([], evs.map(function (e) { return e.styles || []; })));
+    allStyles.sort(function (a, b) {
+      var ia = STYLE_ORDER.indexOf(a), ib = STYLE_ORDER.indexOf(b);
+      return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib) || a.localeCompare(b, 'de');
+    });
+    styleOpts = ['Alle'].concat(allStyles);
+    countryOpts = ['Alle'].concat(unique(evs.map(function (e) { return e.countryName; })).sort(function (a, b) { return countryDisp(a).localeCompare(countryDisp(b), LANG); }));
+  }
+  computeOpts();
 
   var savedHome = parseInt(storeGet('rr_home'), 10);
   var state = {
@@ -734,6 +748,7 @@ a { color: inherit; }
   }
   function matches(e, withMonth, ignoreKind, ignoreDance) {
     if (state.onlyMine) return !!mine[e.id] && searchOk(e); /* Meine Events: alles Gemerkte, unabhängig von Monat und Filtern (Suche gilt) */
+    if (!!e.world !== (REGION === 'world')) return false; /* Europa- und Weltweit-Reiter sind getrennt */
     if (state.onlyNew && !isNew(e)) return false; /* Nur Neues: alle Monate, die übrigen Filter gelten */
     if (!state.onlyNew && !rangeOn() && !(state.qTok.length && state.month < 0) && e.startD.getFullYear() !== state.year && e.endD.getFullYear() !== state.year) return false;
     if (!searchOk(e)) return false;
@@ -806,7 +821,7 @@ a { color: inherit; }
   }
 
   function createMap(box, hooks) {
-    var MINZ = 3, MAXZ = 12;
+    var MINZ = 3, MAXZ = 12, BOUNDS = { lng: [-25, 45], lat: [33, 68] };
     var view = { lng: 10, lat: 49, z: 4 };
     var data = { items: [], home: null, radius: 0 };
     var tilesLoaded = 0, tilesFailed = 0;
@@ -847,8 +862,8 @@ a { color: inherit; }
     });
 
     function clampView() {
-      view.lng = clamp(view.lng, -25, 45);
-      view.lat = clamp(view.lat, 33, 68);
+      view.lng = clamp(view.lng, BOUNDS.lng[0], BOUNDS.lng[1]);
+      view.lat = clamp(view.lat, BOUNDS.lat[0], BOUNDS.lat[1]);
     }
     function schedule() {
       if (raf) return;
@@ -949,7 +964,7 @@ a { color: inherit; }
       needFit = false;
       var pts = data.items;
       if (!pts.length) {
-        view.lng = 10; view.lat = 50; view.z = w < 560 ? 3 : 4;
+        if (MINZ < 3) { view.lng = 0; view.lat = 25; view.z = 2; } else { view.lng = 10; view.lat = 50; view.z = w < 560 ? 3 : 4; }
       } else if (pts.length === 1) {
         view.lng = pts[0].lng; view.lat = pts[0].lat; view.z = 7;
       } else {
@@ -1094,6 +1109,11 @@ a { color: inherit; }
         view.lng = it.lng; view.lat = it.lat; view.z = Math.max(view.z, 6);
         clampView();
         render();
+      },
+      setWorld: function (on) {
+        MINZ = on ? 2 : 3;
+        BOUNDS = on ? { lng: [-180, 180], lat: [-60, 75] } : { lng: [-25, 45], lat: [33, 68] };
+        needFit = true;
       },
       render: render
     };
@@ -1585,6 +1605,18 @@ a { color: inherit; }
   }
 
   /* Link mit #Kennung öffnet das Radar direkt bei diesem Event */
+  function switchRegion(r, quiet) {
+    if (r === REGION) return;
+    REGION = r;
+    storeSet('rr_region', r);
+    computeOpts();
+    state.style = 0; state.country = 0; state.month = -1; state.active = null;
+    state.from = ''; state.to = ''; state.onlyMine = false; state.onlyNew = false;
+    map.setWorld(r === 'world');
+    $('regEu').setAttribute('aria-pressed', r === 'eu' ? 'true' : 'false');
+    $('regWorld').setAttribute('aria-pressed', r === 'world' ? 'true' : 'false');
+    if (!quiet) refresh();
+  }
   function openFromHash() {
     var msg = $('hashMsg');
     msg.hidden = true;
@@ -1597,6 +1629,7 @@ a { color: inherit; }
       msg.hidden = false;
       return;
     }
+    if (!!e.world !== (REGION === 'world')) switchRegion(e.world ? 'world' : 'eu', true);
     state.year = e.startD.getFullYear();
     state.month = e.startD.getMonth();
     state.style = e.dance ? Math.max(0, styleOpts.indexOf('Swing')) : 0;
@@ -1787,6 +1820,14 @@ a { color: inherit; }
     }
     bd.addEventListener('click', function () { pick('de'); });
     be.addEventListener('click', function () { pick('en'); });
+  })();
+  (function () {
+    var be = $('regEu'), bw = $('regWorld');
+    be.setAttribute('aria-pressed', REGION === 'eu' ? 'true' : 'false');
+    bw.setAttribute('aria-pressed', REGION === 'world' ? 'true' : 'false');
+    map.setWorld(REGION === 'world');
+    be.addEventListener('click', function () { switchRegion('eu'); });
+    bw.addEventListener('click', function () { switchRegion('world'); });
   })();
   buildDial();
   buildKnobs();

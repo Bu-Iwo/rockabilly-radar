@@ -48,6 +48,7 @@ window.RR_PRUEFUNG = {
     "golden-oldies.de": "2026-11-23",
     "reindeers.de": "2026-11-23",
     "elbonautics.de": "2026-11-25",
+    "rockabillyrules.com": "2026-11-25",
     "4cash-band.de": "2026-11-23",
     "becky-jay.de": "2026-11-23",
     "alexklein.ch": "2026-11-23",

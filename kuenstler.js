@@ -4852,11 +4852,13 @@ window.RR_KUENSTLER = {
    "geprueft": "",
    "naechste": "",
    "termine": 0,
-   "stil": [],
+   "stil": [
+    "Jazz"
+   ],
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Jazzband aus der Bandliste von rock-and-roll-termine.de (25.11.2026), vom Nutzer gewünscht. Jazz ist in der App noch kein Stil; Stil und Land noch nicht bestätigt.",
+   "hinweis": "Jazzband aus der Bandliste von rock-and-roll-termine.de (25.11.2026), vom Nutzer gewünscht. Stil und Land noch nicht bestätigt.",
    "von": "nutzer"
   },
   {
@@ -4867,11 +4869,13 @@ window.RR_KUENSTLER = {
    "geprueft": "",
    "naechste": "",
    "termine": 0,
-   "stil": [],
+   "stil": [
+    "Jazz"
+   ],
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Jazzband aus der Bandliste von rock-and-roll-termine.de (25.11.2026), vom Nutzer gewünscht. Jazz ist in der App noch kein Stil; Stil und Land noch nicht bestätigt.",
+   "hinweis": "Jazzband aus der Bandliste von rock-and-roll-termine.de (25.11.2026), vom Nutzer gewünscht. Stil und Land noch nicht bestätigt.",
    "von": "nutzer"
   },
   {
@@ -4882,11 +4886,13 @@ window.RR_KUENSTLER = {
    "geprueft": "",
    "naechste": "",
    "termine": 0,
-   "stil": [],
+   "stil": [
+    "Jazz"
+   ],
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Jazzband aus der Bandliste von rock-and-roll-termine.de (25.11.2026), vom Nutzer gewünscht. Jazz ist in der App noch kein Stil; Stil und Land noch nicht bestätigt.",
+   "hinweis": "Jazzband aus der Bandliste von rock-and-roll-termine.de (25.11.2026), vom Nutzer gewünscht. Stil und Land noch nicht bestätigt.",
    "von": "nutzer"
   },
   {
@@ -4897,11 +4903,13 @@ window.RR_KUENSTLER = {
    "geprueft": "",
    "naechste": "",
    "termine": 0,
-   "stil": [],
+   "stil": [
+    "Jazz"
+   ],
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Jazzband aus der Bandliste von rock-and-roll-termine.de (25.11.2026), vom Nutzer gewünscht. Jazz ist in der App noch kein Stil; Stil und Land noch nicht bestätigt.",
+   "hinweis": "Jazzband aus der Bandliste von rock-and-roll-termine.de (25.11.2026), vom Nutzer gewünscht. Stil und Land noch nicht bestätigt.",
    "von": "nutzer"
   },
   {
@@ -4912,11 +4920,13 @@ window.RR_KUENSTLER = {
    "geprueft": "",
    "naechste": "",
    "termine": 0,
-   "stil": [],
+   "stil": [
+    "Jazz"
+   ],
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Jazzband aus der Bandliste von rock-and-roll-termine.de (25.11.2026), vom Nutzer gewünscht. Jazz ist in der App noch kein Stil; Stil und Land noch nicht bestätigt.",
+   "hinweis": "Jazzband aus der Bandliste von rock-and-roll-termine.de (25.11.2026), vom Nutzer gewünscht. Stil und Land noch nicht bestätigt.",
    "von": "nutzer"
   },
   {
@@ -4927,11 +4937,265 @@ window.RR_KUENSTLER = {
    "geprueft": "",
    "naechste": "",
    "termine": 0,
-   "stil": [],
+   "stil": [
+    "Jazz"
+   ],
    "land": [
     "Deutschland"
    ],
-   "hinweis": "Jazzband aus der Bandliste von rock-and-roll-termine.de (25.11.2026), vom Nutzer gewünscht. Jazz ist in der App noch kein Stil; Stil und Land noch nicht bestätigt.",
+   "hinweis": "Jazzband aus der Bandliste von rock-and-roll-termine.de (25.11.2026), vom Nutzer gewünscht. Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Allstar Big Band",
+   "alias": [],
+   "homepage": "https://www.allstarbigband.de/band/biografie",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Jazz",
+    "Swing"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Big Band aus der Bandliste von rock-and-roll-termine.de (25.11.2026), vom Nutzer gewünscht. Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "AZ Big Band",
+   "alias": [],
+   "homepage": "https://www.az-big-band.de/aktuelles",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Jazz",
+    "Swing"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Big Band aus der Bandliste von rock-and-roll-termine.de (25.11.2026), vom Nutzer gewünscht. Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Big Band im Quadrat",
+   "alias": [],
+   "homepage": "https://www.bigband2.de/auftritte/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Jazz",
+    "Swing"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Big Band aus der Bandliste von rock-and-roll-termine.de (25.11.2026), vom Nutzer gewünscht. Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Blue Bird Bigband",
+   "alias": [],
+   "homepage": "https://www.bluebirdbigband.de/auftritte",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Jazz",
+    "Swing"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Big Band aus der Bandliste von rock-and-roll-termine.de (25.11.2026), vom Nutzer gewünscht. Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Blue Light Big Band",
+   "alias": [],
+   "homepage": "https://bluelightbigband.de/pages/einsatztermine.php",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Jazz",
+    "Swing"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Big Band aus der Bandliste von rock-and-roll-termine.de (25.11.2026), vom Nutzer gewünscht. Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Blue Note Big Band",
+   "alias": [],
+   "homepage": "https://www.bluenotebigband.de/konzerte.html",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Jazz",
+    "Swing"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Big Band aus der Bandliste von rock-and-roll-termine.de (25.11.2026), vom Nutzer gewünscht. Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Brass Connection",
+   "alias": [],
+   "homepage": "https://www.stadtkapelle-landau.de/orchester/big-band/auftritte_bc",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Jazz",
+    "Swing"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Big Band aus der Bandliste von rock-and-roll-termine.de (25.11.2026), vom Nutzer gewünscht. Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Galapagos Bigband",
+   "alias": [],
+   "homepage": "https://www.galapagosbigband.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Jazz",
+    "Swing"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Big Band aus der Bandliste von rock-and-roll-termine.de (25.11.2026), vom Nutzer gewünscht. Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "L.A. Reed Big Band Lampertheim",
+   "alias": [],
+   "homepage": "http://lareedbigband.eu/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Jazz",
+    "Swing"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Big Band aus der Bandliste von rock-and-roll-termine.de (25.11.2026), vom Nutzer gewünscht. Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "MBR Bigband",
+   "alias": [],
+   "homepage": "https://www.mbr-bigband.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Jazz",
+    "Swing"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Big Band aus der Bandliste von rock-and-roll-termine.de (25.11.2026), vom Nutzer gewünscht. Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "NeW Brass Big Band",
+   "alias": [],
+   "homepage": "http://www.newbrass.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Jazz",
+    "Swing"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Big Band aus der Bandliste von rock-and-roll-termine.de (25.11.2026), vom Nutzer gewünscht. Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "TC Big Band Haßloch",
+   "alias": [],
+   "homepage": "https://www.tc-bigband.de/Termine/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Jazz",
+    "Swing"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Big Band aus der Bandliste von rock-and-roll-termine.de (25.11.2026), vom Nutzer gewünscht. Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Uni BigBand Kaiserslautern",
+   "alias": [],
+   "homepage": "https://www.uni-kl.de/bigband/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Jazz",
+    "Swing"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Big Band aus der Bandliste von rock-and-roll-termine.de (25.11.2026), vom Nutzer gewünscht. Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Up to Date Bigband",
+   "alias": [],
+   "homepage": "https://uptodate-bigband.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Jazz",
+    "Swing"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Big Band aus der Bandliste von rock-and-roll-termine.de (25.11.2026), vom Nutzer gewünscht. Stil und Land noch nicht bestätigt.",
    "von": "nutzer"
   }
  ]

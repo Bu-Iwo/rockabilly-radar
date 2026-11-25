@@ -27,13 +27,23 @@ window.RR_EN = {
     'Polen': 'Poland',
     'Tschechien': 'Czechia',
     'Portugal': 'Portugal',
-    'Irland': 'Ireland'
+    'Irland': 'Ireland',
+    'USA': 'United States',
+    'Australien': 'Australia',
+    'Kanada': 'Canada',
+    'Japan': 'Japan',
+    'Chile': 'Chile',
+    'Mexiko': 'Mexico'
   },
 
   /* Nur Städte mit gebräuchlichem englischem Namen. Zusammengesetzte Namen wie "München-Allach" werden automatisch mit übersetzt. */
   cities: {
     'München': 'Munich',
     'Köln': 'Cologne',
+    'Sevilla': 'Seville',
+    'Valencia': 'Valencia',
+    'Ciudad de México': 'Mexico City',
+    'Montreal': 'Montréal',
     'Nürnberg': 'Nuremberg',
     'Wien': 'Vienna',
     'Triest': 'Trieste',
