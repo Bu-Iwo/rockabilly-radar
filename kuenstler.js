@@ -3381,6 +3381,103 @@ window.RR_KUENSTLER = {
     "Deutschland"
    ],
    "hinweis": "Vom Nutzer am 25.11.2026 übergeben. Konzerte meist im Raum Dresden. Termine auf /termine/."
+  },
+  {
+   "name": "Die Boogie Hechte",
+   "alias": ["BoogieHechte"],
+   "homepage": "",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Boogie",
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Vom Nutzer am 25.11.2026 genannt. Noch keine Adresse. Homepage suchen; Stil noch nicht bestätigt."
+  },
+  {
+   "name": "Ants (Halle)",
+   "alias": [],
+   "homepage": "",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Vom Nutzer am 25.11.2026 genannt. Noch keine Adresse. Homepage suchen; Stil noch nicht bestätigt."
+  },
+  {
+   "name": "Die Eis Boys",
+   "alias": [],
+   "homepage": "",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Vom Nutzer am 25.11.2026 genannt. Noch keine Adresse. Homepage suchen; Stil noch nicht bestätigt."
+  },
+  {
+   "name": "Lesly's Dynamite",
+   "alias": [],
+   "homepage": "",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Vom Nutzer am 25.11.2026 genannt. Noch keine Adresse. Homepage suchen; Stil noch nicht bestätigt."
+  },
+  {
+   "name": "Barney's Rockets",
+   "alias": [],
+   "homepage": "",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rockabilly"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Vom Nutzer am 25.11.2026 genannt. Noch keine Adresse. Homepage suchen; Stil noch nicht bestätigt."
+  },
+  {
+   "name": "Blue Velvets",
+   "alias": [],
+   "homepage": "",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Vom Nutzer am 25.11.2026 genannt. Noch keine Adresse. Homepage suchen; Stil noch nicht bestätigt."
   }
  ]
 };
