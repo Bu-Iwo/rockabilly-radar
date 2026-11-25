@@ -4843,6 +4843,96 @@ window.RR_KUENSTLER = {
    ],
    "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
    "von": "nutzer"
+  },
+  {
+   "name": "Barrelhouse Jazzband",
+   "alias": [],
+   "homepage": "https://www.barrelhouse-jazzband.com/shows",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Jazzband aus der Bandliste von rock-and-roll-termine.de (25.11.2026), vom Nutzer gewünscht. Jazz ist in der App noch kein Stil; Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "New Winestreet Jazzband",
+   "alias": [],
+   "homepage": "",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Jazzband aus der Bandliste von rock-and-roll-termine.de (25.11.2026), vom Nutzer gewünscht. Jazz ist in der App noch kein Stil; Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Original Blütenweg Jazzer",
+   "alias": [],
+   "homepage": "https://bluetenweg-jazzer.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Jazzband aus der Bandliste von rock-and-roll-termine.de (25.11.2026), vom Nutzer gewünscht. Jazz ist in der App noch kein Stil; Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Palatina Washboard Jassband",
+   "alias": [],
+   "homepage": "http://www.palatina-washboard-jassband.de/index.html",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Jazzband aus der Bandliste von rock-and-roll-termine.de (25.11.2026), vom Nutzer gewünscht. Jazz ist in der App noch kein Stil; Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Unnerhaus Jazzband",
+   "alias": [],
+   "homepage": "https://www.swing-music-events.de/ujb.html",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Jazzband aus der Bandliste von rock-and-roll-termine.de (25.11.2026), vom Nutzer gewünscht. Jazz ist in der App noch kein Stil; Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Jazz Apple",
+   "alias": [],
+   "homepage": "https://jazzapple.de/termine/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Jazzband aus der Bandliste von rock-and-roll-termine.de (25.11.2026), vom Nutzer gewünscht. Jazz ist in der App noch kein Stil; Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
   }
  ]
 };
