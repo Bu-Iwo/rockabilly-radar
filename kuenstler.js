@@ -20,7 +20,7 @@
   - ignorieren: Liste von Terminen (JJJJ-MM-TT), die der Nutzer abgelehnt hat. Die Pflege-Aufgabe meldet sie nicht wieder als Kandidaten.
 */
 window.RR_KUENSTLER = {
- "stand": "2026-11-23",
+ "stand": "2026-11-25",
  "eintraege": [
   {
    "name": "The Cashbags",
@@ -3362,6 +3362,25 @@ window.RR_KUENSTLER = {
     "Deutschland"
    ],
    "hinweis": "Noch keine Adresse. Homepage suchen."
+  },
+  {
+   "name": "Elbonautics",
+   "alias": [],
+   "homepage": "https://www.elbonautics.de/",
+   "terminseite": "https://www.elbonautics.de/termine/",
+   "von": "nutzer",
+   "lesbar": "ja",
+   "geprueft": "2026-11-25",
+   "naechste": "2026-11-27",
+   "termine": 1,
+   "stil": [
+    "Rockabilly",
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Vom Nutzer am 25.11.2026 übergeben. Konzerte meist im Raum Dresden. Termine auf /termine/."
   }
  ]
 };
