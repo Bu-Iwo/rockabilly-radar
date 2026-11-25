@@ -1266,6 +1266,30 @@
    "url": "https://www.elbonautics.de/termine/",
    "typ": "band",
    "js": false
+  },
+  {
+   "id": "rockabillyrules-1",
+   "url": "https://rockabillyrules.com/all-events/",
+   "typ": "kalender",
+   "js": false
+  },
+  {
+   "id": "rockabillyrules-2",
+   "url": "https://rockabillyrules.com/all-events/?page=2",
+   "typ": "kalender",
+   "js": false
+  },
+  {
+   "id": "rockabillyrules-3",
+   "url": "https://rockabillyrules.com/all-events/?page=3",
+   "typ": "kalender",
+   "js": false
+  },
+  {
+   "id": "rockabillyrules-4",
+   "url": "https://rockabillyrules.com/all-events/?page=4",
+   "typ": "kalender",
+   "js": false
   }
  ]
 }

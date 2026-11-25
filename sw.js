@@ -9,10 +9,10 @@
   - Kartenbilder (OpenStreetMap) werden nicht gespeichert. Ohne Netz zeigt die App die vereinfachte Europakarte.
 */
 
-var CACHE = 'rr-v1';
+var CACHE = 'rr-v2';
 var DATEIEN = [
   './', 'index.html', 'europe.js', 'events.js',
-  'events-country-1.js', 'events-country-2.js', 'events-country-3.js', 'pruefung.js', 'uebersetzung-en.js',
+  'events-country-1.js', 'events-country-2.js', 'events-country-3.js', 'events-world.js', 'pruefung.js', 'uebersetzung-en.js',
   'manifest.json', 'icon-192.png', 'icon-512.png', 'icon-maskable-512.png', 'apple-touch-icon.png'
 ];
 var SCHRIFTEN = ['fonts.googleapis.com', 'fonts.gstatic.com'];
