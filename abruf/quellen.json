@@ -1260,6 +1260,12 @@
    "url": "https://www.western-helden.de/",
    "typ": "band",
    "js": false
+  },
+  {
+   "id": "b-elbonautics-de",
+   "url": "https://www.elbonautics.de/termine/",
+   "typ": "band",
+   "js": false
   }
  ]
 }
