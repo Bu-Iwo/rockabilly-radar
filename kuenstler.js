@@ -3478,6 +3478,1371 @@ window.RR_KUENSTLER = {
     "Deutschland"
    ],
    "hinweis": "Vom Nutzer am 25.11.2026 genannt. Noch keine Adresse. Homepage suchen; Stil noch nicht bestätigt."
+  },
+  {
+   "name": "Aron Black - Elvis Tribute",
+   "alias": [],
+   "homepage": "http://www.aron-black-elvis-tribute.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Barnyard Boogie Boys",
+   "alias": [],
+   "homepage": "https://www.facebook.com/BarnyardBoogieBoys",
+   "lesbar": "nur-facebook",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Boogie",
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Betty Sue's Roadhouse",
+   "alias": [],
+   "homepage": "https://www.facebook.com/BettySueBand",
+   "lesbar": "nur-facebook",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Big Wave & The Bandits",
+   "alias": [],
+   "homepage": "https://www.bigwave-bandits.de/veranstaltungen",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Billy & the Fenderman",
+   "alias": [],
+   "homepage": "http://www.goldenoldies.de/portfolio-live-bands/billy-the-fendermen/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Boogie Connection",
+   "alias": [],
+   "homepage": "http://www.boogie-connection.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Boogie",
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Bun-Jon & The Big Jive",
+   "alias": [],
+   "homepage": "https://bjatbj.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Cardamon",
+   "alias": [],
+   "homepage": "https://cardamon-band.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Cherry Casino",
+   "alias": [],
+   "homepage": "http://www.cherry-casino.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Danny & the Chicks",
+   "alias": [],
+   "homepage": "https://www.facebook.com/DannyAndTheChicksDTC",
+   "lesbar": "nur-facebook",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Die Falschen Fuffziger",
+   "alias": [],
+   "homepage": "http://www.falschefuffziger.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Die Katzen",
+   "alias": [],
+   "homepage": "https://www.diekatzen-music.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Doo & The Wops",
+   "alias": [],
+   "homepage": "https://www.backstagepro.de/dooandthewops",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Dozy Doters",
+   "alias": [],
+   "homepage": "https://www.backstagepro.de/dozy-doters",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Duck Walker & the Filthy Feathers",
+   "alias": [],
+   "homepage": "https://duckwalker.jimdofree.com/termine/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Eric Prinzinger & BC0 Band",
+   "alias": [],
+   "homepage": "http://www.prinzinger.de/index2.html",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Fat Cat",
+   "alias": [],
+   "homepage": "https://www.fatcat2012.de/events",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Frl. J & die Tournedos",
+   "alias": [],
+   "homepage": "https://www.frl-j.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Good Times",
+   "alias": [],
+   "homepage": "https://www.goodtimesonline.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Gramophoniacs",
+   "alias": [],
+   "homepage": "https://www.gramophoniacs.com/band.html",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Hello Miss",
+   "alias": [],
+   "homepage": "https://hellomiss.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Herrenkombo",
+   "alias": [],
+   "homepage": "https://www.mobilepartymusik.de/herrenkombo/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Jerry Ree Lewis Band",
+   "alias": [],
+   "homepage": "http://www.jerryreelewis.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Jubilee Jumpers",
+   "alias": [],
+   "homepage": "https://www.jubileejumpers.de/live-dates/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Just for Fun",
+   "alias": [],
+   "homepage": "http://www.justforfun-mannheim.de/start.htm",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Krüger",
+   "alias": [
+    "Krüger rockt!"
+   ],
+   "homepage": "http://www.harald-krueger.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Laney & the Snappy Rhythm Gang",
+   "alias": [],
+   "homepage": "https://www.laneys-gang.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Lenox Avenue",
+   "alias": [],
+   "homepage": "https://www.facebook.com/lenoxavenueswing/about",
+   "lesbar": "nur-facebook",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Les Chambords",
+   "alias": [],
+   "homepage": "https://www.facebook.com/LesChambords",
+   "lesbar": "nur-facebook",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "MaBaker Swingdicate",
+   "alias": [],
+   "homepage": "https://www.swingdicate.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Swing"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Nils Strassburg & the Roll Agents",
+   "alias": [],
+   "homepage": "http://www.roll-agents.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Nobby & The Bobcats",
+   "alias": [],
+   "homepage": "http://www.bobcats.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Old Beer Devilz",
+   "alias": [],
+   "homepage": "https://www.facebook.com/oldbeerdevilz",
+   "lesbar": "nur-facebook",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Papa's Finest Boogie Band",
+   "alias": [],
+   "homepage": "http://www.papasfinest.de/home.html",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Boogie",
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "PaperMoon SwingCombo",
+   "alias": [],
+   "homepage": "https://papermoon.mesox.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Swing"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Primebeats",
+   "alias": [],
+   "homepage": "http://primebeats.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Pumping Special",
+   "alias": [],
+   "homepage": "https://www.pumpingspecial.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "ReBopHot",
+   "alias": [],
+   "homepage": "https://www.rebophot.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Red Hot",
+   "alias": [],
+   "homepage": "http://www.redhot-music.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Rockabilly Hellraisers",
+   "alias": [],
+   "homepage": "https://www.facebook.com/RockabillyHellraisers",
+   "lesbar": "nur-facebook",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rockabilly"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Rock 'n' Roll & Petticoats",
+   "alias": [],
+   "homepage": "https://www.rocknroll-petticoats.de/termine/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Safe Sane & Single",
+   "alias": [],
+   "homepage": "https://safesane.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Sarah und die Swing Herr'n",
+   "alias": [],
+   "homepage": "https://www.sarahunddieswingherrn.de/termine/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Swing"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Shakin' Daddes Band",
+   "alias": [],
+   "homepage": "http://www.shakin-daddes-band.de/index.html",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Suitcase of Grace",
+   "alias": [],
+   "homepage": "https://suitcase-of-grace.jimdosite.com/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Swing Aces",
+   "alias": [
+    "Katie & the Swing Aces"
+   ],
+   "homepage": "https://www.swingaces.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Swing"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Swing Cat Club",
+   "alias": [],
+   "homepage": "http://www.swingcatclub.de/index.php",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Swing"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Swinging Angels",
+   "alias": [],
+   "homepage": "http://www.swingingangels.de/termine/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Swing"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Teddy & the Lollipops",
+   "alias": [],
+   "homepage": "http://www.teddyunddielollipops.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "The Ballroom Shakers",
+   "alias": [],
+   "homepage": "http://www.ballroomshakers.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "The Bang Bags",
+   "alias": [],
+   "homepage": "http://www.thebangbags.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "The Bautzy's",
+   "alias": [],
+   "homepage": "https://www.bautzys.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "The Beat Brothers",
+   "alias": [],
+   "homepage": "https://beat-brothers.de/tourdaten/jahr-2019/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "The Gambles",
+   "alias": [],
+   "homepage": "http://www.thegambles.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "The Honkytones",
+   "alias": [],
+   "homepage": "https://honkytones.jimdo.com/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "The Huggee Swing Band",
+   "alias": [],
+   "homepage": "http://huggee-swing-band.com/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Swing"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "The Hot Rolls",
+   "alias": [],
+   "homepage": "http://thehotrolls.com/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "The Jailhouse Gang",
+   "alias": [],
+   "homepage": "https://jailhouse-gang.jimdoweb.com/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "The Mad Facts",
+   "alias": [],
+   "homepage": "https://www.facebook.com/TheMadFacts",
+   "lesbar": "nur-facebook",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "The Nannys",
+   "alias": [],
+   "homepage": "http://www.thenannys.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "The Primas",
+   "alias": [],
+   "homepage": "https://www.facebook.com/ThePrimasBand/",
+   "lesbar": "nur-facebook",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "The Red Jackets",
+   "alias": [],
+   "homepage": "http://www.redjackets.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "The Retrolettas",
+   "alias": [],
+   "homepage": "https://www.the-retrolettas.de/Termine.html",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "The Rhythm Kings",
+   "alias": [],
+   "homepage": "http://www.the-rhythm-kings.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "The Riwwels",
+   "alias": [],
+   "homepage": "https://www.facebook.com/Riwwels/",
+   "lesbar": "nur-facebook",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "The Rock 'n' Roll Flamingos",
+   "alias": [],
+   "homepage": "https://rocknroll-flamingos.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "The Roll Abouts",
+   "alias": [],
+   "homepage": "https://www.facebook.com/RollAbouts/",
+   "lesbar": "nur-facebook",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "The Rosevalley Sisters",
+   "alias": [],
+   "homepage": "https://www.facebook.com/TheRosevalleySisters",
+   "lesbar": "nur-facebook",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "The Rubinettes",
+   "alias": [],
+   "homepage": "https://www.therubinettes.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "The Silverballs",
+   "alias": [],
+   "homepage": "http://www.thesilverballs.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "The Silverettes",
+   "alias": [],
+   "homepage": "https://www.thesilverettes.de/tourdaten/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "The Sugar Sisters",
+   "alias": [],
+   "homepage": "http://www.thesugarsisters.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "The Time Bandits",
+   "alias": [],
+   "homepage": "http://www.timebandits-online.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "The Wild Bobbin Baboons",
+   "alias": [],
+   "homepage": "http://www.bobbin-baboons.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "The Wonderfrolleins",
+   "alias": [],
+   "homepage": "http://www.thewonderfrolleins.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Tom Jet & the Starlighters",
+   "alias": [],
+   "homepage": "http://www.goldenoldies.de/portfolio-live-bands/starlighters/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Vittelo Tonnato & the Roaring Zucchinis",
+   "alias": [],
+   "homepage": "http://www.zucchinis.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Whiskydenker",
+   "alias": [],
+   "homepage": "http://www.whiskydenker.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Zucchini Sistaz",
+   "alias": [],
+   "homepage": "https://zucchinisistaz.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [
+    "Rock'n'Roll"
+   ],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
+  },
+  {
+   "name": "Zydeco Annie & Swamp Cats",
+   "alias": [],
+   "homepage": "https://www.zydecoannie.de/",
+   "lesbar": "offen",
+   "geprueft": "",
+   "naechste": "",
+   "termine": 0,
+   "stil": [],
+   "land": [
+    "Deutschland"
+   ],
+   "hinweis": "Aus der Bandliste von rock-and-roll-termine.de (25.11.2026). Stil und Land noch nicht bestätigt.",
+   "von": "nutzer"
   }
  ]
 };
